@@ -1,0 +1,167 @@
+<div
+  class="drawer-wrap charges payment-review-cart"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign=" none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title"></span>
+      </div>
+    </div>
+    <div class="drawer-body">
+      <div class="table-wrap-bg">
+        <div
+          class="payment"
+          fxFlex="100"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <div
+            class="payment-box"
+              fxFlex.md="100"
+              fxFlex.sm="100"
+              fxFlex.xs="100"
+            fxLayout="column"
+            fxLayoutAlign="start"
+          >
+            <h1 class="title" i18n="@@paymentDetails">Payment Details</h1>
+            <p class="subtitle" i18n="@@copyPaymentDetailsTitle">
+              Before you close you can copy your payment details to clip board,
+              by clicking copy button below.
+            </p>
+            <div class="cart-item" fxLayout="row" fxLayoutAlign="start">
+              <div fxLayout="column" fxFlex="35">
+                <span
+                  class="appointment-title payment-status-header"
+                  i18n="@@paymentStatus"
+                >
+                  Payment Status:</span
+                >
+              </div>
+              <div fxLayout="column" fxFlex="70">
+                <div
+                  fxLayout="row"
+                  fxFlex="100"
+                  fxAlignItem="center"
+                  class="payment_status_div"
+                >
+                  <span
+                    class="appointment-title  appointment-title-value payment_status"
+                    *ngIf="paymentResponseData.isSuccess"
+                    i18n="@@paymentStatusSuccess"
+                    >Success 
+                  </span>
+                  <span
+                    class="appointment-title  appointment-title-value payment_status"
+                    *ngIf="!paymentResponseData.isSuccess"
+                    i18n="@@paymentStatusFailed"
+                    >Failed
+                  </span>
+                  <span class="payment-result">
+                    <mat-icon
+                    *ngIf="paymentResponseData.isSuccess"
+                    svgIcon="check-around-white"
+                    aria-hidden="false"
+                    class="no-light-theme"
+                  ></mat-icon>
+                  </span>
+                
+                  <span class="payment-result">
+                  <mat-icon
+                    *ngIf="!paymentResponseData.isSuccess"
+                    svgIcon="error-circle"
+                    aria-hidden="false"
+                    class="no-light-theme"
+                  >
+                  </mat-icon>
+                </span>
+                </div>
+              </div>
+            </div>
+            <div class="cart-item" fxLayout="row" fxLayoutAlign="start">
+              <div fxLayout="column" fxFlex="35">
+                <span class="appointment-title" i18n="@@paymentOrderNo"
+                  >Order Number:</span
+                >
+              </div>
+              <div fxLayout="column" fxFlex="70">
+                <span class="appointment-title  appointment-title-value">{{
+                  paymentResponseData.OrderNumber
+                }}</span>
+              </div>
+            </div>
+            <div class="cart-item" fxLayout="row" fxLayoutAlign="start">
+              <div fxLayout="column" fxFlex="35">
+                <span class="appointment-title" i18n="@@paymentOnlineRefNo"
+                  >Reference Number:
+                </span>
+              </div>
+              <div fxLayout="column" fxFlex="70">
+                <span class="appointment-title  appointment-title-value">{{
+                  paymentResponseData.OnlineRefID
+                }}</span>
+              </div>
+            </div>
+            <div
+              class="amount-to-pay"
+              fxLayout="row"
+              fxLayoutAlign="end center"
+            >
+              <span
+                class="appointment-title payment-information-title"
+                i18n="@@paymentAmount"
+                >Amount Paid:</span
+              >
+              <span class="appointment-title appointment-title-value"
+                >&nbsp;&nbsp;AED
+                {{
+                  (paymentResponseData.isSuccess
+                    ? paymentResponseData.amount
+                    : 0
+                  ) | number : "1.2-2"
+                }}</span
+              >
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="copy()"
+                i18n="@@copyPaymentDetails"
+              >
+                Copy Details
+              </button>
+              &nbsp;
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="close($event)"
+                i18n="@@closePayment"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- close btn -->
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button class="round-close-btn" (click)="close($event)">
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>

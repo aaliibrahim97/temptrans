@@ -1,0 +1,43 @@
+/* table-mode customize styles start */
+.table-mode-container {
+  .customize {
+    .mat-header-cell {
+      padding: 0px 8px;
+    }
+    .mat-header-row {
+      background: map-get($color, "atlp-cell-bg") 0% 0% no-repeat padding-box;
+      border: 1px solid map-get($color, "atlp-purple-dark");
+      box-shadow: none;
+      // overflow: hidden;
+      border-radius: 6px 6px 0px 0px;
+    }
+
+    & .cdk-drag-disabled {
+      font-weight: 700;
+      color: map-get($color, "atlp-black");
+    }
+    .mat-header-cell {
+      position: relative;
+      border-radius: 6px;
+      width: 100%;
+    }
+    &.collapse,
+    &.rolled {
+      .mat-cell {
+        padding: 0px 8px;
+      }
+    }
+    &.rich {
+      .mat-header-cell {
+        &:first-child {
+          padding-left: 20px;
+        }
+      }
+      .mat-header-row {
+        border-radius: 6px;
+      }
+    }
+  }
+}
+
+/* table-mode customize styles end */

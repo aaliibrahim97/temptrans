@@ -1,0 +1,136 @@
+<div
+  class="sidebar-container inheritSize"
+  fxLayout="row"
+  fxLayoutAlign="start start"
+>
+  <ng-container
+    *ngTemplateOutlet="filterTemplate ? filterTemplate : defaultfilterTemplate"
+  >
+  </ng-container>
+  <div class="page-wrapper">
+    <div class="page-btn-wrapper col-auto d-flex">
+      <ng-container
+        *ngTemplateOutlet="
+          atlpCommonButtonSection
+            ? atlpCommonButtonSection
+            : defaulttableContentTemplate
+        "
+      >
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          atlpTableSwitchHeaderSection
+            ? atlpTableSwitchHeaderSection
+            : defaulttableContentTemplate
+        "
+      >
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          atlpTableMultiSelectionActions
+            ? atlpTableMultiSelectionActions
+            : defaulttableContentTemplate
+        "
+      >
+      </ng-container>
+    </div>
+    <div class="page-content-wrapper col table-container">
+      <ng-container
+        *ngTemplateOutlet="
+          tableContentTemplate
+            ? tableContentTemplate
+            : defaulttableContentTemplate
+        "
+      >
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- dfsfs -->
+
+  <!-- <ng-container
+    *ngTemplateOutlet="filterTemplate ? filterTemplate : defaultfilterTemplate"
+  >
+  </ng-container>
+  <div class="sea-container" atlpPerfectScrollbar>
+    <div
+      class="table-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div
+        class="dashboard-nav table-responsive-head mb-10"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <ng-container *ngFor="let item of subModules; index as i">
+          <div fxLayout="row wrap">
+            <button type="button" class="nav-btn active">
+              {{ item.title | translate }}
+            </button>
+          </div>
+        </ng-container>
+      </div>
+      <div
+        class="table-head col table-responsive-head mb-10"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <div class="toolbar-body" fxLayout="row" fxLayoutAlign="start center">
+          <ng-container
+            *ngTemplateOutlet="
+              atlpCommonButtonSection
+                ? atlpCommonButtonSection
+                : defaulttableContentTemplate
+            "
+          >
+          </ng-container>
+        </div>
+        <ng-container
+          *ngTemplateOutlet="
+            atlpTableSwitchHeaderSection
+              ? atlpTableSwitchHeaderSection
+              : defaulttableContentTemplate
+          "
+        >
+        </ng-container>
+      </div>
+    </div>
+    <div
+      class="table-head table-responsive-head table-header-multiselect-actions"
+      fxLayout="row"
+      fxLayoutAlign="flex-end flex-end"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          atlpTableMultiSelectionActions
+            ? atlpTableMultiSelectionActions
+            : defaulttableContentTemplate
+        "
+      >
+      </ng-container>
+    </div>
+    <ng-container
+      *ngTemplateOutlet="
+        tableContentTemplate
+          ? tableContentTemplate
+          : defaulttableContentTemplate
+      "
+    >
+    </ng-container>
+  </div> -->
+</div>
+<ng-template #defaultfilterTemplate>
+  <div></div>
+</ng-template>
+<ng-template #defaulttableContentTemplate>
+  <div></div>
+</ng-template>
+
+<ng-container *cdkPortal>
+  <ng-content selector=".atlp-common-cdk-portal"></ng-content>
+</ng-container>
+
+<ng-content selector=".atlp-common-slider-section-one"></ng-content>
+<ng-content selector=".atlp-common-slider-section-two"></ng-content>
+<ng-content selector=".atlp-common-slider-section-three"></ng-content>

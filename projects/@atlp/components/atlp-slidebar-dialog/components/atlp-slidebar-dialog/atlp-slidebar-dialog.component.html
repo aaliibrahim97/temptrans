@@ -1,0 +1,21 @@
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="config.keyToCloseSlider"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign="none">
+    <div class="drawer-wrap-container drawer-wrap-container-transparent">
+      <div
+        class="drawer-header"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      ></div>
+      <div class="drawer-body">
+        <ng-template appInsertion> </ng-template>
+      </div>
+    </div>
+  </div>
+</atlp-sidebar-v2>

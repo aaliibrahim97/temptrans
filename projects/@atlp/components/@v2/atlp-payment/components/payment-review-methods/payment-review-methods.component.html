@@ -1,0 +1,810 @@
+<div
+  class="drawer-wrap payment-checkout"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign=" none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title" i18n="@@paymentCheckout">
+          Payment Checkout</span
+        >
+      </div>
+      <div
+        class="drawer-info display-desktop"
+        fxLayout="column"
+        fxLayoutAlign="end"
+      >
+        <p>
+          <span class="drawer-title" i18n="@@theAmountToPay">
+            Amount to Pay:</span
+          >
+          <span class="drawer-title">
+            {{ TotalAmount | number : "1.2-2" }}
+            <span i18n="@@aed">AED</span></span
+          >
+        </p>
+      </div>
+    </div>
+    <div class="drawer-body">
+      <div class="table-wrap-bg">
+        <div
+          class="payment"
+          fxFlex="100"
+          fxLayout="column"
+          fxLayoutAlign="start"
+        >
+          <div
+            class="payment-box"
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutAlign="start"
+          >
+            <h2 class="title" i18n="@@pleaseReviewyourPaymentDetail">
+              Please review your Payment details
+            </h2>
+            <p class="subtitle">
+              {{ reviewDescription }}
+            </p>
+
+            <div *ngFor="let item of DisplayLineItems">
+              <div
+                class="cart-item"
+                fxLayout="row"
+                fxLayoutAlign="space-between"
+              >
+                <div fxLayout="column" fxFlex="100">
+                  <span class="appointment-title">
+                    {{ getItemName(item) }}
+                  </span>
+                  <span class="appointment-text">{{
+                    getItemDescription(item)
+                  }}</span>
+                </div>
+                <div
+                  class="text-align-end amount"
+                  fxLayout="column"
+                  fxFlex="100"
+                >
+                  <span class="appointment-title" i18n="@@theAmountToPay"
+                    >Amount to Pay:</span
+                  >
+                  <span class="appointment-text">
+                    {{ item.PaidAmount | number : "1.2-2" }}
+                    <span i18n="@@aed">AED</span></span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="amount-to-pay amount-sum"
+              fxLayout="row"
+              fxLayoutAlign="end center"
+            >
+              <span class="drawer-title">
+                {{ Amount | number : "1.2-2" }}
+                <span i18n="@@aed">AED</span></span
+              >
+            </div>
+            <div class="amount-service-charges">
+              <div *ngFor="let service of extraCharges">
+                <div
+                  class="amount-to-pay"
+                  *ngIf="service.serviceCharge > 0"
+                  fxLayout="row"
+                  fxLayoutAlign="end center"
+                >
+                  <p class="amount-subtitle">
+                    {{ service.serviceName }}:
+                    <span class="amount">
+                      {{ service.serviceCharge | number : "1.2-2" }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="amount-to-pay"
+              fxLayout="row"
+              fxLayoutAlign="end center"
+            >
+              <p>
+                <span class="drawer-title  payment-title" i18n="@@totalAmountToPay">
+                  Total Amount To Pay:
+                </span>
+
+                <span class="drawer-title">
+                  {{ TotalAmount | number : "1.2-2" }}
+                  <span i18n="@@aed">AED</span>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrap-bg payment-methods" fxLayout="column">
+        <div fxFlex="none" fxLayout="row" class="payment-methods-heading">
+          <h2 class="block-title" i18n="@@pleaseSelectAPaymentMethod">
+            PLEASE SELECT A PAYMENT METHOD
+          </h2>
+        </div>
+        <form [formGroup]="paymentForm">
+          <!-- Start Payment Methods -->
+          <mat-radio-group
+            class="payment-method display-desktop"
+            name="paymentMethod"
+            formControlName="paymentMethod"
+            [value]="paymentForm.value.paymentMethod"
+            fxLayout="row wrap"
+            fxFlex="100%"
+            fxLayoutAlign="normal"
+          >
+            <div
+              *ngFor="let method of paymentMethods"
+              fxFlex.gt-xs="24%"
+              fxFlex.gt-sm="24%"
+              style="margin-left: 1%"
+            >
+              <mat-radio-button
+                *ngIf="method.value != paymentMethodNames.APPLEPAY"
+                (change)="CalculateAmount(method.value)"
+                name="paymentMethod"
+                [value]="method.value"
+              >
+                <div
+                  class="payment-content payment-method-names"
+                  fxFlex="100%"
+                  fxLayout="column"
+                  fxLayoutAlign="space-between center"
+                >
+                  <span style="padding: 5%">
+                    <img [src]="method.img" alt="" />
+                  </span>
+                  <span class="label">
+                    {{ method.label }}
+                  </span>
+                </div>
+
+                <mat-icon svgIcon="pay-check" class="no-light-theme" aria-hidden="false"></mat-icon>
+              </mat-radio-button>
+            </div>
+            <div class="fill-gap" fxFlex.gt-xs="24%" fxFlex.gt-sm="0%"></div>
+          </mat-radio-group>
+
+          <div class="display-mobile" fxLayout="row wrap" fxFlex="100%">
+            <div class="dropdown-col bg" fxFlex="100%" fxLayout="column">
+              <label
+                for="#"
+                class="dropdown-label"
+                i18n="@@pleaseSelectAPaymentMethod"
+              >
+                PLEASE SELECT A PAYMENT METHOD
+              </label>
+              <mat-select
+                formControlName="paymentMethod"
+                [value]="paymentForm.value.paymentMethod"
+                placeholder="Select"
+                class="dropdown-select bg"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let option of filterApplePay()"
+                  [value]="option.value"
+                >
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <!-- End Payment Methods -->
+          <!-- Start Apple pay -->
+          <div
+            fxLayout="row"
+            fxFlex="100%"
+            fxLayoutAlign="center center"
+            *ngIf="checkApplePay(paymentMethods)"
+          >
+            <div
+              id="apple-pay-button"
+              (click)="ProcessApplePay()"
+              class="apple-pay input-block-level d-none"
+              lang="en"
+            ></div>
+          </div>
+          <!-- End Apple Pay -->
+          <!-- Start Cheque details -->
+          <ng-template
+            [ngIf]="
+              paymentForm.value.paymentMethod === paymentMethodNames.CHEQUE
+            "
+          >
+            <div class="cheque-details" formGroupName="chequeDetails">
+              <div>
+                <h2 class="block-title" i18n="@@enterChequeDetails">
+                  ENTER CHEQUE DETAILS
+                </h2>
+              </div>
+              <div fxLayout="row wrap" fxFlex="100%">
+                <div class="field-wrap bg" fxFlex="100%" fxFlex.gt-xs="49%">
+                  <label for="#" class="field-label" i18n="@@chequeNumber"
+                    >Cheque Number</label
+                  >
+                  <div class="field-input-wrap">
+                    <input
+                      type="text"
+                      (keypress)="numberOnly($event)"
+                      maxlength="100"
+                      required
+                      formControlName="chequeNumber"
+                    />
+                  </div>
+
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="chequeNumber.touched && chequeNumber.invalid"
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      style="margin-top: 0"
+                      aria-hidden="false"
+                      *ngIf="chequeNumber.touched && chequeNumber.invalid"
+                    >
+                    </mat-icon>
+                    <span
+                      class="error-text"
+                      *ngIf="chequeNumber.touched && chequeNumber.invalid"
+                      i18n="Cheque Number Msg@@chequeNumberIsRequred"
+                    >
+                      Cheque Number is required</span
+                    >
+                  </div>
+                </div>
+                <div fxFlex="2%"></div>
+                <div class="field-wrap bg" fxFlex="100%" fxFlex.gt-xs="49%">
+                  <label for="#" class="field-label" i18n="@@chequeBankName"
+                    >Bank Name</label
+                  >
+                  <div class="field-input-wrap">
+                    <input
+                      type="text"
+                      required
+                      formControlName="chequeBankName"
+                    />
+                  </div>
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="chequeBankName.touched && chequeBankName.invalid"
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      style="margin-top: 0"
+                      aria-hidden="false"
+                      *ngIf="chequeBankName.touched && chequeBankName.invalid"
+                    >
+                    </mat-icon>
+                    <span
+                      class="error-text"
+                      *ngIf="chequeBankName.touched && chequeBankName.invalid"
+                      i18n="@@chequeBankNameIsRequired"
+                    >
+                      Cheque Bank Name is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxFlex="100%" fxFlex.gt-sm="49%">
+                <div
+                  class="field-wrap bg"
+                  fxFlex="100%"
+                  fxFlex.gt-xs="49%"
+                  fxFlex.gt-sm="48%"
+                  fxLayout="column"
+                >
+                  <label for="#" class="field-label" i18n="@@chequeDate"
+                    >Cheque Date</label
+                  >
+                  <div class="field-input-wrap">
+                    <input
+                      [matDatepicker]="picker"
+                      placeholder="mm/dd/yyyy"
+                      (focus)="picker.open()"
+                      formControlName="chequeDate"
+                    />
+                    <mat-icon
+                      svgIcon="data-icon-white"
+                      aria-hidden="false"
+                    ></mat-icon>
+                  </div>
+                  <mat-datepicker #picker></mat-datepicker>
+
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="chequeDate.touched && chequeDate.invalid"
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      style="margin-top: 0"
+                      aria-hidden="false"
+                      *ngIf="chequeDate.touched && chequeDate.invalid"
+                    >
+                    </mat-icon>
+                    <span
+                      class="error-text"
+                      *ngIf="chequeDate.touched && chequeDate.invalid"
+                      i18n="@@chequeDateIsRequired"
+                    >
+                      Cheque Date is required</span
+                    >
+                  </div>
+                </div>
+
+                <div fxFlex="0%" fxFlex.gt-xs="2%" fxFlex.gt-sm="4%"></div>
+                <div
+                  class="field-wrap bg"
+                  fxFlex="100%"
+                  fxFlex.gt-xs="49%"
+                  fxFlex.gt-sm="48%"
+                >
+                  <label for="#" class="field-label" i18n="@@chequeAmount"
+                    >Cheque Amount</label
+                  >
+                  <div class="field-input-wrap">
+                    <input
+                      type="text"
+                      (keypress)="numberOnly($event)"
+                      required
+                      readonly
+                      disabled
+                      formControlName="chequeAmount"
+                    />
+                  </div>
+
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="chequeAmount.touched && chequeAmount.invalid"
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      style="margin-top: 0"
+                      aria-hidden="false"
+                      *ngIf="chequeAmount.touched && chequeAmount.invalid"
+                    >
+                    </mat-icon>
+                    <span
+                      class="error-text"
+                      *ngIf="chequeAmount.touched && chequeAmount.invalid"
+                      i18n="@@chequeAmountIsRequired"
+                    >
+                      Cheque Amount is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <!-- End Cheque details -->
+
+          <!-- Start Internet Banking details -->
+          <ng-template
+            [ngIf]="
+              paymentForm.value.paymentMethod ===
+              paymentMethodNames.INTERNETBANKING
+            "
+          >
+            <div class="bank-details">
+              <div>
+                <h2 class="block-title" i18n="@@selectaBank">SELECT A BANK</h2>
+              </div>
+              <mat-radio-group
+                class="select-bank display-desktop"
+                name="internetBankingBank"
+                formControlName="internetBankingBank"
+                [value]="paymentForm.value.internetBankingBank"
+                fxLayout="row wrap"
+                fxFlex="100%"
+                fxLayoutAlign="normal"
+              >
+                <div
+                  *ngFor="let method of internetBankingMethods"
+                  fxFlex.gt-xs="31%"
+                  fxFlex.gt-sm="24"
+                  style="margin-left: 1%"
+                >
+                  <mat-radio-button
+                    name="InternetBanking"
+                    [value]="method.value"
+                  >
+                    <div
+                      class="payment-content"
+                      fxFlex="100%"
+                      fxLayout="column wrap"
+                      fxLayoutAlign="space-between center"
+                    >
+                      <img [src]="method.img" alt="" />
+                      <label class="label">
+                        {{ method.label | translate }}
+                      </label>
+                    </div>
+                    <mat-icon
+                      svgIcon="pay-check"
+                      aria-hidden="false"
+                      class="no-light-theme"
+                    ></mat-icon>
+                  </mat-radio-button>
+                </div>
+                <!-- <div class="fill-gap" fxFlex.gt-xs="31.1%" fxFlex.gt-sm="0%"></div> -->
+              </mat-radio-group>
+
+              <div class="display-mobile" fxLayout="row" fxFlex="100%">
+                <div class="dropdown-col bg" fxFlex="100%" fxLayout="column">
+                  <label for="#" class="dropdown-label" i18n="@@selectaBank"
+                    >SELECT A BANK</label
+                  >
+                  <mat-select
+                    formControlName="internetBankingBank"
+                    [value]="paymentForm.value.internetBankingBank"
+                    placeholder="Select"
+                    class="dropdown-select bg"
+                    panelClass="panel-custom bg"
+                  >
+                    <mat-option
+                      *ngFor="let option of internetBankingMethods"
+                      [value]="option.value"
+                    >
+                      {{ option.label | translate }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <!-- End Internet Banking details -->
+
+          <!-- Start Tokenazation process -->
+          <ng-template
+            [ngIf]="
+              paymentForm.value.paymentMethod ===
+                paymentMethodNames.ECOMMERCE && isTokenizationEnabled === true
+            "
+          >
+            <div class="bank-details tokenized-card-details">
+              <div class="payment-cards-heading">
+                <h2 class="block-title" i18n="@@selectaCard">SELECT A CARD</h2>
+              </div>
+              <mat-radio-group
+                class="select-bank select-tokenized-card"
+                name="savedTokenizedCard"
+                fxLayout="row wrap"
+                fxFlex="100%"
+                fxLayoutAlign="normal"
+              >
+                <div
+                  *ngFor="let card of TokenizedCards"
+                  fxFlex.gt-xs="31%"
+                  fxFlex.gt-sm="24%"
+                  class="payment-token-card-disply"
+                  style="margin-left: 1%"
+                >
+                  <mat-radio-button
+                    name="savedTokenizedCard"
+                    value="{{ card.ReferenceNumber }}"
+                    class="Single-Tokenized-card"
+                    (click)="TokenizedCardSelected(card)"
+                    [ngClass]="{ 'tokenized-Card-Suspended': card.IsSuspend }"
+                    [disabled]="card.IsSuspend"
+                  >
+                    <div class="payment-token-content">
+                      <span class="label">
+                        {{ card.CardNumber }}
+                      </span>
+                      <!-- <p class="label">
+                        {{ card.CardNumber }}
+                      </p> -->
+                      <br />
+                      <div class="card-type-detail">
+                        <span
+                          [className]="
+                            'label payment-token-type-' + card.CardType
+                          "
+                        >
+                          {{ card.CardType }}
+                        </span>
+                        <img
+                          [src]="card.CardIcon"
+                          class="card-type-detail-img"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <mat-icon
+                      svgIcon="pay-check"
+                      aria-hidden="false"
+                      class="no-light-theme"
+                    ></mat-icon>
+                  </mat-radio-button>
+                </div>
+                <!-- Add New Card UI Start -->
+                <div
+                  fxFlex.gt-xs="31%"
+                  fxFlex.gt-sm="24%"
+                  class="payment-token-card-disply"
+                  style="margin-left: 1%"
+                >
+                  <mat-radio-button
+                    name="SaveNewTokenizedCard"
+                    value="1"
+                    class="Single-Tokenized-card"
+                    (change)="AddNewCardSelected()"
+                  >
+                    <div class="payment-token-content">
+                      <span class="label" i18n="@@addNewCreditCard">
+                        Add New Credit OR
+                      </span>
+                      <br />
+                      <div class="card-type-detail">
+                        <span
+                          class="label payment-token-type-New"
+                          i18n="@@addNewDebitCard"
+                        >
+                          Debit Card
+                        </span>
+                        <img [src]="AddNewCardURL" alt="" />
+                      </div>
+                      <!-- <label class="label">
+                        ADD NEW CARD
+                      </label>
+                      <div class="card-type-detail">
+                        <label class="label">
+                          ADD A CREDIT OR
+                          DEBIT CARD
+                        </label>
+                        <img [src]="AddNewCardURL" alt="" />
+                      </div> -->
+                    </div>
+                    <mat-icon
+                      svgIcon="pay-check"
+                      aria-hidden="false"
+                      class="no-light-theme"
+                    ></mat-icon>
+                  </mat-radio-button>
+                </div>
+                <!-- Add New Card UI End -->
+              </mat-radio-group>
+
+              <!-- <div class="display-mobile" fxLayout="row" fxFlex="100%">
+                <div class="dropdown-col bg" fxFlex="100%" fxLayout="column">
+                  <label for="#" class="dropdown-label" i18n="Select a Bank@@selectaBank">SELECT A BANK FROM Below
+                    List</label>
+                  <mat-select formControlName="internetBankingBank" [value]="paymentForm.value.internetBankingBank"
+                    placeholder="Select" class="dropdown-select bg" panelClass="panel-custom bg">
+                    <mat-option *ngFor="let option of internetBankingMethods" [value]="option.value">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div> -->
+            </div>
+            <!-- <ng-template [ngIf]="IsOneClickOTPSent===true">
+              <div style="text-align: center; margin-top: 25px;">
+                <h2 class="block-title"> {{OneClickOTPMsg}}</h2>
+              </div>
+                <div class="field-wrap bg" fxFlex="100%" fxFlex.gt-xs="20%" style="margin:auto;">
+                  <div class="field-input-wrap">
+                    <input type="text" (keypress)="numberOnly($event)" maxlength="6" minlength="6" required
+                      formControlName="oneClickTransOTP" #oneClickTransOTP/>
+                      <button appPreventDoubleClick [throttleTime]="700" mat-raised-button color="primary"
+                  class="payable-amount-btn bg" style="float:right; margin-top: 15px;" (throttledClick)="OneClickTransOTPVerification(oneClickTransOTP.value)">
+                  Verify Now
+                </button>
+                  </div>
+                  </div>
+              </ng-template>
+              <ng-template [ngIf]="IsOneClickOTPSentFailed===true">
+                <div style="text-align: center; margin-top: 25px;">
+                  <h2 class="block-title"> {{OneClickOTPMsg}}</h2>
+                </div>
+                </ng-template> -->
+          </ng-template>
+
+          <!-- End Tokenazation process -->
+
+          <div
+            fxLayout="row"
+            fxFlex="100%"
+            fxLayoutAlign="center center"
+            *ngIf="
+              paymentForm.value.paymentMethod ===
+              paymentMethodNames.INTERNETBANKING
+            "
+          >
+            <div class="bg paymentProductId">
+              <div class="field-input-wrap">
+                <div class="light-purple-select filters-radio">
+                  <mat-radio-group
+                    fxLayout="row"
+                    name="paymentProductId"
+                    formControlName="paymentProductId"
+                    [value]="paymentForm.value.paymentProductId"
+                  >
+                    <mat-radio-button
+                      name="paymentProductId"
+                      value="RETL"
+                      i18n="@@individual"
+                    >
+                      Individual
+                    </mat-radio-button>
+                    <mat-radio-button
+                      name="paymentProductId"
+                      value="CORPORATE"
+                      i18n="@@corporate"
+                    >
+                      Corporate
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Payment note -->
+          <div class="payment-actions" fxLayout="row wrap" fxFlex="100%">
+            <div
+              class="payment-note"
+              fxFlex="100%"
+              fxFlex.gt-xs="50%"
+              fxLayout="column"
+            ></div>
+            <div
+              class="payable-amount"
+              fxFlex="100%"
+              fxFlex.gt-xs="50%"
+              fxLayout="column"
+            >
+              <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="mat-focus-indicator mat-raised-button mat-button-base"
+                  [ngClass]="{ 'MPAY-Display-None': !IsDeleteOneClickToken }"
+                  (click)="DeletePaymentToken()"
+                  i18n="@@TokenizedCardDelete"
+                >
+                  Delete Card
+                </button>
+
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="mat-focus-indicator mat-raised-button mat-button-base"
+                  (click)="closePaymentMethods($event)"
+                  i18n="@@CancelPayment"
+                >
+                  Cancel
+                </button>
+                &nbsp;
+                <button
+                  appPreventDoubleClick
+                  [throttleTime]="700"
+                  mat-raised-button
+                  color="primary"
+                  class="payable-amount-btn bg"
+                  [disabled]="enablePayment()"
+                  (throttledClick)="ProcessCheckout()"
+                  i18n="@@payNow"
+                >
+                  Pay now
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- End Payment note -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- close btn -->
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button class="round-close-btn" (click)="closePaymentMethods($event)">
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-with-content-iframe"
+  [name]="SidebarName.paymentCheckout"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <app-payment-checkout-v2
+    class="app-payment-checkout"
+    *ngIf="paymentReceiveModel.paymentProcessStatus === 'CHECKOUT'"
+    [sourceUrl]="paymentData.checkoutUrl"
+  >
+  </app-payment-checkout-v2>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.paymentCompleteV2"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <app-payment-success-or-failure-dialog-v2
+    *ngIf="paymentReceiveModel.paymentProcessStatus === 'COMPLETE'"
+    [paymentResponseData]="paymentDataRes"
+    (paymentCompleteEvent)="paymentCompleteEvent($event)"
+  >
+  </app-payment-success-or-failure-dialog-v2>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.confirmationPopUP"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <app-drawer-dialog-v2
+    (setClickDialogOK)="onDeleteCardConfirm($event)"
+    [dialogData]="deleteDialogData"
+  >
+  </app-drawer-dialog-v2>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.paymentOTP"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <app-payment-otp-v2
+    (setPaymentOTP)="OneClickTransOTPVerification($event)"
+    (setResendPaymentOTP)="ResendPaymentOTPProcess($event)"
+    [dialogData]="paymentOTPDialogData"
+  >
+  </app-payment-otp-v2>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.cashPaymentconfirmationPopUP"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <app-cash-confirmation-dialog-v2
+    (setClickDialogOK)="onCashPaymentConfirm($event)"
+    [dialogData]="cashPaymentDialogData"
+  >
+  </app-cash-confirmation-dialog-v2>
+</atlp-sidebar-v2>

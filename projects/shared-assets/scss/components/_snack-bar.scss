@@ -1,0 +1,33 @@
+app-custom-snak-bar {
+  max-width: 200px;
+}
+
+.mat-snack-bar-container {
+    background-color: map-get($color, "atlp-white") !important;
+    @include padding(20px, 20px, 20px, 20px !important);
+    border-radius: 6px !important;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2) !important;
+    @media (min-width: 768px) {
+      @include padding(20px, 20px, 20px, 20px !important);
+    }
+    span {
+      font-size: 18px;
+      letter-spacing: 0px;
+      color: map-get($color, "atlp-table-color") !important;
+    }
+    img {
+      @include margin-right(12px);
+      position: relative;
+      bottom: -1px;
+    }
+    button {
+      @include margin-left(70px);
+      position: absolute;
+      top: 55%;
+      @include right(10px);
+      transform: translateY(-50%);
+      @media (min-width: 768px) {
+        top: 52%;
+      }
+    }
+  }

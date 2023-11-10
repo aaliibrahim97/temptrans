@@ -1,0 +1,373 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+// .table-scroll-wrap {
+//   overflow-x: auto !important;
+// }
+.filter-search-icon {
+  width: 15px;
+  height: 15px;
+  min-height: 15px;
+  max-width: 15px;
+}
+.filters {
+  background-color: map-get($color, "atlp-violet-base");
+  // width: 260px;
+  width: 100%;
+  // height: calc(100vh - 72px);
+  height: 100%;
+  @include padding-left(20px);
+  @include padding-right(20px);
+  padding-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  .filters-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    button {
+      height: 24px;
+    }
+  }
+  .filters-title {
+    font-size: 16px;
+    color: map-get($color, "atlp-purple-light");
+    margin-top: 0px;
+  }
+  .filters-preset {
+    font-size: 16px;
+    color: map-get($color, "atlp-purple-light");
+    margin-top: 0px;
+  }
+  .filter-title-row {
+    padding-top: 39px;
+    padding-bottom: 18.5px;
+  }
+  .filters-btn {
+    width: 100%;
+    margin-bottom: 41px;
+  }
+  .clear-btn {
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  .filter-section-title {
+    color: map-get($color, "atlp-purple-light");
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .filters-radio {
+    margin-bottom: 40px;
+  }
+  .panel-title {
+    color: map-get($color, "atlp-purple-light");
+  }
+  .mat-expansion-panel-header-description {
+    padding-bottom: 11px;
+  }
+  .mat-expansion-panel {
+    margin-bottom: 0px !important;
+  }
+  .savefilters-btn {
+    width: 100%;
+    margin-top: 24px;
+  }
+  .filters-checkbox {
+    margin-bottom: 12px;
+  }
+  .date-picker {
+    margin-top: 12px;
+  }
+  .radio-btn-row {
+    width: 100%;
+  }
+  .radio-button-select {
+    margin-bottom: 12px;
+  }
+  .field-wrap {
+    margin-bottom: 15px;
+  }
+
+  .panel-body {
+    .mat-checkbox {
+      display: block;
+      color: #fff;
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 23px;
+    }
+  }
+
+  @media screen and (max-width: 552px) {
+    position: absolute;
+    width: 100%;
+    .loaded-filters {
+      top: unset !important;
+      @include left(0px !important);
+    }
+  }
+}
+
+atlp-filters-v2 {
+  height: 100%;
+  display: block;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: end;
+  .loaded-filters {
+    max-width: 250px;
+    background-color: map-get($color, "atlp-violet-light");
+    position: static !important;
+    width: 100%;
+    height: auto;
+    @include left(0);
+    top: 0%;
+    // transform: translateY(65%);
+    transform: translateY(0%);
+    z-index: 3;
+    padding: 0 20px;
+    @media screen and (min-width: 768px) {
+      top: 0;
+      bottom: auto;
+      @include left(260px);
+      height: 100%;
+      @include padding-left(12px);
+      @include padding-right(12px);
+      transform: translateY(0);
+    }
+    .filters-btn {
+      width: 100%;
+      margin-bottom: 8px;
+      @include text-align(left);
+    }
+    .loaded-filters-title {
+      color: map-get($color, "atlp-white");
+      font-size: 18px;
+      margin-bottom: 12px;
+      margin-top: 39px;
+    }
+    .selectedbtn {
+      background: map-get($color, "atlp-violet-base") !important;
+      border: 1px solid map-get($color, "atlp-border-color") !important;
+      color: map-get($color, "atlp-white") !important;
+      path {
+        fill: map-get($color, "atlp-grey-base") !important;
+      }
+    }
+    .saved-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 33px;
+    }
+  }
+  .filters {
+    min-width: 400px;
+  }
+  .filters-width25 {
+    max-width: 25%;
+  }
+  .filters-width60 {
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filter-container {
+    .filters {
+      min-width: 100%;
+    }
+  }
+}
+
+.panel-custom.bg {
+  background-color: #605a92 !important;
+}
+.recent-filters {
+  position: relative;
+  &:hover {
+    z-index: 9;
+  }
+  .tooltip-filters {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    position: absolute;
+    border: 1px solid map-get($color, "atlp-purple-base");
+    // @include right(0);
+    @include padding(16px, 16px, 8px, 16px);
+    background-color: map-get($color, "atlp-panel-btn");
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    font-size: 90%;
+    top: -90%;
+    transform: none !important;
+    width: 100%;
+    min-width: 300px;
+    // left: calc(0px - 438px);
+    // right: auto;
+
+    &:lang(en) {
+      // left: calc(0px - 438px);
+      // right: auto;
+      left: 105%;
+      right: auto;
+      top: -10px;
+    }
+    &:lang(ar) {
+      // right: calc(0px - 438px);
+      // left: auto;
+      right: 105%;
+      left: auto;
+      top: -10px;
+    }
+    @media screen and (min-width: 768px) {
+      max-width: 300px;
+      width: 100%;
+
+      width: 100%;
+      min-width: 300px;
+
+      &:lang(en) {
+        transform: translate(106%, -10%);
+      }
+    }
+
+    @media screen and (max-width: 980px) {
+      max-width: 300px;
+      width: 100%;
+
+      &::before {
+        display: none;
+      }
+      &:lang(en) {
+        // transform: translate(106%, -10%);
+        // left: 0;
+        // top: 125%;
+
+        transform: none;
+        top: 100%;
+        right: -3px;
+        left: auto;
+      }
+      &:lang(ar) {
+        // transform: translate(106%, -10%);
+        // right: 0;
+        // top: 125%;
+
+        transform: none;
+        top: 100%;
+        left: -3px;
+        right: auto;
+      }
+    }
+
+    @media screen and (min-width: 970px) {
+      width: 100%;
+    }
+    .saved-filters {
+      z-index: 10;
+      padding: 8px 12px;
+      color: map-get($color, "atlp-btn-basic");
+      background-color: map-get($color, "atlp-white");
+      border-radius: 6px;
+      @include margin-right(8px);
+      font-size: 90%;
+      line-height: 2;
+      white-space: nowrap;
+      margin-bottom: 8px;
+      flex: 1 1 1;
+      overflow-y: auto !important;
+    }
+    &:lang(en) {
+      &:before {
+        transform: translateY(10px) translateX(-20px) rotate(-45deg);
+        top: 0;
+        right: auto;
+        left: auto;
+      }
+    }
+    &:lang(ar) {
+      &:before {
+        transform: translateY(10px) rotate(-45deg);
+        top: 0;
+        right: 0;
+        left: auto;
+      }
+    }
+    &:before {
+      content: "";
+      width: 37px;
+      height: 37px;
+      position: absolute;
+      bottom: 0;
+      background-color: map-get($color, "atlp-panel-btn");
+      @media screen and (min-width: 768px) {
+        bottom: auto;
+      }
+    }
+  }
+  &:hover {
+    .tooltip-filters {
+      display: flex;
+      opacity: 1;
+    }
+  }
+}
+
+.saved-filter-close {
+  padding: 1rem 1rem 0;
+  line-height: 20px !important;
+}
+
+.round-btn-sm {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(#a187bf 0%, #744aa5 100%);
+  box-shadow: 0px 0.5px 2px map-get($color, "atlp-purple-base");
+  border: 1px solid map-get($color, "atlp-purple-base");
+  color: var(--atlp-white);
+  margin-top: 20px;
+}
+.round-btn-icon-sm {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+}
+.icon-button-conatiner {
+  display: flex;
+  width: 33%;
+  justify-content: space-evenly;
+}
+.save-filter-container {
+  display: flex;
+  align-items: center;
+}
+
+.filter-name-container {
+  width: 67%;
+}
+
+.filter-name {
+  margin-top: 10px;
+}

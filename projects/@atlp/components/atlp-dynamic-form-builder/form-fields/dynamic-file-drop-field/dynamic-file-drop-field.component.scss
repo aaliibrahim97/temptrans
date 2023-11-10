@@ -1,0 +1,10 @@
+// ::ng-deep .mat-pseudo-checkbox {
+//   width: 15px !important;
+//   height: 20px !important;
+// }
+
+::ng-deep {
+  .panel-custom.dynamicselectbox {
+    transform: translateX(24px) translateY(10px) !important;
+  }
+}

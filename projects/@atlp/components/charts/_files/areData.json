@@ -1,0 +1,52 @@
+[
+  {
+    "label": "30%\n3.8T",
+    "name": "Test2",
+    "description": "testing2",
+    "latitude": 24.139406643000123,
+    "longitude": 54.278558790000096
+  },
+  {
+    "label": "30%\n4.2T",
+    "name": "Test5",
+    "description": "testing5",
+    "latitude": 24.539406643000123,
+    "longitude": 54.778558790000096
+  },
+  {
+    "label": "30%\n1.3T",
+    "name": "Test4",
+    "description": "testing2",
+    "latitude": 25.339406643000123,
+    "longitude": 55.478558790000096
+  },
+  {
+    "label": "30%\n0.6T",
+    "name": "Test4",
+    "description": "testing2",
+    "latitude": 25.839406643000123,
+    "longitude": 56.078558790000096
+  },
+  {
+    "label": "30%\n1.9T",
+    "name": "Test",
+    "description": "testing",
+    "latitude": 25.30561330820764,
+    "longitude": 56.326731804828938
+  },
+  {
+    "label": "30%\n2.3T",
+    "name": "Test1",
+    "description": "testing1",
+    "latitude": 24.839406643000123,
+    "longitude": 55.878558790000096
+  },
+
+  {
+    "label": "30%\n3.8T",
+    "name": "Test3",
+    "description": "testing2",
+    "latitude": 24.139406643000123,
+    "longitude": 55.778558790000096
+  }
+]

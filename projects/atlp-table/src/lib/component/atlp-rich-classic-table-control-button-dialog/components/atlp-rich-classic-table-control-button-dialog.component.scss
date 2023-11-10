@@ -1,0 +1,32 @@
+.dialog-content-wrap {
+  button {
+    border: none !important;
+    background: none !important;
+    margin-bottom: 18px;
+    padding-left: 28px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.dialog-popup {
+  position: relative;
+  overflow: visible;
+}
+
+.close-dialog {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -69px;
+}
+
+::ng-deep {
+  .custom-dialog-container {
+    .mat-dialog-container {
+      overflow: visible !important;
+      background-color: transparent;
+    }
+  }
+}

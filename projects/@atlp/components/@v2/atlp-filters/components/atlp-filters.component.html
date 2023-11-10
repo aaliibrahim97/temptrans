@@ -1,0 +1,280 @@
+<div class="filter-container">
+  <div class="loaded-filters table-scroll-wrap" *ngIf="showLoadedFilters">
+    <div class="filters-head" fxLayout="row" fxLayoutAlign="end center">
+      <button
+        type="button"
+        class="saved-filter-close"
+        (click)="showLoadedFilters = !showLoadedFilters"
+      >
+        <mat-icon svgIcon="x-fill-purple" aria-hidden="false"></mat-icon>
+      </button>
+    </div>
+
+    <h2 class="loaded-filters-title">
+      {{ "RECENT_FILTERS" | translate }}
+    </h2>
+    <div
+      class="recent-filters"
+      *ngFor="let recentFilter of sessionFilters; index as i"
+    >
+      <button
+        mat-raised-button
+        color="basic"
+        (click)="handleFiltersSelect(recentFilter)"
+        class="bg filters-btn"
+      >
+        <span>{{ getFormattedDate(recentFilter?.name) }}</span>
+        <mat-icon
+          svgIcon="delete-grey"
+          (click)="onRecentFilterDelete($event, recentFilter?.id)"
+          aria-hidden="false"
+        >
+        </mat-icon>
+      </button>
+      <div class="tooltip-filters">
+        <div
+          class="saved-filters"
+          (click)="selectFilter(item)"
+          *ngFor="let item of recentFilter?.filters"
+        >
+          <div>
+            <strong>{{
+              item?.dispalyName || item?.filterBy | translate | uppercase
+            }}</strong>
+          </div>
+          <div>{{ displayValue(item) | translate }}</div>
+          <i>
+            {{ item?.filterType }}
+          </i>
+        </div>
+        <div class="saved-filters" *ngIf="!recentFilter?.filters?.length">
+          {{ "NO_SAVED_FILTERS" | translate }}
+        </div>
+      </div>
+    </div>
+    <h2 class="loaded-filters-title">
+      {{ "SAVED_FILTERS" | translate }}
+    </h2>
+    <div class="table-scroll-wrap">
+      <div
+        class="recent-filters"
+        *ngFor="
+          let savedFilter of savedFilters$ | async | slice : 0 : 5;
+          index as i
+        "
+      >
+        <button
+          (click)="handleFiltersSelect(savedFilter)"
+          mat-raised-button
+          color="basic"
+          class="bg filters-btn"
+          [class.selectedbtn]="selectedSavedFilters?.includes(savedFilter.id)"
+        >
+          <div class="saved-btn">
+            <span
+              style="
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+              "
+            >
+              {{ savedFilter?.name | uppercase }}</span
+            >
+            <mat-icon
+              svgIcon="delete-grey"
+              (click)="onSavedFilterDelete($event, savedFilter?.id)"
+              aria-hidden="false"
+            >
+            </mat-icon>
+          </div>
+        </button>
+        <div class="tooltip-filters">
+          <div
+            class="saved-filters"
+            (click)="selectFilter(item)"
+            *ngFor="let item of savedFilter?.filters"
+          >
+            <div>
+              <strong>{{
+                item?.dispalyName || item?.filterBy | translate | uppercase
+              }}</strong>
+            </div>
+            <div>{{ displayValue(item) | translate }}</div>
+            <i>
+              {{ item?.filterType }}
+            </i>
+          </div>
+          <div class="saved-filters" *ngIf="!savedFilter?.filters?.length">
+            {{ "NO_SAVED_FILTERS" | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="filters"
+    [ngClass]="{
+      'filters-width25': !isTwoColumnLayout,
+      'filters-width60': isTwoColumnLayout
+    }"
+    atlpPerfectScrollbar
+    cdkScrollable
+  >
+    <div class="filter-title-row" fxLayout="column">
+      <div
+        class="filters-head"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <h2 *ngIf="title" class="filters-title" flex="none">
+          {{ title | translate }}
+        </h2>
+        <button
+          type="button"
+          (click)="toggleSidebarOpen(SidebarName.filtersSidebar)"
+        >
+          <mat-icon svgIcon="x-fill-purple" aria-hidden="false"></mat-icon>
+        </button>
+      </div>
+      <!-- <h2 class="filters-preset" *ngIf="selectedSavedFilters?.length > 0">
+      {{ "PRESET" | translate }}
+      <span *ngFor="let savedFilter of savedFilters; index as i">
+        <span *ngIf="selectedSavedFilters?.includes(savedFilter.id)">
+          {{ savedFilter.label }}
+          <span *ngIf="selectedSavedFilters?.length > 1"> ,</span>
+        </span>
+      </span>
+    </h2> -->
+    </div>
+    <!-- <button (click)="resetFilters()" mat-button class="transparent clear-btn">
+      <span *ngIf="appliedFilters > 0; else nofilter">
+        <span>{{ "CLEAR_ALL" | translate }}</span>
+      </span>
+      <ng-template #nofilter>
+        <span>{{ "NO_FILTERS" | translate }}</span>
+      </ng-template>
+    </button> -->
+
+    <!-- <button
+      *ngIf="appliedFilters > 0"
+      mat-button
+      class="transparent clear-btn"
+      disabled
+    >
+      <span>
+        <span>
+          {{ "APPLIED_FILTERS" | translate }}: {{ appliedFilters }}/{{
+            totalControls
+          }}</span
+        >
+      </span>
+    </button> -->
+    <!-- <button
+      *ngIf="showLoadSavedButton"
+      (click)="openLoadedFilters()"
+      mat-raised-button
+      color="basic"
+      class="bg filters-btn"
+    >
+      {{ "LOAD_SAVED_FILTERS" | translate }}
+    </button> -->
+    <h2 *ngIf="sectiontitle" class="filter-section-title">
+      {{ sectiontitle }}
+    </h2>
+
+    <ng-content #contentFilter></ng-content>
+
+    <ng-container *ngIf="showSavedFilter">
+      <div class="save-filter-container">
+        <div class="filter-name-container">
+          <div class="field-wrap bg filter-name" fxLayout="column">
+            <label class="field-label">{{ "FILTER_NAME" | translate }}</label>
+            <div class="field-input-wrap">
+              <input
+                type="text"
+                [(ngModel)]="filterInput"
+                #filterName="ngModel"
+                placeholder="{{ 'FILTER_NAME' | translate }}"
+              />
+            </div>
+            <div
+              class="error-wrap"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              *ngIf="filterName.errors?.maxlength"
+            >
+              <span class="error-text">
+                {{ "MAX_LENGTH_CHARACTER" | translate }}</span
+              >
+            </div>
+            <div
+              class="error-wrap"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              *ngIf="submitted && !filterInput"
+            >
+              <span class="error-text">
+                {{ "PLEASE_ENTER_FILTER_NAME" | translate }}</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-button-conatiner">
+          <button
+            class="round-btn-sm"
+            (click)="openLoadedFilters()"
+            matTooltip="{{ 'LOAD_SAVED_FILTERS' | translate }}"
+          >
+            <mat-icon
+              class="round-btn-icon-sm"
+              svgIcon="icon-load-filter"
+              aria-hidden="false"
+            ></mat-icon>
+          </button>
+
+          <button
+            class="round-btn-sm"
+            (click)="saveFilter(filterInput)"
+            matTooltip="{{ 'SAVE_FILTER' | translate }}"
+          >
+            <mat-icon
+              class="round-btn-icon-sm"
+              svgIcon="icon-save-filter"
+              aria-hidden="false"
+            ></mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+      <button
+        (click)="resetFilters()"
+        mat-raised-button
+        class="transparent savefilters-btn"
+        [disabled]="!(appliedFilters > 0)"
+        fxFlex="100%"
+        fxFlex.gt-xs="100%"
+        fxFlex.gt-sm="100%"
+        fxFlex.gt-md="48%"
+      >
+        {{ "CLEAR_ALL" | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        type="button"
+        color="primary"
+        class="savefilters-btn"
+        (click)="searchAndSaveFilterToBrowserSession()"
+        fxFlex="100%"
+        fxFlex.gt-xs="100%"
+        fxFlex.gt-sm="100%"
+        fxFlex.gt-md="48%"
+      >
+        {{ "FILTER_SEARCH" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

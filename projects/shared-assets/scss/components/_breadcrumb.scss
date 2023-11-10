@@ -1,0 +1,17 @@
+.breadcrumb-list {
+    li {
+        @include margin-right( 24px);
+        color: map-get($color, 'atlp-breadcrumb');
+    }
+
+    a {
+        font-size: 14px;
+        line-height: 1.2;
+        color: map-get($color, 'atlp-breadcrumb');
+    }
+
+    span {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+}

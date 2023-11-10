@@ -1,0 +1,24 @@
+{
+  "icon-variable": {
+    "prefix": ["icon-var"],
+    "body": [
+      "private get icons(): Array<string> {",
+        "return [",
+          "'messages-exclamation',",
+          "'expand_less',",
+          "'expand_more',",
+          "'draft',",
+          "'progress-icon'",
+        "];",
+      "}"
+    ],
+    "description": "this is for icon variable"
+  },
+  "icon-register": {
+    "prefix": ["icon-reg"],
+    "body": [
+      "this._iconsService.registerIcons(this.icons);"
+    ],
+    "description": "This is for sidebar section"
+  }
+}

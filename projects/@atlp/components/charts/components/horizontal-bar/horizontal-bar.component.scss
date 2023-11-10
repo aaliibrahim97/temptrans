@@ -1,0 +1,15 @@
+// #horizontalBar {
+//   width: 600px !important;
+//   height: 300px !important;
+// }
+// .test {
+//   position: absolute;
+//   margin-left: 100px;
+// }
+
+::ng-deep {
+  app-horizontal-bar {
+    height: 100%;
+    display: block;
+  }
+}

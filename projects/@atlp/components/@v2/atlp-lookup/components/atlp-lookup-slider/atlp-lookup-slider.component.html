@@ -1,0 +1,219 @@
+<div
+  class="drawer-wrap add-driver"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">
+          {{ lookUpObject.lookupTitle | translate }}</span
+        >
+      </div>
+    </div>
+    <div class="drawer-body">
+      <div class="table-wrapper">
+        <h2 class="block-title">
+          {{ lookUpObject.lookupTitle | translate }}
+        </h2>
+      </div>
+
+      <div
+        *ngIf="!lookUpObject.isDynamicHttpParams"
+        class="driver-header"
+        fxLayout="column"
+        fxLayout.gt-sm="row"
+        fxLayoutAlign="start start"
+        class="single-search"
+      >
+        <atlp-search-bar
+          class="search-bar-bg"
+          (inputSearch)="search($event)"
+          #searchBar
+        ></atlp-search-bar>
+      </div>
+
+      <!-- START CONTAINER LIST TABLE -->
+      <ng-container
+        *ngIf="
+          this.dataSource.data.length > 0 || isDynamicHttpParamsEnabled;
+          else emptyTable
+        "
+      >
+        <mat-table
+          matSort
+          [dataSource]="dataSource"
+          class="table bg lookup-table"
+          [ngClass]="{
+            'is-dynamic-http-params': lookUpObject.isDynamicHttpParams
+          }"
+        >
+          <ng-container
+            *ngFor="let col of displayColumnDefs; let y = index"
+            matColumnDef="{{ col.columnDef }}"
+          >
+            <ng-container *ngIf="y === 0; else simpleHead">
+              <mat-header-cell *matHeaderCellDef class="small-cell selectCell">
+                <mat-checkbox
+                  (change)="$event ? masterToggle() : null"
+                  *ngIf="
+                    lookUpObject?.multipleSelect &&
+                    lookUpObject?.isVisibleSelectAllRowsCheckBox
+                  "
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </mat-header-cell>
+            </ng-container>
+            <ng-template #simpleHead>
+              <mat-header-cell *matHeaderCellDef [ngClass]="col?.extraClass">
+                <!-- class="pLeftAlighArabicHeader" -->
+                <div
+                  [ngClass]="{
+                    'mat-header-container': lookUpObject.isDynamicHttpParams
+                  }"
+                >
+                  <div class="header-cell-text">
+                    {{ col.header | translate | uppercase }}
+                    <span class="header-cell-arrow"></span>
+                  </div>
+                  <div
+                    class="dynamic-search-fields"
+                    *ngIf="isDynamicSearchInputVisible(col)"
+                  >
+                    <input
+                      #searchInputFields
+                      class="dynamic-input"
+                      type="search"
+                      (keyup)="columnSpecificSearch($event, col)"
+                    />
+                  </div>
+                </div>
+              </mat-header-cell>
+            </ng-template>
+            <ng-container *ngIf="y === 0">
+              <mat-cell *matCellDef="let element" class="small-cell selectCell">
+                <mat-checkbox
+                  class="voyage-info-checkbox"
+                  (click)="$event.stopPropagation()"
+                  *ngIf="lookUpObject?.multipleSelect"
+                  (change)="$event ? selection.toggle(element) : null"
+                  [checked]="selection.isSelected(element)"
+                  [aria-label]="checkboxLabel(element)"
+                >
+                </mat-checkbox>
+                <div
+                  class="custom-select"
+                  *ngIf="!lookUpObject?.multipleSelect"
+                >
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    class="ml-auto"
+                    (click)="emitData(element)"
+                  >
+                    {{ "Select" | translate }}
+                  </button>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container *ngIf="y !== 0">
+              <mat-cell *matCellDef="let element" [ngClass]="col?.extraClass">
+                <!-- class="pLeftAlighArabic"  -->
+                <div innerHTML="{{ col.cell(element) }}"></div>
+              </mat-cell>
+            </ng-container>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: columnsToDisplay"
+            [class.selected]="selection.isSelected(row)"
+            [class.show-controls]="
+              selection.isSelected(row) && selection.selected.length === 1
+            "
+          >
+          </mat-row>
+        </mat-table>
+        <ng-container
+          *ngIf="
+            !lookUpObject.isNoTotalCount && paginationData.totalItemCount > 5
+          "
+        >
+          <atlp-mat-pagination
+            (changePage)="pageChange($event)"
+            class="custom-pagination-appointments"
+            [PageSize]="paginationData?.pageSize"
+            [PageNumber]="paginationData?.pageNumber"
+            [TotalItemCount]="paginationData?.totalItemCount"
+          >
+          </atlp-mat-pagination>
+        </ng-container>
+        <!-- End mat-paginator -->
+
+        <!-- Start mat-paginator without count -->
+        <ng-container
+          *ngIf="
+            lookUpObject.isNoTotalCount &&
+            paginationData.totalItemCount >= pageSize
+          "
+        >
+          <atlp-no-total-count-pagination
+            (changePageNoCount)="changePageNoTotalCount($event)"
+            [nextArrowColor]="nextArrowColor"
+            [currentPage]="pageNumber"
+          >
+          </atlp-no-total-count-pagination>
+        </ng-container>
+      </ng-container>
+      <!-- End mat-paginator without count-->
+
+      <!-- END CONTAINER LIST TABLE -->
+
+      <ng-template #emptyTable>
+        <app-atlp-lookup-empty-table
+          [invert]="true"
+          [colHeader]="displayColumnDefs"
+        ></app-atlp-lookup-empty-table>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <!-- close btn -->
+  <button
+    style="z-index: 500"
+    class="round-btn panel-btn"
+    (click)="toggleSidebarOpen(keyToCloseSlider, true)"
+    type="button"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="close-white-icon"
+      aria-hidden="false"
+      matTooltip="{{ 'Close' | translate }}"
+      matTooltipPosition="before"
+    ></mat-icon>
+  </button>
+  <div
+    class="soc-wrap"
+    fxLayout="column"
+    fxLayoutAlign="end center"
+    *ngIf="lookUpObject?.multipleSelect"
+  >
+    <button
+      class="round-btn"
+      type="submit"
+      (click)="submitSelectedRows(keyToCloseSlider)"
+    >
+      <mat-icon svgIcon="save-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </div>
+</div>

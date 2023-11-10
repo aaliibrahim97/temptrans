@@ -1,0 +1,183 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+::ng-deep {
+  .invalid .dynamic-input {
+    border: 1px solid #a187bf !important;
+  }
+}
+.lookup-table {
+  mat-header-row > mat-header-cell:last-child,
+  mat-row > mat-cell:last-child {
+    @include margin-right(10%);
+    word-break: break-all;
+  }
+}
+.atlp-search-bar-input {
+  margin-left: 10px;
+}
+.table {
+  .small-cell {
+    width: 45px;
+    flex: none;
+  }
+
+  .mat-header-cell {
+    text-transform: none;
+  }
+
+  .mat-header-row {
+    border: 0;
+  }
+
+  .mat-row {
+    border: 1px solid #a187bf;
+    border-radius: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+    &:hover {
+      background: #605a92 !important;
+      .mat-cell {
+        color: #fff !important;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      padding-bottom: 50px;
+    }
+  }
+
+  .selectCell {
+    // padding: 5%;
+    @media screen and(max-width:600px) {
+      width: 4%;
+    }
+  }
+
+  .custom-desc {
+    width: 40%;
+    max-width: 40%;
+    flex: auto;
+    div {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include padding-right(10px);
+      line-height: 25px;
+    }
+    @media screen and (max-width: 600px) {
+      width: 64%;
+      max-width: 64%;
+    }
+  }
+
+  .custom-select {
+    position: absolute;
+    @include right(1.5rem);
+    @media (max-width: 600px) {
+      width: 92%;
+      @include right(4%);
+      bottom: 10px;
+      button {
+        font-size: 12px;
+        height: 30px;
+        padding: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  .custom-code {
+    width: 12%;
+    max-width: 12%;
+    flex: auto;
+    @media (max-width: 600px) {
+      width: 25%;
+      max-width: 25%;
+    }
+  }
+
+  .mat-row.selected {
+    background-color: transparent;
+  }
+
+  .mat-checkbox {
+    position: relative;
+    top: -2px;
+  }
+
+  .header-cell-text {
+    position: relative;
+  }
+
+  .header-cell-arrow {
+    position: absolute;
+    top: calc(50% + 3px);
+    @include right(-15px);
+    transform: translateY(-50%);
+    border: 4px solid transparent;
+    border-top: 4px solid #ffffff;
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+}
+
+.shipping-table-head {
+  margin-bottom: 30px;
+  @media (min-width: 600px) {
+    margin-bottom: 50px;
+  }
+  .search-bar-bg {
+    margin-bottom: 0;
+  }
+  .shipping-table-buttons {
+    display: none !important;
+    @media (min-width: 600px) {
+      display: flex !important;
+    }
+  }
+}
+
+.total-wrap {
+  @include padding-right(10px);
+  .total-count {
+    font-size: 14px;
+    color: #ffffff;
+  }
+  .block-title {
+    @include margin(0, 5px, 0, 0);
+    font-size: 14px;
+  }
+}
+
+body.theme-atlp .mat-card {
+  background: none !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-header-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0.93;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.is-dynamic-http-params {
+  & mat-header-cell.mat-column-select {
+    display: none;
+  }
+}
+
+.single-search {
+  margin-bottom: 14px;
+}
+
+.lookup-table {
+  .mat-table {
+    .mat-row {
+      margin-bottom: 3px;
+    }
+  }
+}

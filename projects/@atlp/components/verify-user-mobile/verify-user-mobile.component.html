@@ -1,0 +1,119 @@
+<div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign="none">
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "verify_your_mobile" | translate }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="Message-box">
+        <h1 class="messagetitle">
+          {{ "verify_your_mobile_message" | translate }}
+        </h1>
+
+        <div [formGroup]="form" class="w-100-p">
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between start"
+          >
+            <div
+              class="field-wrap bg"
+              [ngClass]="form?.controls['mobile'].disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="100%"
+              fxLayout="column"
+            >
+              <label for="mobile" class="field-label fieldrequired">{{
+                "Mobile" | translate
+              }}</label>
+              <div class="field-input-wrap" style="width: 50%">
+                <input
+                  type="text"
+                  required
+                  formControlName="mobile"
+                  id="mobile"
+                  aria-describedby="mobile"
+                  (keyup)="onemailchangekeyevent($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="error-wrap" fxLayout="row" fxLayoutAlign="start center">
+          <span class="error-text">
+            <div *ngIf="EmailValidMessage" class="text-danger">
+              {{ EmailValidMessage }}
+            </div>
+          </span>
+        </div>
+        <div class="" fxLayout="row" fxLayoutAlign="start center">
+          <span class="">
+            <div *ngIf="EmailChangeMessage" class="email-change-msg">
+              {{ EmailChangeMessage }}
+            </div>
+          </span>
+        </div>
+
+        <p class="messagesubtitle">
+          {{ "Mobile_Verification_Info" | translate }}
+        </p>
+        <div>
+          <small class="opt-error">{{ VerifyEmailMessage }}</small>
+        </div>
+
+        <div class="messages-btn-row">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onVerifyEmail()"
+            [disabled]="!form.valid"
+          >
+            {{ "Verify" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            class="mat-basic second-btn"
+            (click)="toggleV2SidebarOpen(SidebarName.verifyUserMobile)"
+          >
+            {{ "CANCEL" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-close-btn"
+    (click)="toggleV2SidebarOpen(SidebarName.verifyUserMobile)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.verifyUserMobileOTP"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <atlp-verify-mobile-userotp
+    [userInfoDetails]="userInfoDetails"
+    [enteredEmail]="form?.get('mobile')?.valid && form?.get('mobile')?.value"
+    (OnOTPsuccessfulVerificationEvent)="OnOTPsuccessfulVerification($event)"
+  >
+  </atlp-verify-mobile-userotp>
+</atlp-sidebar-v2>

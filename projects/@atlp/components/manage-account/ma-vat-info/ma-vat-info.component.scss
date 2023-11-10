@@ -1,0 +1,69 @@
+@import "projects/@atlp/scss/variables";
+
+.ucid-title {
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.84px;
+  color: #c8b6dd;
+}
+
+.Messages {
+  position: absolute;
+  background: #373068;
+  width: 100%;
+  z-index: 3;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.poc-title {
+  margin-bottom: 0px;
+}
+
+.poc-add-btn {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.mt-5 {
+  margin-top: 1rem;
+}
+
+.josoor-drawer {
+  flex: 1 1 0%;
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+  place-content: stretch flex-start;
+  align-items: stretch;
+}
+
+.field-label {
+  color: map-get($color, "atlp-grey-light") !important;
+}
+
+.josoor-terms-condition {
+  margin-left: 5px;
+  color: map-get($color, "atlp-grey-light") !important;
+}
+
+.fieldrequired:after {
+  content: " *";
+  color: red;
+}
+::ng-deep {
+  .mat-select-panel mat-option.mat-option {
+    height: unset !important;
+  }
+
+  .mat-option-text.mat-option-text {
+    white-space: normal;
+  }
+}

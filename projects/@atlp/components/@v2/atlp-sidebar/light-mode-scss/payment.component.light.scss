@@ -1,0 +1,27 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.payment-sidebar-parent {
+  .base-text {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .mat-radio-button {
+    background: map-get($color, "light-mode-field-border") !important;
+  }
+
+  .mat-radio-checked {
+    background: map-get($color, "atlp-radio-checked") !important;
+
+    & {
+      .mat-radio-label-content,
+      .mat-checkbox.bg .mat-checkbox-label {
+        color: map-get($color, "altp-white") !important;
+      }
+    }
+  }
+
+  .mat-checkbox-label {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>.a{fill:none !important;}.b{fill:#bec6d6 !important;}</style>
+  </defs>
+  <rect class="a" width="20" height="20"/>
+  <path class="b" d="M46.869,16a6.883,6.883,0,0,0-6.875,6.875c0,5.883,6.25,10.326,6.516,10.512a.627.627,0,0,0,.718,0c.266-.186,6.516-4.63,6.516-10.512A6.883,6.883,0,0,0,46.869,16Zm0,4.375a2.5,2.5,0,1,1-2.5,2.5,2.5,2.5,0,0,1,2.5-2.5Z" transform="translate(-36.87 -14.747)"/>
+</svg>

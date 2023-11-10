@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">
+	<g transform="translate(-0.066 -0.066)">
+		<rect fill="none" width="60" height="60" transform="translate(0.066 0.066)" />
+		<line fill="none" stroke="#c5d2e7" stroke-width="4px" x2="34" transform="translate(22.066 51.066)" />
+		<path fill="none" stroke="#c5d2e7" stroke-width="4px" d="M24,57.325V44.976A1.877,1.877,0,0,1,26.471,43.2l3.161,1.054,3.754,7.039,7.508,2.346V44.976A1.877,1.877,0,0,1,43.364,43.2l3.161,1.054,7.508,13.139,11.395,3.165a7.508,7.508,0,0,1,5.5,7.234v8.371l-41.443-11.6A7.508,7.508,0,0,1,24,57.325Z" transform="translate(-18.369 -32.987)" />
+	</g>
+</svg>

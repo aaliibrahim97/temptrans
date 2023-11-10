@@ -1,0 +1,262 @@
+<!-- SIDE PANEL -->
+<ng-container
+  *ngIf="
+    !atlpConfig.layout.sidepanel.hidden &&
+    atlpConfig.layout.sidepanel.position === 'left'
+  "
+>
+  <!-- PANEL CONTENT -->
+</ng-container>
+<!-- / SIDE PANEL -->
+
+<div id="main" class="main">
+  <app-progress-bar></app-progress-bar>
+
+  <!-- TOOLBAR: Above -->
+  <ng-container *ngIf="atlpConfig.layout.toolbar.position === 'above'">
+    <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+  </ng-container>
+  <!-- / TOOLBAR: Above -->
+
+  <div id="container-1" class="container">
+    <!-- NAVBAR: Left -->
+    <ng-container *ngIf="atlpConfig.layout.navbar.position === 'left'">
+      <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
+    </ng-container>
+    <!-- / NAVBAR: Left -->
+
+    <div id="container-2" class="container">
+      <!-- TOOLBAR: Below fixed -->
+      <ng-container
+        *ngIf="atlpConfig.layout.toolbar.position === 'below-fixed'"
+      >
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+      </ng-container>
+      <!-- / TOOLBAR: Below fixed -->
+
+      <div id="container-3" class="container page-wrap app-wrapper inheritSize">
+        <!-- TOOLBAR: Below static -->
+        <ng-container
+          *ngIf="atlpConfig.layout.toolbar.position === 'below-static'"
+        >
+          <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+        </ng-container>
+        <!-- / TOOLBAR: Below static -->
+
+        <!-- CONTENT -->
+        <content
+          atlpPerfectScrollbar
+          cdkScrollable
+          class="page-content"
+        ></content>
+        <!-- / CONTENT -->
+
+        <!-- FOOTER: Below static -->
+        <ng-container
+          *ngIf="atlpConfig.layout.footer.position === 'below-static'"
+        >
+          <ng-container *ngTemplateOutlet="footer"></ng-container>
+        </ng-container>
+        <!-- / FOOTER: Below static -->
+      </div>
+
+      <!-- FOOTER: Below fixed -->
+      <ng-container *ngIf="atlpConfig.layout.footer.position === 'below-fixed'">
+        <ng-container *ngTemplateOutlet="footer"></ng-container>
+      </ng-container>
+      <!-- / FOOTER: Below fixed -->
+    </div>
+
+    <!-- NAVBAR: Right -->
+    <ng-container *ngIf="atlpConfig.layout.navbar.position === 'right'">
+      <ng-container *ngTemplateOutlet="rightNavbar"></ng-container>
+    </ng-container>
+    <!-- / NAVBAR: Right -->
+  </div>
+
+  <!-- FOOTER: Above -->
+  <ng-container *ngIf="atlpConfig.layout.footer.position === 'above'">
+    <ng-container *ngTemplateOutlet="footer"></ng-container>
+  </ng-container>
+  <!-- FOOTER: Above -->
+  <div class="z-index-1000">
+    <floating-action></floating-action>
+  </div>
+</div>
+
+<!-- SIDE PANEL -->
+<ng-container
+  *ngIf="
+    !atlpConfig.layout.sidepanel.hidden &&
+    atlpConfig.layout.sidepanel.position === 'right'
+  "
+>
+  <!-- PANEL CONTENT -->
+</ng-container>
+<!-- / SIDE PANEL -->
+
+<!-- QUICK PANEL -->
+<atlp-sidebar name="quickPanel" position="right" class="quick-panel">
+  <quick-panel></quick-panel>
+</atlp-sidebar>
+<!-- / QUICK PANEL -->
+
+<!-- <atlp-sidebar-v2
+  name="userManual"
+  position="right"
+  class="sidebar-with-content sidebar-md"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <user-manual></user-manual>
+</atlp-sidebar-v2> -->
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- @ PARTIALS                                                                                            -->
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+<!-- TOOLBAR -->
+<ng-template #toolbar>
+  <toolbar
+    [showMenu]="navigation?.length"
+    *ngIf="!atlpConfig.layout.toolbar.hidden"
+    [ngClass]="
+      atlpConfig.layout.toolbar.customBackgroundColor === true
+        ? atlpConfig.layout.toolbar.position +
+          ' ' +
+          atlpConfig.layout.toolbar.background
+        : atlpConfig.layout.toolbar.position
+    "
+  >
+  </toolbar>
+</ng-template>
+<!-- / TOOLBAR -->
+
+<!-- LEFT NAVBAR -->
+<atlp-sidebar
+  style="z-index: 5"
+  class="navigation-menu"
+  [name]="SidebarName.navigationSidebarMenu"
+  position="left"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="false"
+>
+  <atlp-navigation-sidebar-menu
+    id="atlp-navigation-sidebar-menu"
+    (data)="overWriteData($event)"
+  ></atlp-navigation-sidebar-menu>
+</atlp-sidebar>
+
+<atlp-sidebar
+  style="z-index: 4"
+  class="navigation-menu-content"
+  [name]="SidebarName.navigationSidebarContent"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="false"
+>
+  <atlp-sidebar-content-mobile
+    id="atlp-sidebar-content-mobile"
+    [data]="dataContentMobile"
+  ></atlp-sidebar-content-mobile>
+</atlp-sidebar>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large"
+  [name]="SidebarName.josoor"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+  [isTemplate]="true"
+>
+  <ng-template #AtlpSidebarComponentContent>
+    <app-josoor></app-josoor>
+  </ng-template>
+</atlp-sidebar-v2>
+
+<!-- <atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large"
+  [name]="SidebarName.questionnaire"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <app-questionnaire></app-questionnaire>
+</atlp-sidebar-v2> -->
+<!-- / LEFT NAVBAR -->
+<app-switch-company></app-switch-company>
+<!-- <atlp-mfa></atlp-mfa> -->
+<ngx-ui-loader></ngx-ui-loader>
+
+<div
+  class="fab-container"
+  (mouseleave)="onMouseLeaveOptions()"
+  (mouseenter)="onMouseUpOptions()"
+  [ngClass]="{ 'hide-on-mobile': isSideBarOpen }"
+>
+  <div
+    class="fab fab-icon-holder"
+    [ngClass]="{ animator: happinessIndexCount > 0 && !stopPulse }"
+  >
+    <div class="border-circle-parent">
+      <mat-icon
+        svgIcon="plus-white"
+        class="plus-icon"
+        aria-hidden="false"
+      ></mat-icon>
+    </div>
+
+    <div
+      *ngIf="happinessIndexCount > 0 && !isOptionshover"
+      [matBadge]="happinessIndexCount"
+      matBadgeColor="warn"
+      matBadgeOverlap="true"
+      class="demo-section"
+    ></div>
+  </div>
+
+  <ul class="fab-options">
+    <li *ngIf="!userInfo?.pcsTkn">
+      <a class="fab-icon-holder text-center" (click)="goToUrl('newRequest')">
+        <div class="border-circle-item">
+          <mat-icon svgIcon="feedback-icon" class="feedback-icon"></mat-icon>
+        </div>
+      </a>
+    </li>
+    <li (click)="openSurvey()" *ngIf="userInfo?.pcsTkn && !this.isAdminUser">
+      <div
+        class="fab-icon-holder"
+        [ngClass]="{ animator: happinessIndexCount > 0 && !stopPulse }"
+      >
+        <div class="border-circle-item">
+          <mat-icon class="floating-actions" title="{{ 'RATING' | translate }}"
+            >sentiment_satisfied_alt</mat-icon
+          >
+        </div>
+        <div
+          *ngIf="happinessIndexCount > 0"
+          [matBadge]="happinessIndexCount"
+          matBadgeColor="warn"
+          matBadgeOverlap="true"
+          class="demo-section happiness-rating-badge"
+        ></div>
+      </div>
+    </li>
+    <li (click)="openAndCloseChat()" *ngIf="atlpEnvService?.isShowChat">
+      <div class="fab-icon-holder text-center">
+        <div class="border-circle-item">
+          <img
+            style="width: 24px"
+            src="assets/images/atlp-live-chat.png"
+            title="{{ 'LIVECHAT' | translate }}"
+          />
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div
+  id="crmroot"
+  [ngClass]="getElementById('oc-lcw-header') ? 'chat-opened' : 'chat-closed'"
+></div>

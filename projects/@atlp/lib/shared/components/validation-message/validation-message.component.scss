@@ -1,0 +1,14 @@
+.validation-error-wrap {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  place-content: center flex-start;
+  align-items: center;
+  .mat-icon {
+    width: 15px !important;
+    height: 15px !important;
+    min-width: 15px !important;
+    min-height: 15px !important;
+    margin-bottom: 0% !important;
+  }
+}

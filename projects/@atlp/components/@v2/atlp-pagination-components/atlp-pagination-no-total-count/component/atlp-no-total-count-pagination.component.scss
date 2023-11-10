@@ -1,0 +1,34 @@
+.mat-paginator-outer-container {
+  height: 77px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.arrow {
+  color: white !important;
+  cursor: pointer;
+}
+
+.pagination-number-color {
+  color: white !important;
+}
+
+.arrow-space {
+  margin-left: 50px !important;
+}
+
+.button-disabled {
+  cursor:not-allowed;
+  color: #666666 !important;
+}
+
+.mat-paginator-icon {
+  width: 28px;
+  fill: currentColor;
+}
+
+.rotate{
+  transform: rotate(180deg);
+}
+

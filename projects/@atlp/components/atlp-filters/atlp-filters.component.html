@@ -1,0 +1,131 @@
+<div class="filters" atlpPerfectScrollbar>
+  <div class="filter-title-row" fxLayout="column">
+    <div
+      class="filters-head"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <h2 class="filters-title" flex="none">{{ title }}</h2>
+      <button
+        type="button"
+        (click)="toggleSidebarOpen(SidebarName.filtersSidebar)"
+      >
+        <mat-icon svgIcon="x-fill-purple" aria-hidden="false"></mat-icon>
+      </button>
+    </div>
+    <h2 class="filters-preset" *ngIf="selectedSavedFilters?.length > 0">
+      Preset:
+      <span *ngFor="let savedFilter of savedFilters; index as i">
+        <span *ngIf="selectedSavedFilters?.includes(savedFilter.id)">
+          {{ savedFilter.label }}
+          <span *ngIf="selectedSavedFilters?.length > 1"> ,</span>
+        </span>
+      </span>
+    </h2>
+  </div>
+
+  <button (click)="resetFilters()" mat-button class="transparent clear-btn">
+    <span *ngIf="valueArray.length > 0; else nofilter">
+      <span i18n='Clear All Search@@clearAllAction'>Clear All</span> ({{ valueArray.length }})
+    </span>
+    <ng-template #nofilter>Clear All</ng-template>
+  </button>
+  <button
+    *ngIf="showLoadSavedButton"
+    (click)="openLoadedFilters()"
+    mat-raised-button
+    color="basic"
+    class="bg filters-btn"
+    i18n="Load all saved filter@@loadSavedFilterAction"
+  >Load Saved Filters</button>
+  <h2 class="filter-section-title" [class.mt-41]="!showLoadSavedButton">{{ sectiontitle1 }}</h2>
+
+  <ng-content></ng-content>
+  <button
+    mat-raised-button
+    type="button"
+    color="primary"
+    class="savefilters-btn mb-16"
+    (click)="submitFilters()"
+    i18n="apply the current filter criteria@@searchAction">Search</button>
+
+  <ng-container *ngIf="showSavedFilter">
+    <div class="field-wrap bg" fxLayout="column">
+      <label class="field-label">Filter Name</label>
+      <div class="field-input-wrap">
+        <input type="text" [(ngModel)]="filterInput" />
+      </div>
+    </div>
+    <button
+      mat-raised-button
+      type="button"
+      color="primary"
+      class="savefilters-btn"
+      (click)="saveFilter(filterInput)"
+      i18n="This is for saving the filter criteria@@saveFilterAction"
+    >Save Filter</button>
+  </ng-container>
+</div>
+
+<div class="loaded-filters" *ngIf="showLoadedFilters">
+  <h2 class="loaded-filters-title">Recent Filters</h2>
+  <div
+    class="recent-filters"
+    *ngFor="let recentFilter of sessionFilters; index as i"
+  >
+    <button
+      mat-raised-button
+      color="basic"
+      (click)="handleFiltersSelect(recentFilter)"
+      class="bg filters-btn"
+    >
+      {{ recentFilter?.name }}
+    </button>
+    <div class="tooltip-filters">
+      <div class="saved-filters" (click)="selectFilter(item)" *ngFor="let item of recentFilter?.filters">
+        <div><strong>{{ item?.filterBy }}</strong></div>
+        <div>{{ item?.value }}</div>
+        <i>
+          {{ item?.filterType }}
+        </i>
+      </div>
+      <div class="saved-filters" *ngIf="!recentFilter?.filters?.length">
+        No Saved Filters
+      </div>
+    </div>
+  </div>
+  <h2 class="loaded-filters-title">Saved Filters</h2>
+  <div
+    class="recent-filters"
+    *ngFor="let savedFilter of savedFilters$ | async; index as i"
+  >
+    <button
+      (click)="handleFiltersSelect(savedFilter)"
+      mat-raised-button
+      color="basic"
+      class="bg filters-btn"
+      [class.selectedbtn]="selectedSavedFilters?.includes(savedFilter.id)"
+    >
+      <div class="saved-btn">
+        <span> {{ savedFilter?.name }}</span>
+        <mat-icon
+          svgIcon="delete-grey"
+          (click)="onSavedFilterDelete(savedFilter?.id)"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+    </button>
+    <div class="tooltip-filters">
+      <div class="saved-filters" (click)="selectFilter(item)" *ngFor="let item of savedFilter?.filters">
+        <div><strong>{{ item?.filterBy }}</strong></div>
+        <div>{{ item?.value }}</div>
+        <i>
+          {{ item?.filterType }}
+        </i>
+      </div>
+      <div class="saved-filters" *ngIf="!savedFilter?.filters?.length">
+        No Saved Filters
+      </div>
+    </div>
+  </div>
+</div>

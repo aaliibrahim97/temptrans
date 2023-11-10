@@ -1,0 +1,298 @@
+.mat-drawer-inner-container {
+  flex-direction: column !important;
+  width: calc(100% - 40px) !important;
+  @include margin(0, 0, 0, auto);
+  background-color: map-get($color, "atlp-drawer-bg") !important;
+  @media (min-width: 1024px) {
+    width: calc(100% - 88px) !important;
+  }
+}
+
+.mat-drawer-container {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  background: transparent;
+  backdrop-filter: blur(8.226269721984863px);
+  --webkit-backdrop-filter: blur(8.226269721984863px);
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.mat-drawer {
+  background-color: transparent !important;
+  overflow-y: visible !important;
+  width: 100%;
+  min-height: 500px;
+  border: none !important;
+
+  .drawer-info,
+  .drawer-nav {
+    position: relative;
+    z-index: 1;
+  }
+}
+.drawer-wrap {
+  position: relative;
+  @include padding(60px, 0, 0, 0);
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  @media (min-width: 768px) {
+    @include padding(102px, 0, 0, 88px);
+  }
+}
+
+.drawer-wrap-container {
+  position: relative;
+  height: 100%;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -102px;
+    @include left(0px);
+    width: 10px;
+    z-index: -1;
+    height: calc(100% + 102px);
+    box-shadow: -3px 0px 6px #000029;
+  }
+  .drawer-header {
+    top: -60px;
+    @include left(0);
+    @media (min-width: 768px) {
+      top: -102px;
+      @include left(0);
+    }
+    @media (min-width: 1024px) {
+      @include left(0);
+    }
+  }
+}
+
+.drawer-header {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  @include right(0);
+  @include left(0);
+  flex: none !important;
+  width: 100%;
+  height: 60px;
+  @include padding(5px, 45px, 5px, 15px);
+  background-color: map-get($color, "atlp-panel-btn");
+
+  @media (min-width: 768px) {
+    height: 102px;
+    @include padding(20px, 30px, 20px, 30px);
+    @include left(88px);
+  }
+
+  button {
+    @include margin-left(10px);
+  }
+
+  atlp-progress-bar {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    @include left(0);
+    height: 8px;
+    width: 100%;
+
+    .mat-progress-bar {
+      height: 8px;
+    }
+
+    .mat-progress-bar-buffer {
+      background-color: map-get($color, "atlp-purple-light") !important;
+    }
+
+    .mat-progress-bar-fill::after {
+      @include border-radius(0, 100px, 100px, 0);
+      background: transparent linear-gradient(270deg, #57a05a 0%, #2c502d 100%)
+        0% 0% no-repeat padding-box;
+    }
+
+    .mat-progress-bar-background {
+      width: 100%;
+      fill: transparent;
+    }
+  }
+}
+
+.drawer-body {
+  overflow: hidden;
+  overflow-y: auto;
+  @include padding(40px, 40px, 40px, 40px);
+  height: calc(100vh - 60px);
+  width: 100%;
+  background-color: map-get($color, "atlp-violet-base");
+  @media (min-width: 768px) {
+    padding: 30px;
+    height: calc(100vh - 102px);
+  }
+  &.vessel-body {
+    .mat-expansion-panel {
+      margin-bottom: 10px !important;
+      @media (min-width: 768px) {
+        margin-bottom: 30px !important;
+      }
+    }
+  }
+  &.airway {
+    .appointment-info {
+      border-top: none;
+      padding-top: 0;
+      border-bottom: 2px solid map-get($color, "atlp-panel-border") !important;
+      &:last-child {
+        border-bottom: none;
+      }
+      @media (min-width: 768px) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.drawer-title {
+  color: map-get($color, "atlp-white");
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0px;
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.drawer-info-sub {
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: map-get($color, "atlp-purple-light");
+}
+
+.drawer-subtitle {
+  color: map-get($color, "atlp-grey-base");
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.drawer-info-text {
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: map-get($color, "atlp-white");
+}
+
+.bordered-subtitle {
+  @include padding-left(2px);
+  @include border-right(1px solid map-get($color, "atlp-grey-base"));
+  @include padding-right(12px);
+  @include margin-right(12px);
+}
+
+.drawer-percent {
+  font-size: 12px;
+  color: map-get($color, "atlp-grey-base");
+  display: block;
+  @media (min-width: 768px) {
+    margin-top: 9px;
+    font-size: 16px;
+  }
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.panel-nav {
+  position: absolute;
+  @include right(30px);
+  width: 0px;
+  top: 0;
+  height: 100vh;
+  padding: 0 0 16px;
+  z-index: 5;
+  @media (min-width: 768px) {
+    // position: sticky;
+    @include right(calc(100% - 42px));
+    @include padding(20px, 0px, 20px, 0px);
+  }
+
+  .panel-btn {
+    @media (max-width: 767px) {
+      box-shadow: none;
+      background-color: transparent;
+    }
+
+    .small-close-btn {
+      @media (max-width: 767px) {
+        position: relative;
+        top: -4px;
+        width: 30px !important;
+        height: 30px !important;
+      }
+    }
+  }
+}
+
+.panel-nav-top {
+  .panel-btn {
+    margin-bottom: 19px;
+  }
+}
+
+.panel-btn {
+  padding: 0;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mat-icon {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    @media (min-width: 1024px) {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      min-height: 30px;
+    }
+  }
+}
+
+.small-close-btn {
+  width: 31px !important;
+  height: 31px !important;
+  min-width: 31px !important;
+  min-height: 31px !important;
+  @media (min-width: 1024px) {
+    bottom: auto;
+  }
+}
+
+.soc-wrap {
+  @include padding-right(35px);
+
+  @media (min-width: 768px) {
+    @include padding-right(0);
+  }
+
+  .round-btn {
+    margin-top: 16px;
+  }
+}
+
+.panel-row {
+  padding-bottom: 10px;
+  &.panel-border {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid map-get($color, "atlp-panel-border");
+    @media (min-width: 768px) {
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+  }
+}

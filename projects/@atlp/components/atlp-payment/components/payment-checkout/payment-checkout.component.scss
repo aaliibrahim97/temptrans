@@ -1,0 +1,12 @@
+iframe {
+  display: block; /* iframes are inline by default */
+  background: #fff;
+  border: none; /* Reset default border */
+  height: 100vh; /* Viewport-relative units */
+  width: 100vw;
+}
+
+.app-payment-checkout {
+  position: absolute;
+  margin: 0;
+}

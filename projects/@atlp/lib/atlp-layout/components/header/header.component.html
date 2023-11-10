@@ -1,0 +1,90 @@
+<header
+  class="header overlay-blur"
+  [class.blur]="_atlpSidebarService.allOpenedSuperimposedSidebar.length > 0"
+>
+  <mat-toolbar class="p-0">
+    <div
+      class="toolbar-container"
+      fxFlex
+      fxFill
+      fxLayout="row"
+      fxLayoutAlign="start center"
+    >
+      <app-menu [showMenu]="showMenu"></app-menu>
+
+      <div class="header-detail-container" *ngIf="!isMobile">
+        <mat-icon
+          *ngIf="headerLogo"
+          [svgIcon]="headerLogo"
+          [ngClass]="headerLogoCustomClass ? headerLogoCustomClass : ''"
+        >
+        </mat-icon>
+        <mat-divider
+          *ngIf="headerLogo && headerTitle"
+          class="logo-title-divider"
+          [vertical]="true"
+        ></mat-divider>
+        <span *ngIf="headerTitle" class="">
+          {{ headerTitle }}
+        </span>
+      </div>
+
+      <ng-content select=".project-header"> </ng-content>
+      <div
+        class="toolbar-nav"
+        fxFlex
+        fxFill
+        fxLayout="row"
+        fxLayoutAlign="end center"
+      >
+        <nav
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          style="justify-content: flex-end"
+        >
+          <section>
+            <button
+              (click)="setRegisteredUserStatus()"
+              id="supportBtn"
+              mat-stroked-button
+              style="margin: 5px"
+              mat-button
+              [matMenuTriggerFor]="menu"
+            >
+              <span class="support-icon"
+                ><mat-icon svgIcon="feedback-support-icon"></mat-icon
+              ></span>
+              <span class="support-caption">{{ "SUPPORT" | translate }}</span>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button (click)="goToUrl('newRequest')" mat-menu-item>
+                {{ "NEW_REQUEST" | translate }}
+              </button>
+              <button (click)="goToUrl('trackRequest')" mat-menu-item>
+                {{ "TRACK_REQUEST" | translate }}
+              </button>
+            </mat-menu>
+          </section>
+          <section class="language-selector">
+            <small>
+              <mat-select
+                (selectionChange)="onSwitchLang($event.value)"
+                fxFlex="none"
+                class="dropdown-select small dropdown-table border"
+                panelClass="panel-custom"
+                [(value)]="selectedLanguage"
+              >
+                <!-- value="en" -->
+                <mat-option value="en"> <small>en</small> </mat-option>
+                <mat-option value="ae"> <small>ar</small></mat-option>
+              </mat-select>
+            </small>
+          </section>
+          <section>
+            <header-user></header-user>
+          </section>
+        </nav>
+      </div>
+    </div>
+  </mat-toolbar>
+</header>

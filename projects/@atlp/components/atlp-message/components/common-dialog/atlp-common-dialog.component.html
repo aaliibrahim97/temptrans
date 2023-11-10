@@ -1,0 +1,48 @@
+<div
+  class="drawer-wrap "
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign=" none"
+>
+  <div class="drawer-wrap-container ">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+       <!-- <div class="drawer-info">
+        <span class="drawer-title">
+          {{ messageDetails?.sliderTitle | translate }}
+        </span>
+      </div> -->
+    </div>
+    <div class="drawer-body">
+      <atlp-common-messages
+        [dialogType]="messageDetails?.dialogType"
+        [title]="messageDetails?.title"
+        [messageData]="messageDetails?.messageData"
+        [subtitle]="messageDetails?.subTitle"
+        [inputReason]="messageDetails?.inputReason"
+        [reasonError]="messageDetails?.reasonError"
+        [okButtonText]="
+          messageDetails?.okBtnText ? messageDetails?.okBtnText : buttonOkText
+        "
+        [cancelButtonText]="
+          messageDetails?.cancelBtnText
+            ? messageDetails?.cancelBtnText
+            : buttonCancelText
+        "
+        [rejectAbortButtonText]="
+          messageDetails?.rejectAbortButtonText
+            ? messageDetails?.rejectAbortButtonText
+            : rejectAbortButtonText
+        "
+        [okClick]="okClick"
+        [cancelClick]="cancelClick"
+        [confirmWithReason]="confirmWithReason"
+        [confirmWithdata]="confirmWithdata"
+      >
+      </atlp-common-messages>
+    </div>
+  </div>
+</div>

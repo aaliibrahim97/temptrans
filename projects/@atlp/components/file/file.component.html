@@ -1,0 +1,136 @@
+<div class="file-wrap">
+  <ngx-awesome-uploader
+    class="awesome-uploader"
+    #uploader
+    [adapter]="adapter"
+    [fileMaxCount]="fileMaxCount"
+    [fileMaxSize]="fileSizeMax"
+    [uploadType]="uploadType"
+    (validationError)="onValidationError($event)"
+    [fileExtensions]="typeFiles"
+    [enableCropper]="false"
+    (uploadSuccess)="onUploadSuccess($event)"
+    (uploadFail)="onUploadFail($event)"
+    (removeSuccess)="onRemoveSuccess($event)"
+    (fileAdded)="onFileAdded($event)"
+    (fileRemoved)="onFileRemoved($event)"
+    [itemTemplate]="
+      showDrop && isEditable ? uploadFileFailedTemplate : myItemTemplate
+    "
+  >
+    <div class="dropzoneTemplate" #drop [class.hide-drop]="!showDrop">
+      <div class="upload-wrap" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon svgIcon="folder" aria-hidden="false"></mat-icon>
+        <span class="upload-title">
+          {{ "DROP_YOUR_FILE_HERE" | translate }}</span
+        >
+        <span class="upload-title"> {{ "OR" | translate }}</span>
+        <label for="file"> {{ "BROWSE_FILES" | translate }}</label>
+        <span class="upload-text"
+          >{{ "MAXIMUM_SIZE" | translate }} {{ fileSizeMax
+          }}{{ "MB" | translate }}</span
+        >
+      </div>
+    </div>
+  </ngx-awesome-uploader>
+  <ng-template
+    #myItemTemplate
+    let-fileItem="fileItem"
+    let-uploadProgress="uploadProgress"
+  >
+    <div class="file">
+      <div
+        class="file__wrap"
+        fxFlex
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <div class="file__icon">
+          <mat-icon
+            *ngIf="
+              fileItem.file.type === TypeFile.PNG ||
+              fileItem.file.mimeType === TypeFile.PNG
+            "
+            svgIcon="icon-png-dark"
+            aria-hidden="false"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="
+              fileItem.file.type === TypeFile.PDF ||
+              fileItem.file.mimeType === TypeFile.PDF
+            "
+            svgIcon="pdf-icon"
+            aria-hidden="false"
+          >
+          </mat-icon>
+          <mat-icon
+            *ngIf="
+              fileItem.file.type === TypeFile.JPG ||
+              fileItem.file.mimeType === TypeFile.JPG
+            "
+            svgIcon="icon-jpg-dark"
+            aria-hidden="false"
+          >
+          </mat-icon>
+        </div>
+        <div class="file__info" fxFlex fxLayout="column">
+          <span class="file__title">{{ fileItem?.fileName }}</span>
+          <span class="file__time" *ngIf="uploadProgress < 100"
+            >{{ uploadProgress }}%</span
+          >
+          <span class="file__text" *ngIf="!uploadProgress">
+            <ng-container *ngIf="fileItem?.uploadResponse?.lastModifiedDate">
+              Date Attached:
+              {{ fileItem?.uploadResponse?.lastModifiedDate | date : "medium" }}
+            </ng-container>
+          </span>
+          <span class="file__text" *ngIf="!uploadProgress">
+            <ng-container *ngIf="fileItem?.uploadResponse?.userName"
+              >{{ "ATTACHED_BY" | translate }}:
+              {{
+                fileItem?.uploadResponse?.userName
+                  ? fileItem?.uploadResponse?.userName
+                  : loggedInUserName
+              }}
+            </ng-container>
+          </span>
+        </div>
+        <button
+          *ngIf="!uploadProgress && isEditable"
+          type="button"
+          class="file__btn"
+          (click)="removeFile(fileItem)"
+        >
+          <mat-icon svgIcon="file-remove" aria-hidden="false"></mat-icon>
+        </button>
+        <button
+          *ngIf="!uploadProgress && isDownloadable"
+          type="button"
+          class="file__btn"
+          (click)="downloadFile(fileItem)"
+        >
+          <mat-icon svgIcon="download" aria-hidden="false"></mat-icon>
+        </button>
+        <ng-content select=".actions"></ng-content>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template
+    #uploadFileFailedTemplate
+    let-fileItem="fileItem"
+    let-uploadProgress="uploadProgress"
+  >
+  </ng-template>
+  <ng-container *ngIf="uploadType != 'single' && myFiles.length && isEditable">
+    <div class="file-nav-upload" fxLayout="column" fxLayoutAlign="start start">
+      <!-- <label class="new-file-btn" for="fileInput">Upload new file</label> -->
+      <label class="new-file-btn" (click)="btnClick()">
+        {{ "UPLOAD_NEW_FILE" | translate }}</label
+      >
+      <span class="upload-text"
+        >{{ "MAXIMUM_SIZE" | translate }} {{ fileSizeMax
+        }}{{ "MB" | translate }}</span
+      >
+    </div>
+  </ng-container>
+</div>

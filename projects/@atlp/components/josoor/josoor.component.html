@@ -1,0 +1,710 @@
+<div
+  class="drawer-wrap josoor-drawer"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "JOSOOR.Title" | translate }}</span>
+        <span class="drawer-percent">
+          {{ "JOSOOR.Sub_Title_A" | translate }}</span
+        >
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="drawer-body">
+        <div [formGroup]="form">
+          <ng-container formGroupName="companyInformationDTO">
+            <div
+              class="panel-header panel-header-border pb-20 mb-20"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between center"
+            >
+              <span class="panel-title">{{
+                "JOSOOR.Company_Details" | translate
+              }}</span>
+            </div>
+            <ng-container formGroupName="companyDetails">
+              <div
+                class="vessel-row mb-12"
+                fxLayout="row wrap"
+                fxLayoutAlign="space-between"
+              >
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.Business_Name" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls['companyDetails']?.get(
+                        'businessName'
+                      )?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls["companyDetails"]?.get(
+                        "businessName"
+                      )?.value
+                    }}</span
+                  >
+                </div>
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.Telephone" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls['companyDetails']?.get(
+                        'telephone'
+                      )?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls["companyDetails"]?.get(
+                        "telephone"
+                      )?.value
+                    }}</span
+                  >
+                </div>
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.Website" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls['companyDetails']?.get(
+                        'website'
+                      )?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls["companyDetails"]?.get(
+                        "website"
+                      )?.value
+                    }}</span
+                  >
+                </div>
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.License_Number" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls['companyDetails']?.get(
+                        'licenceNumber'
+                      )?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls["companyDetails"]?.get(
+                        "licenceNumber"
+                      )?.value
+                    }}</span
+                  >
+                </div>
+                <ng-template #noValueTemplate>
+                  <span class="appointment-text">-</span>
+                </ng-template>
+              </div>
+            </ng-container>
+
+            <div
+              class="vessel-row mb-24"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between"
+            >
+              <div
+                class="dropdown-col bg field-wrap mb-12"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+              >
+                <label
+                  for="profileAction"
+                  class="dropdown-label fieldrequired"
+                  >{{ "JOSOOR.Type_of_Business" | translate }}</label
+                >
+                <mat-select
+                  #rolesRef
+                  (openedChange)="adjustMatSelectOverlay(rolesRef)"
+                  disableOptionCentering="true"
+                  disableRipple="true"
+                  (keydown)="$event.stopPropagation()"
+                  placeholder="{{ 'SELECT' | translate }}"
+                  multiple
+                  class="dropdown-select bg"
+                  formControlName="typeOfBusiness"
+                  panelClass="panel-custom bg"
+                >
+                  <mat-option
+                    *ngFor="let option of businessTypes"
+                    [value]="option.name"
+                  >
+                    {{ option.description }}
+                  </mat-option>
+                </mat-select>
+                <div
+                  class="error-wrap"
+                  fxLayout="row"
+                  fxLayoutAlign="start center"
+                >
+                  <span class="error-text">
+                    <div
+                      *ngIf="
+                        companyInformation?.controls[
+                          'typeOfBusiness'
+                        ]?.hasError('required') &&
+                        companyInformation?.controls['typeOfBusiness']?.touched
+                      "
+                      class="text-danger font-14"
+                    >
+                      {{ "Select_Atleast_One" | translate }}
+                    </div>
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                *ngIf="
+                  companyInformation
+                    ?.get('typeOfBusiness')
+                    ?.value?.includes('Other')
+                "
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+              >
+                <label
+                  for="typeOfBusinessOther"
+                  class="field-label fieldrequired"
+                  >{{ "JOSOOR.Other" | translate }}</label
+                >
+                <div class="field-input-wrap">
+                  <input
+                    type="text"
+                    formControlName="typeOfBusinessOther"
+                    id="typeOfBusinessOther"
+                    aria-describedby="typeOfBusinessOther"
+                  />
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    <span class="error-text">
+                      <div
+                        *ngIf="
+                          companyInformation?.controls[
+                            'typeOfBusinessOther'
+                          ]?.hasError('required') &&
+                          companyInformation?.controls['typeOfBusinessOther']
+                            ?.touched
+                        "
+                        class="text-danger font-14"
+                      >
+                        {{ "Required" | translate }}
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="dropdown-col bg field-wrap mb-12"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+              >
+                <label
+                  for="profileAction"
+                  class="dropdown-label fieldrequired"
+                  >{{ "JOSOOR.Sector" | translate }}</label
+                >
+                <mat-select
+                  #rolesRef
+                  (openedChange)="adjustMatSelectOverlay(rolesRef)"
+                  disableOptionCentering="true"
+                  disableRipple="true"
+                  (keydown)="$event.stopPropagation()"
+                  placeholder="{{ 'SELECT' | translate }}"
+                  multiple
+                  class="dropdown-select bg"
+                  formControlName="sectors"
+                  panelClass="panel-custom bg"
+                >
+                  <mat-option
+                    *ngFor="let option of sectors"
+                    [value]="option.name"
+                  >
+                    {{ option.description }}
+                  </mat-option>
+                </mat-select>
+                <div
+                  class="error-wrap"
+                  fxLayout="row"
+                  fxLayoutAlign="start center"
+                >
+                  <span class="error-text">
+                    <div
+                      *ngIf="
+                        companyInformation?.controls['sectors']?.hasError(
+                          'required'
+                        ) && companyInformation?.controls['sectors']?.touched
+                      "
+                      class="text-danger font-14"
+                    >
+                      {{ "Select_Atleast_One" | translate }}
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                *ngIf="
+                  companyInformation?.get('sectors')?.value?.includes('Other')
+                "
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+              >
+                <label for="sectorOther" class="field-label fieldrequired">{{
+                  "JOSOOR.Other" | translate
+                }}</label>
+                <div class="field-input-wrap">
+                  <input
+                    type="text"
+                    formControlName="sectorOther"
+                    id="sectorOther"
+                    aria-describedby="sectorOther"
+                  />
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    <span class="error-text">
+                      <div
+                        *ngIf="
+                          companyInformation?.controls['sectorOther']?.hasError(
+                            'required'
+                          ) &&
+                          companyInformation?.controls['sectorOther']?.touched
+                        "
+                        class="text-danger font-14"
+                      >
+                        {{ "Required" | translate }}
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                *ngIf="
+                  !companyInformation
+                    ?.get('sectors')
+                    ?.value?.includes('Other') ||
+                  !companyInformation
+                    ?.get('typeOfBusinessOther')
+                    ?.value?.includes('Other')
+                "
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+              ></div>
+            </div>
+
+            <div
+              class="panel-header panel-header-border pb-20 mb-20"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between center"
+            >
+              <span class="panel-title">{{
+                "JOSOOR.Additional_Information" | translate
+              }}</span>
+            </div>
+            <div
+              class="vessel-row mb-24"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between"
+            >
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="48%"
+                fxLayout="column"
+              >
+                <label for="companyOverview" class="field-label">{{
+                  "JOSOOR.Describe_Company_Overview" | translate
+                }}</label>
+                <div class="field-input-wrap">
+                  <textarea
+                    class="textarea"
+                    formControlName="companyOverview"
+                    id="companyOverview"
+                    placeholder="{{ 'PLEASE_ENTER_DESCRIPTION' | translate }}"
+                  ></textarea>
+                </div>
+              </div>
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="48%"
+                fxLayout="column"
+              >
+                <label for="companyProducts" class="field-label">{{
+                  "JOSOOR.Describe_Company_Product" | translate
+                }}</label>
+                <div class="field-input-wrap">
+                  <textarea
+                    class="textarea"
+                    formControlName="companyProducts"
+                    id="companyProducts"
+                    placeholder="{{ 'PLEASE_ENTER_DESCRIPTION' | translate }}"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <ng-container formGroupName="pointOfContactForSales">
+              <div
+                class="panel-header panel-header-border pb-20 mb-20"
+                fxLayout="row wrap"
+                fxLayoutAlign="space-between center"
+              >
+                <span class="panel-title poc-title">{{
+                  "JOSOOR.POC_Sales_Enquiries" | translate
+                }}</span>
+              </div>
+              <div
+                class="vessel-row mb-12"
+                fxLayout="row wrap"
+                fxLayoutAlign="space-between"
+              >
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.Full_Name" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls[
+                        'pointOfContactForSales'
+                      ]?.get('fullName')?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls[
+                        "pointOfContactForSales"
+                      ]?.get("fullName")?.value
+                    }}</span
+                  >
+                </div>
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.Email_Address" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls[
+                        'pointOfContactForSales'
+                      ]?.get('email')?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls[
+                        "pointOfContactForSales"
+                      ]?.get("email")?.value
+                    }}</span
+                  >
+                </div>
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                >
+                  <span class="appointment-title">{{
+                    "JOSOOR.Mobile_Number" | translate
+                  }}</span>
+                  <span
+                    class="appointment-text"
+                    *ngIf="
+                      companyInformation?.controls[
+                        'pointOfContactForSales'
+                      ]?.get('mobileNumber')?.value;
+                      else noValueTemplate
+                    "
+                    >{{
+                      companyInformation?.controls[
+                        "pointOfContactForSales"
+                      ]?.get("mobileNumber")?.value
+                    }}</span
+                  >
+                </div>
+                <div
+                  fxflex="100%"
+                  fxflex.gt-xs="45%"
+                  fxflex.gt-sm="22%"
+                  fxlayout="column"
+                  class="appointment-info-col"
+                ></div>
+                <ng-template #noValueTemplate>
+                  <span class="appointment-text">-</span>
+                </ng-template>
+              </div>
+            </ng-container>
+
+            <div
+              class="panel-header panel-header-border pb-20 mb-20"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between center"
+            >
+              <span class="panel-title">{{
+                "JOSOOR.Your_Company_Social_Media" | translate
+              }}</span>
+            </div>
+            <josoor-social-media
+              [form]="companyInformation"
+              [selectedLanguage]="selectedLanguage"
+            ></josoor-social-media>
+            <div
+              class="panel-header panel-header-border pb-20 mb-20"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between center"
+            >
+              <span class="panel-title">{{
+                "JOSOOR.Upload_Documents" | translate
+              }}</span>
+            </div>
+
+            <div
+              class="vessel-row mb-24"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between"
+            >
+              <div
+                class="upload-file-col"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-md="32%"
+              >
+                <atlp-file-upload
+                  [label]="'JOSOOR.Company_Logo'"
+                  [isRequired]="true"
+                  [batchId]="companyLogoBatchId"
+                  [configData]="singleConfigData"
+                  [uploadedFiles]="companyLogo"
+                  (batchEmitter)="updateBatchId($event, 'company-logo')"
+                  (fileUpdated)="onFileUpdated($event, 'company-logo')"
+                ></atlp-file-upload>
+              </div>
+              <div
+                class="upload-file-col"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-md="32%"
+              >
+                <atlp-file-upload
+                  [label]="'JOSOOR.Company_Digital_Brochure'"
+                  [isRequired]="false"
+                  [batchId]="digitalBrochureBatchId"
+                  [configData]="multiConfigData"
+                  [uploadedFiles]="digitalBrochure"
+                  (batchEmitter)="updateBatchId($event, 'digital-brochure')"
+                  (fileUpdated)="onFileUpdated($event, 'digital-brochure')"
+                ></atlp-file-upload>
+              </div>
+              <div
+                class="upload-file-col"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-md="32%"
+              >
+                <atlp-file-upload
+                  [label]="'JOSOOR.Company_Facility_Product_Images'"
+                  [isRequired]="false"
+                  [batchId]="productImagesBatchId"
+                  [configData]="multiConfigData"
+                  [uploadedFiles]="productImages"
+                  (batchEmitter)="updateBatchId($event, 'product-images')"
+                  (fileUpdated)="onFileUpdated($event, 'product-images')"
+                ></atlp-file-upload>
+              </div>
+            </div>
+
+            <div
+              class="vessel-row"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between start"
+            >
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxLayout="column"
+              >
+                <div class="field-wrap bg">
+                  <p
+                    class="field-label"
+                    innerHtml="{{ 'JOSOOR.Addition_Info_Email' | translate }}"
+                  ></p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="vessel-row"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between start"
+            >
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxLayout="column"
+              >
+                <div class="field-input-wrap">
+                  <div>
+                    <mat-checkbox
+                      class="bg mat-check-Non"
+                      formControlName="termsAndConditions"
+                    >
+                    </mat-checkbox>
+                    <span class="josoor-terms-condition fieldrequired">{{
+                      "JOSOOR.Terms_And_Conditions" | translate
+                    }}</span>
+                  </div>
+
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="
+                      companyInformation?.get('termsAndConditions')?.value ==
+                        false &&
+                      companyInformation?.get('termsAndConditions')?.touched &&
+                      !companyInformation?.get('termsAndConditions').valid
+                    "
+                  >
+                    <span class="error-text">{{
+                      "JOSOOR.Terms_And_Conditions_Error" | translate
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-close-btn"
+    (click)="toggleV2SidebarOpen(SidebarName.josoor)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+  <button
+    type="button"
+    class="round-btn round-action-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onEdit()"
+    *ngIf="id && form?.disabled"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="edit"></mat-icon>
+      <span class="round-btn-text">{{ "Edit" | translate }}</span>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="round-btn round-submit-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onSubmit()"
+    *ngIf="!form?.disabled"
+    [disabled]="!companyInformation?.get('termsAndConditions').value"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="soc-icon"></mat-icon>
+      <span class="round-btn-text">{{ "Submit" | translate }}</span>
+    </div>
+  </button>
+</div>

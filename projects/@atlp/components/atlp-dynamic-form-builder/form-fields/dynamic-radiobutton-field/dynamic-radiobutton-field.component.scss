@@ -1,0 +1,12 @@
+::ng-deep .mat-radio-label-content {
+  color: white !important;
+}
+::ng-deep .mat-radio-checked .mat-radio-outer-circle {
+  border: 1px solid #a187bf !important;
+}
+::ng-deep .mat-radio-checked .mat-radio-inner-circle {
+  background: #a187bf !important;
+}
+::ng-deep .mat-radio-outer-circle {
+  border-color: #a187bf !important;
+}

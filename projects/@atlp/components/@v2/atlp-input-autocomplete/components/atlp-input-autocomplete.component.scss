@@ -1,0 +1,193 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/atlp";
+@import "projects/@atlp/scss/mixins";
+
+.input-container {
+  width: 100%;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+}
+
+.mat-progress-bar {
+  position: absolute;
+}
+
+.create-new {
+  color: #27ae60;
+}
+
+.add-icon {
+  position: relative;
+  color: #27ae60;
+}
+
+.disabled-control {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+::ng-deep {
+  .mat-option {
+    white-space: initial !important;
+    word-break: normal !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    display: block !important;
+    line-height: inherit !important;
+    height: inherit !important;
+    padding: 5px 5px !important;
+  }
+}
+
+:host ::ng-deep {
+  .search-bar-bg {
+    max-width: 292px;
+    width: 100%;
+    &.disabled {
+      opacity: 0.4;
+    }
+    .atlp-search-bar-content {
+      background-color: transparent !important;
+    }
+    .mat-icon {
+      font-size: 18px !important;
+      color: map-get($color, "atlp-white") !important;
+    }
+    input {
+      color: map-get($color, "atlp-white") !important;
+      border: 1px solid map-get($color, "atlp-purple-base") !important;
+      &::placeholder {
+        color: map-get($color, "atlp-white") !important;
+      }
+    }
+  }
+}
+
+:host {
+  .atlp-search-bar {
+    font-size: 14px;
+
+    .mat-icon {
+      font-size: 18px;
+      min-height: 24px !important;
+      top: 50% !important;
+      color: map-get($color, "atlp-search-color");
+    }
+
+    .atlp-search-bar-expander {
+      margin: 0 !important;
+    }
+
+    .atlp-search-bar-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .atlp-search-bar-collapser {
+        display: none;
+      }
+
+      .atlp-search-bar-label {
+        position: absolute;
+        top: 0;
+        @include left(2px);
+        height: 33px;
+        display: block;
+        .mat-icon-button {
+          width: 33px;
+          height: 33px;
+        }
+      }
+
+      .atlp-search-bar-input {
+        @include padding-left(35px);
+        width: 100%;
+        border-radius: 6px;
+        height: 33px;
+        border: 1px solid map-get($color, "atlp-grey-dark");
+        background-color: map-get($color, "atlp-white");
+        width: 100%;
+        font-size: 14px;
+        background-color: transparent;
+        &::placeholder {
+          color: map-get($color, "atlp-search-color");
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.changeText-to-uppercase {
+  text-transform: uppercase;
+}
+
+.input-lookup-close {
+  &:lang(ar) {
+    position: absolute;
+    left: 0px;
+  }
+}
+.input-lookup-close {
+  &:lang(en) {
+    position: absolute;
+    right: 0px;
+  }
+}
+
+.caret-color-mat-input-element {
+  cursor: none;
+  caret-color: #3c4252;
+}
+
+.mat-input-element {
+  caret-color: white !important;
+}
+.padding-0 {
+  padding: 0px !important;
+}
+
+.marginlr-40 {
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+}
+
+@media screen and (max-width: 960px) {
+  .marginlr-40 {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+}
+
+.padding-left-input-removed {
+  padding-left: 10px !important;
+  @include padding-right(32px);
+  // padding-right:32px !important
+}
+
+.clear-btn {
+  position: absolute;
+  width: 23px;
+  &:lang(ar) {
+    left: 0;
+  }
+  &:lang(en) {
+    right: 0;
+  }
+}
+
+.on-progress {
+  bottom: 0;
+}
+
+.focusoutElmAutoComplete {
+  width: 0px !important;
+  height: 0px !important;
+  border: 0 !important;
+  border-radius: 0px !important;
+}

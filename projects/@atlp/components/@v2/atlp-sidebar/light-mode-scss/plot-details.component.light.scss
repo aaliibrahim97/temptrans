@@ -1,0 +1,18 @@
+@import "projects/@atlp/scss/mixins";
+@import "projects/@atlp/scss/variables";
+
+.availabilities-container {
+  .availability {
+    left: 0;
+    background: map-get($color, "atlp-white");
+    mat-icon {
+      opacity: 1;
+      position: relative;
+      @include left(-15px);
+      &:after {
+        left: 0 !important;
+        background: map-get($color, "atlp-white") !important;
+      }
+    }
+  }
+}

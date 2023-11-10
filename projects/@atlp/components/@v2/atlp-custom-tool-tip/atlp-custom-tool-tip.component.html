@@ -1,0 +1,12 @@
+<div>
+  <div class="tooltip-conatiner">
+    <ng-template #simpleText>
+      {{ text }}
+    </ng-template>
+    <ng-container *ngTemplateOutlet="contentTemplate || simpleText">
+    </ng-container>
+  </div>
+</div>
+
+<!-- <ng-container [ngTemplateOutlet]="contentTemplate || simpleText">
+</ng-container> -->

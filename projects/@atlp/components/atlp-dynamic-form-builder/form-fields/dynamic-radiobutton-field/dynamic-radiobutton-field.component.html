@@ -1,0 +1,69 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <label class="field-label" [ngClass]="{ required: field.isRequired }">
+    {{ field.label | translate }}</label
+  >
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <mat-radio-group
+      #elementRef
+      [ngStyle]="field.props?.componentStyle"
+      [tabIndex]="field.tabindex || 0"
+      fxLayout="{{
+        fieldMetaData?.fxLayout ? fieldMetaData?.fxLayout : 'row wrap'
+      }}"
+      fxLayoutAlign="{{
+        fieldMetaData?.fxLayoutAlign
+          ? fieldMetaData?.fxLayoutAlign
+          : 'space-between center'
+      }}"
+      fxFlex="{{ fieldMetaData?.fxFlex ? fieldMetaData?.fxFlex : '80' }}"
+      [labelPosition]="fieldMetaData?.appearance || 'after'"
+      [attr.aria-describedby]="fieldMetaData?.ariaDescribedby"
+      [attr.readonly]="fieldMetaData?.readonly ? 'readonly' : null"
+      [attr.required]="fieldMetaData?.required"
+      [formControlName]="field.name"
+      class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+      [disableControl]="field.isDisabled ? true : null"
+    >
+      <mat-radio-button *ngFor="let item of field.options" [value]="item">{{
+        item
+      }}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+</div>

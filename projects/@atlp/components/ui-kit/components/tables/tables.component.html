@@ -1,0 +1,149 @@
+<mat-table [dataSource]="dataSource" class="table">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null"
+        [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)">
+      </mat-checkbox>
+      <div class="loader"></div>
+    </mat-cell>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef> Voyage Number </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <a href="#">{{element.number}}</a>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Vessel Name </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <a href="#"> {{element.name}} </a>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="port">
+    <mat-header-cell *matHeaderCellDef> Port </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.port}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="terminal">
+    <mat-header-cell *matHeaderCellDef> Terminal </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.terminal}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="rotation">
+    <mat-header-cell *matHeaderCellDef> Rotation </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.rotation}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="eta">
+    <mat-header-cell *matHeaderCellDef> ETA/ATA </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.eta}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="etd">
+    <mat-header-cell *matHeaderCellDef> ETD </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.etd}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="agent">
+    <mat-header-cell *matHeaderCellDef> Vessel Agent </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.agent}}
+      <div class="table-nav" fxFlex fxLayout="row" fxLayoutAlign="end center">
+        <button mat-raised-button color="basic" class="icon">
+          <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+          Print
+        </button>
+        <button mat-raised-button color="basic" class="icon">
+          <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+          Clone
+        </button>
+        <button mat-raised-button color="warn">Delete</button>
+      </div>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
+<hr>
+
+<div class="container-bg" style="background: #373069;">
+  <h2 class="block-title">Master Airway bl detail</h2>
+  <mat-table [dataSource]="dataSource" class="table bg">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null"
+          [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="number">
+      <!-- <mat-header-cell *matHeaderCellDef> Voyage Number </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.number}}</mat-cell> -->
+      <mat-header-cell *matHeaderCellDef> Voyage Number <br> number one </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.number}} <br> {{element.numberOne}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Vessel Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="port">
+      <mat-header-cell *matHeaderCellDef> Port </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.port}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="terminal">
+      <mat-header-cell *matHeaderCellDef> Terminal </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.terminal}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rotation">
+      <mat-header-cell *matHeaderCellDef> Rotation </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rotation}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="eta">
+      <mat-header-cell *matHeaderCellDef> ETA/ATA </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.eta}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="etd">
+      <mat-header-cell *matHeaderCellDef> ETD </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.etd}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="agent">
+      <mat-header-cell *matHeaderCellDef> Vessel Agent </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.agent}}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

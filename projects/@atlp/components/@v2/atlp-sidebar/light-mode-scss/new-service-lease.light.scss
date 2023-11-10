@@ -1,0 +1,64 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.full-card-container {
+  // background-image: linear-gradient(310deg, map-get($color, 'atlp-white' ) 0%, map-get($color, 'light-mode-field-border') 100%) !important;
+  background-image: linear-gradient(
+    310deg,
+    #ffffff 0%,
+    #dbe3f2 100%
+  ) !important;
+  &:hover {
+    // background-image: linear-gradient(130deg, map-get($color, 'light-mode-body-bg' ) 0%, map-get( $color, 'atlp-field-border' ) 100%) !important;
+    background-image: linear-gradient(
+      130deg,
+      #482570 0%,
+      #bc2f2c 100%
+    ) !important;
+    // span {
+    //     color: map-get($color, 'atlp-white' ) !important;
+    // }
+    .mat-icon {
+      path,
+      rect {
+        fill: map-get($color, "atlp-white");
+      }
+    }
+  }
+  // span {
+  //     // color: map-get($color, "light-mode-subtitle") !important;
+  //     color: #606a81 !important
+  // }
+  &.selected {
+    // background-image: linear-gradient(130deg, map-get($color, 'light-mode-body-bg' ) 0%, map-get( $color, 'atlp-field-border' ) 100%) !important;
+    // background-image: transparent linear-gradient(130deg,#482570,#bc2f2c) 0 0 no-repeat padding-box !important;
+    background-image: linear-gradient(
+      130deg,
+      #482570 0%,
+      #bc2f2c 100%
+    ) !important;
+
+    span {
+      color: map-get($color, "atlp-white") !important;
+    }
+    .mat-icon {
+      path,
+      rect {
+        fill: map-get($color, "atlp-white") !important;
+      }
+    }
+  }
+}
+.new-service-lease {
+  .property {
+    mat-icon {
+      g,
+      path {
+        fill: map-get($color, "light-mode-subtitle") !important;
+      }
+    }
+  }
+  .properties-container {
+    border-color: #c5d2e7 !important;
+  }
+}

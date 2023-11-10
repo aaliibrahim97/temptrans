@@ -1,0 +1,43 @@
+<div
+  class="sidebarParent"
+  #sidebarParent
+  [ngClass]="{ light: currentLightMode === true }"
+>
+  <!-- <div class="sidebar-buttons-wrapper">
+    <button
+      class="round-btn panel-btn sidebar-action-btn"
+      (click)="resizePannel()"
+      *ngIf="!isMobile"
+    >
+      <mat-icon
+        class="small-icon"
+        [svgIcon]="maximize ? 'icon-collapse' : 'icon-expand'"
+        aria-hidden="false"
+      ></mat-icon>
+    </button>
+    <button
+      class="round-btn panel-btn sidebar-action-btn"
+      (click)="toggleSidebarOpen()"
+    >
+      <mat-icon
+        class="small-icon"
+        svgIcon="icon-close-dark"
+        aria-hidden="false"
+      ></mat-icon>
+    </button>
+  </div> -->
+
+  <ng-container
+    [ngTemplateOutlet]="tplRef"
+    *ngIf="destroySideBar && isTemplate"
+  >
+    <ng-content></ng-content>
+  </ng-container>
+  <ng-content *ngIf="!isTemplate"></ng-content>
+</div>
+
+<div
+  *ngIf="openedSidebar?.length == 0"
+  class="atlp-sidebar-overlay-wrap"
+  [ngClass]="{ blur: !invisibleOverlay }"
+></div>

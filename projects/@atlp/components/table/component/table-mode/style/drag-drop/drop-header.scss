@@ -1,0 +1,81 @@
+.drop-header-wrapper {
+  display: none;
+  &.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
+  }
+}
+
+.drop-title,
+.drop-description {
+  flex: none;
+  font-size: 16px;
+}
+
+.drop-description {
+  color: map-get($color, "atlp-purple-dark");
+  margin-left: 0px;
+  margin-right: 32px;
+  @media (min-width: 1024px) {
+    margin-left: auto;
+  }
+}
+
+.drop-voyages-value {
+  font-size: 16px;
+  color: map-get($color, "atlp-ink-lighter");
+  flex: none;
+}
+
+.drop-title {
+  margin-bottom: 12px;
+  @media (min-width: 1024px) {
+    margin-right: 12px;
+    margin-bottom: 0px;
+  }
+}
+
+.drop-item-zone {
+  height: 100%;
+}
+
+.drop-zone {
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 30px;
+  margin-bottom: 12px;
+
+  @media (min-width: 1024px) {
+    justify-content: flex-start;
+    margin-bottom: 0px;
+  }
+}
+
+/* Styles for float drop-here */
+.drop-here {
+  transition: 0.3s all;
+  border: 1px dashed map-get($color, "atlp-purple-dark");
+  height: 100%;
+  width: 100px;
+  max-height: 33px;
+  border-radius: 6px;
+  position: relative;
+  margin: 4px;
+  opacity: 0;
+  padding: 6.5px 8px 6.5px 16px;
+}
+.drop-header-wrapper {
+  .cdk-drop-list-receiving,
+  .cdk-drop-list-dragging {
+    .drop-here {
+      opacity: 1;
+    }
+  }
+}
+/* /Styles for float drop-here */

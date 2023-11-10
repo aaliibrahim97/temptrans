@@ -1,0 +1,130 @@
+@import "./../../scss//variables";
+@import "./../../scss/mixins";
+
+a label {
+  cursor: pointer;
+}
+.activity-sidebar {
+  padding: 20px;
+  background-color: map-get($color, "atlp-violet-base");
+  max-width: 309px;
+  width: 100%;
+  color: map-get($color, "atlp-white");
+  border-radius: 10px;
+  // display: none;
+
+  &.notifications-multicolumn {
+    max-width: 100%;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    // height: 500px;
+    // overflow: scroll;
+    .ad-feed {
+      // @media screen and (min-width: 768px) {
+      //   margin-right: 20px;
+      //   max-width: 25%;
+      // }
+      margin-right: 0px;
+      flex: 1 1 100%;
+      box-sizing: border-box;
+      max-width: 100%;
+
+      .item-message {
+        margin: 8px !important;
+        background-color: map-get($color, "atlp-white");
+        box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+
+        .event {
+          color: map-get($color, "atlp-violet-base");
+        }
+        .name {
+          color: map-get($color, "atlp-violet-base");
+        }
+        .message {
+          color: map-get($color, "atlp-violet-base");
+        }
+      }
+      &.notifications-important {
+        .item-message {
+          background-color: map-get($color, "atlp-violet-light");
+          color: map-get($color, "atlp-white");
+
+          .event {
+            color: map-get($color, "atlp-white");
+          }
+          .name {
+            color: map-get($color, "atlp-white");
+          }
+          .message {
+            color: map-get($color, "atlp-white");
+          }
+        }
+      }
+
+      .title {
+        color: #000;
+      }
+    }
+  }
+
+  h5 {
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 400;
+    color: map-get($color, "atpl-yellow-dark");
+    color: #db9649;
+  }
+  a {
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 1.2;
+    color: map-get($color, "atlp-white");
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .ad-feed {
+    margin-top: 24px;
+    .title {
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.2;
+      color: map-get($color, "atlp-grey-light");
+      font-weight: 500;
+    }
+  }
+  .item-message {
+    border-radius: 6px;
+    padding: 16px;
+    @include border-left(6px solid);
+    background-color: map-get($color, "atlp-violet-light");
+    margin-bottom: 8px;
+    &.notice {
+      border-color: #d92836;
+    }
+    &.default {
+      border-color: #26b9ef;
+    }
+    &.success {
+      border-color: #57a05a;
+    }
+    .event {
+      font-size: 16px;
+      line-height: 1.2;
+      color: map-get($color, "atlp-grey-light");
+      margin-bottom: 8px;
+    }
+    .name {
+      color: map-get($color, "atlp-grey-base");
+      font-size: 16px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .message {
+      font-size: 14px;
+      color: map-get($color, "atlp-white");
+    }
+  }
+}

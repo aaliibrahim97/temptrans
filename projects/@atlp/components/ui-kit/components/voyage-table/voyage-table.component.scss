@@ -1,0 +1,326 @@
+@import "projects/@atlp/scss/variables";
+
+::ng-deep {
+    voyage-table {
+        width: 100%;
+    }
+}
+.table-scroll-wrap {
+    overflow-x: auto !important;
+}
+.table-container {
+    width: 100%;
+    min-width: 1300px;
+}
+
+// voyage table styles
+.voyage-table {
+    background: transparent !important;
+    .mat-cell {
+        padding: 4px;
+        position: relative;
+        &:hover {
+            .voyage-info-checkbox {
+                opacity: 1;
+            }
+        }
+        .voyage-info-checkbox {
+            opacity: 0;
+            position: absolute;
+            top: 14px;
+            right: 19px;
+            z-index: 1;
+        }
+    }
+    .mat-header-row {
+        height: 48px !important;
+        min-height: 48px !important;
+        padding: 7px 0;
+        background-color: map-get($color, "atlp-white");
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    .mat-header-cell {
+        font-size: 12px !important;
+        color: map-get($color, "atlp-cell-color");
+        padding-left: 28px;
+        padding-right: 20px;
+        border-right: 1px dotted map-get($color, "atlp-cell-border");
+        @media (min-width: 1024px) {
+            font-size: 14px !important;
+        }
+        &:first-child {
+            width: 426px !important;
+            flex: none;
+        }
+        &:last-child {
+            border-right: none;
+        }
+        .mat-checkbox {
+            margin-left: auto;
+        }
+    }
+    .mat-row {
+        margin: 0 -4px;
+        border-bottom: none !important;
+    }
+}
+
+// voyage-table-descr
+.voyage-table-descr {
+    margin-bottom: 24px;
+}
+
+.voyage-descr-item {
+    position: relative;
+    width: 420px;
+    height: 168px;
+    &.active-more {
+        height: 170px;
+        .voyage-info {
+            
+            height: 160px;
+            .voyage-info-wrap {
+                min-height: auto;
+                padding: 17px 20px 14px;
+            }
+            &:nth-child(2) {
+                z-index: 2;
+                opacity: 1;
+                top: 0px;
+                left: 2px;
+                transform: scale(0.95);
+                .voyage-info-wrap {
+                    background-color: map-get($color, "atlp-violet-light");
+                }
+            }
+        }
+    }
+    .voyage-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 420px;
+        opacity: 0;
+        &:nth-child(1) {
+            z-index: 3;
+            opacity: 1;
+        }
+        &:nth-child(2) {
+            z-index: 2;
+            opacity: 1;
+            top: -3px;
+            left: 2px;
+            transform: scale(0.95);
+            .voyage-info-wrap {
+                background-color: map-get($color, "atlp-violet-light");
+            }
+        }
+        &:nth-child(3) {
+            z-index: 1;
+            opacity: 1;
+            top: -10px;
+            left: 4px;
+            transform: scale(0.9);
+            .voyage-info-wrap {
+                background-color: map-get($color, "atlp-last-card-bg");
+            }
+        }
+    }
+}
+
+// voyage-descr-content
+.voyage-descr-content {
+    width: calc(100% - 427px);
+    margin-left: 8px;
+    background: map-get($color, "atlp-white");
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+    border: 1px solid map-get($color, "atlp-wrap-border");
+    border-radius: 10px;
+    overflow: hidden;
+    &.active-more {
+        height: 170px;
+        .voyage-descr {
+            .remove-btn {
+                font-size: 10px !important;
+                padding: 0 28px 0px 10px;
+            }
+        }
+    }
+
+    .voyage-descr-nav {
+        width: 100%;
+        padding: 7px 20px 10px 20px;
+        background-color: map-get($color, "atlp-info-nav");
+        button {
+            margin: 0 0 0 11px;
+            &:nth-child(1) {
+                margin: 0 auto 0 0;
+                flex: none;
+            }
+        }
+    }
+}
+
+.voyage-descr-head {
+    padding: 12px 16px 5px;
+    .close-descr-btn {
+        margin-right: 12px;
+        height: 25px;
+    }
+    .voyage-descr-title {
+        font-size: 14px;
+        font-weight: 300;
+        color: map-get($color, "atlp-descr-title");
+    }
+}
+
+.voyage-descr-body {
+    padding: 0 20px 10px;
+    background-color: map-get($color, "atlp-white");
+}
+
+.voyage-descr {
+    border-bottom: 10px solid map-get($color, "atlp-voyage-border-bottom");
+    &.voyage-descr-two {
+        padding-left: 34px;
+        border-bottom: 10px solid transparent;
+        .voyage-item {
+            width: calc(50% - 13px) !important;
+            &:after {
+                position: absolute;
+                content: "";
+                bottom: 0;
+                right: 0;
+                height: 65px;
+                border-right: 2px dashed map-get($color, "atlp-voyage-border-left");
+            }
+        }
+    }
+    &.voyage-descr-three {
+        padding-left: 34px;
+        padding-top: 10px;
+        border-bottom: 10px solid transparent;
+        .remove-btn {
+            margin-right: 8px;
+        }
+    }
+    .voyage-icon-one {
+        min-width: 57px;
+        min-height: 32px;
+        margin-right: 39px;
+    }
+    .voyage-icon-two {
+        position: absolute;
+        left: 11px;
+        bottom: -3px;
+        min-width: 40px;
+        min-height: 18px;
+    }
+    .voyage-item {
+        position: relative;
+        flex: none;
+        height: 54px;
+        bottom: -10px;
+        z-index: 1;
+        &:before {
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: 0;
+            height: 40px;
+            border-left: 2px dashed map-get($color, "atlp-voyage-border-left");
+        }
+        &.active {
+            border-bottom: 10px solid map-get($color, "atlp-voyage-border-bottom-active");
+            .voyage-descr-name {
+                font-size: 14px;
+                color: map-get($color, "atlp-voyage-border-left-active");
+                left: 11px;
+            }
+            &:before {
+                border-left: 2px dashed map-get($color, "atlp-voyage-border-left-active");
+            }
+        }
+        &.pre-departure {
+            width: 389px;
+        }
+        &.post-departure {
+            width: 136px;
+        }
+        &.pre-arrival {
+            width: 109px;
+        }
+        &.post-arrival {
+            width: 100px;
+        }
+    }
+    .voyage-descr-name {
+        position: absolute;
+        left: 9px;
+        top: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0px;
+        color: map-get($color, "atlp-voyage-name");
+    }
+    .voyage-item-bar {
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        height: 10px;
+        z-index: 1;
+        background-color: map-get($color, "atlp-voyage-border-left-active");
+        span {
+            position: absolute;
+            right: 0;
+            top: -19px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0px;
+            color: map-get($color, "atlp-voyage-border-left-active");
+        }
+    }
+    .voyage-descr-call {
+        position: absolute;
+        width: 118px;
+        bottom: 0;
+        right: 0;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0px;
+        padding: 4px 8px;
+        color: map-get($color, "atlp-voyage-border-bottom-active");
+        border-left: 2px solid map-get($color, "atlp-voyage-border-bottom-active");
+        &.active {
+            border-left: 2px solid map-get($color, "atlp-voyage-border-left-active");
+        }
+        .voyage-item-bar {
+            left: -2px !important;
+        }
+        span {
+            color: map-get($color, "atlp-voyage-border-left-active");
+        }
+    }
+
+    .remove-btn {
+        padding: 0 35px 0 15px;
+        .mat-icon {
+            right: -20px;
+            left: auto;
+            width: 12px;
+            height: 12px;
+            min-width: 12px;
+            min-height: 12px;
+        }
+    }
+
+    .remove-btn-abs {
+        position: absolute;
+        top: -25px;
+        right: 2px;
+        z-index: 1;
+    }
+}

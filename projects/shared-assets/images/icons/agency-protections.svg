@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52">
+	<rect fill="rgba(0,0,0,0)" width="52" height="52" />
+	<path fill="none" stroke-width="2px" stroke="#9d9ac0" d="M67.751,32h-32.5A3.254,3.254,0,0,0,32,35.25V47.166c0,18.172,15.4,24.2,18.491,25.221a3.14,3.14,0,0,0,2.019,0C55.6,71.363,71,65.339,71,47.166V35.25A3.254,3.254,0,0,0,67.751,32Z" transform="translate(-25.502 -26.682)" />
+	<g transform="translate(18.75 18.364)">
+		<line fill="none" stroke-width="2px" stroke="#f7bf06" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" x2="5.113" y2="4.756" transform="translate(0 5.623)" />
+		<line fill="none" stroke-width="2px" stroke="#f7bf06" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" x1="9.391" y2="10.379" transform="translate(5.113)" />
+	</g>
+</svg>

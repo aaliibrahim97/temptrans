@@ -1,0 +1,84 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+::ng-deep {
+  .overlay-blur.isSuperUser.blur {
+    filter: blur(0px) !important;
+    pointer-events: initial !important;
+  }
+  .atlp-mat-table-common {
+    width: 100%;
+    .mat-cell {
+      @include padding-right(7px);
+    }
+    .mat-radio-label-content {
+      color: map-get($color, "light-mode-title") !important;
+    }
+
+    .mat-radio-outer-circle {
+      border: 1px solid map-get($color, "light-mode-title") !important;
+    }
+
+    .mat-radio-inner-circle {
+      background-color: map-get($color, "light-mode-title") !important;
+    }
+
+    .mat-radio-checked .mat-radio-outer-circle {
+      border: 1px solid map-get($color, "light-mode-title") !important;
+    }
+  }
+}
+
+mat-header-cell {
+  display: flex;
+  justify-content: center;
+}
+
+mat-column-radio {
+  display: flex;
+  justify-content: center;
+}
+
+mat-radio-button {
+  @include padding-right(17px);
+}
+
+.mat-header-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0.93;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.header-cell-text {
+  position: relative;
+}
+
+.dynamic-search-fields {
+  background: rgba(255, 255, 255, 0.1);
+  color: map-get($color, "light-mode-title");
+  // border: 1px solid #744aa5 !important;
+  border: none !important;
+  border-radius: 6px;
+  height: 27px;
+  width: 80%;
+}
+
+.empty-table {
+  padding: 16px 0;
+  border-bottom: 1px solid #000000;
+  &.bg {
+    border-bottom: 1px solid #5f5b8e;
+    .empty-table-text {
+      color: map-get($color, "light-mode-title");
+    }
+  }
+  .empty-table-text {
+    color: map-get($color, "light-mode-title");
+    text-align: center;
+    letter-spacing: 0px;
+    font-size: 14px;
+    font-style: italic;
+  }
+}

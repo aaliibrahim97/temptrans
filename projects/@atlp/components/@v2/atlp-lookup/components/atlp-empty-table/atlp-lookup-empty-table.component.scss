@@ -1,0 +1,71 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.empty-table {
+  padding: 16px 0;
+  border-bottom: 1px solid #000000;
+  &.bg {
+    border-bottom: 1px solid #5f5b8e;
+    .empty-table-text {
+      color: #ffffff;
+    }
+  }
+  .empty-table-text {
+    color: #ffffff;
+    @include text-align(center);
+    letter-spacing: 0px;
+    font-size: 14px;
+    font-style: italic;
+  }
+}
+
+.empty-table-header {
+  margin-top: 33px;
+  display: flex;
+  align-items: center;
+  //justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #5f5b8e;
+  & > .ng-star-inserted {
+    flex-grow: 1;
+  }
+  // & > .ng-star-inserted:first-child {
+  //   @include margin-right(12px);
+  //   flex: none;
+  // }
+  & > * {
+    color: #c8b6dd;
+    font-size: 14px;
+    line-height: 1;
+    display: none;
+  }
+  & > div {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4) {
+      display: block;
+    }
+    @media (min-width: 576px) {
+      &:nth-child(5) {
+        display: block;
+      }
+    }
+    @media (min-width: 768px) {
+      &:nth-child(5),
+      &:nth-child(6) {
+        display: block;
+      }
+    }
+    @media (min-width: 964px) {
+      display: block;
+    }
+  }
+
+  // & > div:first-child {
+  //   width: 16px;
+  //   height: 16px;
+  //   border: 1px solid #a187bf;
+  //   border-radius: 3px;
+  // }
+}

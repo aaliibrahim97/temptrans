@@ -1,0 +1,101 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.payment {
+  position: absolute;
+  // background: transparent linear-gradient(180deg, #373069 0%, #1c1835d1 100%) 0%
+  //   0% no-repeat padding-box;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  top: 0;
+  @include left(0);
+
+  .payment-box {
+    margin-top: 20vh;
+
+    .title {
+      //   font-size: 36px;
+      //   font-weight: 700;
+      color: map-get($color, "atlp-white");
+    }
+    .payment-subtitle {
+      width: 39%;
+    }
+    .subtitle {
+      // font-size: 14px;
+      // font-weight: 400;
+      // max-width: 400px;
+      color: map-get($color, "atlp-white");
+      margin-bottom: 30px;
+    }
+
+    .cart-item {
+      padding-bottom: 15px;
+      border-bottom: 2px solid map-get($color, "atlp-panel-border");
+      margin-bottom: 15px;
+    }
+
+    .panel-title {
+      letter-spacing: 0.8px;
+      @include margin-right(15px);
+    }
+    .message-detail {
+      margin-bottom: 30px;
+    }
+    .edit-btn {
+      @include margin-right(10px);
+    }
+  }
+
+  .text-align-end {
+    @include text-align(end);
+  }
+
+  .mpay-payment-otp-input {
+    display: inline-block;
+    width: 6%;
+    margin-left: 2%;
+    font-size: 30px;
+  }
+  
+  div#mpay-payment-otp-input-0 {
+    margin-left: 0 !important;
+}
+  .mpay-payment-otp-input input {
+    height: 50px;
+    padding: 0;
+    text-align: center;
+  }
+  .payment-token-otp-page {
+    width: 50%;
+    margin-left: 30%;
+  }
+  .OTPResendLink {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .OTPResendText {
+    margin-top: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    .payment-box {
+      margin-top: 5vh;
+      .title {
+        font-size: 26px;
+      }
+      .subtitle {
+        font-size: 12px;
+        max-width: 300px;
+      }
+    }
+    .payment-token-otp-page {
+      width: 70%;
+      margin: 0 auto;
+    }
+    .mpay-payment-otp-input {
+      width: 13%;
+      font-size: 25px;
+    }
+  }
+}

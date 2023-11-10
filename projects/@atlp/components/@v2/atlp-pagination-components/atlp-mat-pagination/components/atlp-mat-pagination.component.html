@@ -1,0 +1,11 @@
+<div class="alwaysEnabled">
+  <mat-paginator
+    #matPaginatorRef
+    [showFirstLastButtons]="showFirstLastButtons"
+    [length]="TotalItemCount"
+    [pageSize]="PageSize || 5"
+    [pageIndex]="PageNumber"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>

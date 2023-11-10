@@ -1,0 +1,37 @@
+{
+  "form-mat-select": {
+    "prefix": ["matselect", "matselect"],
+    "body": [
+      "<mat-select formControlName='$1' id='$2' placeholder='$3'",
+      "class='dropdown-select bg' panelClass='panel-custom bg'>",
+      "<mat-option value=''>$4</mat-option>",
+      "<mat-option [value]='$5'",
+      "*ngFor='let item of $6'>",
+      "{{$7}} </mat-option>",
+      "</mat-select>"
+    ],
+    "description": "This is for material select"
+  },
+  "form-mat-button": {
+    "prefix": ["matbutton"],
+    "body": [
+      "<button i18n='@@$1' mat-raised-button color='primary$2' (click)='$3'>",
+      "$4",
+      "</button>"
+    ],
+    "description": "This is material button"
+  },
+  "form-mat-radio": {
+    "prefix": ["matradio","formmatradio"],
+    "body": [
+      "<mat-radio-group class='field-wrap radio-wrap bg'  #$1>",
+      "<mat-radio-button value='$2' radioGroup='$3'  [checked]='$4' (change)='$5'>",
+      "<span i18n='$6'>$7</span>",
+      "</mat-radio-button>",
+      "<mat-radio-button value='$8' radioGroup='$9'  [checked]='$10' (change)='$5'>",
+      "<span i18n='$11'>$12</span>",
+      "</mat-radio-button>",
+      "</mat-radio-group>"
+    ]
+  }
+}

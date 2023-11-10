@@ -1,0 +1,199 @@
+@import "projects/@atlp/scss/variables";
+
+.filters {
+  background-color: map-get($color, "atlp-violet-base");
+  width: 260px;
+  height: calc(100vh - 72px);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  .filters-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    button {
+      height: 24px;
+    }
+  }
+  .filters-title {
+    font-size: 16px;
+    color: map-get($color, "atlp-purple-light");
+    margin-top: 0px;
+  }
+  .filters-preset {
+    font-size: 16px;
+    color: map-get($color, "atlp-purple-light");
+    margin-top: 0px;
+  }
+  .filter-title-row {
+    padding-top: 39px;
+    padding-bottom: 18.5px;
+  }
+  .filters-btn {
+    width: 100%;
+    margin-bottom: 41px;
+  }
+  .clear-btn {
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  .filter-section-title {
+    color: map-get($color, "atlp-purple-light");
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .filters-radio {
+    margin-bottom: 40px;
+  }
+  .panel-title {
+    color: map-get($color, "atlp-purple-light");
+  }
+  .mat-expansion-panel-header-description {
+    padding-bottom: 11px;
+  }
+  .mat-expansion-panel {
+    margin-bottom: 16px !important;
+  }
+  .savefilters-btn {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 80px;
+  }
+  .filters-checkbox {
+    margin-bottom: 12px;
+  }
+  .date-picker {
+    margin-top: 12px;
+  }
+  .radio-btn-row {
+    width: 100%;
+  }
+  .radio-button-select {
+    margin-bottom: 12px;
+  }
+
+  @media screen and (max-width: 552px) {
+    position: absolute;
+    width: 100%;
+    .loaded-filters {
+      top: unset !important;
+      left: 0px !important;
+    }
+  }
+}
+
+.loaded-filters {
+  background-color: map-get($color, "atlp-violet-light");
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 0;
+  top: 0%;
+  transform: translateY(65%);
+  z-index: 3;
+  padding: 0 20px;
+  @media screen and (min-width: 768px) {
+    top: 0;
+    bottom: auto;
+    left: 260px;
+    height: 102%;
+    padding-left: 12px;
+    padding-right: 12px;
+    transform: translateY(0);
+  }
+  .filters-btn {
+    width: 100%;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  .loaded-filters-title {
+    color: map-get($color, "atlp-white");
+    font-size: 18px;
+    margin-bottom: 12px;
+    margin-top: 39px;
+  }
+  .selectedbtn {
+    background: map-get($color, "atlp-violet-base") !important;
+    border: 1px solid map-get($color, "atlp-border-color") !important;
+    color: map-get($color, "atlp-white") !important;
+    path {
+      fill: map-get($color, "atlp-grey-base") !important;
+    }
+  }
+  .saved-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 33px;
+  }
+}
+
+.panel-custom.bg {
+  background-color: #605a92 !important;
+}
+.recent-filters {
+  position: relative;
+  .tooltip-filters {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 16px 16px 8px;
+    background-color: map-get($color, "atlp-violet-base");
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    transform: translate(0, -115%);
+    @media screen and (min-width: 768px) {
+      max-width: 418px;
+      width: 100%;
+      transform: translate(108%, -10%);
+    }
+    @media screen and (min-width: 970px) {
+      width: 200%;
+    }
+    .saved-filters {
+      padding: 8px 12px;
+      color: map-get($color, "atlp-btn-basic");
+      background-color: map-get($color, "atlp-white");
+      border-radius: 6px;
+      margin-right: 8px;
+      font-size: 12px;
+      line-height: 2;
+      white-space: nowrap;
+      margin-bottom: 8px;
+      flex: 1 1 1;
+    }
+    &:before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      bottom: 0;
+      transform: translateY(50%) rotate(-45deg);
+      background-color: map-get($color, "atlp-violet-base");
+      @media screen and (min-width: 768px) {
+        left: 0;
+        top: 15%;
+        bottom: auto;
+        transform: translateX(-50%) rotate(-45deg);
+      }
+    }
+  }
+  &:hover {
+    .tooltip-filters {
+      display: flex;
+      opacity: 1;
+    }
+  }
+}

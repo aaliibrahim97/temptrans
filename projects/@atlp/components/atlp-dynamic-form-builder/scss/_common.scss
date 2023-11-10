@@ -1,0 +1,6 @@
+::ng-deep {
+  .required:after {
+    content: " *";
+    color: #b33239;
+  }
+}

@@ -1,0 +1,4 @@
+@import "projects/@atlp/scss/variables";
+.drawer-header {
+  background-color: map-get($color, "atlp-violet-base");
+}

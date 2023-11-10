@@ -1,0 +1,13 @@
+<svg id="Smock_PinOn_18_N" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Canvas" width="16" height="16" fill="#2a3957" opacity="0"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_27" data-name="Mask Group 27" clip-path="url(#clip-path)">
+    <g id="edit">
+      <path id="Path_6256" data-name="Path 6256" d="M0,0H16V16H0Z" fill="none"/>
+      <path id="Path_6257" data-name="Path 6257" d="M2,11.64v2.027A.33.33,0,0,0,2.333,14H4.36a.313.313,0,0,0,.233-.1l7.28-7.273-2.5-2.5L2.1,11.4a.327.327,0,0,0-.1.24ZM13.807,4.693a.664.664,0,0,0,0-.94l-1.56-1.56a.664.664,0,0,0-.94,0l-1.22,1.22,2.5,2.5,1.22-1.22Z" fill="#2a3957"/>
+    </g>
+  </g>
+</svg>

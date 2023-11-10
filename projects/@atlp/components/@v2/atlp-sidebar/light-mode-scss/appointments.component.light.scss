@@ -1,0 +1,62 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.charges {
+  .terminal-text {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .descr-title {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .descr-text {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .drawer-info-sub {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .drawer-info-text {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .table-footer-text {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+}
+.payment {
+  background: transparent
+    linear-gradient(
+      180deg,
+      map-get($color, "atlp-white") 0%,
+      map-get($color, "light-mode-field-border") 100%
+    )
+    0% 0% no-repeat padding-box !important;
+  .title {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .subtitle {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  button.transparent {
+    background-color: map-get($color, "atlp-white") !important;
+    color: map-get($color, "light-mode-label") !important;
+    border: 1px solid map-get($color, "light-mode-field-border");
+  }
+}
+.payment-checkout {
+  .amount-subtitle {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .amount {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .mat-radio-button {
+    border: 1px solid map-get($color, "light-mode-field-border") !important;
+    background-color: map-get($color, "atlp-violet-base") !important;
+  }
+  .mat-radio-checked {
+    background-color: map-get($color, "atlp-radio-checked") !important;
+  }
+}
+.upload-file-label {
+  color: map-get($color, "light-mode-subtitle") !important;
+}

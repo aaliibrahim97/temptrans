@@ -1,0 +1,11 @@
+@import "projects/@atlp/scss/mixins";
+
+.dynamic-form-parent {
+  @import "../scss/bootstrap-grid";
+}
+
+dynamic-com-creator {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}

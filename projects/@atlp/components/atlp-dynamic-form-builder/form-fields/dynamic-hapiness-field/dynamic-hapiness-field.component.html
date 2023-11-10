@@ -1,0 +1,245 @@
+<div class="rating-container" [hidden]="isHidden" *ngIf="isVisible">
+  <ng-container *ngIf="servicesList && servicesList.length > 0; else noData">
+    <p class="title">
+      {{ "RATING_TITLE" | translate }}
+    </p>
+    <p class="subtitle mb-30">
+      {{ "RATING_SUBTITLE_1" | translate }}<br /><br />{{
+        "RATING_SUBTITLE_2" | translate
+      }}<br /><br />{{ "RATING_SUBTITLE_3" | translate }}
+    </p>
+    <carousel
+      [showControls]="servicesList && servicesList.length > 1"
+      [lang]="selectedLanguage"
+    >
+      <ng-container *ngFor="let service of servicesList; let i = index">
+        <ng-container *carouselItem>
+          <div class="row">
+            <div class="col-12">
+              <div
+                class="emojis-container"
+                fxLayout="column"
+                fxLayoutAlign="center flex-start"
+              >
+                <div
+                  class="subcontainer"
+                  fxLayout="column"
+                  fxLayoutAlign="center flex-start"
+                >
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      width: 100%;
+                    "
+                  >
+                    <div>
+                      <p class="container-subtitle">
+                        {{
+                          (
+                            service?.transactionCreatedDate | date : "medium"
+                          ).replace(",", "")
+                        }}
+                      </p>
+                      <p class="container-subtitle">
+                        {{ "RATING_REF_NUM" | translate }}:&nbsp;
+                        <span class="transaction_name">
+                          {{ service?.atlpReferenceNumber }}
+                        </span>
+                      </p>
+                      <p class="container-subtitle">
+                        {{ "RATING_TRANSACTION_NAME_A" | translate }}:&nbsp;
+                        <span class="transaction_name">
+                          {{ service?.transactionName }}
+                        </span>
+                      </p>
+                      <p class="container-subtitle">
+                        {{ "RATING_SUBTITLE" | translate }}
+                      </p>
+                    </div>
+                    <div>
+                      <p class="container-number">
+                        {{ i + 1 }}/{{ servicesList?.length }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="method-radio drawer-emojis fxLayoutGap-row-1pt5vw"
+                  fxLayoutAlign="space-between"
+                >
+                  <ng-container *ngFor="let item of emojis; let index = index">
+                    <mat-radio-button
+                      checked="{{ service.rate === item.id }}"
+                      class="method-radio-button"
+                      [name]="service?.referenceNum + '_' + i + '_' + index"
+                      ngDefaultControl
+                      value="{{ item.value }}"
+                      [(ngModel)]="service.rate"
+                      (click)="setIsClicked(item, i)"
+                    >
+                      <mat-icon
+                        class="icon {{ item.value }}"
+                        svgIcon="{{
+                          service.rate === item.id
+                            ? item.icon + '-active'
+                            : item.icon
+                        }}"
+                        aria-hidden="false"
+                      ></mat-icon>
+                    </mat-radio-button>
+                  </ng-container>
+                </div>
+                <p class="text text-selected" *ngIf="service?.rate > 0">
+                  {{ emojiText | translate }}
+                </p>
+              </div>
+              <div
+                *ngIf="service.isFeedback"
+                class="container send-feedback"
+                fxLayout="column"
+                fxLayoutAlign="start flex-start"
+                fxLayoutGap="0.2vh"
+              >
+                <ng-conatiner
+                  *ngIf="
+                    service?.rate == 4 || service?.rate == 5;
+                    else optionalFeedback
+                  "
+                  style="width: 100% !important"
+                >
+                  <div
+                    class="subcontainer"
+                    fxLayout="row"
+                    fxLayoutAlign="space-between"
+                  >
+                    <p class="panel-title">
+                      {{ "RATING_FEEDBACK" | translate
+                      }}<span
+                        *ngIf="service?.rate == 4 || service?.rate == 5"
+                        style="color: red"
+                        >*</span
+                      >
+                    </p>
+                    <p class="panel-number">
+                      {{
+                        service?.feedback?.length
+                          ? service?.feedback?.length
+                          : 0
+                      }}/500 {{ "characters" | translate }}
+                    </p>
+                  </div>
+                  <textarea
+                    class="subcontainer"
+                    minlength="10"
+                    maxlength="500"
+                    (keyup)="validateFeedback(i, feedback)"
+                    [required]="
+                      (service?.rate == 4 || service?.rate == 5) &&
+                      !service?.feedback
+                        ? true
+                        : false
+                    "
+                    placeholder="{{ 'rating_placeholder' | translate }}"
+                    [(ngModel)]="service.feedback"
+                    #feedback="ngModel"
+                  >
+                  </textarea>
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="feedback?.touched && feedback?.errors?.required"
+                  >
+                    <span class="error-text">
+                      {{ "This_Field_Is_Required" | translate }}
+                    </span>
+                  </div>
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                    *ngIf="service.feedback && feedback?.errors?.minlength"
+                  >
+                    <span class="error-text">
+                      {{ "This_Field_Minlength" | translate }}
+                    </span>
+                  </div>
+                </ng-conatiner>
+                <ng-template #optionalFeedback>
+                  <div
+                    class="subcontainer"
+                    fxLayout="row"
+                    fxLayoutAlign="space-between"
+                  >
+                    <a (click)="openSuggestion(i)" class="suggestion-button">{{
+                      "SEND_SUGGESTION" | translate
+                    }}</a>
+                    <p class="panel-number" *ngIf="service.isOpenSuggestion">
+                      {{
+                        service?.feedback?.length
+                          ? service?.feedback?.length
+                          : 0
+                      }}/500 {{ "characters" | translate }}
+                    </p>
+                  </div>
+                  <ng-container *ngIf="service.isOpenSuggestion">
+                    <textarea
+                      class="subcontainer"
+                      minlength="10"
+                      maxlength="500"
+                      (keyup)="validateFeedback(i, feedback)"
+                      placeholder="{{ 'rating_placeholder' | translate }}"
+                      [(ngModel)]="service.feedback"
+                      #feedback="ngModel"
+                    >
+                    </textarea>
+                    <div
+                      class="error-wrap"
+                      fxLayout="row"
+                      fxLayoutAlign="start center"
+                      *ngIf="service.feedback && feedback?.errors"
+                    >
+                      <span class="error-text">
+                        {{ "This_Field_Minlength" | translate }}
+                      </span>
+                    </div>
+                  </ng-container>
+                </ng-template>
+              </div>
+            </div>
+            <div class="drawer-buttons fxLayoutGap-row-1vw" fxLayout="row">
+              <button
+                mat-button
+                class="animate"
+                (click)="onSubmit(service, i)"
+                disabled="{{ service?.disabled }}"
+              >
+                {{ "Submit" | translate }}
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </carousel>
+  </ng-container>
+  <ng-template #noData>
+    <div class="nodata-container">
+      <mat-icon
+        class="icon success-icon"
+        svgIcon="success-icon"
+        aria-hidden="false"
+      >
+      </mat-icon>
+      <p class="no-data-title">{{ "FEEDBACK_THANK_YOU_A" | translate }}</p>
+      <p class="no-data-subtitle" *ngIf="isLastTransaction; else noTransaction">
+        {{ "FEEDBACK_THANK_YOU_B" | translate }}
+      </p>
+      <ng-template #noTransaction>
+        <p class="no-data-subtitle">
+          {{ "FEEDBACK_NO_TRANSACTION" | translate }}
+        </p>
+      </ng-template>
+    </div>
+  </ng-template>
+</div>

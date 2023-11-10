@@ -1,0 +1,156 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.main {
+  background: map-get($color, "atlp-grey-light");
+}
+
+.block-title {
+  color: map-get($color, "atlp-panel-title");
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 0.96px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+}
+
+.sub-title {
+  color: map-get($color, "atlp-panel-title");
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.block-sub-title {
+  color: map-get($color, "atlp-white");
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 0px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
+
+.block-section-title {
+  color: map-get($color, "atlp-section-title");
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.base-text {
+  color: map-get($color, "atlp-grey-base");
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+// custom scroll
+.scroll-wrap {
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: none;
+    background: map-get($color, "atlp-field-border");
+  }
+}
+
+// pages style
+.wrapper {
+  width: 100%;
+}
+
+.sidebar-container {
+  position: relative;
+}
+
+// status colors
+.accept {
+  color: map-get($color, "atlp-bar-bg") !important;
+}
+
+.rejected {
+  color: map-get($color, "atlp-danger-btn") !important;
+}
+
+.pending {
+  color: map-get($color, "atlp-grey-dark") !important;
+}
+
+.add-new {
+  color: map-get($color, "atlp-card-add") !important;
+}
+
+// panel overlay
+.overlay-blur {
+  &.blur {
+    filter: blur(4px);
+    pointer-events: none;
+  }
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(18, 18, 18, 0.56) !important;
+}
+
+// select + button
+.btn-wrap {
+  .dropdown-select {
+    width: auto;
+    min-width: 155px;
+    filter: drop-shadow(0px 0.5px 1.5px rgba(0, 0, 0, 0.25));
+  }
+}
+
+// cdk-overlay-pane
+// .cdk-overlay-pane {
+// @include margin(auto, 0, 70px, 0);
+// }
+
+// rtl
+.rtl {
+  direction: rtl;
+}
+
+.tablet-hide {
+  @media (min-width: 600px) {
+    display: none;
+  }
+}
+
+.tab-hide {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mob-hide {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.round-btn.mob-hide {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}

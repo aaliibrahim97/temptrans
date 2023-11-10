@@ -1,0 +1,12 @@
+<div class="field-wrap bg" fxFlex fxLayout="column">
+    <label for="#" class="field-label">{{label}}</label>
+    <div class="field-input-wrap">
+        <input type="number" required [id]="Inputid" />
+        <div class="button-wrap" fxFlex fxLayout="column">
+            <button type="button" class="number-btn btn-plus"
+                (click)="UpdateInputNumber(Inputid, 'decrement')"></button>
+            <button type="button" class="number-btn btn-minus"
+                (click)="UpdateInputNumber(Inputid, 'increment')"></button>
+        </div>
+    </div>
+</div>

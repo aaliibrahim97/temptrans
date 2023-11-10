@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46" height="35" viewBox="0 0 46 35">
+  <defs>
+    <clipPath id="clip">
+      <use xlink:href="#fill"/>
+    </clipPath>
+    <clipPath id="clip-2">
+      <use xlink:href="#fill-2"/>
+    </clipPath>
+    <clipPath id="clip-3">
+      <use xlink:href="#fill-3"/>
+    </clipPath>
+    <clipPath id="clip-4">
+      <use xlink:href="#fill-4"/>
+    </clipPath>
+    <clipPath id="clip-5">
+      <use xlink:href="#fill-5"/>
+    </clipPath>
+    <clipPath id="clip-6">
+      <use xlink:href="#fill-6"/>
+    </clipPath>
+    <clipPath id="clip-7">
+      <use xlink:href="#fill-7"/>
+    </clipPath>
+    <clipPath id="clip-8">
+      <use xlink:href="#fill-8"/>
+    </clipPath>
+    <clipPath id="clip-9">
+      <use xlink:href="#fill-9"/>
+    </clipPath>
+    <clipPath id="clip-10">
+      <use xlink:href="#fill-10"/>
+    </clipPath>
+    <clipPath id="clip-11">
+      <use xlink:href="#fill-11"/>
+    </clipPath>
+    <clipPath id="clip-12">
+      <use xlink:href="#fill-12"/>
+    </clipPath>
+    <clipPath id="clip-13">
+      <use xlink:href="#fill-13"/>
+    </clipPath>
+    <clipPath id="clip-14">
+      <use xlink:href="#fill-14"/>
+    </clipPath>
+    <clipPath id="clip-15">
+      <use xlink:href="#fill-15"/>
+    </clipPath>
+    <clipPath id="clip-16">
+      <use xlink:href="#fill-16"/>
+    </clipPath>
+    <clipPath id="clip-17">
+      <use xlink:href="#fill-17"/>
+    </clipPath>
+    <clipPath id="clip-18">
+      <use xlink:href="#fill-18"/>
+    </clipPath>
+    <clipPath id="clip-19">
+      <use xlink:href="#fill-19"/>
+    </clipPath>
+    <clipPath id="clip-20">
+      <use xlink:href="#fill-20"/>
+    </clipPath>
+    <clipPath id="clip-21">
+      <use xlink:href="#fill-21"/>
+    </clipPath>
+    <clipPath id="clip-22">
+      <use xlink:href="#fill-22"/>
+    </clipPath>
+    <clipPath id="clip-23">
+      <use xlink:href="#fill-23"/>
+    </clipPath>
+    <clipPath id="clip-24">
+      <use xlink:href="#fill-24"/>
+    </clipPath>
+  </defs>
+  <g id="Group_156601" data-name="Group 156601" transform="translate(-13178.83 2930)">
+    <g id="Group_155487" data-name="Group 155487" transform="translate(13179 -2929)">
+      <g id="Rectangle_141030" data-name="Rectangle 141030" transform="translate(4.83 -1)" fill="none" stroke="#9d9ac0" stroke-width="1.5">
+        <path d="M2,0H34a2,2,0,0,1,2,2V35a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" stroke="none"/>
+        <path d="M2,.75H34A1.25,1.25,0,0,1,35.25,2V33.5a.75.75,0,0,1-.75.75H1.5a.75.75,0,0,1-.75-.75V2A1.25,1.25,0,0,1,2,.75Z" fill="none"/>
+      </g>
+      <g id="Rectangle_141056" data-name="Rectangle 141056" transform="translate(-0.17 32.5)" fill="none" stroke="#9d9ac0" stroke-width="1.5">
+        <rect width="46" height="1.5" stroke="none"/>
+        <rect x="0.75" y="0.75" width="44.5" fill="none"/>
+      </g>
+    </g>
+    <g id="Group_155485" data-name="Group 155485" transform="translate(13193.957 -2904.234)">
+      <g id="Rectangle_141055" data-name="Rectangle 141055" transform="translate(-0.127 -0.765)" fill="none" stroke="#9d9ac0" stroke-width="1.5">
+        <rect width="9" height="10" stroke="none"/>
+        <rect x="0.75" y="0.75" width="7.5" height="8.5" fill="none"/>
+      </g>
+      <g id="Rectangle_141057" data-name="Rectangle 141057" transform="translate(6.873 -0.765)" fill="none" stroke="#9d9ac0" stroke-width="1.5">
+        <rect width="9" height="10" stroke="none"/>
+        <rect x="0.75" y="0.75" width="7.5" height="8.5" fill="none"/>
+      </g>
+    </g>
+    <g id="Group_155486" data-name="Group 155486" transform="translate(13186.872 -2924.788)">
+      <g id="Rectangle_141031" data-name="Rectangle 141031" transform="translate(4.958 -0.211)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip)"/>
+      </g>
+      <g id="Rectangle_141043" data-name="Rectangle 141043" transform="translate(4.958 8.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-2" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-2)"/>
+      </g>
+      <g id="Rectangle_141049" data-name="Rectangle 141049" transform="translate(4.958 13.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-3" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-3)"/>
+      </g>
+      <g id="Rectangle_141041" data-name="Rectangle 141041" transform="translate(4.958 3.789)" fill="none" stroke="#f7bf06" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="2">
+        <rect id="fill-4" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-4)"/>
+      </g>
+      <g id="Rectangle_141033" data-name="Rectangle 141033" transform="translate(10.958 -0.211)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-5" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-5)"/>
+      </g>
+      <g id="Rectangle_141045" data-name="Rectangle 141045" transform="translate(10.958 8.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-6" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-6)"/>
+      </g>
+      <g id="Rectangle_141051" data-name="Rectangle 141051" transform="translate(10.958 13.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-7" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-7)"/>
+      </g>
+      <g id="Rectangle_141040" data-name="Rectangle 141040" transform="translate(10.958 3.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-8" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-8)"/>
+      </g>
+      <g id="Rectangle_141034" data-name="Rectangle 141034" transform="translate(15.958 -0.211)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-9" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-9)"/>
+      </g>
+      <g id="Rectangle_141046" data-name="Rectangle 141046" transform="translate(15.958 8.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-10" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-10)"/>
+      </g>
+      <g id="Rectangle_141052" data-name="Rectangle 141052" transform="translate(15.958 13.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-11" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-11)"/>
+      </g>
+      <g id="Rectangle_141039" data-name="Rectangle 141039" transform="translate(15.958 3.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-12" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-12)"/>
+      </g>
+      <g id="Rectangle_141035" data-name="Rectangle 141035" transform="translate(21.958 -0.211)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-13" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-13)"/>
+      </g>
+      <g id="Rectangle_141047" data-name="Rectangle 141047" transform="translate(21.958 8.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-14" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-14)"/>
+      </g>
+      <g id="Rectangle_141053" data-name="Rectangle 141053" transform="translate(21.958 13.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-15" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-15)"/>
+      </g>
+      <g id="Rectangle_141038" data-name="Rectangle 141038" transform="translate(21.958 3.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-16" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-16)"/>
+      </g>
+      <g id="Rectangle_141036" data-name="Rectangle 141036" transform="translate(26.958 -0.211)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-17" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-17)"/>
+      </g>
+      <g id="Rectangle_141048" data-name="Rectangle 141048" transform="translate(26.958 8.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-18" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-18)"/>
+      </g>
+      <g id="Rectangle_141054" data-name="Rectangle 141054" transform="translate(26.958 13.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-19" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-19)"/>
+      </g>
+      <g id="Rectangle_141037" data-name="Rectangle 141037" transform="translate(26.958 3.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-20" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-20)"/>
+      </g>
+      <g id="Rectangle_141032" data-name="Rectangle 141032" transform="translate(-0.042 -0.211)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-21" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-21)"/>
+      </g>
+      <g id="Rectangle_141044" data-name="Rectangle 141044" transform="translate(-0.042 8.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-22" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-22)"/>
+      </g>
+      <g id="Rectangle_141050" data-name="Rectangle 141050" transform="translate(-0.042 13.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-23" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-23)"/>
+      </g>
+      <g id="Rectangle_141042" data-name="Rectangle 141042" transform="translate(-0.042 3.789)" fill="none" stroke="#9d9ac0" stroke-linejoin="round" stroke-width="2">
+        <rect id="fill-24" width="3" height="1.5" stroke="none"/>
+        <path d="M0,0.5h3M2,0v1.5M3,1h-3M1,1.5v-1.5" fill="none" clip-path="url(#clip-24)"/>
+      </g>
+    </g>
+  </g>
+</svg>

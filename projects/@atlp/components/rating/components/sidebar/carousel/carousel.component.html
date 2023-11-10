@@ -1,0 +1,25 @@
+<section class="carousel-wrapper" [ngStyle]="carouselWrapperStyle">
+  <ul class="carousel-inner" #carousel>
+    <li *ngFor="let item of items" class="carousel-item">
+      <ng-container [ngTemplateOutlet]="item.tpl"></ng-container>
+    </li>
+  </ul>
+</section>
+<ng-container *ngIf="showControls">
+  <button
+    mat-icon-button
+    class="carousel__prev-button"
+    [disabled]="!hidePrev"
+    (click)="prev()"
+  >
+    <mat-icon class="collapsable-arrow">keyboard_arrow_leftt</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="carousel__next-button"
+    (click)="next()"
+    [disabled]="!hideNext"
+  >
+    <mat-icon class="collapsable-arrow">keyboard_arrow_right</mat-icon>
+  </button>
+</ng-container>

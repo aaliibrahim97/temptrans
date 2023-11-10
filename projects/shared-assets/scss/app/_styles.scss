@@ -1,0 +1,65 @@
+// Fonts
+@import "projects/shared-assets/scss/abstracts/fonts";
+
+// Abstracts
+@import "projects/shared-assets/scss/abstracts/reset";
+@import "projects/shared-assets/scss/abstracts/default";
+
+// Import Atlp core library
+@import "projects/@atlp/scss/core";
+
+// Import app.theme.scss
+@import "app.theme";
+
+// Abstracts
+@import "projects/shared-assets/scss/abstracts/functions";
+@import "projects/shared-assets/scss/abstracts/indents";
+
+// Variables
+@import "projects/shared-assets/scss/variables/color";
+
+// Layout
+@import "projects/shared-assets/scss/layout/header";
+
+// Components
+@import "projects/shared-assets/scss/components/autocomplete";
+@import "projects/shared-assets/scss/components/avatars";
+@import "projects/shared-assets/scss/components/buttons";
+@import "projects/shared-assets/scss/components/select";
+@import "projects/shared-assets/scss/components/fields";
+@import "projects/shared-assets/scss/components/tables";
+@import "projects/shared-assets/scss/components/dropdown";
+@import "projects/shared-assets/scss/components/loader";
+@import "projects/shared-assets/scss/components/breadcrumb";
+@import "projects/shared-assets/scss/components/panel";
+@import "projects/shared-assets/scss/components/expansion-panel";
+@import "projects/shared-assets/scss/components/datepicker";
+@import "projects/shared-assets/scss/components/file";
+@import "projects/shared-assets/scss/components/appointment";
+@import "projects/shared-assets/scss/components/stepper";
+@import "projects/shared-assets/scss/components/payment";
+@import "projects/shared-assets/scss/components/slide-toggle";
+@import "projects/shared-assets/scss/components/snack-bar";
+@import "projects/shared-assets/scss/components/mat-menu";
+@import "projects/shared-assets/scss/components/graph";
+@import "projects/shared-assets/scss/components/menu";
+@import "projects/shared-assets/scss/components/card";
+@import "projects/shared-assets/scss/components/dashboard";
+@import "projects/shared-assets/scss/components/pager";
+@import "projects/shared-assets/scss/components/sidebar";
+
+// Voyage table
+@import "projects/shared-assets/scss/voyage-table/voyage-info.scss";
+@import "projects/shared-assets/scss/voyage-table/voyage-card.scss";
+@import "projects/shared-assets/scss/voyage-table/voyage-descr.scss";
+@import "projects/shared-assets/scss/voyage-table/voyage-popup.scss";
+@import "projects/shared-assets/scss/voyage-table/popover.scss";
+
+body {
+  :lang(en) &{
+    direction: ltr;
+  }
+  :lang(ar) &{
+    direction: rtl;
+  }
+}

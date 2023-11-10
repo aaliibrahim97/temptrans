@@ -1,0 +1,273 @@
+<div
+  class="sm:inset-0 flex flex-col flex-auto min-w-0 max-w-screen overflow-auto"
+>
+  <header class="table-header-section">
+    <div
+      *ngIf="showGlobalSearch && isClientSidePaginationEnabled"
+      fxLayout="row"
+      class="flex-content-action"
+    >
+      <div
+        class="driver-header"
+        fxLayout="column"
+        fxLayout.gt-sm="row"
+        fxLayoutAlign="start start"
+        class="single-search"
+      >
+        <atlp-search-bar
+          class="search-bar-bg"
+          (inputSearch)="search($event)"
+          #searchBar
+        ></atlp-search-bar>
+      </div>
+    </div>
+
+    <div
+      fxLayout="row-reverse wrap"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="0px"
+      fxLayoutGap.sm="0px"
+    >
+      <ng-content selector=".section-before"></ng-content>
+      <button
+        *ngIf="isAddFormRowEnable"
+        type="button"
+        [disabled]="disableActionsBtns"
+        class="icon ml-8"
+        mat-raised-button
+        color="primary"
+        (click)="addNewRow()"
+      >
+        <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>
+        {{ "ADD_NEW" | translate }}
+      </button>
+      <ng-content selector=".section-after"></ng-content>
+    </div>
+  </header>
+
+  <!-- ______________________MAT TABLE STARTS HERE_______________________ -->
+  <div
+    class="table-wrapper atlp-generic-table"
+    [style.maxHeight]="gridConfig.height"
+    [style.overflow-y]="gridConfig.height ? 'auto' : 'visible'"
+  >
+    <table
+      *ngIf="gridConfig"
+      mat-table
+      #table
+      [dataSource]="dataSource"
+      class="bg"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <ng-container
+        [matColumnDef]="column?.columnDef"
+        *ngFor="let column of tableColumns; let i = index"
+        [sticky]="isSticky(column)"
+      >
+        <!--TABLE HEADER -->
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [style.position]="column.sticky ? 'sticky' : 'relative'"
+          [style.textAlign]="column.textAlign ? column.textAlign : 'left'"
+          [style.left.px]="column.left"
+          class="small-cell {{ column.headerClassList }}"
+          [style.minWidth.px]="column.width"
+          [style.background]="column.headerBg"
+          [style.width.px]="column.width"
+          [style.maxWidth.px]="column.width"
+          title="{{ column.header }}"
+          cdkDrag
+          (cdkDragStarted)="dragStarted($event, i, column)"
+          [cdkDragData]="{ name: column.columnDef, columIndex: i }"
+          [cdkDropListDisabled]="false"
+        >
+          <div class="d-flex">
+            <ng-container *ngIf="!headerTemplate">
+              <ng-container [ngSwitch]="column?.columnDef">
+                <ng-container *ngSwitchCase="'select'">
+                  <mat-checkbox
+                    *ngIf="isSelectAllEnabled && column?.columnDef == 'select'"
+                    (change)="$event ? toggleAllRows() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  >
+                  </mat-checkbox>
+                </ng-container>
+
+                <ng-container *ngSwitchDefault>
+                  <span>{{ column.header }}</span>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="headerTemplate">
+              <ng-container [ngSwitch]="column?.columnDef">
+                <ng-container *ngSwitchCase="'select'">
+                  <mat-checkbox
+                    *ngIf="isSelectAllEnabled && column?.columnDef == 'select'"
+                    (change)="$event ? toggleAllRows() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  >
+                  </mat-checkbox>
+                </ng-container>
+
+                <ng-container *ngSwitchDefault>
+                  <ng-container *ngIf="!column.hideColHeader">
+                    <ng-template
+                      [ngTemplateOutlet]="headerTemplate"
+                      [ngTemplateOutletContext]="{
+                        context: {
+                          columnName: column?.columnDef,
+                          header: column?.header
+                        }
+                      }"
+                    ></ng-template>
+                  </ng-container>
+                  <ng-container *ngIf="column.hideColHeader">
+                    <span></span>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+
+            <div
+              *ngIf="column.filter"
+              [matMenuTriggerFor]="filtermenu"
+              (click)="initFilter(column)"
+            >
+              <button class="filter-btn" *ngIf="!column.filerEnabled">
+                <img [src]="getImgPath('filter.png')" />
+              </button>
+
+              <button class="filter-btn" *ngIf="column.filerEnabled">
+                <img [src]="getImgPath('inlineChecked.svg')" />
+              </button>
+            </div>
+          </div>
+        </th>
+
+        <!--TABLE COLUMNS -->
+        <td
+          [style.position]="column.sticky ? 'sticky' : 'relative'"
+          [style.textAlign]="column.textAlign ? column.textAlign : 'left'"
+          [style.left.px]="column.left"
+          class="{{ column.classList }}"
+          [style.minWidth.px]="column.width"
+          [style.width.px]="column.width"
+          [style.maxWidth.px]="column.width"
+          [style.background]="column.cellBg"
+          mat-cell
+          *matCellDef="let element; let idx = index"
+          [ngClass]="{ 'col-nowrap': column.nowrap }"
+        >
+          <ng-container *ngIf="!rowTemplate">
+            <ng-container [ngSwitch]="column?.columnDef">
+              <ng-container *ngSwitchCase="'select'">
+                <mat-checkbox
+                  [disabled]="column.disabled"
+                  (click)="$event.stopPropagation()"
+                  (change)="selectHandler($event, element)"
+                  [checked]="selection.isSelected(element)"
+                >
+                </mat-checkbox>
+              </ng-container>
+
+              <ng-container *ngSwitchDefault>
+                <span> {{ element[column.columnDef] }}</span>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="rowTemplate">
+            <ng-container [ngSwitch]="column?.columnDef">
+              <ng-container *ngSwitchCase="'select'">
+                <mat-checkbox
+                  [disabled]="column.disabled"
+                  (click)="$event.stopPropagation()"
+                  (change)="selectHandler($event, element)"
+                  [checked]="selection.isSelected(element)"
+                >
+                </mat-checkbox>
+              </ng-container>
+
+              <ng-container *ngSwitchDefault>
+                <ng-container
+                  *ngIf="idx != rowToUpdate; else simpleProgressbar"
+                >
+                  <ng-container
+                    [ngTemplateOutlet]="rowTemplate"
+                    [ngTemplateOutletContext]="{
+                      context: {
+                        row: element,
+                        index: idx,
+                        isRowModifyEnabled: column.isRowModifyEnabled,
+                        columnName: column.columnDef,
+                        column: column,
+                        header: column.header,
+                        value: element[column.columnDef],
+                        rowSelected: selection.isSelected(element),
+                        error: false,
+                        errorMsg: ''
+                      }
+                    }"
+                  ></ng-container>
+                </ng-container>
+                <ng-template #simpleProgressbar>
+                  <mat-progress-bar class="on-progress" mode="indeterminate">
+                  </mat-progress-bar>
+                </ng-template>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!--TABLE ROWS -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let emprow; columns: displayedColumns; let rowIdx = index"
+        (dblclick)="viewClick(emprow)"
+      ></tr>
+    </table>
+  </div>
+
+  <!-- __________________MAT TABLE ENDS HERE________________ -->
+</div>
+
+<!--TABLE PAGINATION -->
+<!-- [hidden]="dataSource?.filteredData?.length <= 5" -->
+<div
+  class="altp-paginagtion alwaysEnabled"
+  *ngIf="showPagination"
+  [hidden]="paginationData?.totalItemCount?.length <= 5"
+>
+  <atlp-mat-pagination
+    (changePage)="pageChange($event)"
+    class="custom-pagination-appointments"
+    [PageSize]="paginationData?.pageSize"
+    [PageNumber]="paginationData?.pageNumber"
+    [pageSizeOptions]="paginationData?.itemperpageList"
+    [TotalItemCount]="paginationData?.totalItemCount"
+  >
+  </atlp-mat-pagination>
+</div>
+
+<!---FILTER MENU -->
+<mat-menu #filtermenu="matMenu" class="my-class">
+  <ng-template
+    [cdkPortalOutlet]="selectedFilter"
+    (attached)="recieveInlineFilterInstance($event)"
+  ></ng-template>
+</mat-menu>
+
+<!--TABLE HEADER FILTER MENU TEMPLATE -->
+<ng-template #tablFilterMenuTemplate let-column="dataitem">
+  <atlp-generic-table-inline-filter
+    #genericInlineFilte
+  ></atlp-generic-table-inline-filter>
+</ng-template>

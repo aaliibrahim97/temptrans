@@ -1,0 +1,26 @@
+{
+  "include": ["projects/@atlp/**/*.ts","projects/atlp-table/**/*.ts"],
+  "exclude": [
+    "projects/@atlp/test.ts",
+    "projects/@atlp/**/*.spec.ts",
+    "projects/@v2/atlp-filters/example/**/*",
+    "atlp-air-ui/**/*",
+    "atlp-angular-elements-ui/**/*",
+    "atlp-business-portal/**/*",
+    "atlp-dashboard-ui/**/*",
+    "atlp-demo-ui/**/*",
+    "atlp-doc-ui/**/*",
+    "atlp-ecz-ui/**/*",
+    "atlp-epass-ui/**/*",
+    "atlp-iac-ui/**/*",
+    "atlp-landing-ui/**/*",
+    "atlp-lba-ui/**/*",
+    "atlp-ops-ui/**/*",
+    "atlp-reg-ui/**/*",
+    "atlp-sea-ui/**/*",
+    "atlp-support-ui/**/*",
+    "atlp-umg-ui/**/*",
+    "atlp-vas-ui/**/*",
+    "shared-assets/**/*"
+  ]
+}

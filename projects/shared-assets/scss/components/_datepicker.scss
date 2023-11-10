@@ -1,0 +1,20 @@
+.mat-datepicker-content-container {
+    width: 203px;
+    .mat-calendar-header,
+    .mat-calendar-content {
+        width: 203px;
+    }
+    .mat-calendar {
+        width: 203px !important;
+        height: 260px !important;
+    }
+    .mat-calendar-body {
+        font-size: 11px;
+    }
+    .mat-calendar-body-selected {
+        background-color: map-get($color, 'atlp-drawer-bg') !important;
+    }
+    .mat-calendar-body-cell-content {
+        top: 2% !important;
+    }
+}

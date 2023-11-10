@@ -1,0 +1,67 @@
+<div class="drop-row">
+    <span class="drop-name">Dropdown</span>
+
+    <div class="dropdown-col" fxFlex fxLayout="column">
+        <label for="#" class="dropdown-label">Dropdown</label>
+        <mat-select class="dropdown-select" panelClass="panel-custom">
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+        </mat-select>
+    </div>
+</div>
+
+<div class="drop-row">
+    <span class="drop-name">Multiple Dropdown</span>
+
+    <div class="dropdown-col" fxFlex fxLayout="column">
+        <label for="#" class="dropdown-label">Dropdown</label>
+        <mat-select class="dropdown-select" panelClass="panel-custom multiple" multiple>
+            <mat-option [value]="'United States of America'">
+                Option
+            </mat-option>
+            <mat-option [value]="1">
+                Option
+            </mat-option>
+            <mat-option [value]="2">
+                Option
+            </mat-option>
+            <mat-option [value]="3">
+                Option
+            </mat-option>
+            <mat-option [value]="4">
+                Option
+            </mat-option>
+            <mat-option [value]="5">
+                Option
+            </mat-option>
+        </mat-select>
+    </div>
+</div>
+
+<div class="drop-row bg">
+    <span class="drop-name">Dropdown</span>
+    <div class="dropdown-col bg" fxFlex fxLayout="column">
+        <label for="#" class="dropdown-label">Dropdown</label>
+        <mat-select class="dropdown-select bg" panelClass="panel-custom bg">
+            <mat-option [value]="'United States of America'">
+                United
+            </mat-option>
+            <mat-option [value]="'United Kingdom'">
+                United Kingdom
+            </mat-option>
+            <mat-option [value]="'Russia'">
+                Russia
+            </mat-option>
+            <mat-option [value]="'China'">
+                China
+            </mat-option>
+            <mat-option [value]="'Japan'">
+                Japan
+            </mat-option>
+            <mat-option [value]="'Turkey'">
+                Turkey
+            </mat-option>
+        </mat-select>
+    </div>
+</div>

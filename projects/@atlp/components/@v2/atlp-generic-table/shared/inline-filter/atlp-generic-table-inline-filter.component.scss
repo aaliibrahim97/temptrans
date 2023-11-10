@@ -1,0 +1,156 @@
+.flex {
+  display: flex;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.bg-blue-100 {
+  background-color: #5a5298;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+.border {
+  border-width: 1px;
+}
+.border-gray-400 {
+  border-color: #9ca3af;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.border-white {
+  border-color: #ffffff;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.bg-5a5298 {
+  background: #5a5298;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.text-white {
+  color: #ffffff;
+}
+
+.border-5a5298 {
+  border-color: #5a5298;
+}
+
+.text-5a5298 {
+  color: #5a5298;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.bg-5a5298 {
+  background: #5a5298;
+}
+
+.search-section {
+  padding: 1rem;
+  .search-icon {
+    width: 16px !important;
+    min-width: 16px !important;
+  }
+
+  .search-block {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: flex;
+  }
+}
+
+mat-icon {
+  &[svgIcon="sort"],
+  &[svgicon="sort"] {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    > svg {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
+.sort-section {
+  height: auto;
+  display: flex;
+  padding: 1rem;
+  gap: 10px;
+  background: #f1f1f1;
+  justify-content: space-between;
+  button {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+}
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+  background: #f1f1f1;
+  button {
+    min-width: 60px;
+    font-size: 12px;
+  }
+}
+
+.no-data-found-text {
+  font-size: 9px;
+}
+
+.inline-filter-wrap {
+  font-size: 12px;
+}
+
+.data-list-section {
+  .mat-option {
+    min-height: 48px;
+    height: auto !important;
+  }
+}

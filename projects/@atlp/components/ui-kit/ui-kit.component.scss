@@ -1,0 +1,12 @@
+@import "projects/@atlp/scss/variables";
+
+.h2 {
+    color: map-get($color, 'atlp-black');
+}
+.page-layout {
+    padding: 30px 15px 0;
+    width: 100%;
+    @media (min-width: 768px) {
+        padding: 30px 30px 0;
+    }
+}

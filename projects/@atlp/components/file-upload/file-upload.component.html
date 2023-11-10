@@ -1,0 +1,214 @@
+<div class="atlp-file-upload-label-wrapper">
+  <label
+    for="companyLogo"
+    class="upload-field-label mb-16"
+    [ngClass]="[isRequired ? 'fieldrequired' : '', disabled ? 'disabled' : '']"
+    >{{ label | translate }}</label
+  >
+  <div
+    *ngIf="
+      uploadedFiles && uploadedFiles.length > 1 && configData?.showDownloadAll
+    "
+  >
+    <mat-icon
+      svgIcon="download"
+      matTooltip="{{ 'Download_All' | translate }}"
+      (click)="downloadAll()"
+    ></mat-icon>
+  </div>
+</div>
+<div class="file-wrap">
+  <div
+    class="dropzoneTemplate"
+    fileDragDrop
+    (filesChangeEmiter)="onFileChange($event)"
+    *ngIf="showDropBox() && !configData.isEditMode"
+    [ngClass]="disabled ? 'disabled' : ''"
+  >
+    <div
+      class="upload-wrap"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      *ngIf="configData?.uploadType == 'multi'; else singleFileUploadTemplate"
+    >
+      <mat-icon svgIcon="folder" aria-hidden="false"></mat-icon>
+      <span class="upload-title"> {{ "DROP_YOUR_FILE_HERE" | translate }}</span>
+      <input
+        type="file"
+        name="file"
+        id="multiFile"
+        (change)="onFileChange($event.target.files)"
+        multiple
+        #multiFileUpload
+      />
+      <span class="upload-title"> {{ "OR" | translate }}</span>
+      <label for="file" (click)="multiFileUpload.click()">
+        {{ "BROWSE_FILES" | translate }}</label
+      >
+      <span class="upload-text" *ngIf="configData?.maxFileSize"
+        >{{ "MAXIMUM_File_SIZE" | translate }} : {{ configData?.maxFileSize
+        }}{{ "MB" | translate }}</span
+      >
+      <span class="upload-text" *ngIf="configData?.fileType"
+        >{{ "Allowed_File_Type" | translate }} :
+        {{ configData?.fileType }}</span
+      >
+      <span class="upload-text" *ngIf="configData?.maxFileCount"
+        >{{ "MAXIMUM_File_COUNT" | translate }} :
+        {{ configData?.maxFileCount }}</span
+      >
+    </div>
+    <ng-template #singleFileUploadTemplate>
+      <div class="upload-wrap" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon svgIcon="folder" aria-hidden="false"></mat-icon>
+        <span class="upload-title">
+          {{ "DROP_YOUR_FILE_HERE" | translate }}</span
+        >
+        <input
+          type="file"
+          name="file"
+          id="singleFile"
+          (change)="onFileChange($event.target.files)"
+          #singleFileUpload
+        />
+        <span class="upload-title"> {{ "OR" | translate }}</span>
+        <label
+          for="file"
+          (click)="singleFileUpload.click()"
+          [ngClass]="disabled ? 'disabled' : ''"
+        >
+          {{ "BROWSE_FILES" | translate }}</label
+        >
+        <span class="upload-text" *ngIf="configData?.maxFileSize"
+          >{{ "MAXIMUM_File_SIZE" | translate }} : {{ configData?.maxFileSize
+          }}{{ "MB" | translate }}</span
+        >
+        <span class="upload-text" *ngIf="configData?.fileType"
+          >{{ "Allowed_File_Type" | translate }} :
+          {{ configData?.fileType }}</span
+        >
+        <span class="upload-text" *ngIf="configData?.maxFileCount"
+          >{{ "MAXIMUM_File_COUNT" | translate }} :
+          {{ configData?.maxFileCount }}</span
+        >
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="file-preview-container">
+    <ng-container
+      *ngIf="uploadedFiles && uploadedFiles.length > 0; else noData"
+    >
+      <div
+        class="file-preview-item file-preview-wrapper"
+        *ngFor="let fileItem of uploadedFiles; let i = index"
+      >
+        <div class="file">
+          <div
+            class="file__wrap"
+            fxFlex
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            style="flex-direction: column"
+          >
+            <div style="width: 100%; align-items: center">
+              <div class="file__icon">
+                <mat-icon
+                  [svgIcon]="getFileIcon(fileItem?.mimeType)"
+                  aria-hidden="false"
+                ></mat-icon>
+              </div>
+              <div class="file__info" fxFlex fxLayout="column">
+                <span class="file__title"
+                  >{{ fileItem.name }} {{ progress }}</span
+                >
+              </div>
+              <div *ngIf="configData?.actions">
+                <button
+                  (click)="viewFile(fileItem)"
+                  *ngIf="
+                    this.configData?.isAPISetup || fileItem?.links?.download
+                  "
+                >
+                  <mat-icon
+                    class="mat-icon notranslate mat-icon-no-color file-upload-action-icons"
+                    svgIcon="icon-view-purple"
+                    aria-hidden="false"
+                  ></mat-icon>
+                </button>
+                <button
+                  (click)="deleteFile(fileItem)"
+                  *ngIf="!configData.isEditMode"
+                >
+                  <mat-icon
+                    class="mat-icon notranslate mat-icon-no-color file-upload-action-icons"
+                    svgIcon="icon-delete-purple"
+                    aria-hidden="false"
+                  ></mat-icon>
+                </button>
+              </div>
+            </div>
+            <div style="width: 100%" *ngIf="false">
+              <mat-progress-bar
+                mode="determinate"
+                value="40"
+              ></mat-progress-bar>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noData> </ng-template>
+  </div>
+
+  <ng-container
+    *ngIf="
+      configData?.uploadType != 'single' &&
+      uploadedFiles?.length > 0 &&
+      uploadedFiles?.length < configData?.maxFileCount &&
+      !configData.isEditMode
+    "
+  >
+    <div class="file-nav-upload" fxLayout="column" fxLayoutAlign="start start">
+      <input
+        type="file"
+        name="file"
+        id="file"
+        class="display-none"
+        (change)="onFileChange($event.target.files)"
+        multiple
+        #fileUpload
+      />
+      <label class="new-file-btn" (click)="fileUpload.click()">
+        {{ "UPLOAD_NEW_FILE" | translate }}</label
+      >
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #excelTemplate>
+  <div class="spread-sheet">
+    <mat-tab-group (selectedTabChange)="onSheetChange($event?.index)">
+      <mat-tab [label]="item" *ngFor="let item of sheets">
+        <table>
+          <tr>
+            <th *ngFor="let header of tableTitle">{{ header }}</th>
+          </tr>
+          <tr *ngFor="let item of tableData; let i = index">
+            <td *ngFor="let header of tableTitle">
+              {{ item[header] }}
+            </td>
+          </tr>
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-template>
+
+<ng-template #documentTemplate>
+  <iframe [src]="content" class="doc-viewer-iframe"></iframe>
+</ng-template>
+
+<ng-template #imageTemplate>
+  <img [src]="content" class="doc-viewer-image" />
+</ng-template>

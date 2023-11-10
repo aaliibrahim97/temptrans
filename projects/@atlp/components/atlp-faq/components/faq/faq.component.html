@@ -1,0 +1,48 @@
+<div style="display: flex; flex-direction: column; width: 100%">
+  <div
+    style="display: flex; justify-content: space-between; padding: 15px 35px"
+    *ngIf="filterData && filterData?.length > 0"
+  >
+    <div class="dashboard-nav" fxLayout="row" fxLayoutAlign="center center">
+      <mat-button-toggle-group
+        appearance="legacy"
+        #tableViewGroup="matButtonToggleGroup"
+      >
+        <mat-button-toggle
+          disableRipple="true"
+          [checked]="item?.label?.toLowerCase() == 'all'"
+          [value]="item.value"
+          *ngFor="let item of filterData"
+          (change)="onSelectFilter($event.value)"
+          >{{ item.label | translate }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <div class="table-scroll-wrap">
+    <div
+      class="table-rich-container"
+      fxFlex
+      fxLayout="column"
+      style="padding: 24px 35px"
+    >
+      <div class="faq-list-container">
+        <ng-container *ngFor="let category of faqList">
+          <div class="category-title">{{ category.category }}</div>
+          <mat-accordion
+            [displayMode]="displayMode"
+            [multi]="multi"
+            class="faq-container"
+          >
+            <mat-expansion-panel *ngFor="let faqItem of category.faqs">
+              <mat-expansion-panel-header>{{
+                faqItem.question
+              }}</mat-expansion-panel-header>
+              <p [innerHTML]="faqItem.answer"></p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

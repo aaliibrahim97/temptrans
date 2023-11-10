@@ -1,0 +1,110 @@
+<div
+  id="atlp-common-pagination"
+  class="atlp-common-pagination table-clearance-nav table-pagination-nav pt-10"
+>
+  <section id="item-per-page" class="d-flex">
+    <div class="d-flex">
+      <label class="col-auto">{{ "ITEMS_PER_PAGE" | translate }}:</label>
+      <span class="col">
+        <mat-select
+          [value]="paginatorModel.pageSize"
+          placeholder=""
+          class="dropdown-select mat-select-custom"
+          panelClass="panel-custom"
+          (selectionChange)="pageOptionsChange($event)"
+        >
+          <mat-option
+            *ngFor="let option of paginationDropDownList"
+            [value]="option"
+          >
+            <span style="font-size: 10px">{{ option }}</span>
+          </mat-option>
+        </mat-select>
+      </span>
+    </div>
+
+    <div id="page-count">
+      <label>
+        {{ paginatorModel.pageStartIndex }}-{{ paginatorModel.pageEndIndex }}
+        {{ "OF" | translate }} {{ paginatorModel.totalCount }}
+      </label>
+    </div>
+  </section>
+
+  <section id="page-nav" class="d-flex">
+    <div>
+      <button
+        [disabled]="paginatorModel.currentPage === 1"
+        type="button"
+        (click)="gotoFirstPage()"
+        aria-label="Previous page"
+        [ngClass]="{ 'button-disabled': paginatorModel.currentPage === 1 }"
+        matTooltip="{{ 'FIRST_PAGE' | translate }}"
+        matTooltipPosition="above"
+      >
+        <mat-icon svgIcon="first-page" aria-hidden="false"></mat-icon>
+      </button>
+    </div>
+    <div>
+      <button
+        [disabled]="paginatorModel.currentPage === 1"
+        type="button"
+        (click)="gotoPreviousPage()"
+        aria-label="Previous page"
+        [ngClass]="{ 'button-disabled': paginatorModel.currentPage === 1 }"
+        matTooltip="{{ 'PREVIOUS_PAGE' | translate }}"
+        matTooltipPosition="above"
+      >
+        <mat-icon class="mat-icon">
+          <svg
+            style="height: 17px"
+            [ngStyle]="{
+              fill: paginatorModel.currentPage === 1 ? '#00000042' : '#0000008a'
+            }"
+            viewBox="0 0 24 24"
+            focusable="false"
+            class="mat-paginator-icon"
+          >
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+          </svg>
+        </mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <button
+        type="button"
+        (click)="gotoNextPage()"
+        [disabled]="isLastPage()"
+        [ngClass]="{ 'button-disabled': isLastPage() }"
+        matTooltip="{{ 'NEXT_PAGE' | translate }}"
+        matTooltipPosition="above"
+      >
+        <mat-icon class="mat-icon">
+          <svg
+            style="height: 17px"
+            [ngStyle]="{ fill: isLastPage() ? '#00000042' : '#0000008a' }"
+            viewBox="0 0 24 24"
+            focusable="false"
+            class="mat-paginator-icon"
+          >
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+          </svg>
+        </mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <button
+        type="button"
+        (click)="gotoLastPage()"
+        [disabled]="isLastPage()"
+        [ngClass]="{ 'button-disabled': isLastPage() }"
+        matTooltip="{{ 'LAST_PAGE' | translate }}"
+        matTooltipPosition="above"
+      >
+        <mat-icon svgIcon="last-page" aria-hidden="false"></mat-icon>
+      </button>
+    </div>
+  </section>
+</div>

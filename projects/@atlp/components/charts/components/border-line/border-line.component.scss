@@ -1,0 +1,20 @@
+#divChart {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #borderLine,
+  #borderLineRequest,
+  #borderLineOccupancy {
+    min-height: 278px;
+  }
+  #borderLine1 {
+    min-height: 258px;
+  }
+}
+
+::ng-deep {
+  app-border-line {
+    height: 100%;
+    display: block;
+  }
+}

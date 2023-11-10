@@ -1,0 +1,141 @@
+<div
+  class="drawer-wrap josoor-drawer"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{
+          "SWITCH_COMPANY_PROFILE" | translate
+        }}</span>
+      </div>
+    </div>
+    <div class="company-selection">
+      <div class="drawer-body display-center">
+        <div class="company-selection-container">
+          <mat-icon
+            class="mat-icon notranslate mat-icon-no-color"
+            svgIcon="check-square-offset-fill"
+            aria-hidden="false"
+          >
+          </mat-icon>
+          <h1 class="company-selection-title">
+            {{ "SWITCH_COMPANY" | translate }}
+          </h1>
+
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between start"
+          >
+            <div
+              class="dropdown-col bg field-wrap mb-24"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <mat-radio-group class="field-wrap radio-wrap bg" #rGroup>
+                <mat-radio-button
+                  *ngIf="individualOrganizationId"
+                  value="Individual"
+                  radioGroup="rGroup"
+                  [checked]="selectedCustomerType == 'Individual'"
+                  (change)="onSelectCustomerType($event)"
+                  >{{ "For_Myself" | translate }}
+                </mat-radio-button>
+                <mat-radio-button
+                  *ngIf="individualOrganizationId"
+                  value="Company"
+                  radioGroup="rGroup"
+                  [checked]="selectedCustomerType == 'Company'"
+                  (change)="onSelectCustomerType($event)"
+                  >{{ "For_My_Company" | translate }}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <p class="messagesubtitle" *ngIf="selectedCustomerType == 'Company'">
+            {{ "SWITCH_COMPANY_NOTE" | translate }}
+          </p>
+          <div
+            class="wrapper overlay-blur"
+            *ngIf="selectedCustomerType == 'Company'"
+          >
+            <mat-select
+              *ngIf="companyDetails?.length > 0"
+              fxFlex="none"
+              placeholder="{{ 'SELECT_COMPANY' | translate }}"
+              class="dropdown-select bg"
+              (selectionChange)="onCompanyChange($event.value)"
+              panelClass="panel-custom"
+              [(value)]="selectedCompany"
+              disableOptionCentering
+            >
+              <mat-option *ngFor="let item of companyarray" [value]="item.id">
+                {{
+                  selectedLanguage == "en"
+                    ? item?.tradeName && item?.tradeName["en-US"]
+                    : item?.tradeName && item?.tradeName["ar-AE"]
+                }}
+              </mat-option>
+            </mat-select>
+          </div>
+
+          <!-- <div class="field-input-wrap mt-5">
+                          <mat-checkbox class="bg mat-check-Non fieldrequired" (change)='preferredCompanyChange($event)'
+                              [checked]="selectedCompany == companyPreferencedetails?.PrefferedCompanyOrganizationId">
+                              <span> {{'Preferred_Company' | translate}}</span>
+                          </mat-checkbox>
+      
+                      </div> -->
+
+          <div class="company-selection-action-btn-row">
+            <button
+              mat-button
+              class="transparent"
+              (click)="closeCompanySelection()"
+            >
+              {{ "CANCEL" | translate }}
+            </button>
+
+            <button
+              mat-button
+              class="transparent purple"
+              (click)="setSelectedCompany()"
+            >
+              {{
+                selectedCustomerType == "Company"
+                  ? ("Go_to_Company" | translate)
+                  : ("Go_to_IndividualProfile" | translate)
+              }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    type="button"
+    class="round-close-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="closeCompanySelection()"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>

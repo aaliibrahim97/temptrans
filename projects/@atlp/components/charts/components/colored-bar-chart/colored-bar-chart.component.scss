@@ -1,0 +1,27 @@
+#coloredBarChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  #coloredBarChart {
+    height: 270px !important;
+  }
+}
+@media (min-width: 1024px) {
+  #coloredBarChartBig,
+  #coloredBarChart {
+    min-height: 313px;
+    padding-bottom: 30px;
+  }
+  #coloredBarChartBigAir {
+    min-height: 250px;
+  }
+}
+
+::ng-deep {
+  app-colored-bar-chart {
+    height: 100%;
+    display: block;
+  }
+}

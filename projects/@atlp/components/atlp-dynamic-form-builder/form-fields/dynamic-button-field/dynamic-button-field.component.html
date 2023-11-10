@@ -1,0 +1,34 @@
+<div
+  class="dynamic-margin-top parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <button
+    #elementRef
+    [ngStyle]="field.props?.componentStyle"
+    [tabIndex]="field.tabindex || 0"
+    class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+    mat-raised-button
+    [attr.readonly]="fieldMetaData?.readonly ? 'readonly' : null"
+    [attr.aria-describedby]="fieldMetaData?.ariaDescribedby"
+    [color]="fieldMetaData?.color || 'primary'"
+    [disabled]="field.isDisabled || false"
+    [name]="field.name"
+    [type]="field?.inputType || 'submit'"
+    [style]="buttonstyle"
+    (click)="clickHandler($event)"
+  >
+    <ng-container *ngIf="fieldMetaData?.isIconEnabled">
+      <mat-icon
+        svgIcon="{{ fieldMetaData?.iconName }}"
+        aria-hidden="false"
+      ></mat-icon>
+      &nbsp;</ng-container
+    >
+    {{ field.label | translate }}
+  </button>
+</div>

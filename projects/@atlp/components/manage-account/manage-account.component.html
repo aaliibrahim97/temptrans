@@ -1,0 +1,698 @@
+<div class="user-pref-window-wrap-new" fxLayout="column" style="width: 100%">
+  <div class="wrapper overlay-blur dashboard-wrap">
+    <div
+      class="company-container overlay-blur"
+      *ngIf="companyDetails?.type == 'Organization'"
+      [class.blur]="atlpSidebarService.allOpenedSuperimposedSidebar.length > 0"
+    >
+      <div class="card-wrap-custom">
+        <div class="employees-info col">
+          <div class="card">
+            <div
+              class="manage-info-info-row custom-diplay-flex"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                class="manage-account"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                style="width: 75%"
+              >
+                <div *ngIf="imgUrl" class="manage-user-photo">
+                  <img [src]="imgUrl" [alt]="" />
+                </div>
+                <div *ngIf="!imgUrl" class="user-avatar-block">
+                  <div
+                    class="avatars fallback show-status"
+                    [class]="settingsAvatar.size"
+                    [class.round]="settingsAvatar.round"
+                  ></div>
+                </div>
+                <div class="card-wrap company-title">
+                  <h2
+                    class="manage-info-name"
+                    fxLayoutAlign="start center"
+                    style="
+                      display: inline-block !important;
+                      color: #1b1546;
+                      font-size: 17px;
+                    "
+                  >
+                    {{
+                      companyDetails?.tradeName[selectedLanguage]
+                        ? companyDetails?.tradeName[selectedLanguage]
+                        : companyDetails?.tradeName[OtherLanguage]
+                    }}
+                  </h2>
+                  <div class="company-info">
+                    <span class="manage-info-text">
+                      {{ Profiles ? Profiles : "-" }}
+                    </span>
+                    <mat-divider
+                      [vertical]="true"
+                      class="vertical-divider"
+                    ></mat-divider>
+                    <span style="color: red">{{ companyDetails?.ucId }}</span>
+                    <mat-divider
+                      [vertical]="true"
+                      class="vertical-divider"
+                      *ngIf="
+                        contactType == 'Authorized' ||
+                        contactType == 'Focal Point'
+                      "
+                    ></mat-divider>
+                    <span
+                      *ngIf="
+                        contactType == 'Authorized' ||
+                        contactType == 'Focal Point'
+                      "
+                    >
+                      {{ "You_Are_Admin" | translate }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="manage-company-button"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <button
+                  class="btn-cards"
+                  (click)="openSideBar(Sidebar.mcTradeLicenseInfo)"
+                >
+                  {{ "Update" | translate }}
+                  <mat-icon
+                    class="custom-icon"
+                    style="color: #267ad2"
+                    svgIcon="wrc-edit-icon-blue"
+                    aria-hidden="false"
+                  >
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+            <mat-divider class="section-divider"></mat-divider>
+            <div class="manage-wrap">
+              <div
+                class="manage-info-row-left d-flex col"
+                fxLayout="column"
+                fxLayoutAlign="space-between start"
+              >
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <span class="manage-info-text text-header">{{
+                    "Trade_License_No" | translate
+                  }}</span>
+                  <ng-container>
+                    <div>
+                      <span class="manage-info-text text-value">
+                        {{
+                          companyDetails?.licenseNo
+                            ? companyDetails?.licenseNo
+                            : "-"
+                        }}</span
+                      >
+                    </div>
+                  </ng-container>
+                </div>
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <span class="manage-info-text text-header">
+                    {{ "License_Issuing_Authority" | translate }}
+                  </span>
+                  <ng-container>
+                    <div>
+                      <span class="manage-info-text text-value">
+                        {{
+                          companyDetails?.licenseIssuingAuthority
+                            ? companyDetails?.licenseIssuingAuthority
+                            : "-"
+                        }}</span
+                      >
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div
+                class="right-wrap col-auto"
+                fxLayout="column"
+                fxLayoutAlign="space-between start"
+                style="width: 35%"
+              >
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">{{
+                      "Expiry_Date" | translate
+                    }}</span>
+                  </div>
+                  <div>
+                    <span class="manage-info-text validity text-value">
+                      {{
+                        companyDetails?.licenseExpiryDate
+                          ? (companyDetails?.licenseExpiryDate
+                            | date : "shortDate")
+                          : "-"
+                      }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">{{
+                      "License_Type" | translate
+                    }}</span>
+                  </div>
+
+                  <div>
+                    <span class="manage-info-text validity text-value">
+                      {{ licenseType ? licenseType : "-" }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="employees-info col-auto" style="width: 35%">
+          <div class="card">
+            <div
+              class="manage-info-info-row custom-diplay-flex"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                class="manage-account"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <div *ngIf="contactImgUrl" class="manage-user-photo">
+                  <img [src]="contactImgUrl" [alt]="" />
+                </div>
+                <div *ngIf="!contactImgUrl" class="user-avatar-block">
+                  <div
+                    class="avatars fallback show-status"
+                    [class]="settingsAvatar.size"
+                    [class.round]="settingsAvatar.round"
+                  ></div>
+                </div>
+                <div class="card-wrap company-title">
+                  <h2
+                    *ngIf="contactDetails?.firstName"
+                    class="manage-info-name"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    {{
+                      contactDetails?.firstName[selectedLanguage]
+                        ? contactDetails?.firstName[selectedLanguage]
+                        : contactDetails?.firstName[OtherLanguage]
+                    }}
+                    {{
+                      contactDetails?.lastName[selectedLanguage]
+                        ? contactDetails?.lastName[selectedLanguage]
+                        : contactDetails?.lastName[OtherLanguage]
+                    }}
+                  </h2>
+                  <h2
+                    *ngIf="!contactDetails?.firstName"
+                    class="manage-info-name"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    John Don
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <mat-divider class="section-divider"></mat-divider>
+            <div class="manage-wrap">
+              <div
+                class="manage-info-row-left d-flex"
+                fxLayout="column"
+                fxLayoutAlign="space-between start"
+              >
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header"
+                      >{{ "Manage_Account_Email" | translate }}
+                    </span>
+                  </div>
+                  <div style="direction: ltr">
+                    <span
+                      class="manage-info-text text-value"
+                      matTooltipPosition="above"
+                      matTooltip="{{ contactDetails?.emailAddress }}"
+                      matTooltipPosition="above"
+                    >
+                      {{
+                        contactDetails?.emailAddress
+                          ? contactDetails?.emailAddress.substr(0, 16) + "..."
+                          : "-"
+                      }}
+                    </span>
+                  </div>
+                </div>
+
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">
+                      {{ "Document_No" | translate }}</span
+                    >
+                  </div>
+                  <div>
+                    <span class="manage-info-text text-value">
+                      {{
+                        contactDetails?.personalIdNo
+                          ? contactDetails?.personalIdNo
+                          : "-"
+                      }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="manage-info-row-right"
+                fxLayout="column"
+                fxLayoutAlign="space-between start"
+              >
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">
+                      {{ "Phone" | translate }}
+                    </span>
+                  </div>
+                  <div style="direction: ltr">
+                    <span
+                      class="manage-info-text text-value"
+                      *ngIf="contactDetails?.mobileNumber"
+                    >
+                      {{
+                        contactDetails?.mobileNumberCode
+                          ? contactDetails?.mobileNumberCode
+                          : "-"
+                      }}-
+                      {{
+                        contactDetails?.mobileNumber
+                          ? contactDetails?.mobileNumber
+                          : "-"
+                      }}
+                    </span>
+                    <span
+                      class="manage-info-text text-value"
+                      *ngIf="!contactDetails?.mobileNumber"
+                    >
+                      -
+                    </span>
+                  </div>
+                </div>
+
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <span class="manage-info-text text-header">
+                    {{ "Active_Since" | translate }}</span
+                  >
+                  <ng-container>
+                    <div>
+                      <span class="manage-info-text text-value">
+                        {{
+                          contactDetails?.createdDate
+                            ? (contactDetails?.createdDate | date : "shortDate")
+                            : "-"
+                        }}
+                      </span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrap-custom d-flex">
+        <div class="employees-info col">
+          <div class="card">
+            <div
+              class="manage-info-info-row custom-diplay-flex"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                class="manage-account"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <div class="card-wrap">
+                  <h2
+                    class="manage-info-name"
+                    fxLayoutAlign="start center"
+                    style="display: inline-block !important"
+                  >
+                    {{ "Company_Address" | translate }}
+                  </h2>
+                </div>
+              </div>
+              <div
+                class="manage-company-button-button"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <button
+                  class="btn-cards"
+                  (click)="openSideBar(Sidebar.mcCompanyAddress)"
+                >
+                  {{ "Update" | translate }}
+
+                  <mat-icon
+                    class="custom-icon"
+                    style="color: #267ad2"
+                    svgIcon="wrc-edit-icon-blue"
+                    aria-hidden="false"
+                  >
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+            <mat-divider class="section-divider"></mat-divider>
+            <div class="manage-wrap" style="display: inline">
+              <div
+                style="width: 100%"
+                class="manage-info-row-right"
+                fxLayout="row"
+                fxLayoutAlign="space-between start"
+              >
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                  fxLayout="column"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">
+                      {{ "Company_Email" | translate }}</span
+                    >
+                  </div>
+                  <div style="direction: ltr">
+                    <span
+                      class="manage-info-text text-value"
+                      matTooltip="{{ companyDetails?.email }}"
+                      matTooltipPosition="above"
+                    >
+                      {{
+                        companyDetails?.email
+                          ? companyDetails?.email.substr(0, 17) + "..."
+                          : "-"
+                      }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  fxLayout="column"
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div fxLayout="column">
+                    <span class="manage-info-text text-header">{{
+                      "Company_Website" | translate
+                    }}</span>
+                  </div>
+                  <div>
+                    <span class="manage-info-text validity text-value">
+                      {{
+                        companyDetails?.website ? companyDetails?.website : "-"
+                      }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="manage-info-col col name-text"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">{{
+                      "Office_Landline" | translate
+                    }}</span>
+                  </div>
+
+                  <div style="direction: ltr">
+                    <span class="manage-info-text validity text-value">
+                      {{
+                        companyDetails?.phoneNo ? companyDetails?.phoneNo : "-"
+                      }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="width: 100%"
+                class="manage-info-row-right"
+                fxLayout="row"
+                fxLayoutAlign="space-between start"
+              >
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">
+                      {{ "Address" | translate }}</span
+                    >
+                  </div>
+
+                  <div style="direction: ltr">
+                    <span
+                      class="manage-info-text text-value"
+                      matTooltip="{{ companyDetails?.establishmentAddress }}"
+                      matTooltipPosition="above"
+                    >
+                      {{
+                        companyDetails?.establishmentAddress
+                          ? companyDetails?.establishmentAddress.substr(0, 20)
+                          : "-"
+                      }}
+                      {{
+                        companyDetails?.establishmentAddress &&
+                        companyDetails?.establishmentAddress.length > 20
+                          ? "..."
+                          : ""
+                      }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="manage-info-col col"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">{{
+                      "Country" | translate
+                    }}</span>
+                  </div>
+
+                  <div>
+                    <span class="manage-info-text validity text-value">
+                      {{
+                        CountryName
+                          ? CountryName
+                          : companyDetails?.country
+                          ? companyDetails?.country
+                          : "-"
+                      }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="manage-info-col col name-text"
+                  fxLayout="column"
+                  fxLayoutAlign="center start"
+                >
+                  <div>
+                    <span class="manage-info-text text-header">{{
+                      "City" | translate
+                    }}</span>
+                  </div>
+
+                  <div>
+                    <span class="manage-info-text validity text-value">
+                      {{
+                        companyDetails?.city ? companyDetails?.city : "-"
+                      }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="employees-info col-auto" style="width: 35%">
+          <div class="card">
+            <div
+              class="manage-info-info-row custom-diplay-flex"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <div
+                class="manage-account"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <div class="card-wrap">
+                  <h2
+                    class="manage-info-name"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    {{ "Vat_Details" | translate }}
+                  </h2>
+                </div>
+              </div>
+              <div
+                class="manage-company-button"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <button
+                  class="btn-cards"
+                  (click)="openSideBar(Sidebar.mcVatInfo)"
+                >
+                  {{ "Update" | translate }}
+
+                  <mat-icon
+                    class="custom-icon"
+                    style="color: #267ad2; width: 15px"
+                    svgIcon="wrc-edit-icon-blue"
+                    aria-hidden="false"
+                  ></mat-icon>
+                </button>
+              </div>
+            </div>
+            <mat-divider class="section-divider"></mat-divider>
+            <div class="manage-wrap">
+              <div style="width: 100%">
+                <div
+                  style="width: 100%"
+                  class="manage-info-row-left"
+                  fxLayout="column"
+                  fxLayoutAlign="space-between start"
+                >
+                  <div
+                    class="manage-info-col col"
+                    fxLayout="column"
+                    fxLayoutAlign="center start"
+                  >
+                    <div>
+                      <span class="manage-info-text text-header">
+                        {{ "Vat_Status" | translate }}</span
+                      >
+                    </div>
+                    <div>
+                      <span class="manage-info-text validity text-value">
+                        {{
+                          vatDetails?.description ? vatDetails?.description : ""
+                        }}</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="width: 100%"
+                  *ngIf="vatDetails?.name == 1"
+                  class="manage-info-row-right-VAT"
+                  fxLayout="column"
+                  fxLayoutAlign="space-between start"
+                >
+                  <div
+                    class="manage-info-col col"
+                    fxLayout="column"
+                    fxLayoutAlign="center start"
+                  >
+                    <div>
+                      <span class="manage-info-text text-header">
+                        {{ "Vat_Value" | translate }}</span
+                      >
+                    </div>
+                    <div>
+                      <span class="manage-info-text validity text-value">
+                        {{
+                          companyDetails?.vatNumber
+                            ? companyDetails?.vatNumber
+                            : "-"
+                        }}</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large"
+  [name]="Sidebar.mcCompanyAddress"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <app-ma-company-address></app-ma-company-address>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large"
+  [name]="Sidebar.mcTradeLicenseInfo"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <app-ma-trade-license-info></app-ma-trade-license-info>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large"
+  [name]="Sidebar.mcVatInfo"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <app-ma-vat-info></app-ma-vat-info>
+</atlp-sidebar-v2>

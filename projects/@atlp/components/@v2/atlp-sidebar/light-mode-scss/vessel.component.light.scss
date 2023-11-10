@@ -1,0 +1,20 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.Messages {
+  background: transparent
+    linear-gradient(
+      180deg,
+      map-get($color, "light-mode-body-bg") 0%,
+      map-get($color, "atlp-dark-purple-gradient") 100%
+    )
+    0% 0% no-repeat padding-box !important;
+}
+
+.messagetitle {
+  color: map-get($color, "light-mode-title") !important;
+}
+
+.messagesubtitle {
+  color: map-get($color, "atlp-ink-base") !important;
+}

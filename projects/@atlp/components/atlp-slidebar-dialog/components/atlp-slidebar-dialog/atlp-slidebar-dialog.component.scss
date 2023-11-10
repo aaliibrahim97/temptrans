@@ -1,0 +1,37 @@
+@import "projects/@atlp/scss/variables";
+.drawer-header {
+  background-color: map-get($color, "atlp-violet-base");
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background-color: white;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+::ng-deep {
+  .drawer-wrap-container-transparent {
+    background: transparent linear-gradient(180deg, #373069, rgba(28, 24, 53, 0.7)) 0 0 no-repeat padding-box !important;
+  }
+}
+
+// .drawer-body {
+//   background: none !important;
+// }

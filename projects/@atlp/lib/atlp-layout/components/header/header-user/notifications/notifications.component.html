@@ -1,0 +1,45 @@
+<button style="margin-top: 10px" class="mob" [matMenuTriggerFor]="menu">
+  <mat-icon
+    [matBadgeHidden]="unreadNotificationCount == 0"
+    [matBadge]="unreadNotificationCount"
+    matBadgeColor="warn"
+    svgIcon="notification"
+    aria-hidden="false"
+  ></mat-icon>
+</button>
+<mat-menu #menu="matMenu" class="notification-mat-menu">
+  <div *ngIf="isNotificationAvailable">
+    <activity-sidebar
+      title="Notifications"
+      i18n-title="@@notif-Notifications"
+      [events]="notificationsData"
+      (onReadNotification)="onReadNotification($event)"
+      (onviewallEvent)="onViewAllClick()"
+    ></activity-sidebar>
+  </div>
+</mat-menu>
+
+<!-- <button
+  class="tollbar-btn mob"
+  [ngClass]="{ 'm-l-4': !isSetting }"
+  [matMenuTriggerFor]="menu"
+>
+  <mat-icon
+    [matBadgeHidden]="unreadNotificationCount == 0"
+    [matBadge]="unreadNotificationCount > 10 ? '9+' : unreadNotificationCount"
+    matBadgeColor="warn"
+    svgIcon="notification"
+    aria-hidden="false"
+  ></mat-icon>
+</button>
+<mat-menu #menu="matMenu" class="notification-mat-menu">
+  <div *ngIf="isNotificationAvailable">
+    <activity-sidebar
+      title="Notifications"
+      i18n-title="@@notif-Notifications"
+      [events]="notificationsData"
+      (onReadNotification)="onReadNotification($event)"
+      (onviewallEvent)="onViewAllClick()"
+    ></activity-sidebar>
+  </div>
+</mat-menu> -->

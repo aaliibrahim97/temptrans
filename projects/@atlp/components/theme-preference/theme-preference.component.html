@@ -1,0 +1,51 @@
+<div
+  class="theme-preference-wrap"
+  fxLayout="column wrap"
+  fxLayoutAlign="space-between stretch"
+>
+  <div class="card">
+    <div class="card-body">
+      <div
+        class="template-container"
+        fxLayout="column wrap"
+        fxLayoutAlign="space-between"
+      >
+        <div
+          class="item-container"
+          fxFlex="100%"
+          fxFlex.gt-xs="100%"
+          fxFlex.gt-sm="100%"
+          fxFlex.gt-md="100%"
+          fxLayout="column"
+        >
+          <div flex class="item-wrap card">
+            <h5 class="card-title">{{ "Theme_Preference" | translate }}</h5>
+            <ul flex class="p-0 m-0 d-flex text-center">
+              <ng-container *ngFor="let theme of themeList">
+                <li
+                  class="card col text-center theme {{ theme.id }}"
+                  (click)="setTheme(theme)"
+                  [ngClass]="{ 'active card-active': theme.active }"
+                >
+                  <div class="active-indicator" *ngIf="theme?.active">
+                    <mat-icon
+                      class="inheritSize"
+                      svgIcon="pay-check"
+                    ></mat-icon>
+                  </div>
+                  <figure class="card-body">
+                    <mat-icon
+                      class="themeModeIcon {{ theme.id }}"
+                      svgIcon="{{ theme.icon }}"
+                    ></mat-icon>
+                  </figure>
+                  <a class="card-header"> {{ theme.label | translate }}</a>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

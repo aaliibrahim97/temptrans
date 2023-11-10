@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45.351" height="40.74" viewBox="0 0 45.351 40.74">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Контур_1808" data-name="Контур 1808" d="M223.733,2.23V7.309H218.71V2.23a5.02,5.02,0,0,0-5.02,5.018v5.044h10.043v5h5.01V2.23Z" transform="translate(-213.69 -2.23)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Контур_1809" data-name="Контур 1809" d="M288.86,2.23h0V7.218h20.22v7.458h5.036V7.018h0a4.988,4.988,0,0,0-4.991-4.788Z" transform="translate(-288.86 -2.23)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Контур_1810" data-name="Контур 1810" d="M248.886,52.4h5.135V57.54h-5.135Zm-5.02-12.3V57.54h-5.079V40.1h-5.015V57.54h-5.028V50.183h-5.01V57.54H218.71V45.222h-5.02V62.529h40.366a4.988,4.988,0,0,0,4.983-4.713h0V47.409H248.881V40.1Z" transform="translate(-213.69 -40.1)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <path id="Контур_1811" data-name="Контур 1811" d="M213.69,135.85v5.02h1.069a3.946,3.946,0,0,0,3.946-3.946v-1.069H213.69Z" transform="translate(-213.69 -135.85)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Сгруппировать_3874" data-name="Сгруппировать 3874" transform="translate(353.474 -118.258)">
+    <g id="Сгруппировать_3861" data-name="Сгруппировать 3861" transform="translate(-353.474 118.258)">
+      <g id="Сгруппировать_353" data-name="Сгруппировать 353" transform="translate(0)" clip-path="url(#clip-path)">
+        <rect id="Прямоугольник_861" data-name="Прямоугольник 861" width="21.287" height="21.287" transform="matrix(0.731, -0.683, 0.683, 0.731, -7.509, 7.022)" fill="#a187bf"/>
+      </g>
+      <g id="Сгруппировать_354" data-name="Сгруппировать 354" transform="translate(20.094)" clip-path="url(#clip-path-2)">
+        <rect id="Прямоугольник_862" data-name="Прямоугольник 862" width="26.952" height="26.337" transform="matrix(0.731, -0.683, 0.683, 0.731, -6.202, 5.804)" fill="#a187bf"/>
+      </g>
+      <g id="Сгруппировать_355" data-name="Сгруппировать 355" transform="translate(0 10.124)" clip-path="url(#clip-path-3)">
+        <rect id="Прямоугольник_863" data-name="Прямоугольник 863" width="48.45" height="47.349" transform="matrix(0.731, -0.683, 0.683, 0.731, -11.185, 10.456)" fill="#a187bf"/>
+      </g>
+      <g id="Сгруппировать_356" data-name="Сгруппировать 356" transform="translate(0 35.72)" clip-path="url(#clip-path-4)">
+        <rect id="Прямоугольник_864" data-name="Прямоугольник 864" width="7.097" height="7.097" transform="matrix(0.731, -0.683, 0.683, 0.731, -2.502, 2.345)" fill="#a187bf"/>
+      </g>
+    </g>
+  </g>
+</svg>

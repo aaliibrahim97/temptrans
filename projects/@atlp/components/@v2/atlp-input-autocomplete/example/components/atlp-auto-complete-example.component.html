@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Select a country:</h2>
+
+  <mat-card>
+    <!-- [source]="dataService"
+    [source]="items" -->
+    <atlp-mat-autocomplete
+      [placeholder]="'Search'"
+      [hasSearchButton]="true"
+      [source]="dataService"
+      [minChars]="1"
+      [displayItem]="'item.name'"
+      [(ngModel)]="model"
+      [hasProgressBar]="true"
+      [displayTemplate]="itemTemplate"
+      [showAddNew]="true"
+      (createNew)="createNew($event)"
+      [isFocused]="false"
+    >
+    </atlp-mat-autocomplete>
+
+    <button mat-raised-button (click)="showSelected()">Submit</button>
+  </mat-card>
+
+  <br />
+
+  <mat-card *ngIf="model">
+    <mat-form-field>
+      <input matInput placeholder="Value" [(ngModel)]="model.code" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput placeholder="View" [(ngModel)]="model.name" />
+    </mat-form-field>
+  </mat-card>
+
+  <ng-template #itemTemplate let-item>
+    <div style="flex: 1 1 auto">
+      <mat-icon>flag</mat-icon>
+      {{ item.name }} | {{ item.code }}
+    </div>
+  </ng-template>
+</div>

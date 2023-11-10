@@ -1,0 +1,146 @@
+// Material theming tools
+@import "~@angular/material/theming";
+
+// Breakpoint mixins
+@import "partials/breakpoints";
+@import "projects/@atlp/scss/variables";
+// @import "projects/@atlp/scss/mixins";
+
+html {
+  body {
+    &.light {
+      button.purple,
+      .round-btn {
+        --atlp-grey-light: #eee !important;
+        --atlp-white: #fff !important;
+      }
+
+      .filter-container {
+        .filters {
+          border-left: 1px solid #fff;
+          box-shadow: -1px 0px 15px #c8b6dd;
+        }
+      }
+
+      atlp-sidebar {
+        .sidebarParent {
+          // padding-left: 10px;
+          // border-left: 1px solid #fff;
+          // box-shadow: -1px 0px 15px #c8b6dd;
+        }
+      }
+
+      .mat-expansion-panel-header-description:after {
+        border-bottom: 1px solid map-get($color, "atlp-header-cell-border");
+      }
+
+      .mat-icon {
+        &[svgicon="folder"] {
+          g {
+            path {
+              &:first-child {
+                fill: #c5d2e7 !important;
+              }
+              &:last-child {
+                fill: #8f9ab3 !important;
+              }
+            }
+          }
+        }
+      }
+
+      // .drawer-body {
+      //   .mat-icon {
+      //     > svg {
+      //       fill: map-get($color, "atlp-white");
+      //     }
+
+      //     path,
+      //     circle {
+      //       fill: map-get($color, "atlp-white");
+      //     }
+      //   }
+      // }
+
+      atlp-sidebar:not(.navigation-menu),
+      atlp-sidebar-v2:not(.navigation-menu) {
+        .drawer-body {
+          .panel-small .mat-progress-bar-buffer {
+            background-color: map-get($color, "atlp-grey-dark") !important;
+          }
+        }
+        .mat-icon:not(.no-light-theme),
+        mat-icon:not(.no-light-theme) {
+          > svg {
+            path[fill="#FFFFFF"],
+            path[fill="#dbe3f2"],
+            path[fill="#DBE3F2"],
+            path[fill="#FFF"],
+            path[fill="#fff"],
+            path[fill="#ffffff"],
+            path[fill="#FFFFFF"],
+            circle[fill="#FFFFFF"],
+            circle[fill="#dbe3f2"] {
+              fill: map-get($color, "atlp-white");
+            }
+          }
+
+          > svg {
+            path[stroke="#FFFFFF"],
+            path[stroke="#dbe3f2"],
+            path[stroke="#DBE3F2"],
+            path[stroke="#FFF"],
+            path[stroke="#fff"],
+            path[stroke="#ffffff"],
+            path[stroke="#FFFFFF"],
+            circle[stroke="#FFFFFF"],
+            circle[stroke="#dbe3f2"] {
+              stroke: map-get($color, "atlp-white");
+            }
+          }
+
+          &[svgIcon="warning-circle-fill"] {
+            > svg {
+              fill: map-get($color, "atlp-invalid");
+            }
+            path,
+            circle {
+              fill: map-get($color, "atlp-invalid");
+            }
+          }
+
+          &[svgicon="warning-circle-fill"] {
+            > svg {
+              fill: map-get($color, "atlp-invalid");
+            }
+
+            path,
+            circle {
+              fill: map-get($color, "atlp-invalid");
+            }
+          }
+
+          &[svgIcon="icon-search"],
+          &[svgicon="icon-search"] {
+            path {
+              fill: map-get($color, "atlp-ink-lighter");
+            }
+          }
+
+          & [svgIcon="data-icon"],
+          &[svgicon="data-icon"],
+          & [svgIcon="data-icon-white"],
+          &[svgicon="data-icon-white"] {
+            rect,
+            line {
+              stroke: map-get($color, "atlp-white") !important;
+            }
+          }
+        }
+      }
+
+      .field-input-wrap {
+      }
+    }
+  }
+}

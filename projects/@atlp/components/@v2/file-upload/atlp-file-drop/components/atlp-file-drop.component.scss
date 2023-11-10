@@ -1,0 +1,131 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.confirmationSidebarContainer {
+  align-items: center;
+  justify-content: center;
+  color: map-get($color, "atlp-white");
+  div {
+    hr {
+      height: 1px;
+      background-color: map-get($color, "atlp-purple-base");
+      border: none;
+    }
+  }
+}
+
+.upload-wrap {
+  padding: 20px;
+  margin-bottom: 32px;
+  border: 1px dashed map-get($color, "atlp-purple-base");
+  border-radius: 6px;
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+
+  .mat-icon {
+    width: 63px;
+    height: 46px;
+    min-width: 63px;
+    min-height: 46px;
+    margin-bottom: 23px;
+  }
+
+  .upload-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: map-get($color, "atlp-grey-light");
+    margin-bottom: 16px;
+    @include text-align(center);
+  }
+
+  .upload-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: map-get($color, "atlp-ink-light");
+    @include text-align(center);
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 8px 16px;
+    color: map-get($color, "atlp-btn-basic");
+    font-size: 14px;
+    border: 1px solid map-get($color, "atlp-purple-base");
+    border-radius: 6px;
+    background: transparent linear-gradient(180deg, #fbfbfb 0%, #eaeef4 100%) 0%
+      0% no-repeat padding-box;
+    box-shadow: 0px 0.5px 2px #8c69b5;
+  }
+}
+
+.upload-wrap.active {
+  border: 1px solid map-get($color, "atlp-purple-base");
+}
+
+.file {
+  position: relative;
+  &__wrap {
+    padding: 15px;
+    border-radius: 6px;
+    min-height: 101px;
+    border: 1px solid map-get($color, "atlp-purple-light");
+    @media (min-width: 1360px) {
+      @include padding(26px, 32px, 26px, 24px);
+    }
+  }
+  &__icon {
+    @include margin-right(20px);
+    .mat-icon {
+      width: 41px;
+      height: 43px;
+      min-width: 41px;
+      min-height: 43px;
+    }
+  }
+  &__info {
+    width: 100%;
+  }
+  &__title {
+    font-size: 14px;
+    font-weight: 500;
+    color: map-get($color, "atlp-grey-light");
+    margin-bottom: 9px;
+    word-break: break-all;
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+  &__time {
+    font-size: 14px;
+    font-weight: 500;
+    color: map-get($color, "atlp-grey-light");
+  }
+  &__text {
+    font-size: 10px;
+    font-weight: 500;
+    color: map-get($color, "atlp-grey-base");
+    @media (min-width: 1024px) {
+      font-size: 12px;
+    }
+  }
+  &__btn {
+    @include margin(0, 0, 0, auto);
+    height: 22px;
+  }
+}
+
+.file__info {
+  &:hover {
+    text-decoration: underline;
+    color: map-get($color, "atlp-purple-base");
+    cursor: pointer;
+  }
+}

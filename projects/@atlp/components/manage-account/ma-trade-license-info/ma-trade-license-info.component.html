@@ -1,0 +1,582 @@
+<div
+  class="drawer-wrap josoor-drawer"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{
+          "Manage_Company.TRADE_LICENSE_INFORMATION" | translate
+        }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="drawer-body">
+        <div [formGroup]="form">
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <span class="ucid-title"
+              >{{ "Manage_Company.UCID" | translate }} :
+              {{ form.get("ucid").value }}</span
+            >
+          </div>
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseIssuingCountry').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="licenseIssuingCountry" class="field-label">{{
+                "Manage_Company.License_Issuing_Country" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="licenseIssuingCountry"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of countiresList"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseIssuingEmirates').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="licenseIssuingEmirates" class="field-label">{{
+                "Manage_Company.License_Issuing_Emirate" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="licenseIssuingEmirates"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of licenseIssuingEmiratesList"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseIssuingAuthority').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="licenseIssuingAuthority" class="field-label">{{
+                "Manage_Company.License_Issusing_Authority" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="licenseIssuingAuthority"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of licenseIssuingAuthorityList"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="row"
+            >
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="[
+                  form.disabled || form.get('licenseNo').disabled
+                    ? 'disabled'
+                    : '',
+                  !showDEDRetrievalBtn() ? 'w-100-p' : ''
+                ]"
+              >
+                <label for="licenseNo" class="field-label">{{
+                  "Manage_Company.License" | translate
+                }}</label>
+                <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                  <div
+                    fxFlex="100%"
+                    fxFlex.xs="100%"
+                    fxFlex.gt-xs="100%"
+                    fxFlex.gt-sm="100%"
+                    fxFlex.gt-md="100%"
+                    fxFlex.gt-lg="100%"
+                  >
+                    <div
+                      class="field-input-wrap input-group"
+                      fxLayout="row nowrap"
+                    >
+                      <input
+                        type="text"
+                        formControlName="licenseNo"
+                        id="licenseNo"
+                        placeholder="{{
+                          'Manage_Company.ENTER_LICENSE' | translate
+                        }}"
+                        aria-describedby="licenseNo"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- &nbsp;&nbsp; -->
+              <span
+                class="input-group-addon"
+                style="align-self: center; margin-top: 10px"
+              >
+                <button
+                  type="button"
+                  class="btn"
+                  mat-raised-button
+                  color="primary"
+                  (click)="retrieveTradeLicense()"
+                  *ngIf="showDEDRetrievalBtn() || form.disabled"
+                  [disabled]="isRetrievedFormDED || form.disabled"
+                >
+                  Retrieve
+                </button>
+              </span>
+            </div>
+
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseIssuingDate').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label
+                for="licenseIssuingDate"
+                class="field-label fieldrequired"
+                >{{ "Manage_Company.License_Issue_Date" | translate }}</label
+              >
+              <div class="field-input-wrap" id="myDatepicker1">
+                <input
+                  [matDatepicker]="picker1"
+                  (focus)="picker1.open()"
+                  readonly
+                  type="text"
+                  formControlName="licenseIssuingDate"
+                  placeholder="{{ 'Manage_Company.SELECT_DATE' | translate }}"
+                />
+                <mat-icon
+                  *ngIf="form.get('licenseIssuingDate').value"
+                  class="datepicker-clearbtn"
+                  svgIcon="close-white-icon"
+                  (click)="clearDate($event, 'licenseIssuingDate')"
+                ></mat-icon>
+                <mat-icon
+                  svgIcon="data-icon"
+                  aria-hidden="false"
+                  (click)="picker1.open()"
+                ></mat-icon>
+              </div>
+              <mat-datepicker #picker1></mat-datepicker>
+              <atlp-validation-message
+                [theForm]="form"
+                field="licenseIssuingDate"
+              ></atlp-validation-message>
+              <div
+                class="error-wrap"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                *ngIf="
+                  form?.get('licenseIssuingDate')?.errors
+                    ?.licenseIssuingDateError
+                "
+              >
+                <span class="error-text"
+                  >Trade License issue date must be before expiry / today's
+                  date</span
+                >
+              </div>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseExpiryDate').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label
+                for="licenseExpiryDate"
+                class="field-label fieldrequired"
+                >{{ "Manage_Company.License_Expiry_Date" | translate }}</label
+              >
+              <div class="field-input-wrap" id="myDatepicker2">
+                <input
+                  [matDatepicker]="picker2"
+                  (focus)="picker2.open()"
+                  readonly
+                  type="text"
+                  formControlName="licenseExpiryDate"
+                  placeholder="{{ 'Manage_Company.SELECT_DATE' | translate }}"
+                />
+                <mat-icon
+                  *ngIf="form.get('licenseExpiryDate').value"
+                  class="datepicker-clearbtn"
+                  svgIcon="close-white-icon"
+                  (click)="clearDate($event, 'licenseExpiryDate')"
+                ></mat-icon>
+                <mat-icon
+                  svgIcon="data-icon"
+                  aria-hidden="false"
+                  (click)="picker2.open()"
+                ></mat-icon>
+              </div>
+              <mat-datepicker #picker2></mat-datepicker>
+              <atlp-validation-message
+                [theForm]="form"
+                field="licenseExpiryDate"
+              ></atlp-validation-message>
+
+              <div
+                class="error-wrap"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                *ngIf="
+                  form?.get('licenseExpiryDate')?.errors?.licenseExpiryDateError
+                "
+              >
+                <span class="error-text">Trade License is expired !</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <ng-container formGroupName="tradeName">
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="
+                  form.disabled || tradeName.get('en-US').disabled
+                    ? 'disabled'
+                    : ''
+                "
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+              >
+                <label for="en-US" class="field-label">{{
+                  "Manage_Company.Trade_Name_EN" | translate
+                }}</label>
+                <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                  <div
+                    fxFlex="100%"
+                    fxFlex.xs="100%"
+                    fxFlex.gt-xs="100%"
+                    fxFlex.gt-sm="100%"
+                    fxFlex.gt-md="100%"
+                    fxFlex.gt-lg="100%"
+                  >
+                    <input
+                      formControlName="en-US"
+                      id="en-US"
+                      placeholder="{{
+                        'Manage_Company.ENTER_TRADE_NAME_EN' | translate
+                      }}"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="
+                  form.disabled || tradeName.get('ar-AE').disabled
+                    ? 'disabled'
+                    : ''
+                "
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="32%"
+                fxLayout="column"
+              >
+                <label for="ar-AE" class="field-label">{{
+                  "Manage_Company.Trade_Name_AR" | translate
+                }}</label>
+                <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                  <div
+                    fxFlex="100%"
+                    fxFlex.xs="100%"
+                    fxFlex.gt-xs="100%"
+                    fxFlex.gt-sm="100%"
+                    fxFlex.gt-md="100%"
+                    fxFlex.gt-lg="100%"
+                  >
+                    <input
+                      formControlName="ar-AE"
+                      id="ar-AE"
+                      placeholder="{{
+                        'Manage_Company.ENTER_TRADE_NAME_AR' | translate
+                      }}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseType').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="licenseType" class="field-label">{{
+                "Manage_Company.License_Type" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="licenseType"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of licenseTypeList"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('establishmentType').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="establishmentType" class="field-label">{{
+                "Manage_Company.Establishment_Type" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="establishmentType"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of establishmentTypeList"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('activities').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="activities" class="field-label">{{
+                "Manage_Company.Activities" | translate
+              }}</label>
+              <mg-paginated-dropdown
+                [items]="activityList"
+                formControlName="activities"
+                (onScrollEnd)="loadMoreActvities($event)"
+                (onSearch)="searchActivities($event)"
+                [selectedValues]="selectedActivities"
+              >
+              </mg-paginated-dropdown>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="
+                form.disabled || form.get('licenseStage').disabled
+                  ? 'disabled'
+                  : ''
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="32%"
+              fxLayout="column"
+            >
+              <label for="licenseStage" class="field-label">{{
+                "Manage_Company.License_Stage" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="licenseStage"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of licenseStageList"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="upload-file-col"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-md="32%"
+              [ngClass]="form.disabled ? 'disabled' : ''"
+            >
+              <atlp-file-upload
+                [label]="'Manage_Company.Trade_License'"
+                [isRequired]="true"
+                [configData]="singleConfigData"
+                [uploadedFiles]="documentData"
+                [disabled]="form.disabled"
+                (fileUpdated)="onFileUpdated($event)"
+              ></atlp-file-upload>
+            </div>
+          </div>
+        </div>
+        <span class="drawer-percent">{{
+          "Manage_Company.Info" | translate
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    type="button"
+    class="round-close-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="toggleV2SidebarOpen(SidebarName.mcTradeLicenseInfo)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+  <button
+    type="button"
+    class="round-btn round-submit-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onSubmit()"
+    *ngIf="!form?.disabled"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="soc-icon"></mat-icon>
+      <span class="round-btn-text">{{ "Submit" | translate }}</span>
+    </div>
+  </button>
+</div>

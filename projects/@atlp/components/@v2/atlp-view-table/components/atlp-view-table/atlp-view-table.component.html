@@ -1,0 +1,117 @@
+<fieldset [ngClass]="{ disabled: isViewMode }">
+  <table
+    mat-table
+    class="table bg atlp-mat-table-common"
+    [dataSource]="data"
+    matSort
+    (matSortChange)="sortData($event)"
+  >
+    <ng-container [matColumnDef]="column.key" *ngFor="let column of columns">
+      <ng-container *ngIf="column.canSort; else noSort">
+        <ng-container>
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header="{{ column.key }}"
+            [style.width]="column.width ? column.width : ''"
+          >
+            {{ column.translate | translate | uppercase }}
+          </th></ng-container
+        >
+      </ng-container>
+      <ng-template #noSort>
+        <ng-container *ngIf="column.key == 'select'">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.width]="column.width ? column.width : ''"
+          >
+            <mat-checkbox
+              [disabled]="isViewMode"
+              [checked]="allSelected"
+              (change)="toggleMasterSelection(); emitSelectedRows()"
+              [indeterminate]="selection.hasValue() && !allSelected"
+              [aria-label]="checkboxLabel()"
+            >
+            </mat-checkbox>
+          </th>
+        </ng-container>
+        <ng-container *ngIf="column.key == 'radio'"
+          ><th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.width]="column.width ? column.width : ''"
+          ></th
+        ></ng-container>
+        <ng-container *ngIf="column.key != 'select' && column.key != 'radio'"
+          ><th
+            mat-header-cell
+            *matHeaderCellDef
+            [style.width]="column.width ? column.width : ''"
+          >
+            <div class="mat-header-container">
+              <div class="header-cell-text">
+                {{ column.translate | translate | uppercase }}
+                <span class="header-cell-arrow"></span>
+              </div>
+              <div *ngIf="column.isFilterEnabled">
+                <input
+                  #searchInputFields
+                  type="search"
+                  class="dynamic-search-fields alwaysEnabled"
+                  (keyup)="columnSpecificSearch($event, column)"
+                />
+              </div>
+            </div></th
+        ></ng-container>
+      </ng-template>
+      <ng-container *ngIf="column.key == 'select' || column.key == 'radio'">
+        <ng-container *ngIf="column.key == 'radio'">
+          <td mat-cell *matCellDef="let element">
+            <mat-radio-button
+              [disabled]="isViewMode"
+              name="selectedRadioButtonItem"
+              [checked]="element.selected"
+              (change)="selectSingleRow(element)"
+            >
+            </mat-radio-button>
+          </td>
+        </ng-container>
+        <ng-container *ngIf="column.key == 'select'">
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox
+              [disabled]="isViewMode"
+              [checked]="selection.isSelected(element)"
+              (change)="selection.toggle(element); emitSelectedRows()"
+              [aria-label]="checkboxLabel(element)"
+            >
+            </mat-checkbox>
+          </td> </ng-container
+      ></ng-container>
+      <ng-container *ngIf="column.key != 'select' && column.key != 'radio'">
+        <td mat-cell *matCellDef="let element">
+          {{ element[column.key] | translate }}
+        </td></ng-container
+      >
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <ng-container *ngIf="this.data.length == 0">
+    <div class="empty-table" [class.bg]="invert">
+      <p class="empty-table-text">
+        <span>{{ "NoDataDisplay" | translate | uppercase }}</span>
+      </p>
+    </div></ng-container
+  >
+  <ng-container *ngIf="paginationData?.totalItemCount > 5">
+    <atlp-mat-pagination
+      (changePage)="pageChange($event)"
+      class="custom-pagination-appointments"
+      [PageSize]="paginationData?.pageSize"
+      [PageNumber]="paginationData?.pageNumber"
+      [TotalItemCount]="paginationData?.totalItemCount"
+    >
+    </atlp-mat-pagination>
+  </ng-container>
+</fieldset>

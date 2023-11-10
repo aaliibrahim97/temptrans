@@ -1,0 +1,67 @@
+<div class="Messages">
+  <div class="Message-box">
+    <!-- <mat-icon svgIcon="messages-exclamation" aria-hidden="false"></mat-icon> -->
+
+    <mat-icon
+      svgIcon="{{ config.atlpDialogRole | matIconSelector }}"
+      aria-hidden="false"
+    ></mat-icon>
+
+    <div class="message-content">
+      <h1
+        class="messagetitle"
+        *ngIf="!config.atlpConfirmationSliderDialogData.isHtml" [innerHTML]="config.atlpConfirmationSliderDialogData.confirmationMsg | translate"
+      >
+      </h1>
+      <div
+        class="messagetitle"
+        *ngIf="config.atlpConfirmationSliderDialogData.isHtml"
+      >
+        <div
+          [innerHTML]="
+            config.atlpConfirmationSliderDialogData.confirmationMsg | safeHtml
+          "
+        ></div>
+      </div>
+    </div>
+    <div class="messages-btn-row">
+      <button
+        type="button"
+        (click)="okButtonClick()"
+        class="mat-focus-indicator mat-raised-button mr-16 mat-button-base mat-primary"
+        mat-raised-button
+        color="primary"
+      >
+        {{ config.atlpConfirmationSliderDialogData.okButtonText | translate }}
+      </button>
+      <button
+        type="button"
+        mat-button
+        (click)="cancelButtonClick()"
+        mat-raised-button
+        class="mat-focus-indicator transparent mr-16 view-charges-btn mat-button mat-button-base"
+      >
+        {{
+          config.atlpConfirmationSliderDialogData.cancelButtonText | translate
+        }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Start panel nav -->
+<!-- <div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button class="round-btn panel-btn" (click)="close(IacSidebarName.clearance)">
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="close-white-icon"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+  <div class="soc-wrap" fxLayout="column" fxLayoutAlign="end center">
+    <button class="round-btn" type="submit" (click)="confirm()">
+      <mat-icon svgIcon="soc-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </div>
+</div> -->
+<!-- End panel nav -->

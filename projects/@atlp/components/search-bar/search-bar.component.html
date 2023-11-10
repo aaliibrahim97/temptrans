@@ -1,0 +1,18 @@
+<div class="atlp-search-bar">
+  <div class="atlp-search-bar-content">
+    <label for="atlp-search-bar-input" class="atlp-search-bar-label">
+      <button mat-icon-button class="atlp-search-bar-expander">
+        <mat-icon class="search-icon" svgIcon="icon-search"></mat-icon>
+      </button>
+    </label>
+    <input
+      class="atlp-search-bar-input"
+      autocomplete="{{ autocomplete }}"
+      type="text"
+      placeholder="{{ placeholder | translate }}"
+      (input)="search($event)"
+      [(ngModel)]="searchValue"
+      fxFlex
+    />
+  </div>
+</div>

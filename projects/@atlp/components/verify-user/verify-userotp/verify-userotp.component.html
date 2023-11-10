@@ -1,0 +1,82 @@
+<div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign="none">
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "Verify_Your_OTP" | translate }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="Message-box">
+        <!-- <p class="messagesubtitle">
+              {{'Verify_Your_OTP_Sent' | translate}} {{maskedemail}}
+            </p> -->
+
+        <ngx-otp-input
+          dir="ltr"
+          #ngxotp
+          [config]="otpInputConfig"
+          (otpChange)="onOTPChange($event)"
+        ></ngx-otp-input>
+
+        <h6 class="opt-message">
+          {{ "OTP_SENT_MESSAGE" | translate }}&nbsp;{{ maskedemail }}
+        </h6>
+        <div>
+          <small class="opt-error">{{ VerifyEmailMessage }}</small>
+        </div>
+
+        <div *ngIf="OTPError">
+          <small class="opt-error">{{ "INVALID_OTP" | translate }}</small>
+        </div>
+
+        <div *ngIf="!OTPError">
+          <small class="opt-error"> {{ errorlst }}</small>
+        </div>
+
+        <div *ngIf="seconds > 0">
+          <small class="opt-resend-message"
+            >{{ "OTP_WILL_EXPIRE" | translate }}
+            {{ displayTimer(seconds) }}</small
+          >
+        </div>
+
+        <div *ngIf="seconds <= 0">
+          <small class="opt-resend-message">{{
+            "OTP_EXPIRED" | translate
+          }}</small>
+        </div>
+
+        <div class="resend-otp">
+          <button
+            (click)="onResendClick()"
+            [disabled]="seconds > 0"
+            color="primary"
+            class="ml-8"
+            type="button"
+            mat-raised-button
+          >
+            {{ "RESEND_OTP" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-close-btn"
+    (click)="toggleV2SidebarOpen(SidebarName.verifyUserOTP)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>
+
+<!-- <div>hello</div> -->

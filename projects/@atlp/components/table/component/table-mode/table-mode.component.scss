@@ -1,0 +1,325 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+@import "../table-mode/style/drag-drop/drag-and-drop.scss";
+@import "../table-mode/style/drag-drop/drop-header.scss";
+@import "../table-mode/style/drag-drop/drag-btn";
+@import "../table-mode/style/drag-drop/customize.scss";
+@import "../table-mode/style/mat-sort-custome-btn.scss";
+::ng-deep {
+  .collapse,
+  .rolled {
+    .btn-icon-status {
+      height: 18px;
+      position: relative;
+      bottom: -4px;
+      @include margin(-5px,5px,0,0);
+      .mat-icon {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        min-height: 18px;
+      }
+    }
+  }
+}
+
+/* table-mode styles start */
+.table-mode-container {
+  width: 100%;
+  overflow-x: scroll !important;
+  .header-cell-arrow {
+    position: absolute;
+    top: calc(50% + 2px);
+    @include right(10px);
+    transform: translateY(-50%);
+    border: 4px solid transparent;
+    border-top: 4px solid map-get($color, "atlp-cell-color");
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+  .mat-header-cell {
+    position: relative;
+    cursor: pointer;
+    color: map-get($color, "atlp-cell-color");
+    &:last-child {
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+  .table-menu {
+    @media (min-width: 1024px) {
+      cursor: auto;
+    }
+  }
+
+  .table-menu,
+  .mat-cell,
+  .mat-header-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mat-header-row {
+    height: 49px !important;
+    min-height: 49px !important;
+  }
+}
+
+/* Rich table start*/
+.rich {
+  background: transparent !important;
+  width: 100%;
+  @media (min-width: 1024px) {
+    // min-width: 1300px;
+  }
+  .mat-header-row {
+    background-color: map-get($color, "atlp-white");
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .mat-row {
+    margin: 0 -4px;
+    border-bottom: none !important;
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    // width: 33.33%;
+    width: 130px;
+    min-width: 130px;
+    @media (min-width: 600px) {
+      // width: 25%;
+      width: 170px;
+      min-width: 170px;
+    }
+    @media (min-width: 768px) {
+      // width: 20%;
+      width: 200px;
+      min-width: 200px;
+    }
+    @media (min-width: 1024px) {
+      @include padding-right(20px);
+      width: auto;
+      display: flex;
+    }
+  }
+
+  .mat-header-row,
+  .mat-row {
+    display: inline-flex;
+    min-width: 100%;
+  }
+  .mat-header-cell {
+    @include padding-left(28px);
+    @include padding-right(18px);
+    @media (min-width: 1024px) {
+      @include padding-right(20px);
+      font-size: 14px;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0px;
+      width: 1px;
+      height: calc(100% - 16px);
+      border-right: 1px dotted map-get($color, "atlp-header-cell-border");
+    }
+  }
+
+  .mat-cell {
+    padding: 4px;
+    position: relative;
+    &:hover {
+      .info-checkbox {
+        opacity: 1;
+      }
+    }
+    .info-checkbox {
+      opacity: 1;
+      position: absolute;
+      top: 13px;
+      right: 17px;
+      z-index: 1;
+      transition: all 0.3s ease;
+      @media (min-width: 1024px) {
+        opacity: 0;
+        top: 18px;
+        right: 19px;
+      }
+    }
+  }
+
+  .mat-checkbox {
+    margin-left: auto;
+  }
+
+  .header-cell-close {
+    position: absolute;
+    top: 55%;
+    left: 8px;
+    @include translateY(-50%);
+    cursor: pointer;
+    .mat-icon {
+      width: 14px;
+      height: 14px;
+      min-width: 14px;
+      min-height: 14px;
+    }
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .mat-column-info {
+    @media (min-width: 1024px) {
+      width: 350px !important;
+      flex: none;
+    }
+  }
+
+  .table-menu {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Collapse table start*/
+.collapse {
+  .mat-cell,
+  .mat-header-cell {
+    min-width: 140px;
+    max-width: 140px;
+    box-sizing: border-box;
+  }
+  .mat-header-row,
+  .mat-row {
+    display: inline-flex;
+    min-width: 100%;
+  }
+  .mat-table {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Rolled table start */
+// .rolled {
+//   min-width: 100%;
+//   .mat-column-customs,
+//   .mat-column-terminal,
+//   .mat-column-callRequest,
+//   .mat-column-manifest,
+//   .mat-column-discharge,
+//   .mat-column-discharge,
+//   .mat-column-loading {
+//     width: auto !important;
+//     max-width: 70px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+// }
+
+/* Collapse,rolled table start */
+.collapse,
+.rolled {
+  width: 100%;
+  @include border-radius(6px,6px,0px,0px);
+  .mat-header-row {
+    @include border-radius(6px,6px,0px,0px);
+    border: 1px solid map-get($color, "atlp-input-border");
+  }
+  .mat-row {
+    border-left: 1px solid map-get($color, "atlp-input-border");
+    border-right: 1px solid map-get($color, "atlp-input-border");
+  }
+  .mat-column-select {
+    flex: none;
+    @include padding-left(10px,!important);
+    max-width: 70px;
+    min-width: 70px;
+    width: auto !important;
+    @media (min-width: 1024px) {
+      @include padding-left(24px,!important);
+    }
+  }
+  .mat-cell,
+  .mat-header-cell {
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
+  }
+  .mat-menu-trigger {
+    @include padding-right(10px);
+  }
+
+  .btn-icon-status {
+    @include margin-right(10px);
+    top: -1px;
+  }
+  .header-cell-text,
+  .btn-icon-status {
+    position: relative;
+  }
+
+  .header-cell-close {
+    display: none;
+  }
+
+  .table-controls {
+    &.desktop-controls {
+      display: none !important;
+      @media (min-width: 1024px) {
+        display: flex !important;
+      }
+    }
+  }
+  .header-cell-arrow {
+    @include right(0px);
+  }
+}
+.rolled {
+  min-width: 100%;
+  .mat-column-customs,
+  .mat-column-terminal,
+  .mat-column-callRequest,
+  .mat-column-manifest,
+  .mat-column-discharge,
+  .mat-column-discharge,
+  .mat-column-loading {
+    width: auto !important;
+    max-width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.text-ellipsis {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.mat-column {
+  &-name,
+  &-number {
+    min-width: 120px;
+  }
+}
+
+::ng-deep {
+  .NewRow {
+    background-color: map-get($color, "atlp-violet-base") !important;
+    .mat-cell {
+      color: map-get($color, "atlp-white") !important;
+    }
+  }
+}

@@ -1,0 +1,125 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Custom color maps for Atlp
+// -----------------------------------------------------------------------------------------------------
+$atlp-white: (
+  500: white,
+  contrast: (
+    500: $dark-primary-text,
+  ),
+);
+
+$atlp-black: (
+  500: black,
+  contrast: (
+    500: $light-primary-text,
+  ),
+);
+
+$atlp-navy: (
+  50: #ececee,
+  100: #c5c6cb,
+  200: #9ea1a9,
+  300: #7d818c,
+  400: #5c616f,
+  500: #3c4252,
+  600: #353a48,
+  700: #2d323e,
+  800: #262933,
+  900: #1e2129,
+  A100: #c5c6cb,
+  A200: #9ea1a9,
+  A400: #5c616f,
+  A700: #2d323e,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+
+// Generate Atlp color classes for custom palettes
+$custom_palettes: (
+  atlp-white: $atlp-white,
+  atlp-black: $atlp-black,
+  atlp-navy: $atlp-navy,
+);
+
+@include atlp-color-classes($custom_palettes);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Typography
+// -----------------------------------------------------------------------------------------------------
+// Angular Material typography
+$typography: mat-typography-config(
+  $font-family: ADPortsGroup,
+  $title: mat-typography-level(20px, 32px, 600),
+  $body-2: mat-typography-level(14px, 24px, 600),
+  $button: mat-typography-level(14px, 14px, 600),
+  $input: mat-typography-level(16px, 1.125, 400)
+    // line-height must be unitless !!!,,,,,
+);
+
+// Setup the typography
+@include angular-material-typography($typography);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Component theming
+// -----------------------------------------------------------------------------------------------------
+
+// Import app and page component themes here to enable theming for them
+@import "projects/@atlp/lib/atlp-layout/components/header/header.theme";
+
+// Define a mixin for easier access
+@mixin components-theme($theme) {
+  // Layout components
+  @include toolbar-theme($theme);
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define the default theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$default-primary-palette: mat-palette($atlp-navy);
+$default-accent-palette: mat-palette($mat-light-blue, 600, 400, 700);
+$default-warn-palette: mat-palette($mat-red);
+
+// Create the Material theme object
+$theme: mat-light-theme(
+  $default-primary-palette,
+  $default-accent-palette,
+  $default-warn-palette
+);
+
+// Add ".theme-default" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-atlp {
+  // Create an Angular Material theme from the $theme map
+  @include angular-material-theme($theme);
+
+  // Apply the theme to the Atlp Core
+  @include atlp-core-theme($theme);
+
+  // Apply the theme to the user components
+  @include components-theme($theme);
+
+  // Generate Atlp color classes for primary, accent and warn colors
+  $palettes: (
+    primary: $default-primary-palette,
+    accent: $default-accent-palette,
+    warn: $default-warn-palette,
+  );
+
+  @include atlp-color-classes($palettes);
+}

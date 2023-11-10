@@ -1,0 +1,42 @@
+<div class="graph-selection" fxLayout="column">
+  <div class="graph-header" fxFlex="none" style="display: flex" fxLayout="row">
+    <button type="button" class="graph-icon" (click)="close()">
+      <mat-icon svgIcon="close-block" aria-hidden="false"></mat-icon>
+    </button>
+    <div class="graph-title" *ngIf="graphData?.graphTitle">
+      {{ graphData?.graphTitle }}
+    </div>
+  </div>
+  <ul class="graph-content">
+    <li class="graph-progress-bar"></li>
+    <li
+      class="graph-step"
+      *ngFor="let item of graphData?.data; let i = index"
+      [class.active]=""
+      [ngClass]="{ 'completed-steps': item.isCompleted }"
+      [class.major]="majorSteps.includes(i)"
+    >
+      <div class="graph-step-title">{{ item?.stepTitle }}</div>
+      <div class="graph-description">
+        <mat-icon [svgIcon]="item?.stepIcon" aria-hidden="false"></mat-icon>
+        <span class="graph-step-label">{{ item?.eventDate }}</span>
+      </div>
+    </li>
+  </ul>
+  <div class="graph-progress-bar-section">
+    <atlp-progress-bar
+      [value]="percentageValue"
+      [showTitleBottom]="showTitleBottom"
+      [showTitleTop]="showTitleTop"
+      [title]="showTitleBottom || showTitleTop ? percentageValue + '%' : ''"
+      mode="determinate"
+      mode="determinate"
+    ></atlp-progress-bar>
+  </div>
+  <div class="graph-footer" fxLayout="row">
+    <div class="graph-actions">
+      <ng-content selector=".graph-actions-first"></ng-content>
+      <ng-content selector=".graph-actions-last"></ng-content>
+    </div>
+  </div>
+</div>

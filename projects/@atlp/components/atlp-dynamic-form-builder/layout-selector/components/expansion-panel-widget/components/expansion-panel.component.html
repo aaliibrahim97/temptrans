@@ -1,0 +1,151 @@
+<ng-container #target></ng-container>
+<div
+  class="drawer-wrap charges clearance"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div
+    class="drawer-header"
+    fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div class="drawer-info">
+      <span class="drawer-title">{{
+        dynamicExpansionSliderConfig?.expansionPanelName | translate
+      }}</span>
+      <span class="drawer-percent"> {{ topLevelProgress | number }} % </span>
+    </div>
+    <atlp-progress-bar
+      [value]="topLevelProgress"
+      mode="determinate"
+      mode="determinate"
+    ></atlp-progress-bar>
+  </div>
+  <div class="drawer-body" atlpPerfectScrollbar cdkScrollable>
+    <fieldset class="fit-width d-block">
+      <form [formGroup]="form" #formBody class="fit-width d-block">
+        <mat-accordion
+          #sideBarAccordion="matAccordion"
+          class="example-headers-align"
+          multi
+        >
+          <ng-container
+            *ngFor="let accordionItem of accordionConfigCollection; index as i"
+          >
+            <mat-expansion-panel [expanded]="accordionItem?.expanded">
+              <mat-expansion-panel-header>
+                <mat-panel-description #matExpansionPanelDescriptionRef>
+                  <span class="panel-title">{{
+                    accordionItem?.panelTitle | translate
+                  }}</span>
+                  <span class="panel-info">{{
+                    accordionItem?.panelInfo | translate
+                  }}</span>
+                </mat-panel-description>
+                <atlp-progress-bar
+                  class="panel-small"
+                  [value]="accordionItem.progressPercentage"
+                  mode="determinate"
+                  mode="determinate"
+                ></atlp-progress-bar>
+              </mat-expansion-panel-header>
+              <dynamic-form-accordion
+                [isSubmited]="isSubmited"
+                [uniqueDynamicFormComponentId]="
+                  accordionItem.uniqueAccordionName
+                "
+                [dynamicFormConfig]="accordionItem.dynamicLayout"
+                [dynamicFieldActions]="
+                  dynamicFieldActions[accordionItem.uniqueAccordionName]
+                "
+                [parentcomponentRef]="parentcomponentRef"
+                (formInstanceCreated)="
+                  initiateChildForms($event, accordionItem.uniqueAccordionName)
+                "
+                (afterAllInstanceCreated)="afterAllInstanceCreatedEvent($event)"
+              ></dynamic-form-accordion>
+            </mat-expansion-panel>
+          </ng-container>
+        </mat-accordion>
+      </form>
+    </fieldset>
+  </div>
+  <div
+    class="validation-block responsive-error-navigator"
+    *ngIf="(errors.length > 0 || listErrors.length > 0) && isSubmited"
+  >
+    <div class="validiation-list responsive-error-navigator-child">
+      <ng-container *ngIf="errors.length > 0 && isSubmited">
+        <div class="form-control-errors">
+          <div class="error-count">{{ errors.length }}</div>
+          <div class="error-text">
+            <p>
+              {{ "FORM_CRTL_ERROR" | translate }}: {{ "ErrorMsg" | translate }}
+            </p>
+          </div>
+          <div class="error-nav error-nav-arrow">
+            <button
+              type="button"
+              (click)="scrollToInvalidControl('prev')"
+              [class.disabled]="currentErrorControl === 0"
+              [disabled]="currentErrorControl === 0"
+              class="error-btn to-top"
+            ></button>
+            <button
+              type="button"
+              (click)="scrollToInvalidControl('next')"
+              [class.disabled]="currentErrorControl === errors.length - 1"
+              [disabled]="currentErrorControl === errors.length - 1"
+              class="error-btn to-bottom"
+            ></button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="listErrors.length > 0">
+        <div class="form-control-errors">
+          <div class="error-count">{{ listErrors.length }}</div>
+          <div class="error-text">
+            <p>
+              {{ "LIST_SEC_ERROR" | translate }}: {{ "ErrorMsg" | translate }}
+            </p>
+          </div>
+          <div class="error-nav error-nav-arrow">
+            <button
+              type="button"
+              (click)="scrollToInvalidList('prev')"
+              [disabled]="currentInvalidListNum === 0"
+              [class.disabled]="currentInvalidListNum === 0"
+              class="error-btn to-top"
+            ></button>
+            <button
+              type="button"
+              (click)="scrollToInvalidList('next')"
+              [disabled]="currentInvalidListNum === errors.length - 1"
+              [class.disabled]="currentInvalidListNum === errors.length - 1"
+              class="error-btn to-bottom"
+            ></button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Start panel nav -->
+<ng-container *ngIf="dynamicExpansionSliderConfig?.actionTemplateRef">
+  <ng-template
+    [ngTemplateOutlet]="dynamicExpansionSliderConfig?.actionTemplateRef"
+    [ngTemplateOutletContext]="{
+      context: {
+        data: widgetData,
+        getParentInstance: getParentInstance.bind(this),
+        validateForms: validateForms.bind(this),
+        getFormdata: getFormdata.bind(this),
+        saveForms: saveForms.bind(this)
+      }
+    }"
+  ></ng-template>
+</ng-container>
+<!-- End panel nav -->

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.5" height="29.5" viewBox="0 0 23.5 29.5">
+  <g id="Group_158002" data-name="Group 158002" transform="translate(-33.197 -9.25)">
+    <g id="map-pin-line-fill" transform="translate(33.947 10)">
+      <path id="Path_275" data-name="Path 275" d="M60,42H53.817a33.309,33.309,0,0,0,2.937-2.969C60.186,35.085,62,30.925,62,27a11,11,0,1,0-22,0c0,3.925,1.814,8.085,5.245,12.031A33.309,33.309,0,0,0,48.182,42H42a1,1,0,0,0,0,2H60a1,1,0,0,0,0-2Z" transform="translate(-40 -16)" fill="none" stroke="#9c9ac2" stroke-width="1.5"/>
+    </g>
+    <g id="map-pin-line-fill-2" data-name="map-pin-line-fill" transform="translate(40.945 17)">
+      <path id="Path_275-2" data-name="Path 275" d="M51,23a4,4,0,0,1,4,4,8.042,8.042,0,0,1-.972,2.614A6.337,6.337,0,0,1,51,31a4,4,0,1,1,0-8Z" transform="translate(-47 -23)" fill="none" stroke="#f7bf12" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

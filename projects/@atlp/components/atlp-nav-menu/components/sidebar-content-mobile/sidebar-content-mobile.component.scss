@@ -1,0 +1,102 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.drawer-header,
+.drawer-body {
+  background-color: map-get($color, "atlp-violet-dark");
+}
+.drawer-wrap.navigation-sidebar.mobile {
+  padding: 60px 0 0 !important;
+}
+.drawer-header {
+  padding: 5px 15px;
+  justify-content: flex-end !important;
+  top: -60px;
+  height: 60px;
+}
+.panel-nav {
+  @include right(calc(100% - 33px));
+  padding: 0;
+}
+
+.panel-btn {
+  background: unset;
+  box-shadow: unset;
+}
+
+.drawer-body {
+  height: calc(100vh - 60px);
+  padding-top: 0 !important;
+}
+
+.navigation-sidebar.mobile .block-title {
+  &.one {
+    margin-bottom: 20px !important;
+  }
+}
+.list-menu-content {
+  ul {
+    li {
+      color: map-get($color, "atlp-white");
+      margin-bottom: 15px;
+      &:hover {
+        color: map-get($color, "atlp-panel-title");
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.panel-btn {
+  .small-close-btn {
+    min-height: unset !important;
+    min-width: unset !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+::ng-deep {
+  .navigation-sidebar {
+    &.mobile {
+      .mat-expansion-panel-header-description {
+        border: none !important;
+        padding: 10px 0;
+      }
+      .block-title {
+        font-size: 12px;
+        margin-bottom: 0 !important;
+        @include padding-right(25px);
+      }
+      .mat-expansion-indicator {
+        top: -5px;
+        @include right(20px);
+        &::after {
+          color: map-get($color, "atlp-panel-title") !important;
+        }
+      }
+      .mat-expansion-panel-body {
+        padding: 0 !important;
+        ul {
+          li {
+            color: map-get($color, "atlp-white");
+            margin-bottom: 15px;
+            max-width: 85%;
+            &:hover {
+              color: map-get($color, "atlp-panel-title");
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.link-text {
+  cursor: pointer;
+  // text-decoration: none;
+}

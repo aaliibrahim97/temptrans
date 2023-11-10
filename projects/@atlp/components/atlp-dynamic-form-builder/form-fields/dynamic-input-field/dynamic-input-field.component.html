@@ -1,0 +1,119 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <div class="field-wrap bg" fxLayout="row">
+    <label class="field-label" [ngClass]="{ required: field.isRequired }">
+      {{ field.label | translate }}</label
+    >
+
+    <span
+      *ngIf="field.tooltip"
+      matTooltipClass="example-tooltip-white"
+      [matTooltip]="field.tooltip"
+      matTooltipPosition="right"
+      matTooltipClass="plotTooltip"
+    >
+      <mat-icon
+        svgIcon="info-icon"
+        class="icon-position info-icon"
+        aria-hidden="false"
+      ></mat-icon>
+    </span>
+  </div>
+
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <input
+      #inputRef
+      [ngStyle]="field.props?.componentStyle"
+      class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+      [ngStyle]="field.props?.componentStyle"
+      *ngIf="field.type == 'decimal'; else elsefieldType"
+      [formControlName]="field.name"
+      [placeholder]="field.placeholder || ''"
+      type="tel"
+      [attr.maxlength]="field?.maxlength ? field?.maxlength : 500"
+      mask="separator.2"
+      thousandSeparator=","
+      [disableControl]="field.isDisabled ? true : null"
+      (keypress)="keyPressNumbers($event)"
+    />
+
+    <ng-template #elsefieldType>
+      <input
+        #inputRef
+        (keyup)="computedValue($event.target.value)"
+        class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+        [ngStyle]="field.props?.componentStyle"
+        [tabIndex]="field.tabindex || 0"
+        [formControlName]="field.name"
+        [placeholder]="field.placeholder || ''"
+        [type]="field.inputType"
+        [disableControl]="field.isDisabled ? true : null"
+        [attr.aria-describedby]="
+          fieldMetaData?.ariaDescribedby ? fieldMetaData.ariaDescribedby : null
+        "
+        [attr.maxlength]="fieldMetaData?.maxLength"
+        [attr.minlength]="fieldMetaData?.minLength"
+        [attr.pattern]="fieldMetaData?.pattern"
+        [readonly]="fieldMetaData?.readonly ? 'readonly' : null"
+        [name]="field.name"
+        [required]="fieldMetaData?.required"
+      />
+    </ng-template>
+  </div>
+  <span class="field-label"
+    ><small>{{ field.description }}</small></span
+  >
+  <ng-container *ngIf="!field.isCustomValidationMsgEnabled">
+    <div
+      class="error-wrap"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      *ngFor="let validation of field.validations"
+      ngProjectAs="mat-error"
+    >
+      <mat-icon
+        *ngIf="
+          !isValid && isDirty && group.get(field.name).hasError(validation.name)
+        "
+        svgIcon="warning-circle-fill"
+        aria-hidden="false"
+      ></mat-icon>
+      <span
+        *ngIf="
+          !isValid && isDirty && group.get(field.name).hasError(validation.name)
+        "
+        class="error-text"
+      >
+        {{ validation.message | translate }}
+      </span>
+    </div>
+  </ng-container>
+  <ng-container
+    *ngIf="field.isCustomValidationMsgEnabled && !isValid && isDirty"
+  >
+    <div
+      class="error-wrap"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      ngProjectAs="mat-error"
+    >
+      <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"></mat-icon>
+      <span class="error-text">
+        {{ formattedErrors }}
+      </span>
+    </div>
+  </ng-container>
+</div>

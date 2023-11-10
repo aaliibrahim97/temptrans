@@ -1,0 +1,354 @@
+@import "projects/@atlp/scss/atlp";
+@import "projects/@atlp/scss/variables";
+
+.width-100 {
+  width: 100%;
+}
+
+[dir="ltr"] .field-wrap {
+  margin: 0px 20px 0px 0px;
+}
+
+[dir="rtl"] .field-wrap {
+  margin: 20px 0px 0px 0px;
+}
+
+.pd-r {
+  padding-right: 11px;
+}
+
+.field-input-text-ltr {
+  margin-right: 12px !important;
+}
+
+.field-input-text-rtl {
+  margin-left: 12px !important;
+}
+
+.validationmsg {
+  font-size: 11px;
+  letter-spacing: 0px;
+  color: #fc7682;
+  line-height: 1.1;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+:host {
+  .atlp-search-bar {
+    font-size: 14px;
+
+    .mat-icon {
+      font-size: 18px;
+      min-height: 24px !important;
+      color: map-get($color, "atlp-search-color");
+    }
+
+    .atlp-search-bar-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .atlp-search-bar-collapser {
+        display: none;
+      }
+
+      .atlp-search-bar-label {
+        position: absolute;
+        top: 0;
+        left: 2px;
+        height: 33px;
+        display: block;
+        .mat-icon-button {
+          width: 33px;
+          height: 33px;
+        }
+      }
+
+      .atlp-search-bar-input {
+        padding-left: 35px;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 6px;
+        height: 32px;
+        border: 1px solid map-get($color, "atlp-grey-dark");
+        background-color: map-get($color, "atlp-white");
+        width: 100%;
+        font-size: 14px;
+        background-color: transparent;
+        color: white;
+        &::placeholder {
+          color: map-get($color, "atlp-search-color");
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+mat-cell:first-of-type,
+mat-header-cell:first-of-type,
+mat-footer-cell:first-of-type {
+  padding-left: 0px !important;
+}
+
+.ml-20 {
+  margin-left: 8px !important;
+}
+
+.mr-20 {
+  margin-right: 8px !important;
+}
+
+.empty-table {
+  padding: 16px 0;
+  border-bottom: 1px solid #000000;
+  &.bg {
+    border-bottom: 1px solid #5f5b8e;
+    .empty-table-text {
+      color: #ffffff;
+    }
+  }
+  .empty-table-text {
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0px;
+    font-size: 14px;
+    font-style: italic;
+  }
+}
+
+.empty-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #5f5b8e;
+  & > * {
+    color: #c8b6dd;
+    font-size: 14px;
+    line-height: 1;
+    display: none;
+  }
+  & > div {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4) {
+      display: block;
+    }
+    @media (min-width: 576px) {
+      &:nth-child(5) {
+        display: block;
+      }
+    }
+    @media (min-width: 768px) {
+      &:nth-child(5),
+      &:nth-child(6) {
+        display: block;
+      }
+    }
+    @media (min-width: 964px) {
+      display: block;
+    }
+  }
+}
+
+.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.title {
+  text-transform: none !important;
+}
+
+.word-break-inline-grid-cell {
+  word-break: break-all;
+  padding: 4px;
+}
+
+::ng-deep .custom-pagination-client-side .mat-paginator {
+  background: transparent !important;
+  border-bottom: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  color: #ffffff !important;
+
+  .mat-button-wrapper {
+    color: #ffffff !important;
+  }
+
+  .mat-select-arrow {
+    color: #ffffff !important;
+  }
+
+  .mat-select-value-text {
+    color: #ffffff !important;
+  }
+
+  .mat-form-field-underline {
+    background: #ffffff !important;
+  }
+}
+
+::ng-deep {
+  .search-bar-bg {
+    max-width: 292px;
+    width: 100%;
+    &.disabled {
+      opacity: 0.4;
+    }
+    .atlp-search-bar-content {
+      background-color: transparent !important;
+    }
+    .mat-icon {
+      font-size: 18px !important;
+      color: map-get($color, "atlp-white") !important;
+    }
+    input {
+      color: map-get($color, "atlp-white") !important;
+      border: 1px solid map-get($color, "atlp-purple-base") !important;
+      &::placeholder {
+        color: map-get($color, "atlp-white") !important;
+      }
+    }
+  }
+
+  .error-icon > svg {
+    width: 75% !important;
+    height: 75% !important;
+    padding-top: 4px !important;
+  }
+
+  .atlp-inline-grid-edit {
+    overflow-x: auto;
+    mat-header-row {
+      display: inline-flex;
+      mat-header-cell {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-sizing: border-box;
+      }
+    }
+    mat-row {
+      min-height: 60px !important;
+      display: inline-flex;
+      // gap: 3px;
+      &:hover {
+        background-color: #605a92 !important;
+        // padding: 1px;
+        cursor: pointer;
+      }
+    }
+    .mat-row {
+      &.selected {
+        background-color: #605a92 !important;
+      }
+    }
+
+    .inline-icon {
+      margin-right: 2px;
+    }
+  }
+}
+
+:host {
+  .atlp-search-bar {
+    font-size: 14px;
+
+    .mat-icon {
+      font-size: 18px;
+      min-height: 24px !important;
+      color: map-get($color, "atlp-search-color");
+    }
+
+    .atlp-search-bar-expander {
+      margin: 0 !important;
+    }
+
+    .atlp-search-bar-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .atlp-search-bar-collapser {
+        display: none;
+      }
+
+      .atlp-search-bar-label {
+        position: absolute;
+        top: 0;
+        //@include left(2px);
+        height: 33px;
+        display: block;
+        .mat-icon-button {
+          width: 33px;
+          height: 33px;
+        }
+      }
+
+      .atlp-search-bar-input {
+        // @include padding-left(35px);
+        // max-width: 292px;
+        width: 100%;
+        border-radius: 6px;
+        height: 33px;
+        border: 1px solid map-get($color, "atlp-grey-dark");
+        background-color: map-get($color, "atlp-white");
+        width: 100%;
+        font-size: 14px;
+        background-color: transparent;
+        color: map-get($color, "atlp-search-color");
+        &::placeholder {
+          color: map-get($color, "atlp-search-color");
+          font-size: 14px;
+        }
+
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+//search bar css ends here
+
+//clear button start
+.search-input-close {
+  position: absolute;
+  top: -1px;
+  left: 85%;
+  height: 33px;
+  display: block;
+  position: absolute;
+  left: 200px;
+}
+
+.flex-content-action {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+mat-cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.file-upload-wrapper {
+  display: flex;
+  // justify-content: center;
+  width: 100%;
+}
+
+.make-center {
+  display: flex;
+  // justify-content: center;
+}

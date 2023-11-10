@@ -1,0 +1,30 @@
+<mat-select
+  disableOptionCentering
+  id="paginated-multi-select"
+  placeholder="Select"
+  i18n-placeholder="@@reg-select"
+  multiple
+  class="dropdown-select bg"
+  panelClass="panel-custom panel-pag-custom bg"
+  [(ngModel)]="selected"
+  #selectElem
+  (selectionChange)="onSelectionChange($event)"
+  (openedChange)="onOpenedChange($event)"
+>
+  <input
+    class="mg-search"
+    (keydown)="onKeyDown($event)"
+    [placeholder]="selectedLanguage == 'en' ? 'Search..' : 'بحث...'"
+    [(ngModel)]="searchValue"
+    #search
+  />
+  <!-- <ng-container *ngFor="let item of items"> -->
+  <mat-option
+    *ngFor="let item of items"
+    [value]="item.value"
+    [disabled]="disableSelect"
+  >
+    {{ item.label }}
+  </mat-option>
+  <!-- </ng-container> -->
+</mat-select>

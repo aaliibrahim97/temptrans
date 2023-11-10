@@ -1,0 +1,18 @@
+<fieldset
+  class="fieldsetEnabled"
+  [class]="fieldSetConfig?.htmlClass || ''"
+  [class.expandable]="fieldSetConfig?.expandable && !fieldSetConfig.expanded"
+  [class.expanded]="fieldSetConfig?.expandable && fieldSetConfig.expanded"
+  [disabled]="fieldSetConfig?.readonly"
+>
+  <legend
+    *ngIf="fieldSetConfig?.legend?.sectionTitle"
+    [class]="'legend ' + (fieldSetConfig?.legend?.labelHtmlClass || '')"
+    [innerHTML]="fieldSetConfig?.legend?.sectionTitle"
+    (click)="toggleExpanded()"
+  ></legend>
+  <ng-container *ngIf="fieldSetConfig?.expandable && fieldSetConfig.expanded">
+    <!-- here it's render the dynamic form -->
+    <ng-container #target></ng-container>
+  </ng-container>
+</fieldset>

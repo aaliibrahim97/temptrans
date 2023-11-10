@@ -1,0 +1,61 @@
+<div class="voyage-info">
+  <div class="voyage-info-wrap">
+    <div class="voyage-img-mob">
+      <img src="assets/images/voyage-img.png" alt="" />
+    </div>
+    <div class="voyage-info-head" fxLayout="row" fxLayoutAlign="start center">
+      <div class="voyage-info-soc-icon">
+        <mat-icon
+          *ngIf="voyageInfoData?.countMessage > 0; else notActiveMessage"
+          svgIcon="message-active-icon"
+          aria-hidden="false"
+        ></mat-icon>
+        <ng-template #notActiveMessage>
+          <mat-icon svgIcon="message-icon" aria-hidden="false"></mat-icon>
+        </ng-template>
+      </div>
+      <h2 class="voyage-info-name">{{ voyageInfoData?.title }}</h2>
+      <div class="voyage-info-status">
+        <mat-icon
+          *ngIf="voyageInfoData?.status === 'warning'"
+          svgIcon="triangle-icon"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+    </div>
+    <div
+      class="voyage-info-info-row"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <span class="voyage-info-id">{{ voyageInfoData?.id }}</span>
+      <div class="voyage-info-info" fxLayout="row" fxLayoutAlign="end center">
+        <div class="voyage-info-info-img">
+          <img
+            [src]="srcCompany(voyageInfoData?.iconCompany)"
+            [alt]="voyageInfoData?.name"
+          />
+        </div>
+        <h3 class="voyage-info-info-title">{{ voyageInfoData?.name }}</h3>
+      </div>
+    </div>
+    <div
+      class="voyage-info-row"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div
+        class="voyage-info-col"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
+        <span class="voyage-info-text">{{ voyageInfoData?.port }}</span>
+        <span class="voyage-info-text">{{ voyageInfoData?.terminal }}</span>
+      </div>
+      <div class="voyage-info-col" fxLayout="column" fxLayoutAlign="center end">
+        <span class="voyage-info-text">{{ voyageInfoData?.time }}</span>
+        <span class="voyage-info-text">{{ voyageInfoData?.date }}</span>
+      </div>
+    </div>
+  </div>
+</div>

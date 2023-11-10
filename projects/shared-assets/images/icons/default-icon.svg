@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+	<defs>
+		<style>
+			.a-def,.c-def{fill:none;}.a-def{stroke:#919ab1;stroke-width:2px;stroke-dasharray:1;}.b-def{stroke:none;}
+		</style>
+	</defs>
+	<g class="a-def" transform="translate(0 7)">
+		<ellipse class="b-def" cx="14" cy="7" rx="14" ry="7" />
+		<ellipse class="c-def" cx="14" cy="7" rx="13" ry="6" />
+	</g>
+	<g class="a-def" transform="translate(7 28) rotate(-90)">
+		<ellipse class="b-def" cx="14" cy="7" rx="14" ry="7" />
+		<ellipse class="c-def" cx="14" cy="7" rx="13" ry="6" />
+	</g>
+</svg>

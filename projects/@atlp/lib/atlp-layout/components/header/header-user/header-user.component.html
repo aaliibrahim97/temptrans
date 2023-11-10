@@ -1,0 +1,31 @@
+<div
+  class="toolbar-info"
+  fxFlex
+  fxFill
+  fxLayout="row"
+  fxLayoutAlign="end center"
+>
+  <user-manual class="btn-usermanual" *ngIf="hasUserManual"></user-manual>
+  <button
+    mat-button
+    class="btn-usermanual"
+    *ngIf="showFAQ"
+    (click)="navigateTo('faq')"
+  >
+    <mat-icon
+      svgIcon="question"
+      title="{{ 'FAQ' | translate }}"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+  <app-notifications
+    *ngIf="userDataFromToken"
+    class="btn-usermanual"
+    [isSetting]="isSetting()"
+  ></app-notifications>
+  <atlp-avatars
+    [setUserData]="userData"
+    class="btn-usermanual"
+    [settingsAvatar]="settingsAvatar"
+  ></atlp-avatars>
+</div>

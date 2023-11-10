@@ -1,0 +1,16 @@
+#divChart {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 1024px) {
+  #borderDashChartBig {
+    min-height: 278px;
+  }
+}
+
+::ng-deep {
+  app-border-dash {
+    height: 100%;
+    display: block;
+  }
+}

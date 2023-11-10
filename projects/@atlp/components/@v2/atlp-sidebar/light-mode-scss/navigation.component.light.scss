@@ -1,0 +1,113 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.working-field {
+  .working-field-wrap {
+    background-image: linear-gradient(
+      310deg,
+      map-get($color, "atlp-white") 0%,
+      map-get($color, "light-mode-field-border") 100%
+    ) !important;
+    &:hover {
+      // background-image: linear-gradient(130deg, map-get($color, 'light-mode-body-bg' ) 0%, map-get($color, 'atlp-field-border' ) 100%) !important;
+      background-image: linear-gradient(
+        130deg,
+        #482570 0%,
+        #bc2f2c 100%
+      ) !important;
+      .working-name {
+        color: map-get($color, "atlp-white") !important;
+      }
+      .working-icon {
+        .mat-icon {
+          path,
+          rect {
+            fill: map-get($color, "atlp-white");
+          }
+        }
+      }
+    }
+  }
+
+  &.active {
+    .working-field-wrap {
+      background-image: linear-gradient(
+        130deg,
+        map-get($color, "light-mode-body-bg") 0%,
+        map-get($color, "atlp-field-border") 100%
+      ) !important;
+      background-image: linear-gradient(
+        130deg,
+        #482570 0%,
+        #bc2f2c 100%
+      ) !important;
+      background-image: linear-gradient(
+        130deg,
+        #482570 0%,
+        #bc2f2c 100%
+      ) !important;
+    }
+    .working-name {
+      color: map-get($color, "atlp-white") !important;
+    }
+    .working-icon {
+      .mat-icon {
+        path,
+        rect {
+          fill: map-get($color, "atlp-white") !important;
+        }
+      }
+    }
+  }
+  .working-name {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+}
+
+.working-list {
+  li {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+}
+.navigation-sidebar.menu {
+  .drawer-header {
+    background-color: map-get($color, "light-mode-body-bg") !important;
+  }
+  .drawer-body {
+    .btn-dashboard,
+    .mat-expansion-panel-header-description {
+      background-color: map-get($color, "atlp-white") !important;
+    }
+  }
+  .drawer-footer {
+    li a {
+      color: map-get($color, "light-mode-title") !important;
+    }
+  }
+}
+.navigation-sidebar.mobile {
+  .drawer-body {
+    background-color: map-get($color, "atlp-white") !important;
+  }
+  .list-menu-content,
+  .mat-expansion-panel-body {
+    ul li {
+      color: map-get($color, "light-mode-subtitle") !important;
+      &:hover {
+        color: map-get($color, "atlp-panel-title") !important;
+      }
+    }
+  }
+  .mat-expansion-panel-header-description {
+    background-color: map-get($color, "atlp-white") !important;
+  }
+}
+.navigation-sidebar {
+  .atlp-search-bar input {
+    background-color: map-get($color, "atlp-white") !important;
+  }
+}
+
+.working-wrap {
+  border-color: #c5d2e7 !important;
+}

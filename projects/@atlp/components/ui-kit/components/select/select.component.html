@@ -1,0 +1,154 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                type
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                default
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                disabled
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                Checkbox default
+            </div>
+            <div fxLayout="row wrap " fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox class='light-purple-select'></mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox></mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox disabled></mat-checkbox>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                Checkbox default checked
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox checked="true"></mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox checked="true" disabled></mat-checkbox>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                Checkbox default indeterminate
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox [indeterminate]="true"></mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox [indeterminate]="true" disabled></mat-checkbox>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                label checkbox
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox>Option</mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox disabled>Option</mat-checkbox>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                label checkbox checked
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox checked="true">Option</mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox checked="true" disabled>Option</mat-checkbox>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                label checkbox indeterminate
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox [indeterminate]="true">Option</mat-checkbox>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                <mat-checkbox [indeterminate]="true" disabled>Option</mat-checkbox>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                    Radio default
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla"></mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla" disabled></mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                    Radio default selected
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla2" checked="true"></mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla2" checked="true" disabled></mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                    label radio
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla3">Option</mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla3" disabled>Option</mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                    label radio selected
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla4" checked="true">Option</mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla4" checked="true" disabled>Option</mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div class="light-purple-select" fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="50">
+                    light purple select
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla5" checked="false">Options</mat-radio-button>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="25">
+                    <mat-radio-button value="vanilla5" checked="true">Options</mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+        <div class="select-wrap">
+            <mat-slide-toggle>Slide me!</mat-slide-toggle>
+        </div>
+    </div>
+</div>

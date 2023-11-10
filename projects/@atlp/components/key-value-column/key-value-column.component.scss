@@ -1,0 +1,18 @@
+@import "projects/@atlp/scss/variables";
+
+.header-info {
+  color: map-get($color, "atlp-purple-light");
+  font-size: 14px;
+  margin-bottom: 9px;
+  text-transform: uppercase;
+}
+
+.header-value {
+  color: map-get($color, "atlp-grey-light");
+}
+
+@media screen and (max-width: 600px) {
+  .key-value-column {
+    margin-bottom: 12px;
+  }
+}

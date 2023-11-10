@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="15" viewBox="0 0 16 15">
+  <defs>
+    <clipPath id="clip-path5">
+      <rect width="16" height="15" transform="translate(415 1760)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g transform="translate(-415 -1760)" clip-path="url(#clip-path5)">
+    <g id="Layer_2" data-name="Layer 2" transform="translate(415.5 1760)">
+      <g id="expand">
+        <rect width="15" height="15" transform="translate(15 15) rotate(180)" opacity="0"/>
+        <path d="M12.5,3.125a.625.625,0,0,0-.625-.625H8.75a.625.625,0,0,0,0,1.25h1.606L8.306,5.806a.628.628,0,1,0,.888.887L11.25,4.637V6.25a.625.625,0,0,0,1.25,0Z"/>
+        <path d="M6.694,8.306a.625.625,0,0,0-.887,0L3.75,10.356V8.75a.625.625,0,0,0-1.25,0v3.125a.625.625,0,0,0,.625.625H6.25a.625.625,0,0,0,0-1.25H4.637L6.694,9.194a.625.625,0,0,0,0-.888Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

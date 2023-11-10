@@ -1,0 +1,42 @@
+@import "projects/@atlp/scss/variables";
+div[role="listbox"].panel-custom.bg,
+.panel-custom.bg {
+  // background: map-get($color, 'atlp-violet-light' ) 0% 0% no-repeat padding-box !important;
+  background: #6f4c98;
+  border-color: #6f4c98;
+  // border: 1px solid map-get($color, 'light-mode-field-border' ) !important;
+  // .mat-option-text {
+  // color: map-get($color, 'light-mode-placeholder' ) !important;
+  // }
+}
+
+.dropdown-select.bg {
+  // border: 1px solid map-get($color, 'light-mode-field-border' );
+  .mat-select-placeholder {
+    // color: map-get($color, 'light-mode-subtitle' ) !important;
+    color: map-get($color, "light-mode-placeholder");
+  }
+}
+
+// .mat-select-arrow {
+//     border-left: 2px solid map-get($color, "light-mode-placeholder") !important;
+//     border-bottom: 2px solid map-get($color, "light-mode-placeholder") !important;
+// }
+
+.table-card-select.bg {
+  // background: map-get($color, 'atlp-white' ) !important;
+  // button {
+  //     color: map-get($color, 'light-mode-placeholder' ) !important;
+  //     &:disabled {
+  //         background-image: url('/assets/images/check-disabled.svg');
+  //     }
+  // }
+}
+
+.mat-autocomplete-panel {
+  // background: map-get($color, 'atlp-white' ) 0% 0% no-repeat padding-box !important;
+  border: 1px solid map-get($color, "light-mode-field-border");
+  // .mat-option-text span{
+  //     color: map-get($color, 'light-mode-placeholder' ) !important;
+  // }
+}

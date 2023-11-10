@@ -1,0 +1,21 @@
+<div class="step-container">
+
+    <!-- stepper -->
+    <div class="stepper-scroll scroll-wrap">
+        <div class="stepper-wrap">
+            <ng-container *ngFor="let item of stepperData">
+                <div class="step" [class.active]="item.active" [ngClass]="item.style" (click)="onClickHandler(item)">
+                    <div class="step__icon__outer">
+                        <div class="step__icon">
+                            <mat-icon [svgIcon]="item.icon" aria-hidden="false"></mat-icon>
+                        </div>
+                    </div>
+                    <div class="step__info">
+                        <span class="step__name">{{ item.name }}</span>
+                        <span class="step__date">{{ item.date }}</span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

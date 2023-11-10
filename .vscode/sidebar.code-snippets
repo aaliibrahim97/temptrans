@@ -1,0 +1,49 @@
+{
+  "form-sidebar": {
+    "prefix": ["frmsidebar", "form-sidebar"],
+    "body": [
+      "<div class='drawer-wrap' fxFlex fxLayout='column' fxLayoutAlign='none'>",
+      "<div class='drawer-wrap-container'>",
+      "<div class='drawer-header' fxLayout='row' fxLayoutAlign='space-between center'>",
+      "<div class='drawer-info'>",
+      "<span class='drawer-title' i18n='$1@@$2'>$3</span>",
+      "<atlp-progress-bar [value]='$4' mode='determinate' mode='determinate'></atlp-progress-bar>",
+      "</div>",
+      "</div>",
+      "<div class='drawer-body'>",
+      "$5",
+      "</div>",
+      "</div>",
+      "</div>",
+      "<div class='panel-nav' fxLayout='column' fxLayoutAlign='start center'>",
+      "<div class='mb-8'>",
+      "<button class='round-btn panel-btn' type='button' (click)='toggleSidebarOpen(SidebarName.FZO)'>",
+      "<mat-icon class='small-close-btn ' svgIcon='close-white-icon' aria-hidden='false'></mat-icon>",
+      "</button>",
+      "</div>",
+      "</div>"
+    ],
+    "description": "This is for creating form coulmn in the sidebar"
+  },
+  "form-section": {
+    "prefix": ["frmsection", "form-section"],
+    "body": [
+      "<mat-accordion class='example-headers-align' multi>",
+      "<mat-expansion-panel [expanded]='false'>",
+      "<mat-expansion-panel-header>",
+      "<mat-panel-description>",
+      "<span class='panel-title' i18n='@@$1'>$2</span>",
+      "</mat-panel-description>",
+      "<atlp-progress-bar [value]='40' mode='determinate' class='panel-small'>",
+      "</atlp-progress-bar>",
+      "</mat-expansion-panel-header>",
+      "<div class='panel-body'>",
+      "$3",
+      "</div>",
+      "</mat-expansion-panel>",
+      "</mat-accordion>"
+
+    ],
+    "description": "This is for sidebar section"
+  }
+}

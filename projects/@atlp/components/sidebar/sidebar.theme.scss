@@ -1,0 +1,14 @@
+@mixin atlp-sidebar-theme($background) {
+  atlp-sidebar {
+    background-color: $background;
+  }
+
+  .atlp-sidebar-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+
+    &.atlp-sidebar-overlay-invisible {
+      background-color: transparent;
+      // display: none;
+    }
+  }
+}

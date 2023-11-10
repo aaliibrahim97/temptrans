@@ -1,0 +1,367 @@
+@import "projects/@atlp/scss/mixins";
+@import "projects/@atlp/scss/atlp";
+@import "projects/@atlp/scss/variables";
+
+layout {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+
+  #main {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    min-width: 0;
+
+    // Container 1
+    > .container {
+      position: relative;
+      display: flex;
+      flex: 1 1 0%;
+      width: 100%;
+      min-height: 0;
+      min-width: 0;
+
+      // Container 2
+      > .container {
+        position: relative;
+        display: flex;
+        flex: 1 1 0%;
+        flex-direction: column;
+        min-width: 0;
+
+        // Container 3 (Scrollable)
+        > .container {
+          position: relative;
+          display: flex;
+          flex: 1 1 0%;
+          flex-direction: column;
+          overflow-x: auto;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+
+          // Content component
+          content {
+            &.inner-scroll {
+              flex: 1 1 0%;
+              min-height: 0;
+
+              > *:not(router-outlet) {
+                flex: 1 1 0%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//::ng-deep {
+.rtl {
+  text-align: right;
+
+  .desc-text {
+    color: map-get($color, "atlp-black");
+  }
+
+  button.icon .mat-icon {
+    left: -85px !important;
+  }
+
+  .toolbar-btn-text {
+    margin-right: 43px;
+  }
+}
+
+.dark-mode {
+  .page-content {
+    background: map-get($color, "atlp-dark-background") !important;
+
+    .desc-text,
+    h1 {
+      color: map-get($color, "atlp-white");
+    }
+  }
+}
+
+.z-index-1000 {
+  z-index: 1000;
+}
+
+//}
+
+.fab-container {
+  position: fixed;
+  bottom: 8px;
+  padding: 5px 0px;
+
+  &:lang(en) {
+    right: 5px;
+  }
+
+  &:lang(ar) {
+    left: 5px;
+    right: auto;
+  }
+
+  z-index: 999;
+  cursor: pointer;
+}
+
+.fab-container:hover {
+  .fab-options {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .fab-icon-holder {
+    opacity: 1;
+
+    .plus-icon {
+      transform: rotate(230deg);
+      transition: 0.3s ease;
+    }
+  }
+}
+
+.fab-icon-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  // background: map-get($color, "atlp-violet-base");
+  background: transparent linear-gradient(180deg, #a187bf 0%, #744aa5 100%) 0%
+    0% no-repeat padding-box;
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+  .plus-icon {
+    transform: rotate(0deg);
+    transition: 0.3s ease;
+  }
+}
+
+.animator {
+  animation: pulse 3s infinite;
+}
+
+// .fab-icon-holder:hover {
+//   opacity: 1;
+
+//   .plus-icon {
+//     transform: rotate(230deg);
+//     transition: 0.3s ease;
+//   }
+// }
+
+.fab-icon-holder i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  font-size: 25px;
+  color: #ffffff;
+
+  .mat-badge {
+    .mat-badge-content {
+      top: 22px !important;
+
+      &:lang(en) {
+        left: auto;
+        right: 22px !important;
+      }
+
+      &:lang(ar) {
+        right: auto;
+        left: 22px !important;
+      }
+    }
+
+    &:lang(en) {
+      left: -75%;
+      right: auto;
+    }
+
+    &:lang(ar) {
+      right: -75%;
+      left: auto;
+    }
+  }
+}
+
+.fab {
+  width: 60px;
+  height: 60px;
+  // background: map-get($color, "atlp-violet-base");
+  background: transparent linear-gradient(180deg, #a187bf 0%, #744aa5 100%) 0%
+    0% no-repeat padding-box;
+  opacity: 1;
+}
+
+.fab-options {
+  list-style-type: none;
+  margin: 0;
+
+  position: absolute;
+  bottom: 70px;
+
+  &:lang(en) {
+    right: 0;
+  }
+
+  &:lang(ar) {
+    left: 0;
+  }
+
+  opacity: 0;
+
+  transition: all 0.3s ease;
+  transform: scale(0);
+  transform-origin: 85% bottom;
+}
+
+//.fab:hover + .fab-options,
+//.fab-options:hover {
+// opacity: 1;
+// transform: scale(1);
+//}
+
+.fab-options li {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.fab-label {
+  padding: 6px 8px 3px 8px;
+  align-self: center;
+  user-select: none;
+  white-space: nowrap;
+  border-radius: 3px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: #666666;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  margin-right: 8px;
+}
+
+@media (max-width: 550px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  //.fab-container {
+  // display: none;
+
+  //  .fab-options {
+  // bottom: 40px;
+  // }
+
+  // .fab {
+  //   width: 32px;
+  //   height: 32px;
+
+  //   mat-icon {
+  //     width: 16px !important;
+  //     height: 16px !important;
+  //     min-width: 16px !important;
+  //     min-height: 16px !important;
+  //   }
+  // }
+  // }
+}
+
+.border-circle-parent {
+  border: 2px solid white;
+  padding: 13px;
+  display: flex;
+  border-radius: 50%;
+}
+
+.border-circle-item {
+  border: 2px solid white;
+  padding: 8px;
+  display: flex;
+  border-radius: 50%;
+}
+
+.demo-section {
+  left: -70%;
+  top: -20px;
+
+  &:lang(ar) {
+    left: auto;
+    right: -70%;
+  }
+}
+
+.rating-badge {
+  top: -5rem;
+}
+
+.happiness-rating-badge {
+  top: -2rem !important;
+}
+
+.floating-actions {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: white;
+}
+
+::ng-deep {
+  .fab-container {
+    .mat-badge {
+      &:lang(en) {
+        left: -75% !important;
+        right: auto !important;
+      }
+
+      &:lang(ar) {
+        right: -75% !important;
+        left: auto !important;
+      }
+    }
+  }
+}
+
+.app-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100% !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+
+  .page-content {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    overflow: auto;
+  }
+}
+
+#oc-lcw-chat-button {
+  display: none !important;
+}
+
+#crmroot {
+  z-index: 10000;
+}
+.chat-opened {
+  display: block;
+}
+.chat-closed {
+  display: none;
+}

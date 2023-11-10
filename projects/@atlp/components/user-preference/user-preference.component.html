@@ -1,0 +1,80 @@
+<div class="user-pref-window-wrap-new" fxLayout="column" style="width: 100%">
+  <div class="wrapper overlay-blur dashboard-wrap">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="flex-end"
+      class="col-auto notifications-wrap pb-0"
+    >
+      <button
+        mat-buttonv
+        (click)="goBack()"
+        color="basic"
+        class="filter-btn"
+        type="button"
+      >
+        {{ "Back" | translate }}
+      </button>
+    </div>
+    <div class="dashboard-body" fxLayout="row wrap">
+      <div class="dashboard-content preference-content" fxLayout="column">
+        <themePreference #themePage></themePreference>
+        <div
+          class="dashboard-row"
+          fxLayout="column wrap"
+          fxLayoutAlign="space-between stretch"
+        >
+          <div class="card">
+            <div class="card-body">
+              <ng-container [ngTemplateOutlet]="languagePage"> </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-sidebar preference-sidebar" fxFlex>
+        <user-details></user-details>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #languagePage>
+    <div
+      class="template-container"
+      fxLayout="column wrap"
+      fxLayoutAlign="space-between"
+    >
+      <div
+        class=""
+        fxFlex="100%"
+        fxFlex.gt-xs="100%"
+        fxFlex.gt-sm="100%"
+        fxFlex.gt-md="100%"
+        fxLayout="column"
+      >
+        <div flex class="item-wrap">
+          <h5 class="card-title">{{ "Language_Preference" | translate }}</h5>
+          <ul flex class="p-0 m-0 d-flex text-center">
+            <ng-container *ngFor="let item of langList">
+              <li
+                class="card col text-center"
+                (click)="onSwitchLang(item)"
+                [ngClass]="{ 'active card-active': item.active }"
+              >
+                <div class="active-indicator" *ngIf="item?.active">
+                  <mat-icon class="inheritSize" svgIcon="pay-check"></mat-icon>
+                </div>
+
+                <figure
+                  class="card-body"
+                  style="font-size: 24px; padding: 10px 30px"
+                >
+                  {{ item.icon }}
+                </figure>
+                <a class="card-header"> {{ item.name | translate }}</a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

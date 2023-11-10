@@ -1,0 +1,395 @@
+<div class="voyage-card">
+  <ng-container [ngSwitch]="voyageCardData?.status">
+    <!-- Start approved status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.approved"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon svgIcon="approved-icon" aria-hidden="false"></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status approved">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-update">{{ voyageCardData?.update }}</span>
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End approved status -->
+    <!-- Start rejected status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.rejected"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon
+          class="medium-icon"
+          svgIcon="rejected-icon"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status rejected">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End rejected status -->
+    <!-- Start pending status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.pending"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon
+          class="medium-icon"
+          svgIcon="pending-icon"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status pending">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-text-info">{{
+          voyageCardData?.textInfo
+        }}</span>
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End pending status -->
+    <!-- Start addDl status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.addDl"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon svgIcon="addDL-icon" aria-hidden="false"></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status add">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-descr">{{ voyageCardData?.textDescr }}</span>
+      </div>
+    </div>
+    <!-- End addDl status -->
+    <!-- Start addLl status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.addLl"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon
+          class="big-icon"
+          svgIcon="addLL-icon"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status add">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-text-info">{{
+          voyageCardData?.textInfo
+        }}</span>
+        <span class="voyage-card-descr">{{ voyageCardData?.textDescr }}</span>
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End addLl status -->
+    <!-- Start addCr status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.addCr"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon
+          class="big-icon"
+          svgIcon="addLL-icon"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status add">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-text-info">{{
+          voyageCardData?.textInfo
+        }}</span>
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End addCr status -->
+    <!-- Start addMf status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.addMf"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon svgIcon="addDL-icon" aria-hidden="false"></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status add">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-descr">{{ voyageCardData?.textDescr }}</span>
+      </div>
+    </div>
+    <!-- End addMf status -->
+    <!-- Start blocked status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.blocked"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon svgIcon="minus-icon" aria-hidden="false"></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status rejected">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End blocked status -->
+    <!-- Start added status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.added"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon svgIcon="added-icon" aria-hidden="false"></mat-icon>
+      </div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status added">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      >
+        <span class="voyage-card-time">{{ voyageCardData?.time }}</span>
+        <span class="voyage-card-date">{{ voyageCardData?.date }}</span>
+      </div>
+    </div>
+    <!-- End added status -->
+    <!-- Start na status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchCase="CardStatus.na"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      ></div>
+      <span *ngIf="voyageCardData?.addition" class="voyage-card-addition">{{
+        voyageCardData?.addition
+      }}</span>
+      <span
+        *ngIf="voyageCardData?.duration"
+        class="voyage-card-duration"
+        [innerHTML]="getDuration(voyageCardData?.duration)"
+      ></span>
+      <span class="voyage-card-status na">{{
+        voyageCardData?.statusText
+      }}</span>
+      <div
+        class="voyage-card-footer"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+      ></div>
+    </div>
+    <!-- End na status -->
+    <!-- Start Default status -->
+    <div
+      class="voyage-card-wrap"
+      *ngSwitchDefault
+      fxLayout="column"
+      fxLayoutAlign="start start"
+    >
+      <div
+        class="voyage-card-icon"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon
+          class="medium-icon"
+          svgIcon="default-icon"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <span class="voyage-card-id">{{ voyageCardData?.id }}</span>
+    </div>
+    <!-- Start Default status -->
+  </ng-container>
+</div>

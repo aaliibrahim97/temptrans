@@ -1,0 +1,122 @@
+<button
+  mat-button
+  [matMenuTriggerFor]="menu"
+  type="button"
+  class="avatars fallback"
+  [class]="settingsAvatar.size"
+  [class.round]="settingsAvatar.round"
+></button>
+<mat-menu #menu="matMenu" class="profileMenu">
+  <button mat-menu-item>
+    <mat-icon svgIcon="ed test" aria-hidden="false"></mat-icon>
+    <!-- <mat-icon svgIcon="profile-svg" aria-hidden="false"></mat-icon> -->
+    {{ userData.firstName }}
+    <!-- ATLPCORE-7599- -->
+    <!-- /
+    {{ userData.CompanyName }} -->
+  </button>
+  <ng-template [cdkPortalOutlet]="companyInfo$ | async"></ng-template>
+  <ng-template [cdkPortalOutlet]="companySwitch$ | async"></ng-template>
+  <button mat-menu-item (click)="swicthCompany()" *ngIf="showSwitchCompany">
+    <mat-icon svgIcon="switch-user" aria-hidden="false"></mat-icon>
+    {{ "SWITCH_COMPANY" | translate }}
+  </button>
+  <ng-template [cdkPortalOutlet]="portal$ | async"></ng-template>
+
+  <button mat-menu-item (click)="goToUrl()" *ngIf="showUM()">
+    <mat-icon svgIcon="User-management" aria-hidden="false"></mat-icon>
+    {{ "User_Management" | translate }}
+  </button>
+
+  <button
+    mat-menu-item
+    (click)="manageAccount('/manage-account/view')"
+    *ngIf="showManageAccount() && !isIndividual"
+  >
+    <mat-icon svgIcon="User-management" aria-hidden="false"></mat-icon>
+    {{ "Manage_Account" | translate }}
+  </button>
+
+  <button mat-menu-item (click)="manageAccount('/user-preference')">
+    <mat-icon svgIcon="settings icon" aria-hidden="false"></mat-icon>
+    {{ "Settings" | translate }}
+  </button>
+
+  <button mat-menu-item (click)="openIndDashboard()">
+    <mat-icon svgIcon="profile-view" aria-hidden="false"></mat-icon>
+    {{ "View_Profile" | translate }}
+  </button>
+  <button mat-menu-item (click)="logOut()">
+    <mat-icon svgIcon="logout" aria-hidden="false"></mat-icon>
+    {{ "LOGOUT" | translate }}
+  </button>
+</mat-menu>
+
+<!-- [ngSwitch]="searchRequiredAvatar" -->
+<ng-container *ngIf="false">
+  <!-- Initial -->
+  <!-- <ng-template ngSwitchCase="INITIAL">
+    <button
+      type="button"
+      class="avatars initial"
+      [class]="settingsAvatar.size"
+      [class.round]="settingsAvatar.round"
+    >
+      {{ initial }}
+    </button>
+  </ng-template> -->
+  <ng-template ngSwitchCase="INITIAL">
+    <!-- <button
+    mat-button
+    [matMenuTriggerFor]="menu"
+    type="button"
+    class="avatars initial"
+    [class]="settingsAvatar.size"
+    [class.round]="settingsAvatar.round"
+  > -->
+    <button
+      mat-button
+      [matMenuTriggerFor]="menu"
+      type="button"
+      class="avatars fallback"
+      [class]="settingsAvatar.size"
+      [class.round]="settingsAvatar.round"
+    >
+      <!-- {{ initial }} -->
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item style="cursor: none">
+        {{ userData.firstName }} /
+        {{ userData.CompanyName }}
+      </button>
+      <ng-template [cdkPortalOutlet]="portal$ | async"></ng-template>
+      <button mat-menu-item (click)="logOut()">
+        <mat-icon svgIcon="logout" aria-hidden="false"></mat-icon>
+        {{ "LOGOUT" | translate }}
+      </button>
+    </mat-menu>
+  </ng-template>
+  <!-- /Initial -->
+
+  <!-- Photo -->
+  <ng-template ngSwitchCase="PHOTO">
+    <div
+      class="avatars photo"
+      [class]="settingsAvatar.size"
+      [class.round]="settingsAvatar.round"
+    >
+      <img [src]="userData.imgUrl" alt="" />
+    </div>
+  </ng-template>
+  <!-- /Photo -->
+
+  <!-- Default -->
+  <ng-template ngSwitchDefault>
+    <div
+      class="avatars fallback"
+      [class]="settingsAvatar.size"
+      [class.round]="settingsAvatar.round"
+    ></div>
+  </ng-template>
+  <!-- /Default -->
+</ng-container>

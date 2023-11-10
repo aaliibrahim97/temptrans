@@ -1,0 +1,167 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.avatars-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  .avatars-row {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    @include border-right(1px solid map-get($color, "atlp-black"));
+    border-bottom: 1px solid map-get($color, "atlp-black");
+    &:nth-child(2n) {
+      @include border-right(none);
+      @include padding-left(20px);
+    }
+  }
+  .avatars {
+    @include margin-right(30px);
+  }
+  .descr {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.avatars {
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: block;
+  cursor: pointer;
+  text-decoration: none !important;
+  line-height: 1 !important;
+
+  &.initial {
+    line-height: 2;
+    @include text-align(center);
+    text-transform: uppercase;
+    color: map-get($color, "atlp-black");
+    background: map-get($color, "atlp-avatar-initial");
+    box-shadow: 0px 0.5px 1.5px 0px rgba(0, 0, 0, 0.16);
+    &:hover {
+      text-decoration: none !important;
+      box-shadow: 0px 0.5px 0px 3px rgba(0, 0, 0, 0.16);
+    }
+    &.tiny {
+      font-size: 10px;
+      border-radius: 4px;
+      border: 2px solid map-get($color, "atlp-white");
+    }
+
+    &.small {
+      font-size: 12px;
+      line-height: 2;
+      border-radius: 6px;
+      border: 4px solid map-get($color, "atlp-white");
+    }
+
+    &.medium {
+      font-size: 16px;
+      border-radius: 6px;
+      border: 4px solid map-get($color, "atlp-white");
+    }
+
+    &.large {
+      font-size: 20px;
+      border-radius: 6px;
+      border: 4px solid map-get($color, "atlp-white");
+    }
+  }
+
+  &.fallback {
+    background-color: map-get($color, "atlp-avatar-fallback");
+    border: 4px solid map-get($color, "atlp-white");
+    box-shadow: 0px 0.5px 1.5px rgba(0, 0, 0, 0.16);
+    background-image: url("../../images/icons/person.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    &:hover {
+      box-shadow: 0px 0.5px 0px 3px rgba(0, 0, 0, 0.16);
+    }
+  }
+
+  &.photo {
+    border-radius: 6px;
+    box-shadow: 0px 0.5px 1.5px rgba(0, 0, 0, 0.16);
+    &.tiny {
+      width: 24px;
+      height: 24px;
+      border: 1px solid map-get($color, "atlp-white");
+    }
+
+    &.small {
+      width: 32px;
+      height: 32px;
+      border: 2px solid map-get($color, "atlp-white");
+    }
+
+    &.medium {
+      width: 40px;
+      height: 40px;
+      border: 3px solid map-get($color, "atlp-white");
+    }
+
+    &.large {
+      width: 48px;
+      height: 48px;
+      border: 4px solid map-get($color, "atlp-white");
+    }
+    img {
+      border-radius: 6px;
+      overflow: hidden;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &.round {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 16px;
+    @include text-align(center);
+    line-height: 2.5;
+    color: map-get($color, "atlp-black");
+    border: 4px solid map-get($color, "atlp-white");
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 50%;
+    }
+    &.oa {
+      background-color: map-get($color, "atlp-avatar-initial");
+    }
+    &.ml {
+      background-color: map-get($color, "atlp-avatar-ml");
+    }
+    &.rh {
+      background-color: map-get($color, "atlp-avatar-rh");
+    }
+  }
+
+  &.tiny {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.small {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.medium {
+    width: 40px;
+    height: 40px;
+  }
+
+  &.large {
+    width: 48px;
+    height: 48px;
+  }
+}

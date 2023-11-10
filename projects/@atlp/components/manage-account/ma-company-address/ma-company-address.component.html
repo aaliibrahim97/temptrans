@@ -1,0 +1,618 @@
+<div
+  class="drawer-wrap josoor-drawer"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{
+          "Manage_Company.COMPANY_ADDRESS" | translate
+        }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="drawer-body" (scroll)="removeAutocompleteFocus()">
+        <div [formGroup]="form">
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <span class="ucid-title"
+              >{{ "Manage_Company.UCID" | translate }} : {{ ucid }}</span
+            >
+          </div>
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="establishmentAddress" class="field-label">{{
+                "Manage_Company.Establishment_Address" | translate
+              }}</label>
+              <div class="field-input-wrap">
+                <textarea
+                  class="textarea"
+                  formControlName="establishmentAddress"
+                  id="establishmentAddress"
+                  placeholder="{{
+                    'Manage_Company.ENTER_Establishment_Address' | translate
+                  }}"
+                ></textarea>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="establishmentAddress"
+              ></atlp-validation-message>
+            </div>
+            <div
+              class="dropdown-col bg field-wrap"
+              fxFlex="100%"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="country" class="dropdown-label fieldrequired">{{
+                "Manage_Company.Country" | translate
+              }}</label>
+              <div class="field-input-wrap">
+                <input
+                  autocomplete="off"
+                  (blur)="InputControl($event)"
+                  placeholder="Search"
+                  formControlName="country"
+                  (keyup)="filterLookup($event.target.value, 'Country')"
+                  id="country"
+                  type="text"
+                  tabindex="6"
+                  [matAutocomplete]="autoCountry"
+                  #triggerCountry="matAutocompleteTrigger"
+                  class="input-search-icon"
+                />
+                <mat-icon
+                  svgIcon="icon-search"
+                  class="search-icon-white"
+                  (click)="$event.stopPropagation(); triggerCountry.openPanel()"
+                ></mat-icon>
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  (optionSelected)="onCountryChange($event)"
+                  #autoCountry="matAutocomplete"
+                  [displayWith]="displayFunction.bind(this)"
+                  class="mat-select-panel panel-custom bg"
+                >
+                  <mat-option
+                    *ngFor="let item of filteredCountries"
+                    [value]="item.name"
+                  >
+                    {{ item.description }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="country"
+              ></atlp-validation-message>
+            </div>
+            <div
+              class="dropdown-col field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+              *ngIf="form.get('country')?.value == 'AE'; else inputCityName"
+            >
+              <label for="city" class="dropdown-label fieldrequired">{{
+                "Manage_Company.City_Name" | translate
+              }}</label>
+              <mat-select
+                #idType
+                (openedChange)="adjustMatSelectOverlay(idType)"
+                placeholder="{{ 'Select' | translate }}"
+                class="dropdown-select bg"
+                formControlName="city"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of emiratesList"
+                  [value]="item.description"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+              <atlp-validation-message
+                [theForm]="form"
+                field="city"
+              ></atlp-validation-message>
+            </div>
+            <ng-template #inputCityName>
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="30%"
+                fxLayout="column"
+              >
+                <label for="city" class="field-label fieldrequired">{{
+                  "Manage_Company.City_Name" | translate
+                }}</label>
+                <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                  <div
+                    fxFlex="100%"
+                    fxFlex.xs="100%"
+                    fxFlex.gt-xs="100%"
+                    fxFlex.gt-sm="100%"
+                    fxFlex.gt-md="100%"
+                    fxFlex.gt-lg="100%"
+                  >
+                    <input
+                      formControlName="city"
+                      id="city"
+                      placeholder="{{
+                        'Manage_Company.ENTER_CITY_NAME' | translate
+                      }}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+          <div
+            class="panel-header panel-header-border pb-20 mb-20"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between center"
+          >
+            <span class="panel-title">{{
+              "Manage_Company.Company_Location" | translate
+            }}</span>
+          </div>
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <ng-container formGroupName="tawtheeqMetaData">
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="30%"
+                fxLayout="column"
+                *ngIf="
+                  form.get('licenseIssuingEmirates').value == 'AEAUH';
+                  else areaInputField
+                "
+              >
+                <label for="area" class="field-label">{{
+                  "Manage_Company.Area" | translate
+                }}</label>
+                <mat-select
+                  #idType
+                  (openedChange)="adjustMatSelectOverlay(idType)"
+                  placeholder="{{ 'Select' | translate }}"
+                  class="dropdown-select bg"
+                  formControlName="area"
+                  panelClass="panel-custom bg"
+                  (selectionChange)="onAreaChange($event.value)"
+                >
+                  <mat-option *ngFor="let item of areaList" [value]="item.name">
+                    {{ item.description }}
+                  </mat-option>
+                </mat-select>
+              </div>
+              <ng-template #areaInputField>
+                <div
+                  class="field-wrap mb-12 bg"
+                  [ngClass]="form?.disabled ? 'disabled' : ''"
+                  fxFlex="100%"
+                  fxFlex.gt-xs="48%"
+                  fxFlex.gt-sm="48%"
+                  fxFlex.gt-md="30%"
+                  fxLayout="column"
+                >
+                  <label for="area" class="field-label">{{
+                    "Manage_Company.Area" | translate
+                  }}</label>
+                  <div
+                    class="field-input-wrap input-group"
+                    fxLayout="row nowrap"
+                  >
+                    <div
+                      fxFlex="100%"
+                      fxFlex.xs="100%"
+                      fxFlex.gt-xs="100%"
+                      fxFlex.gt-sm="100%"
+                      fxFlex.gt-md="100%"
+                      fxFlex.gt-lg="100%"
+                    >
+                      <input
+                        formControlName="area"
+                        id="area"
+                        placeholder="{{
+                          'Manage_Company.ENTER_AREA' | translate
+                        }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <div
+                class="field-wrap mb-12 bg"
+                [ngClass]="form?.disabled ? 'disabled' : ''"
+                fxFlex="100%"
+                fxFlex.gt-xs="48%"
+                fxFlex.gt-sm="48%"
+                fxFlex.gt-md="30%"
+                fxLayout="column"
+                *ngIf="
+                  form.get('licenseIssuingEmirates').value == 'AEAUH';
+                  else sectorInputField
+                "
+              >
+                <label for="sector" class="field-label">{{
+                  "Manage_Company.Sector" | translate
+                }}</label>
+                <mat-select
+                  #idType
+                  (openedChange)="adjustMatSelectOverlay(idType)"
+                  placeholder="{{ 'Select' | translate }}"
+                  class="dropdown-select bg"
+                  formControlName="sector"
+                  panelClass="panel-custom bg"
+                >
+                  <mat-option
+                    *ngFor="let item of sectorList"
+                    [value]="item.name"
+                  >
+                    {{ item.description }}
+                  </mat-option>
+                </mat-select>
+              </div>
+              <ng-template #sectorInputField>
+                <div
+                  class="field-wrap mb-12 bg"
+                  [ngClass]="form?.disabled ? 'disabled' : ''"
+                  fxFlex="100%"
+                  fxFlex.gt-xs="48%"
+                  fxFlex.gt-sm="48%"
+                  fxFlex.gt-md="30%"
+                  fxLayout="column"
+                >
+                  <label for="sector" class="field-label">{{
+                    "Manage_Company.Sector" | translate
+                  }}</label>
+                  <div
+                    class="field-input-wrap input-group"
+                    fxLayout="row nowrap"
+                  >
+                    <div
+                      fxFlex="100%"
+                      fxFlex.xs="100%"
+                      fxFlex.gt-xs="100%"
+                      fxFlex.gt-sm="100%"
+                      fxFlex.gt-md="100%"
+                      fxFlex.gt-lg="100%"
+                    >
+                      <input
+                        formControlName="sector"
+                        id="sector"
+                        placeholder="{{
+                          'Manage_Company.ENTER_SECTOR' | translate
+                        }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-container>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="buildingNumber" class="field-label">{{
+                "Manage_Company.Building_No" | translate
+              }}</label>
+              <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                <div
+                  fxFlex="100%"
+                  fxFlex.xs="100%"
+                  fxFlex.gt-xs="100%"
+                  fxFlex.gt-sm="100%"
+                  fxFlex.gt-md="100%"
+                  fxFlex.gt-lg="100%"
+                >
+                  <input
+                    formControlName="buildingNumber"
+                    id="buildingNumber"
+                    placeholder="{{
+                      'Manage_Company.ENTER_BUILDING_NO' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="buildingNumber"
+              ></atlp-validation-message>
+            </div>
+          </div>
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="streetAddress" class="field-label fieldrequired">{{
+                "Manage_Company.Street_Address" | translate
+              }}</label>
+              <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                <div
+                  fxFlex="100%"
+                  fxFlex.xs="100%"
+                  fxFlex.gt-xs="100%"
+                  fxFlex.gt-sm="100%"
+                  fxFlex.gt-md="100%"
+                  fxFlex.gt-lg="100%"
+                >
+                  <input
+                    formControlName="streetAddress"
+                    id="streetAddress"
+                    placeholder="{{
+                      'Manage_Company.ENTER_STREET_ADDRESS' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="streetAddress"
+              ></atlp-validation-message>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="poBox" class="field-label">{{
+                "Manage_Company.PO_Box" | translate
+              }}</label>
+              <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                <div
+                  fxFlex="100%"
+                  fxFlex.xs="100%"
+                  fxFlex.gt-xs="100%"
+                  fxFlex.gt-sm="100%"
+                  fxFlex.gt-md="100%"
+                  fxFlex.gt-lg="100%"
+                >
+                  <input
+                    formControlName="poBox"
+                    id="poBox"
+                    placeholder="{{
+                      'Manage_Company.ENTER_PO_BOX' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="poBox"
+              ></atlp-validation-message>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="streetAddress" class="field-label fieldrequired">{{
+                "Manage_Company.Office_Landline" | translate
+              }}</label>
+              <div class="field-input-wrap">
+                <div fxFlex="100%">
+                  <mat-form-field class="tel-input tel-input-uae">
+                    <ngx-mat-intl-tel-input
+                      [onlyCountries]="onlyCountry"
+                      [preferredCountries]="preferredCountry"
+                      enableSearch="true"
+                      enablePlaceholder="true"
+                      [dir]="selectedLanguage == 'en' ? 'ltr' : 'rtl'"
+                      [searchPlaceholder]="
+                        selectedLanguage == 'en' ? 'Search ...' : 'بحث ...'
+                      "
+                      name="phoneNo"
+                      formControlName="phoneNo"
+                      (countryChanged)="mobileNocountryChange($event, phoneNo)"
+                      #phoneNo
+                    >
+                    </ngx-mat-intl-tel-input>
+                  </mat-form-field>
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="phoneNo"
+              ></atlp-validation-message>
+            </div>
+          </div>
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="email" class="field-label fieldrequired">{{
+                "Manage_Company.Company_Email" | translate
+              }}</label>
+              <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                <div
+                  fxFlex="100%"
+                  fxFlex.xs="100%"
+                  fxFlex.gt-xs="100%"
+                  fxFlex.gt-sm="100%"
+                  fxFlex.gt-md="100%"
+                  fxFlex.gt-lg="100%"
+                >
+                  <input
+                    formControlName="email"
+                    id="email"
+                    placeholder="{{
+                      'Manage_Company.ENTER_COMPANY_EMAIL' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="email"
+              ></atlp-validation-message>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            >
+              <label for="website" class="field-label">{{
+                "Manage_Company.Company_Website" | translate
+              }}</label>
+              <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                <div
+                  fxFlex="100%"
+                  fxFlex.xs="100%"
+                  fxFlex.gt-xs="100%"
+                  fxFlex.gt-sm="100%"
+                  fxFlex.gt-md="100%"
+                  fxFlex.gt-lg="100%"
+                >
+                  <input
+                    formControlName="website"
+                    id="website"
+                    placeholder="{{
+                      'Manage_Company.ENTER_COMPANY_WEBSITE' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="website"
+              ></atlp-validation-message>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="30%"
+              fxLayout="column"
+            ></div>
+          </div>
+
+          <span class="drawer-percent">
+            {{ "Manage_Company.Info" | translate }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    type="button"
+    class="round-close-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="toggleV2SidebarOpen(SidebarName.mcCompanyAddress)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+
+  <button
+    type="button"
+    class="round-btn round-action-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onEdit()"
+    *ngIf="id && form?.disabled"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="edit"></mat-icon>
+      <span class="round-btn-text">{{ "Edit" | translate }}</span>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="round-btn round-submit-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onSubmit()"
+    *ngIf="!form?.disabled"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="soc-icon"></mat-icon>
+      <span class="round-btn-text">{{ "Submit" | translate }}</span>
+    </div>
+  </button>
+</div>

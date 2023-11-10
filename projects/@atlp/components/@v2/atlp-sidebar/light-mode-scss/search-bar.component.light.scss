@@ -1,0 +1,14 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+.atlp-search-bar-input {
+  color: map-get($color, "light-mode-title") !important;
+  border: 1px solid map-get($color, "light-mode-field-border") !important;
+  &::placeholder {
+    color: map-get($color, "light-mode-placeholder") !important;
+  }
+}
+.atlp-search-bar-expander {
+  mat-icon {
+    color: map-get($color, "atlp-search-color") !important;
+  }
+}

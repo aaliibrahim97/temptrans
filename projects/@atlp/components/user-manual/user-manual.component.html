@@ -1,0 +1,64 @@
+<button class="btn-usermanual mt-10" [matMenuTriggerFor]="menu">
+  <img
+    src="assets/images/icon-user-manual-purple.svg"
+    alt="User Manual"
+    class="iocn-usermanual"
+    *ngIf="publicPage; else svgIcon"
+  />
+  <ng-template #svgIcon>
+    <mat-icon
+      svgIcon="icon-user-manual"
+      title="{{ 'USER_MANUAL_SIDEBAR.TITLE' | translate }}"
+      aria-hidden="false"
+    ></mat-icon>
+  </ng-template>
+</button>
+<mat-menu #menu="matMenu" class="user-manual-mat-menu">
+  <div class="user-manual-container">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h5>{{ "USER_MANUAL_SIDEBAR.TITLE" | translate }}</h5>
+    </div>
+
+    <div class="user-manual-table-container notifications-important">
+      <div class="usermanual-table-wrap">
+        <div
+          *ngFor="let item of userManuals"
+          class="user-manual-item-container"
+        >
+          <div class="user-manual-item-icon-wrapper">
+            <img
+              src="assets/images/icon-user-manual-purple.svg"
+              alt="User Manual"
+              class="user-manual-item-img"
+              *ngIf="publicPage; else itemSvgIcon"
+            />
+            <ng-template #itemSvgIcon>
+              <mat-icon
+                class="user-manual-item-icon"
+                svgIcon="icon-user-manual"
+                aria-hidden="false"
+                matTooltip="Download"
+              ></mat-icon>
+            </ng-template>
+          </div>
+          <div class="user-manual-item-description">
+            {{ item.userManualName }}
+          </div>
+          <div class="user-manual-item-view-icon">
+            <button
+              type="button"
+              (click)="downloadUserManual(item.userManualUrl)"
+              class="user-manual-item-view-icon-button"
+            >
+              <mat-icon
+                svgIcon="icon-view-white"
+                aria-hidden="false"
+                matTooltip="Download"
+              ></mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-menu>

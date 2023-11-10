@@ -1,0 +1,41 @@
+<div class="atlp-snackbar">
+  <div fxLayout="row" class="atlp-snackbar-container">
+    <div class="atlp-snackbar-icon">
+      <mat-icon
+        svgIcon="{{
+          snakBarModelData?.snakBarInfoType | matSnakbarIconSelector
+        }}"
+        aria-hidden="false"
+      ></mat-icon>
+    </div>
+    <div class="atlp-snackbar-message" *ngIf="!snakBarModelData.isHtml">
+      <ng-container *ngIf="snakBarModelData?.msgWithIcon; else simpleMsg">
+        {{ snakBarModelData.message[0] | translate }}
+        <mat-icon
+          style="position: relative; top: 5px; padding: 2px"
+          svgIcon="error-icon"
+          aria-hidden="false"
+        ></mat-icon>
+        {{ snakBarModelData.message[1] | translate }}
+      </ng-container>
+
+      <ng-template #simpleMsg>
+        <ng-container *ngIf="snakBarModelData?.subMessage; else onlyMsg">
+          <h5>{{ snakBarModelData.message | translate }}</h5>
+          <p>{{ snakBarModelData.subMessage | translate }}</p>
+        </ng-container>
+        <ng-template #onlyMsg>
+          {{ snakBarModelData.message | translate }}
+        </ng-template>
+      </ng-template>
+    </div>
+    <div class="atlp-snackbar-message" *ngIf="snakBarModelData.isHtml">
+      <span [innerHTML]="snakBarModelData.message | safeHtml"></span>
+    </div>
+  </div>
+  <div class="atlp-snackbar-dismiss" *ngIf="snakBarModelData?.isClosed">
+    <button mat-icon-button (click)="snackBarRef.dismiss()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>

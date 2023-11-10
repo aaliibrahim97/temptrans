@@ -1,0 +1,160 @@
+<ng-container
+  *ngIf="
+    form.controls[fieldName]?.errors &&
+    (form.controls[fieldName]?.touched || isSubmited)
+  "
+>
+  <div class="error-wrap" fxLayout="row" fxLayoutAlign="start center">
+    <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"></mat-icon>
+    <span class="error-text">
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('required')"
+        class="{{ className }}"
+      >
+        {{ fieldName | translate }} {{ "IS_REQUIRED" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('minlength')"
+        class="{{ className }}"
+      >
+        {{ "BE_AT_LEAST" | translate }}
+        {{ form.controls[fieldName].errors.minlength.requiredLength }}
+        {{ "CHARACTERS" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('maxlength')"
+        class="{{ className }}"
+      >
+        {{ "YOUR" | translate }} {{ fieldName }}
+        {{ "CANNOT_EXCEED" | translate }}
+        {{ form.controls[fieldName].errors.maxlength.requiredLength }}
+        {{ "CHARACTERS" | translate }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.email"
+        class="{{ className }}"
+      >
+        {{ "PLEASE_ENTER_A_VALID_EMAIL_ADDRESS" | translate }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.pattern"
+        class="{{ className }}"
+      >
+        {{ "PLEASE_ENTER_A_VALID_PATTERN" | translate }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.unique"
+        class="{{ className }}"
+      >
+        {{
+          "DUPLICATES_VALUES_FOR_THIS_FIELDNAME_ARE_NOT_ACCEPTABLE_KINDLY_RE_ENTER"
+            | translate
+        }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('min')"
+        class="{{ className }}"
+      >
+        {{
+          "PLEASE_ENTER_A_VALID_NUMBER_WHICH_IS_HAVING_A_MINIMUM_VALUE_OF"
+            | translate
+        }}
+        {{ form.controls[fieldName].errors.min?.min }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('max')"
+        class="{{ className }}"
+      >
+        {{
+          "PLEASE_ENTER_A_VALID_NUMBER_WHICH_DOESNT_EXCEED_MAXIMUM_VALUE_OF"
+            | translate
+        }}
+        {{ form.controls[fieldName].errors.max?.max }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('CompareToDate')"
+        class="{{ className }}"
+      >
+        {{
+          "PLEASE_ENTER_A_VALID_DATE_WHICH_IS_GREATER_THAN_FROM_DATE"
+            | translate
+        }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.url"
+        class="{{ className }}"
+      >
+        {{ "YOU_MUST_INCLUDE_A_VALID_WEB_ADDRESS" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.invalidEndDate"
+        class="{{ className }}"
+      >
+        {{ "YOU_MUST_INCLUDE_A_VALID_DATE" | translate }}
+      </div>
+
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.range"
+        class="{{ className }}"
+      >
+        {{ "NUMBER_SHOULD_BE_BETWEEN_THE_VALID_RANGE" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.phone"
+        class="{{ className }}"
+      >
+        {{ "YOU_MUST_INCLUDE_A_VALID_PHONE_NUMBER" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.errors?.validatePhoneNumber"
+        class="{{ className }}"
+      >
+        {{ "YOU_MUST_INCLUDE_A_VALID_PHONE_NUMBER" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('hasNumber')"
+        class="{{ className }}"
+      >
+        {{ "CONTAINS_AT_LEAST_ONE_NUMBER" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('hasCapitalLetter')"
+        class="{{ className }}"
+      >
+        {{ "CONTAINS_AT_LEAST_ONE_CAPITAL_LETTER" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('hasSmallLetter')"
+        class="{{ className }}"
+      >
+        {{ "CONTAINS_AT_LEAST_ONE_SMALL_LETTER" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('hasSpecialCharacter')"
+        class="{{ className }}"
+      >
+        {{ "CONTAINS_AT_LEAST_ONE_SPECIAL_CHARACTER" | translate }}
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('invalidAsync')"
+        class="{{ className }}"
+      >
+        {{ "ZIPCODE_MUST_BE" | translate }}
+        <strong>{{ "VALID" | translate }}</strong>
+      </div>
+      <div
+        *ngIf="form.controls[fieldName]?.hasError('FileSizeError')"
+        class="{{ className }}"
+      >
+        {{ "FILE_SIZE_HAS_EXCEEDED_MAXIMUM_SIZE" | translate }}
+      </div>
+    </span>
+  </div>
+</ng-container>

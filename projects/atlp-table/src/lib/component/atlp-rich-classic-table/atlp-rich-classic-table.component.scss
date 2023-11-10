@@ -1,0 +1,598 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+@import "projects/atlp-table/src/lib/styles/drag-drop/drag-and-drop.scss";
+@import "projects/atlp-table/src/lib/styles/drag-drop/drop-header.scss";
+@import "projects/atlp-table/src/lib/styles/drag-drop/drag-btn";
+@import "projects/atlp-table/src/lib/styles/drag-drop/customize.scss";
+@import "projects/atlp-table/src/lib/styles/mat-sort-custom-btn.scss";
+
+::ng-deep {
+  voyage-table {
+    width: 100%;
+  }
+}
+
+.classic-table-mode {
+  .table-mode-container {
+    > .table-holder {
+      height: auto;
+      flex-grow: initial;
+      max-height: 100%;
+
+      > .mat-table {
+        border: 1px solid map-get($color, "atlp-input-border");
+        border-bottom: 0px;
+      }
+    }
+  }
+}
+
+/* table-mode styles start */
+.table-mode-container {
+  width: 100%;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+
+  > .table-holder {
+    height: calc(100% - 63px) !important;
+
+    > .mat-table {
+      max-height: 100% !important;
+      min-height: 100% !important;
+    }
+  }
+
+  > .table-pagination-holder {
+  }
+
+  .header-cell-arrow {
+    position: absolute;
+    top: calc(50% + 2px);
+    right: 10px;
+    transform: translateY(-50%);
+    border: 4px solid transparent;
+    border-top: 4px solid map-get($color, "atlp-cell-color");
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .mat-header-cell {
+    position: relative;
+    cursor: pointer;
+
+    &:last-child {
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+
+  .table-menu {
+    @media (min-width: 1024px) {
+      cursor: auto;
+    }
+  }
+
+  // .table-menu,
+  // .mat-cell,
+  // .mat-header-cell {
+  //   white-space: nowrap;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
+
+  .mat-header-row {
+    height: 56px !important;
+    min-height: 49px !important;
+  }
+}
+
+.rich-table-mode {
+  .table-mode-container {
+    .table-menu,
+    .mat-header-cell {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.classic-table-mode {
+  .table-mode-container {
+    .mat-cell,
+    .mat-header-cell {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0px 10px;
+    }
+    .table-menu {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+/* Rich table start*/
+.rich {
+  background: transparent !important;
+  width: 100%;
+
+  .milestone-wrapper {
+    padding: 0;
+
+    @media (min-width: 1024px) {
+      position: static !important;
+
+      .info-checkbox {
+        //display: none;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      position: relative !important;
+
+      .info-checkbox {
+        display: block;
+      }
+    }
+
+    // .info-checkbox {
+    //   position: absolute;
+    //   @include left(400px !important);
+    //   @media (min-width: 1024px) {
+    //     @include left(400px !important);
+    //   }
+    //   @media (min-width: 600px) {
+    //     @include left(203px !important);
+    //   }
+    //   @media (min-width: 768px) {
+    //     @include left(151px !important);
+    //   }
+    // }
+  }
+
+  @media (min-width: 1024px) {
+    // min-width: 1300px;
+  }
+
+  .mat-header-row {
+    background-color: map-get($color, "atlp-white");
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .mat-row {
+    position: relative;
+    margin: 0 -4px;
+    border-bottom: none !important;
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    // width: 33.33%;
+    width: 130px;
+
+    // min-width: 130px;
+    @media (min-width: 600px) {
+      // width: 25%;
+      width: 170px;
+      // min-width: 170px;
+    }
+
+    @media (min-width: 768px) {
+      // width: 20%;
+      width: 200px;
+      // min-width: 200px;
+    }
+
+    @media (min-width: 1024px) {
+      padding-right: 20px;
+      // width: auto;
+      display: flex;
+    }
+  }
+
+  .mat-header-row,
+  .mat-row {
+    display: inline-flex;
+    min-width: 100%;
+  }
+
+  .mat-header-cell {
+    padding-left: 28px;
+    padding-right: 18px;
+    color: map-get($color, "atlp-cell-color");
+
+    @media (min-width: 1024px) {
+      padding-right: 20px;
+      font-size: 14px;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0px;
+      width: 1px;
+      height: calc(100% - 16px);
+      border-right: 1px dotted map-get($color, "atlp-header-cell-border");
+    }
+  }
+
+  .mat-cell {
+    padding: 4px;
+    position: relative;
+
+    &:hover {
+      .info-checkbox {
+        opacity: 1;
+      }
+    }
+
+    .info-checkbox {
+      position: absolute;
+      @include right(20px);
+      top: 18px;
+      z-index: 1;
+      transition: all 0.3s ease;
+
+      // @media (min-width: 1024px) {
+      //   opacity: 1;
+
+      //   &:lang(ar) {
+      //     right: 385px;
+      //   }
+
+      //   &:lang(en) {
+      //     left: 393px;
+      //   }
+      // }
+    }
+  }
+
+  .mat-checkbox {
+    margin-left: auto;
+  }
+
+  .header-cell-close {
+    position: absolute;
+    top: 55%;
+    left: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    .mat-icon {
+      width: 14px;
+      height: 14px;
+      min-width: 14px;
+      min-height: 14px;
+    }
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .mat-column-info {
+    @media (min-width: 1024px) {
+      width: 430px !important;
+      flex: none;
+    }
+  }
+
+  .table-menu {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Collapse table start*/
+.collapse {
+  .mat-cell,
+  .mat-header-cell {
+    display: table-cell;
+    // min-width: 140px;
+    // max-width: 140px;
+    max-width: 300px;
+    box-sizing: border-box;
+    &.mat-column-select {
+      min-width: 60px !important;
+      max-width: 60px !important;
+    }
+  }
+  .mat-header-cell {
+    > div {
+      line-height: 50px;
+      display: inline-flex;
+    }
+  }
+  .mat-header-row,
+  .mat-row {
+    display: table-row;
+    min-width: 100%;
+  }
+
+  .mat-table {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Collapse,rolled table start */
+.collapse,
+.rolled {
+  width: 100%;
+  border-radius: 6px 6px 0px 0px;
+
+  .mat-header-row {
+    border-radius: 6px 6px 0px 0px;
+    // border: 1px solid map-get($color, "atlp-input-border");
+  }
+
+  .mat-row {
+    // border-left: 1px solid map-get($color, "atlp-input-border");
+    // border-right: 1px solid map-get($color, "atlp-input-border");
+    height: 56px;
+  }
+
+  .mat-column-select {
+    flex: none;
+    padding-left: 10px !important;
+    max-width: 70px;
+    min-width: 70px;
+    width: auto !important;
+
+    @media (min-width: 1024px) {
+      padding-left: 24px !important;
+    }
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    @media (min-width: 1024px) {
+      font-size: 12px;
+    }
+  }
+
+  .mat-menu-trigger {
+    padding-right: 10px;
+  }
+
+  .btn-icon-status {
+    margin-right: 10px;
+    top: -1px;
+  }
+
+  .header-cell-text,
+  .btn-icon-status {
+    position: relative;
+  }
+
+  .header-cell-close {
+    display: none;
+  }
+
+  .table-controls {
+    &.desktop-controls {
+      display: none !important;
+
+      @media (min-width: 1024px) {
+        display: flex !important;
+      }
+    }
+  }
+
+  .header-cell-arrow {
+    right: 0px;
+  }
+}
+
+.text-ellipsis {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.mat-column {
+  &-name,
+  &-number {
+    min-width: 120px;
+  }
+}
+
+.rtl .mat-menu-trigger {
+  padding-right: 0px;
+}
+
+// voyage table styles
+.voyage-table {
+  atlp-rich-table-milestone {
+    display: none !important;
+  }
+
+  atlp-rich-table-milestone {
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    bottom: -3px;
+    @include right(4px);
+    display: block !important;
+    width: calc(100% - 438px);
+
+    .voyage-info {
+      overflow: hidden;
+      max-width: 100%;
+      max-height: 100%;
+      .voyage-info-wrap {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        border: 1px solid map-get($color, "atlp-voyage-active-border");
+        background-color: map-get($color, "atlp-violet-base");
+      }
+
+      .voyage-info-name {
+        font-size: 16px;
+        color: map-get($color, "atlp-voyage-name-active");
+
+        @media (min-width: 1024px) {
+          font-size: 20px;
+        }
+      }
+
+      .voyage-info-info-title {
+        color: map-get($color, "atlp-white");
+      }
+    }
+
+    .mat-checkbox {
+      opacity: 1;
+    }
+  }
+}
+
+// mat-table.collapse {
+//   min-width: 2100px;
+// }
+
+.empty-table-row {
+  color: #0f1930;
+  text-align: center;
+  letter-spacing: 0px;
+  font-size: 14px;
+  font-style: italic;
+  display: grid;
+  place-content: center;
+  background-color: white;
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 7px 0;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 4px rgb(0 0 0 / 12%);
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+::ng-deep {
+  atlp-rich-classic-table {
+    height: 100%;
+    width: 100%;
+    display: block;
+    .rich-table-mode {
+      .mat-table {
+        .mat-row {
+          height: 180px !important;
+          min-height: 180px !important;
+
+          * {
+            &::-webkit-scrollbar {
+              width: 3px;
+            }
+
+            &::-webkit-scrollbar-track {
+              box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background-color: rgb(206, 206, 206);
+              outline: 0px solid slategrey;
+              border: 0px solid transparent;
+            }
+          }
+          .mat-cell {
+            height: 100% !important;
+            min-height: 100% !important;
+
+            .voyage-info {
+              overflow: hidden;
+              max-width: 100%;
+              max-height: 100%;
+              .voyage-info-wrap {
+                overflow-x: hidden !important;
+                overflow-y: auto !important;
+              }
+            }
+
+            > *,
+            .voyage-info,
+            .voyage-info-wrap,
+            .voyage-card,
+            .voyage-card-wrap {
+              height: 100% !important;
+              min-height: 100% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mat-table.collapse {
+  mat-header-cell,
+  mat-cell {
+    min-width: auto;
+    // min-width: 250px !important;
+  }
+}
+
+.mat-table {
+  font-size: 13px !important;
+  .mat-header-cell {
+    .table-menu {
+      position: relative;
+      overflow: visible;
+      .header-cell-arrow {
+        right: -11px;
+        left: auto;
+        &:lang(ar) {
+          left: -11px;
+          right: auto;
+        }
+      }
+    }
+    font-size: 13px !important;
+    color: map-get($color, "atlp-table-color");
+    font-weight: bold;
+  }
+  .mat-cell {
+    font-size: 13px !important;
+    color: map-get($color, "atlp-table-color");
+    font-weight: normal;
+  }
+}
+
+.voyage-card-icon {
+  display: flex !important;
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: auto;
+  mat-icon {
+    height: 16px !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    margin-right: 5px;
+  }
+  .status-icon {
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.tooltip-hover {
+  cursor: pointer;
+}

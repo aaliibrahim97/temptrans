@@ -1,0 +1,69 @@
+@import "../../../../../../scss/variables";
+@import "../../../../../../scss/mixins";
+
+.notifications-wrap {
+  padding: 25px 15px;
+  // max-width: 1330px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.notification-container {
+  height: 60vh;
+  overflow: auto;
+  // scrollbar-color: #231e42 #373068;
+  // scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(206, 206, 206);
+    outline: 0px solid slategrey;
+    border: 0px solid transparent;
+  }
+}
+
+.notification-card {
+  padding: 2.7rem !important;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.notifications-col {
+  background-color: burlywood;
+}
+
+a label {
+  cursor: pointer;
+}
+.colors {
+  max-width: 250px;
+  .item-message {
+    max-width: fit-content;
+    color: map-get($color, "atlp-white");
+    border-radius: 6px;
+    padding: 6px;
+    background-color: #26b9ef;
+    &.notice {
+      background-color: #d92836;
+    }
+    &.default {
+      background-color: #26b9ef;
+    }
+    &.success {
+      background-color: #57a05a;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="panel-body">
+  <div class="panel-row">
+    <div *ngIf="enableRenderForm">
+      <dynamic-form
+        [dynamicLayout]="dynamicFormConfig"
+        (submit)="submit($event)"
+        [isSubmited]="isSubmited"
+        [uniqueDynamicFormComponentId]="uniqueDynamicFormComponentId"
+        (formInstanceCreated)="accordionFormInstanceCreated($event)"
+        [actions]="dynamicFieldActions"
+        [parentcomponentRef]="parentcomponentRef"
+        (afterAllInstanceCreated)="afterAllInstanceCreated.emit($event)"
+      ></dynamic-form>
+    </div>
+    <!-- <div class="margin-top">
+      {{ form?.value | json }}
+    </div> -->
+  </div>
+</div>

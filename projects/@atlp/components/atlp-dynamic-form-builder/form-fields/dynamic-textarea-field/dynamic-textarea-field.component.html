@@ -1,0 +1,90 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <div class="field-wrap bg" fxLayout="row">
+    <label class="field-label" [ngClass]="{ required: field.isRequired }">
+      {{ field.label | translate }}</label
+    >
+    <span
+      *ngIf="field.tooltip"
+      matTooltipClass="example-tooltip-white"
+      [matTooltip]="field.tooltip"
+      matTooltipPosition="right"
+      matTooltipClass="plotTooltip"
+    >
+      <mat-icon
+        svgIcon="info-icon"
+        class="icon-position info-icon"
+        aria-hidden="false"
+      ></mat-icon>
+    </span>
+  </div>
+
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <textarea
+      #elementRef
+      (keyup)="computedValue($event.target.value)"
+      [ngStyle]="field.props?.componentStyle"
+      [tabIndex]="field.tabindex || 0"
+      [formControlName]="field.name"
+      class="textarea child_{{ field.key }} {{ field.inputFiledClasses }}"
+      [attr.tabindex]="field.isDisabled ? '-1' : null"
+      [placeholder]="field.placeholder || ''"
+      #inputDescription
+      [readonly]="field.isDisabled"
+      [disableControl]="field.isDisabled ? true : null"
+      [attr.aria-describedby]="fieldMetaData?.ariaDescribedby"
+      [attr.maxlength]="fieldMetaData?.maxLength || '200'"
+      [attr.minlength]="fieldMetaData?.minLength"
+      [attr.pattern]="fieldMetaData?.pattern"
+      [required]="fieldMetaData?.required"
+      [name]="field.name"
+      [readonly]="fieldMetaData?.readonly ? 'readonly' : null"
+      [rows]="fieldMetaData.textAreaRows"
+      [cols]="fieldMetaData.textAreaCols"
+    >
+    </textarea>
+    <mat-hint class="textarea-cont"
+      >{{ inputDescription.value?.length || 0 }}/{{ "Char" | translate }}
+      {{ fieldMetaData?.maxLength || "200" }}</mat-hint
+    >
+  </div>
+  <span class="field-label"
+    ><small>{{ field.description }}</small></span
+  >
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}{{ field.isDisabled }}</span
+    >
+  </div>
+</div>

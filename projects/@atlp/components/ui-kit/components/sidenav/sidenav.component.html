@@ -1,0 +1,26 @@
+<mat-drawer-container class="panel-container">
+    <mat-drawer #sideNav mode="side" opened="false" [position]="nav_position">
+        <button class="panel-btn" (click)="sideNav.toggle()">
+            <mat-icon class="small-close-btn" svgIcon="close-white-icon" aria-hidden="false"></mat-icon>
+        </button>
+        <div class="drawer-header" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="drawer-info">
+                <span class="drawer-title">Panel title</span>
+                <span class="drawer-percent">32% complete</span>
+            </div>
+            <div class="drawer-nav">
+                <button mat-raised-button color="basic">Save</button>
+                <button mat-raised-button color="basic">Submit</button>
+            </div>
+            <atlp-progress-bar></atlp-progress-bar>
+        </div>
+
+        <div class="drawer-body">
+
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <button mat-raised-button color="basic" (click)="sideNav.toggle()">Open panel</button>
+        <!-- <button (click)="onTogglePosition(nav_position)" mat-button>Toggle Position {{ nav_position }}</button> -->
+    </mat-drawer-content>
+</mat-drawer-container>

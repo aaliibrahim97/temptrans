@@ -1,0 +1,44 @@
+.mat-slide-toggle {
+  &.mat-checked {
+    .mat-slide-toggle-thumb-container {
+      transform: translate3d(9px, 0, 0) !important;
+    }
+    .mat-slide-toggle-bar {
+      border: 1px solid map-get($color, "atlp-white") !important;
+      background-color: map-get($color, "atlp-white") !important;
+    }
+  }
+  .mat-slide-toggle-content {
+    color: map-get($color, "atlp-white") !important;
+    font-weight: 700;
+  }
+  .mat-slide-toggle-ripple {
+    display: none !important;
+  }
+  .mat-slide-toggle-bar {
+    width: 24px !important;
+    height: 10px !important;
+    border: 1px solid map-get($color, "atlp-purple-base") !important;
+    border-radius: 5px !important;
+    background-color: transparent !important;
+  }
+  .mat-slide-toggle-thumb {
+    width: 16px !important;
+    height: 16px !important;
+    background-color: map-get($color, "atlp-purple-base") !important;
+  }
+  .mat-slide-toggle-thumb-container {
+    width: 16px !important;
+    height: 16px !important;
+    top: -4px !important;
+    @include left(-1px !important);
+  }
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  @include padding-right(12px);
+  color: map-get($color, "atlp-white");
+}

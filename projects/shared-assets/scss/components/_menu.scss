@@ -1,0 +1,24 @@
+.navigation-menu {
+  max-width: 350px;
+  width: 100%;
+  @media (max-width: 559.98px) {
+    max-width: 100%;
+  }
+}
+
+.navigation-menu-content {
+  max-width: 220px;
+  transform: translateX(-100%) !important;
+  @include left(340px !important);
+  @media (max-width: 559.98px) {
+    max-width: 100%;
+    @include left(0 !important);
+    z-index: 6 !important;
+  }
+  @include rtl {
+    transform: translateX(100%) !important;
+  }
+}
+.navigation-menu-content.open {
+  transform: translateX(0) !important;
+}

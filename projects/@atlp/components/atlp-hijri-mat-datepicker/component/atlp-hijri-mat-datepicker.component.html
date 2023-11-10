@@ -1,0 +1,21 @@
+<input
+  [id]="id"
+  [name]="name"
+  [placeholder]="placeholder"
+  [(ngModel)]="value"
+  type="text"
+  [matDatepicker]="pickerHijri"
+  (click)="pickerHijri.open()"
+  [max]="maxHijri"
+  [min]="minHijri"
+  [required]="required"
+  [readonly]="isReadOnly"
+  [disabled]="disabled"
+/>
+
+<mat-icon
+  svgIcon="data-icon-white"
+  aria-hidden="false"
+  (click)="pickerHijri.open()"
+></mat-icon>
+<mat-datepicker #pickerHijri></mat-datepicker>

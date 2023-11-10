@@ -1,0 +1,9 @@
+<div class="empty-table-header">
+  <div *ngFor="let col of colHeader | slice:1;">
+    {{ col.header | translate }}
+  </div>
+</div>
+
+<div class="empty-table" [class.bg]="invert">
+  <p class="empty-table-text">{{"NoDataDisplay" | translate}}</p>
+</div>

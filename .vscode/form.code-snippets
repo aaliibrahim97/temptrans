@@ -1,0 +1,50 @@
+{
+  "form-column": {
+    "prefix": ["frmCol", "form-column"],
+    "body": ["<div class='field-wrap bg' fxFlex.gt-md='$1' fxFlex='100%' fxLayout='column'>",
+      "<div class='field-wrap bg' fxLayout='row'>",
+      "<label for='$2' class='field-label'>",
+      "<span i18n='@@$2'>$3</span><span class='rejected'>*</span>",
+      "</label>",
+      "</div>",
+      "<div class='field-input-wrap' fxLayout='row'>",
+      "<input type='text' name='$2' id='$2' formControlName='$2'>",
+      "</div>",
+      "</div>"
+    ],
+    "description": "This is for creating form coulmn in the sidebar"
+  },
+  "form-row": {
+    "prefix": ["frmRow", "form-row"],
+
+    "body": ["<div fxLayout='row wrap' fxLayoutAlign='start start'>$1</div>"],
+    "description": "This is for creating a row in the form"
+  },
+  "form-validation": {
+    "prefix": ["frmValidation", "form-validation"],
+    "body": [
+      "<div class = 'error-wrap'",
+      "fxLayout = 'row'",
+      "fxLayoutAlign = 'start center' *ngIf='validateControl($1,$2)'>",
+      "<mat-icon svgIcon='warning-circle-fill'></mat-icon>",
+      "<span class ='error-text' i18n='@@Required' *ngIf='validateControl($3,$4).$5'> $6< /span>'",
+      "</div>"
+    ]
+  },
+  "form-view": {
+    "prefix": "form-view",
+    "body": [
+      "<div class='field-wrap bg $1' fxFlex.gt-md='$2%' fxFlex='100%' fxLayout='column'>",
+      "<div class='field-wrap bg' fxLayout='row'>",
+      "<label for='' class='field-label' i18n='@@$3'>",
+      "<span class='appointment-title'>$4</span>",
+      "</label>",
+      "</div>",
+      "<div class='field-input-wrap' fxLayout='row'>",
+      "<label for='' class='appointment-text'>$5</label>",
+      "</div>",
+      "</div>"
+    ],
+    "description": "this code snippet for view field in the form"
+  }
+}

@@ -1,0 +1,243 @@
+<div class="error-wrap" fxLayout="row" fxLayoutAlign="start center">
+  <span class="error-text">
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('required') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Field_Required" | translate }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('minlength') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{
+        "Min_Length_Validion_Error"
+          | translate
+            : { value: form.controls[field].errors.minlength.requiredLength }
+      }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('maxlength') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{
+        "Max_Length_Validion_Error"
+          | translate
+            : { value: form.controls[field].errors.maxlength.requiredLength }
+      }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.errors?.email && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Email_Address_Validation" | translate }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.errors?.pattern && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Valid_Pattern" | translate }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.errors?.unique && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Duplicate_Values_Validation" | translate }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('min') && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{
+        "Min_Length_Validion_Error_2"
+          | translate : { value: form.controls[field].errors.min?.min }
+      }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('max') && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{
+        "Max_Length_Validion_Error_2"
+          | translate : { value: form.controls[field].errors.max?.max }
+      }}
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('CompareToDate') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Min_Length_Validion_Error_2" | translate }}
+      Please enter a valid date which is greater than From Date .
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.errors?.url && form.controls[field].touched"
+      class="{{ className }}"
+    >
+      {{ "Valid_Web_Address" | translate }}
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.errors?.url && form.controls[field].touched"
+      class="{{ className }}"
+    >
+      {{ "Valid_Date" | translate }}
+      You must include a valid date.
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.errors?.range && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Number_Range_Validation" | translate }}
+      Number should be between 5 and 9.
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.errors?.phone && form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Invalid_Mobile_Number" | translate }}
+      Invalid mobile number.
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.errors?.validatePhoneNumber &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      {{ "Invalidphonenumber" | translate }}
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.hasError('isMatching')"
+      class="{{ className }}"
+    >
+      Passwords do not match.
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.hasError('mobileNotValid')"
+      class="{{ className }}"
+    >
+      Mobile is not registered.
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.hasError('emailNotUnique')"
+      class="{{ className }}"
+    >
+      Email is not unique.
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('hasNumber') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      Contains at least one number
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('hasCapitalLetter') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      Contains at least one capital letter
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('hasSmallLetter') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      Contains at least one small letter
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('hasSpecialCharacter') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      Contains at least one Special Character
+    </div>
+
+    <div
+      *ngIf="
+        form.controls[field]?.hasError('invalidAsync') &&
+        form.controls[field].touched
+      "
+      class="{{ className }}"
+    >
+      <span>Zipcode must be</span> <strong>valid</strong>
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.hasError('FileSizeError')"
+      class="validation-error-wrap {{ className }}"
+    >
+      <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"></mat-icon>
+      <span class="error-text">File size has exceeded maximum size</span>
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.hasError('FiletypeError')"
+      class="validation-error-wrap {{ className }}"
+    >
+      <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"></mat-icon>
+      <span class="error-text">{{ "INVALID_FILE_TYPE" | translate }}</span>
+    </div>
+
+    <div
+      *ngIf="form.controls[field]?.hasError('FileNameError')"
+      class="validation-error-wrap {{ className }}"
+    >
+      <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"></mat-icon>
+      <span class="error-text">{{ "FILE_NAME_ERROR" | translate }}</span>
+    </div>
+  </span>
+</div>

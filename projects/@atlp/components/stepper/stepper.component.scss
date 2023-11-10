@@ -1,0 +1,90 @@
+@import "projects/@atlp/scss/variables";
+
+.step-container {
+    background-color: #373069;
+    padding: 20px 5px;
+}
+
+.stepper-scroll {
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+.stepper-wrap {
+    min-width: 1037px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 44px;
+        left: 0;
+        width: 90%;
+        height: 1px;
+        background-image: linear-gradient(to right, #FFFFFF 33%, rgba(255, 255, 255, 0) 0%);
+        background-position: center;
+        background-size: 20px 1px;
+        background-repeat: repeat-x;
+    }
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    &.active {
+        .step__icon {
+            background-color: map-get($color, "atlp-purple-base");
+        }
+        .mat-icon {
+            svg {
+                path,
+                line {
+                    stroke: map-get($color, "atlp-drawer-bg");
+                }
+            }
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        height: 90px;
+        flex: none;
+        margin-bottom: 28px;
+        border-radius: 50%;
+        background-color: map-get($color, "atlp-drawer-bg");
+        border: 1px solid map-get($color, "atlp-white");
+        .mat-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            min-height: 60px;
+        }
+        .step-stroke {
+            stroke: #000000;
+        }
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__name {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: map-get($color, "atlp-purple-light");
+        width: 85%;
+    }
+    &__date {
+        font-size: 14px;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: map-get($color, "atlp-white");
+    }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16.846" height="18.957" viewBox="0 0 16.846 18.957">
+	<defs>
+		<style>
+			.c{fill:#c8b6dd;font-size:14px;font-family:MuseoSans-700, Museo Sans;font-weight:700;}
+		</style>
+	</defs>
+	<g transform="translate(-13.578 -15.521)">
+		<text class="c" transform="matrix(0.985, -0.174, 0.174, 0.985, 15.835, 29.539)">
+			<tspan x="0" y="0">
+				?
+			</tspan>
+		</text>
+		<text class="c" transform="matrix(0.985, 0.174, -0.174, 0.985, 21.272, 29.323)">
+			<tspan x="0" y="0">
+				?
+			</tspan>
+		</text>
+	</g>
+</svg>

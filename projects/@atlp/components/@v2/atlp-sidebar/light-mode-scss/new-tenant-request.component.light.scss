@@ -1,0 +1,18 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+// Inside contracted-bed component
+.contracted-bed {
+  background: map-get($color, "atlp-white");
+  border: 0.25px solid map-get($color, "light-mode-field-border") !important;
+
+  .title {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .location {
+    // color: map-get($color, "light-mode-blue");
+    color: map-get($color, "light-mode-title") !important;
+    color: map-get($color, "atlp-card-add") !important;
+  }
+}

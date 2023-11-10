@@ -1,0 +1,1390 @@
+<div fxLayout="column" [ngClass]="{ disabled: isViewMode }" class="width-100">
+  <div
+    class="table-scroll-wrap collapseoverflow width-100"
+    fxFlex="none"
+    atlpPerfectScrollbar
+  >
+    <form [formGroup]="addForm" class="width-100">
+      <div
+        *ngIf="isGlobalSearchEnabled"
+        fxLayout="row"
+        class="flex-content-action"
+      >
+        <div class="atlp-search-bar" *ngIf="!isServerSidePaginationEnabled">
+          <div class="atlp-search-bar-content">
+            <div class="shipping-table-buttons" fxLayout="row">
+              <label for="atlp-search-bar-input" class="atlp-search-bar-label">
+                <button mat-icon-button class="atlp-search-bar-expander">
+                  <mat-icon
+                    style="padding-left: 10px"
+                    class="secondary-text alwaysEnabled"
+                    (click)="search()"
+                    >search
+                  </mat-icon>
+                  <button
+                    *ngIf="searchText != ''"
+                    tabindex="-1"
+                    class="search-input-close alwaysEnabled"
+                    [ngClass]="selectedLanguage == 'ae' ? 'pd-r' : ''"
+                    mat-button
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="clearValue()"
+                    type="button"
+                  >
+                    <mat-icon class="clear-icon">clear</mat-icon>
+                  </button>
+                </button>
+              </label>
+              <input
+                class="atlp-search-bar-input ml-8 alwaysEnabled"
+                autocomplete="off"
+                type="search"
+                placeholder="{{ 'SEARCH' | translate }}"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="searchText"
+                (input)="inputSearch()"
+                fxFlex
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        fxLayout="row-reverse wrap"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0px"
+        fxLayoutGap.sm="0px"
+        *ngIf="isActionSectionEnabled"
+      >
+        <ng-content selector=".section-before"></ng-content>
+        <button
+          *ngIf="isAddNewSectionEnabled"
+          type="button"
+          [disabled]="addFormRowEnable || disableActionsBtns"
+          class="icon ml-8"
+          mat-raised-button
+          color="primary"
+          (click)="addNewRow()"
+        >
+          <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>
+          {{ "ADD_NEW" | translate }}
+        </button>
+        <ng-content selector=".section-after"></ng-content>
+      </div>
+
+      <ng-container
+        *ngIf="
+          gridDataList && gridDataList.length > 0;
+          else emptyTableInlineEdit
+        "
+      >
+        <mat-table
+          [dataSource]="dataSource"
+          class="table bg atlp-inline-grid-edit"
+        >
+          <ng-container
+            *ngFor="let col of displayColumnDefs; let y = index"
+            matColumnDef="{{ col.columnDef }}"
+          >
+            <ng-container
+              *ngIf="y === 0 && showCheckboxSelection; else simpleHead"
+            >
+              <mat-header-cell
+                *matHeaderCellDef
+                class="small-cell"
+                [style.position]="col.colProps?.sticky ? 'sticky' : 'relative'"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth || 30"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width || 40"
+                [style.maxWidth.px]="col.colProps?.maxWidth || 40"
+              >
+                <mat-checkbox
+                  (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </mat-header-cell>
+            </ng-container>
+
+            <ng-template #simpleHead>
+              <mat-header-cell
+                [style.position]="col.colProps?.sticky ? 'sticky' : 'relative'"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+                [matMenuTriggerFor]="tableMenu"
+                *matHeaderCellDef
+              >
+                <span class="header-cell-text title">
+                  {{ col.header | translate }}
+                  <span class="header-cell-arrow"></span>
+                </span>
+                <mat-menu
+                  #tableMenu="matMenu"
+                  [overlapTrigger]="false"
+                  class="table-card-select"
+                >
+                  <ng-container
+                    *ngFor="let colDefs of displayColumnDefs; let b = index"
+                  >
+                    <button
+                      *ngIf="b > 0"
+                      (click)="addColumn(col.columnDef, colDefs.columnDef)"
+                      type="button"
+                      title="{{ colDefs.header | translate }}"
+                    >
+                      {{ colDefs.header | translate }}
+                    </button>
+                  </ng-container>
+                </mat-menu>
+              </mat-header-cell>
+            </ng-template>
+
+            <ng-container *ngIf="y === 0 && showCheckboxSelection">
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                class="small-cell"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth || 30"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width || 40"
+                [style.maxWidth.px]="col.colProps?.maxWidth || 40"
+              >
+                <mat-checkbox
+                  class="voyage-info-checkbox"
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(element) : null"
+                  [checked]="selection.isSelected(element)"
+                  [aria-label]="checkboxLabel(element)"
+                >
+                </mat-checkbox>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.date"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    {{
+                      col.cell(element).statusText | date : "dd/MM/yyyy, hh:mm"
+                    }}
+                  </ng-container>
+                </ng-container>
+                <div class="field-wrap bg" *ngIf="i === selectedRowindex">
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <input
+                      formControlName="{{ col.columnDef }}"
+                      [matDatepicker]="eta"
+                      (mousedown)="eta.open(); ($event.preventDefault)"
+                      type="text"
+                      value="{{ col.cell(element).statusText }}"
+                      placeholder=""
+                    />
+                    <mat-icon svgIcon="data-icon-white" aria-hidden="false">
+                    </mat-icon>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      <mat-icon
+                        svgIcon="warning-circle-fill"
+                        class="error-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                  <mat-datepicker #eta></mat-datepicker>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.lookup"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    {{ col.cell(element).statusText }}
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg atlp-search-bar"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="atlp-search-bar-content"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                  >
+                    <atlp-input-lookup
+                      class="lookup-sidebar-padding alignMatAuto"
+                      [fxFlexValue]="100"
+                      [hasSearchButton]="true"
+                      [formControl]="addForm.controls[col.columnDef]"
+                      placeholder="{{
+                        lookupInputProps?.[col.columnDef]?.placeholder || '' | translate
+                      }}"
+                      [hasSearchButton]="
+                        lookupInputProps?.[col.columnDef]?.hasSearchButton || true
+                      "
+                      [displayItemCode]="
+                        lookupInputProps?.[col.columnDef]?.displayItemCode
+                      "
+                      [displayItemNameInEnglish]="
+                        lookupInputProps?.[col.columnDef]?.displayItemNameInEnglish
+                      "
+                      [displayItemNameInArabic]="
+                        lookupInputProps?.[col.columnDef]?.displayItemNameInArabic
+                      "
+                      name="{{ lookupInputProps?.[col.columnDef]?.name }}"
+                      [lookUpObject]="
+                        lookupInputProps?.[col.columnDef]?.lookUpObject
+                      "
+                      [isFlexEnabled]="
+                        lookupInputProps?.[col.columnDef]?.isFlexEnabled
+                      "
+                      [fxFlexValue]="
+                        lookupInputProps?.[col.columnDef]?.fxFlexValue
+                      "
+                      [isDisabled]="lookupInputProps?.[col.columnDef]?.isDisabled"
+                      [source]="lookupInputProps?.[col.columnDef]?.source"
+                      [floatLabel]="lookupInputProps?.[col.columnDef]?.floatLabel"
+                      [doPrefetch]="lookupInputProps?.[col.columnDef]?.doPrefetch"
+                      [hasProgressBar]="
+                        lookupInputProps?.[col.columnDef]?.hasProgressBar
+                      "
+                      [minChars]="lookupInputProps?.[col.columnDef]?.minChars"
+                      [clearAfterSearch]="
+                        lookupInputProps?.[col.columnDef]?.clearAfterSearch
+                      "
+                      [showAddNew]="lookupInputProps?.[col.columnDef]?.showAddNew"
+                      [addNewText]="lookupInputProps?.[col.columnDef]?.addNewText"
+                      [isFocused]="lookupInputProps?.[col.columnDef]?.isFocused"
+                      [validationErrors]="
+                        lookupInputProps?.[col.columnDef]?.validationErrors
+                      "
+                      [displayItemFn]="
+                        lookupInputProps?.[col.columnDef]?.displayItemFn
+                      "
+                      [serviceParams]="
+                        lookupInputProps?.[col.columnDef]?.serviceParams
+                      "
+                      [mapCustomData]="
+                        lookupInputProps?.[col.columnDef]?.mapCustomData
+                      "
+                      [transformResult]="
+                        lookupInputProps?.[col.columnDef]?.transformResult
+                      "
+                      [flexParentGap]="
+                        lookupInputProps?.[col.columnDef]?.flexParentGap
+                      "
+                      [isDetailsDisabled]="
+                        lookupInputProps?.[col.columnDef]?.isDetailsDisabled
+                      "
+                      [marginRightBetweenControls]="lookupInputProps?.[col.columnDef]?.marginRightBetweenControls"
+                      [marginLeftBetweenControls]="
+                        lookupInputProps[col.columnDef]
+                          ?.marginLeftBetweenControls
+                      "
+                      [isRequiredValidation]="
+                        lookupInputProps?.[col.columnDef]?.isRequiredValidation
+                      "
+                      [isInvalidObjectValidation]="
+                        lookupInputProps?.[col.columnDef]
+                          ?.isInvalidObjectValidation
+                      "
+                      [isCustomValidatorFn]="
+                        lookupInputProps?.[col.columnDef]?.isCustomValidatorFn
+                      "
+                      [minlength]="lookupInputProps?.[col.columnDef]?.minlength"
+                      [maxlength]="lookupInputProps?.[col.columnDef]?.maxlength"
+                      [customData]="lookupInputProps?.[col.columnDef]?.customData"
+                      [skipValidation]="
+                        lookupInputProps?.[col.columnDef]?.skipValidation
+                      "
+                      [inputTextType]="
+                        lookupInputProps?.[col.columnDef]?.inputTextType
+                      "
+                    >
+                    </atlp-input-lookup>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      <mat-icon
+                        svgIcon="warning-circle-fill"
+                        class="error-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.autoComplete"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    {{ col.cell(element).statusText }}
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg atlp-search-bar"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="atlp-search-bar-content"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                  >
+                    <atlp-mat-autocomplete
+                      class="alignMatAuto"
+                      [placeholder]="autocompleteProps?.[col.columnDef]?.placeholder"
+                      [hasSearchButton]="autocompleteProps?.[col.columnDef]?.hasSearchButton"
+                      [formControl]="addForm.controls[col.columnDef]"
+                      [hasProgressBar]="autocompleteProps?.[col.columnDef]?.hasProgressBar"
+                      [source]="autocompleteProps?.[col.columnDef]?.source"
+                      [minChars]="autocompleteProps?.[col.columnDef]?.minChars"
+                      [displayTemplate]="autocompleteProps?.[col.columnDef]?.itemTemplate"
+                      [isInvalidObjectValidation]="autocompleteProps?.[col.columnDef]?.isInvalidObjectValidation || true"
+                      [isRequiredValidation]="autocompleteProps?.[col.columnDef]?.isRequired || false"
+                      [displayItemCode]="autocompleteProps?.[col.columnDef]?.displayItemCode"
+                      [displayItemNameInEnglish]="
+                        autocompleteProps?.[col.columnDef]?.displayItemNameInEnglish
+                      "
+                      [displayItemNameInArabic]="
+                        autocompleteProps?.[col.columnDef]?.displayItemNameInArabic
+                      "
+                      [displayItemFn]="autocompleteProps?.[col.columnDef]?.displayItemFunc"
+                      [serviceParams]="autocompleteProps?.[col.columnDef]?.serviceParams"
+                      [doPrefetch]="autocompleteProps?.[col.columnDef]?.doPrefetch"
+                      [showAddNew]="autocompleteProps?.[col.columnDef]?.showAddNew"
+                      [isFocused]="autocompleteProps?.[col.columnDef]?.isFocused"
+                      [lookUpObject]="autocompleteProps?.[col.columnDef]?.lookUpObject"
+                      [transformResult]="autocompleteProps?.[col.columnDef]?.transformResult"
+                    >
+                    </atlp-mat-autocomplete>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      <mat-icon
+                        svgIcon="warning-circle-fill"
+                        class="error-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.number"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    {{ col.cell(element).statusText }}
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg {{ col?.className }}"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <input
+                      formControlName="{{ col.columnDef }}"
+                      type="text"
+                      (keypress)="keyPressNumbers($event)"
+                      maxlength="{{ col.validations.maxLength }}"
+                      minlength="{{ col.validations.minLength }}"
+                      value="{{ col.cell(element).statusText }}"
+                      placeholder="{{
+                        col.validations?.placeholder | translate
+                      }}"
+                      disabled="{{ col.validations?.disabled }}"
+                    />
+                  </div>
+                  <div
+                    class="error-wrap"
+                    fxLayoutAlign="start center"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                      class="error-text"
+                    >
+                      <mat-icon
+                        svgIcon="warning-circle-fill"
+                        class="error-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      {{ col.validations?.validationMsg | translate }}</span
+                    >
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.text"
+            >
+              <mat-cell class="title" *matCellDef="let element; let i = index">
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <span
+                      style="text-transform: uppercase"
+                      class="word-break-inline-grid-cell"
+                    >
+                      {{ col.cell(element).statusText }}</span
+                    >
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg {{ col.className }}"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <input
+                      [regxArray]="col.regxValidators"
+                      formControlName="{{ col.columnDef }}"
+                      type="text"
+                      value="{{ col.cell(element).statusText }}"
+                      maxlength="{{ col.validations.maxLength }}"
+                      placeholder="{{
+                        col.validations?.placeholder | translate
+                      }}"
+                      [attr.disabled]="col.validations?.disabled ? '' : null"
+                    />
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      class="error-icon"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.fileUpload"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <span
+                      style="text-transform: uppercase"
+                      class="word-break-inline-grid-cell"
+                    >
+                      {{ col.cell(element).statusText }}</span
+                    >
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg atlp-search-bar {{
+                    col.className
+                  }} file-upload-wrapper"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="atlp-search-bar-content"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                  >
+                    <atlp-file-upload-button
+                      [formControlName]="col.columnDef"
+                      [isRequired]="fileUploadProps?.[col.columnDef]?.isRequired"
+                      [extendedParams]="fileUploadProps?.[col.columnDef]?.extendedParams || null"
+                      [label]="fileUploadProps?.[col.columnDef]?.label"
+                      [disabled]="fileUploadProps?.[col.columnDef]?.disabled || false"
+                      [allowedFileTypes]="fileUploadProps?.[col.columnDef]?.allowedFileTypes"
+                      [maxFileSize]="fileUploadProps?.[col.columnDef]?.maxFileSize || 5"
+                      [customUploadTemplate]="fileUploadProps?.[col.columnDef]?.templateRef || inlineButtonUpload"
+                    >
+                    </atlp-file-upload-button>
+                    <ng-template #inlineButtonUpload>
+                      <mat-icon
+                        svgIcon="attachment"
+                        aria-hidden="false"
+                      ></mat-icon>
+                    </ng-template>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      class="error-icon"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.checkbox"
+            >
+              <mat-cell class="title" *matCellDef="let element; let i = index">
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    {{ col.cell(element).statusText }}
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg {{ col.className }}"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <mat-checkbox
+                      [regxArray]="col.regxValidators"
+                      formControlName="{{ col.columnDef }}"
+                      value="{{ col.cell(element).statusText }}"
+                      placeholder="{{
+                        col.validations?.placeholder | translate
+                      }}"
+                      [attr.disabled]="col.validations?.disabled ? '' : null"
+                      align="left"
+                      [color]="col.columnProps?.color || 'primary'"
+                      labelPosition="after"
+                    >
+                      <div class="field-wrap bg" fxLayout="row">
+                        <label class="field-label mb-0">
+                          {{ col.columnProps.label | translate }}
+                        </label>
+                      </div>
+                    </mat-checkbox>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      class="error-icon"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.password"
+            >
+              <mat-cell class="title" *matCellDef="let element; let i = index">
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <span
+                      style="text-transform: uppercase"
+                      class="word-break-inline-grid-cell"
+                    >
+                      {{ col.cell(element).statusText }}</span
+                    >
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg {{ col.className }}"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <input
+                      [regxArray]="col.regxValidators"
+                      formControlName="{{ col.columnDef }}"
+                      type="password"
+                      value="{{ col.cell(element).statusText }}"
+                      maxlength="{{ col.validations.maxLength }}"
+                      placeholder="{{
+                        col.validations?.placeholder | translate
+                      }}"
+                      [attr.disabled]="col.validations?.disabled ? '' : null"
+                    />
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      class="error-icon"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.textarea"
+            >
+              <mat-cell class="title" *matCellDef="let element; let i = index">
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <span
+                      style="text-transform: uppercase"
+                      class="word-break-inline-grid-cell"
+                    >
+                      {{ col.cell(element).statusText }}</span
+                    >
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg {{ col.className }}"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <textarea
+                      [rows]="col.columnProps.textAreaRows"
+                      [cols]="col.columnProps.textAreaCols"
+                      [attr.maxlength]="col.columnProps?.maxLength || '200'"
+                      [attr.minlength]="col.columnProps?.minLength"
+                      [regxArray]="col.regxValidators"
+                      formControlName="{{ col.columnDef }}"
+                      value="{{ col.cell(element).statusText }}"
+                      maxlength="{{ col.validations.maxLength }}"
+                      placeholder="{{
+                        col.validations?.placeholder | translate
+                      }}"
+                      [attr.disabled]="col.validations?.disabled ? '' : null"
+                    ></textarea>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      class="error-icon"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="
+                col.fieldType === inlineGridEditFieldTypes.multiValidationText
+              "
+            >
+              <mat-cell class="title" *matCellDef="let element; let i = index">
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <span
+                      style="text-transform: uppercase"
+                      class="word-break-inline-grid-cell"
+                    >
+                      {{ col.cell(element).statusText }}</span
+                    >
+                  </ng-container>
+                </ng-container>
+                <div
+                  class="field-wrap bg {{ col.className }}"
+                  *ngIf="i === selectedRowindex"
+                >
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    [ngClass]="
+                      selectedLanguage == 'en'
+                        ? 'field-input-text-ltr'
+                        : 'field-input-text-rtl'
+                    "
+                  >
+                    <input
+                      [regxArray]="col.regxValidators"
+                      formControlName="{{ col.columnDef }}"
+                      type="text"
+                      value="{{ col.cell(element).statusText }}"
+                      maxlength="{{ col.maxLength }}"
+                      placeholder="{{ col.placeholder | translate }}"
+                      [attr.disabled]="col.validations?.disabled ? '' : null"
+                    />
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                  >
+                    <mat-icon
+                      svgIcon="warning-circle-fill"
+                      class="error-icon"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span>
+                      {{ getValidationMsges(col) }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.select"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <ng-container *ngIf="col.cell(element)?.images">
+                      <mat-icon
+                        class="table-icon inline-icon"
+                        [svgIcon]="col.cell(element)?.images"
+                        aria-hidden="false"
+                      ></mat-icon>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+                <div class="field-wrap bg" *ngIf="i === selectedRowindex">
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                    *ngFor="let row of SearchbyOptions; index as i"
+                  >
+                    <mat-select
+                      class="dropdown-select bg"
+                      panelClass="panel-custom bg"
+                      formControlName="{{ col.columnDef }}"
+                      *ngIf="col.columnDef === row?.FieldName"
+                      placeholder="{{
+                        col.validations?.placeholder | translate | uppercase
+                      }}"
+                      [disableOptionCentering]="true"
+                    >
+                      <mat-option
+                        [value]="selectOption.key"
+                        *ngFor="
+                          let selectOption of row.selectOptions;
+                          index as i
+                        "
+                      >
+                        {{ selectOption.value }}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      <mat-icon
+                        svgIcon="warning-circle-fill"
+                        class="error-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      {{ col.validations?.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.customActions"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-template
+                  [ngTemplateOutlet]="actionTemplate"
+                  [ngTemplateOutletContext]="{
+                    context: {
+                      row: element,
+                      index: i,
+                      isRowModifyEnabled: isRowModifyEnabled,
+                      column: col,
+                      addFormRowEnable: addFormRowEnable,
+                      disableActionsBtns: disableActionsBtns,
+                      isViewMode: isViewMode,
+                      deleteRequired: deleteRequired,
+                      selectedRowindex: selectedRowindex,
+                      selectedLanguage: selectedLanguage,
+                      inlineGridInstance: this
+                    }
+                  }"
+                ></ng-template> </mat-cell
+            ></ng-container>
+            <ng-container
+              *ngIf="col.fieldType === inlineGridEditFieldTypes.actions"
+            >
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container
+                  *ngIf="
+                    col.cell(element).statusText != null &&
+                      col.cell(element).statusText != undefined &&
+                      col.cell(element).statusText != '';
+                    else emptyData
+                  "
+                >
+                  <ng-container *ngIf="i !== selectedRowindex">
+                    <button
+                      class="add-table-btn"
+                      color="basic"
+                      [disabled]="
+                        addFormRowEnable || disableActionsBtns || isViewMode
+                      "
+                      (click)="editHandler(element, i)"
+                      color="primary"
+                      title="{{ 'Edit' | translate }}"
+                    >
+                      <mat-icon svgIcon="edit" aria-hidden="false"></mat-icon>
+                      <span> </span>
+                    </button>
+
+                    <button
+                      [disabled]="
+                        addFormRowEnable || disableActionsBtns || isViewMode
+                      "
+                      *ngIf="deleteRequired"
+                      color="basic"
+                      [ngClass]="selectedLanguage == 'en' ? 'ml-20' : 'mr-20'"
+                      (click)="deleteHandler(element, i)"
+                      title="{{ 'DELETE' | translate }}"
+                    >
+                      <mat-icon
+                        svgIcon="remove-table-btn"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      <span> </span>
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="i === selectedRowindex">
+                    <button
+                      color="basic"
+                      class="add-table-btn"
+                      [disabled]="disableActionsBtns || isViewMode"
+                      (click)="saveHandler(element, i)"
+                      color="primary"
+                      style="margin-right: 5px"
+                      title="{{ 'Save' | translate }}"
+                    >
+                      <mat-icon
+                        style="color: white"
+                        svgIcon="save-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                    </button>
+
+                    <button
+                      color="basic"
+                      class="add-table-btn"
+                      [ngClass]="selectedLanguage == 'en' ? 'ml-20' : 'mr-20'"
+                      [disabled]="disableActionsBtns || isViewMode"
+                      (click)="cancleHandler(element, i)"
+                      color="primary"
+                      title="{{ 'Cancel' | translate }}"
+                    >
+                      <mat-icon
+                        svgIcon="close-white-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                    </button>
+                  </ng-container>
+                </ng-container>
+              </mat-cell>
+            </ng-container>
+            <ng-container *ngIf="y !== 0">
+              <mat-cell
+                *matCellDef="let element; let i = index"
+                [style.textAlign]="
+                  col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+                "
+                [style.left.px]="col.colProps?.left"
+                class="{{ col.colProps?.headerClassList }}"
+                [style.minWidth.px]="col.colProps?.minWidth"
+                [style.background]="col.colProps?.headerBg"
+                [style.width.px]="col.colProps?.width"
+                [style.maxWidth.px]="col.colProps?.maxWidth"
+              >
+                <ng-container *ngIf="i !== selectedRowindex">
+                  <ng-container
+                    *ngIf="
+                      col.cell(element).statusText != null &&
+                        col.cell(element).statusText != undefined &&
+                        col.cell(element).statusText != '';
+                      else emptyData
+                    "
+                  >
+                    <ng-container *ngIf="col.cell(element)?.images">
+                      <mat-icon
+                        class="table-icon inline-icon"
+                        [svgIcon]="col.cell(element)?.images"
+                        aria-hidden="false"
+                      ></mat-icon>
+                    </ng-container>
+                    <span class="{{ col.cell(element)?.statusText }}">{{
+                      col.cell(element).statusText
+                    }}</span>
+                  </ng-container>
+                </ng-container>
+                <div class="field-wrap bg" *ngIf="i === selectedRowindex">
+                  <div
+                    class="field-input-wrap"
+                    [class.invalid]="
+                      addForm.get(col.columnDef).invalid &&
+                      (addForm.get(col.columnDef).dirty ||
+                        addForm.get(col.columnDef).touched)
+                    "
+                  >
+                    <input
+                      formControlName="{{ col.columnDef }}"
+                      type="text"
+                      value="{{ col.cell(element).statusText }}"
+                      placeholder=""
+                    />
+                  </div>
+                  <div
+                    class="validationmsg"
+                    *ngIf="
+                      addForm.get(col.columnDef).touched &&
+                      addForm.get(col.columnDef).invalid
+                    "
+                  >
+                    <span
+                      *ngIf="col.validations && col.validations.validationMsg"
+                    >
+                      <mat-icon
+                        svgIcon="warning-circle-fill"
+                        class="error-icon"
+                        aria-hidden="false"
+                      ></mat-icon>
+                      {{ col.validations.validationMsg | translate }}
+                    </span>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: columnsToDisplay; let r = index"
+            [class.selected]="selection.isSelected(row)"
+            [class.show-controls]="
+              selection.isSelected(row) && selection.selected.length === 1
+            "
+          ></mat-row>
+          <!-- <mat-footer-row
+            *matFooterRowDef="let row; columns: columnsToDisplay; let r = index"
+          ></mat-footer-row> -->
+        </mat-table>
+      </ng-container>
+      <ng-container *ngIf="totalItemCount > 5 && isServerSidePaginationEnabled">
+        <atlp-mat-pagination
+          #matPaginatorRef
+          class="custom-pagination-appointments"
+          (changePage)="changePage($event)"
+          [TotalItemCount]="totalItemCount"
+          [PageNumber]="paginationParameters.pageNumber"
+          [PageSize]="paginationParameters.pageSize"
+        >
+        </atlp-mat-pagination>
+      </ng-container>
+      <ng-container>
+        <div
+          class="custom-pagination-client-side alwaysEnabled"
+          [hidden]="
+            dataSource?.filteredData?.length <= 5 ||
+            isServerSidePaginationEnabled
+          "
+        >
+          <mat-paginator
+            #matPaginator
+            showFirstLastButtons="true"
+            [length]="dataSource?.filteredData?.length"
+            [pageSizeOptions]="pageSizeOptions"
+          ></mat-paginator>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+  <!-- End table content -->
+</div>
+
+<ng-template #emptyData> <div class="make-center">-</div> </ng-template>
+
+<ng-template #emptyTableInlineEdit>
+  <mat-table [dataSource]="dataSource" class="table bg">
+    <ng-container
+      *ngFor="let col of displayColumnDefs; let y = index"
+      matColumnDef="{{ col.columnDef }}"
+    >
+      <mat-header-cell
+        [style.position]="col.colProps?.sticky ? 'sticky' : 'relative'"
+        [style.textAlign]="
+          col.colProps?.textAlign ? col.colProps?.textAlign : 'left'
+        "
+        [style.left.px]="col.colProps?.left"
+        class="{{ col.colProps?.headerClassList }}"
+        [style.minWidth.px]="col.colProps?.minWidth"
+        [style.background]="col.colProps?.headerBg"
+        [style.width.px]="col.colProps?.width"
+        [style.maxWidth.px]="col.colProps?.maxWidth"
+        [matMenuTriggerFor]="tableMenu"
+        *matHeaderCellDef
+      >
+        <span class="header-cell-text title">
+          {{ col.header | translate }}
+          <span class="header-cell-arrow"></span>
+        </span>
+        <mat-menu
+          #tableMenu="matMenu"
+          [overlapTrigger]="false"
+          class="table-card-select"
+        >
+        </mat-menu>
+      </mat-header-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  </mat-table>
+  <div class="empty-table" [class.bg]="invert">
+    <p class="empty-table-text">{{ "NO_ITEMS" | translate }}</p>
+  </div>
+</ng-template>

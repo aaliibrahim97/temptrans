@@ -1,0 +1,15 @@
+{
+  "name": "atlp-dashboard-data-store",
+  "description": "state management library",
+  "version": "1.0.0",
+  "author": "Linoy Pappachan Malakkaran",
+  "license": "MIT",
+  "keywords": [
+    "store",
+    "state management"
+  ],
+  "scripts": {},
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {}
+}

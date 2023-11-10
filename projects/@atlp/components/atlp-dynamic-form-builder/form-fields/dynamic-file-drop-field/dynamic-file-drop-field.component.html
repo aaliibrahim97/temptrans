@@ -1,0 +1,70 @@
+<div
+  class="field-input-wrap mb-24 parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0px"
+    fxLayoutGap.sm="0px"
+  >
+    <div
+      class="field-wrap bg"
+      fxFlex="100"
+      fxFlex.xs="100"
+      fxFlex.sm="100"
+      fxLayout="column"
+    >
+      <label
+        for="#"
+        class="field-label"
+        [ngClass]="{ required: field.isRequired }"
+      >
+        {{ field.label | translate }}
+        <span style="color: red">*</span></label
+      >
+      <div
+        [class.invalid]="
+          !isValid && isDirty && group.get(field.name).errors?.required
+        "
+      >
+        <atlp-file-drop
+          [fileTypes]="atlpFileDrop.fileTypes"
+          [isRequired]="field.isRequired"
+          [formControl]="group.controls[field.name]"
+          [source]="atlpFileDrop.source"
+          (onDocumentUpload)="onDocumentUpload($event)"
+        >
+        </atlp-file-drop>
+      </div>
+    </div>
+    <div
+      class="error-wrap"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      *ngFor="let validation of field.validations"
+      ngProjectAs="mat-error"
+    >
+      <mat-icon
+        *ngIf="
+          !isValid && isDirty && group.get(field.name).hasError(validation.name)
+        "
+        svgIcon="warning-circle-fill"
+        aria-hidden="false"
+      ></mat-icon>
+      <span
+        *ngIf="
+          !isValid && isDirty && group.get(field.name).hasError(validation.name)
+        "
+        class="error-text"
+      >
+        {{ validation.message | translate }}</span
+      >
+    </div>
+  </div>
+</div>

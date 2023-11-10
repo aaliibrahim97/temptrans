@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39.883" height="39.895" viewBox="0 0 39.883 39.895">
+	<defs>
+		<style>
+			.addLl{fill:none;stroke:#267ad2;stroke-width:2px;stroke-dasharray:5;}
+		</style>
+	</defs>
+	<g transform="translate(-18.353 -18.233)">
+		<path fill="#267ad2" stroke="rgba(0,0,0,0)" d="M20.125,8.75H12.25V.875A.875.875,0,0,0,11.375,0H9.625A.875.875,0,0,0,8.75.875V8.75H.875A.875.875,0,0,0,0,9.625v1.75a.875.875,0,0,0,.875.875H8.75v7.875A.875.875,0,0,0,9.625,21h1.75a.875.875,0,0,0,.875-.875V12.25h7.875A.875.875,0,0,0,21,11.375V9.625A.875.875,0,0,0,20.125,8.75Z" transform="translate(27.796 48.5) rotate(-90)" />
+		<path class="addLl" d="M18.942,0A18.947,18.947,0,1,1,0,18.947" transform="translate(19.353 19.233)" />
+	</g>
+</svg>

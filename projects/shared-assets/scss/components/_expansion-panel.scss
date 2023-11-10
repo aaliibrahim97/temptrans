@@ -1,0 +1,123 @@
+.mat-expansion-panel-content {
+  font-family: ADPortsGroup !important;
+  font-weight: 500 !important;
+}
+
+.mat-expansion-panel {
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-bottom: 30px !important;
+  .mat-content {
+    align-items: center;
+    position: relative;
+    width: 100%;
+    flex: none;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 40px !important;
+  }
+}
+
+.mat-expansion-panel-body {
+  @include padding(20px, 0px, 5px, 0px);
+}
+
+.mat-expansion-panel-header {
+  @include padding-left(0px !important);
+  @include padding-right(0px !important);
+  height: auto !important;
+}
+
+.mat-expansion-panel-header-title {
+  width: 180px;
+  @include margin-right(80px);
+  flex-grow: 0 !important;
+  color: map-get($color, "atlp-white") !important;
+}
+
+.mat-expansion-panel-header-description {
+  position: relative;
+  @include margin-right(0 !important);
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    padding-bottom: 20px;
+    flex-direction: row;
+    padding-bottom: 15px;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    @include left(0);
+    bottom: 0;
+    width: 100%;
+    border-bottom: 2px solid map-get($color, "atlp-panel-border");
+  }
+}
+
+.mat-expansion-panel-header:hover {
+  background: transparent !important;
+}
+
+.mat-expansion-indicator {
+  position: relative;
+  @include right(10px);
+  top: -18px;
+  font-size: 0;
+  @media (min-width: 768px) {
+    top: -12px;
+  }
+}
+
+.mat-expansion-panel-spacing {
+  .mat-expansion-indicator {
+    top: -13px;
+    @media (min-width: 768px) {
+      top: -9px;
+    }
+  }
+}
+
+.mat-expansion-indicator::after {
+  color: map-get($color, "atlp-white") !important;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: map-get($color, "atlp-panel-title");
+  letter-spacing: 1px;
+  @media (min-width: 768px) {
+  }
+}
+
+.panel-info {
+  font-size: 12px;
+  font-weight: 500;
+  color: map-get($color, "atlp-grey-base");
+  @media (min-width: 768px) {
+    font-size: 16px;
+    @include margin(0, 25px, 0, auto);
+  }
+}
+
+.panel-header {
+  margin-bottom: 25px;
+
+  &.panel-header-border {
+    border-bottom: 2px solid map-get($color, "atlp-panel-border");
+  }
+
+  .block-title {
+    margin-bottom: 0;
+  }
+}
+
+.panel-body {
+  .search-bar-bg {
+    display: block;
+  }
+}

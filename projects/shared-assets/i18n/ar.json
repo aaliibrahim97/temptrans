@@ -1,0 +1,20 @@
+{
+  "APPOINTMENTS": "المواعيد",
+  "LANDBORDERAPPOINTMENTS": "Land Border Appointments",
+  "IMPORTREQUEST_TITLE": "Import Request",
+  "MENU": {
+    "DASHBOARD": "Dashboard",
+    "AIR": {
+      "IMPORTS": "Import Shipments",
+      "EXPORTS": "Exports Shipments",
+      "SCHEDULE": "Flight Schedule",
+      "TRACK": "Track Cargo",
+      "CONTACTS": "Contact Information"
+    },
+    "SEA": {
+      "VOYAGE": "Voyage Registration",
+      "VESSEL": "Vessel Registration"
+    },
+    "ECZ": {}
+  }
+}

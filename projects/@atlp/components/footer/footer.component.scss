@@ -1,0 +1,592 @@
+@import "projects/@atlp/scss/variables";
+
+footer {
+  position: relative;
+  padding: 6.5rem 0 0;
+  // background-color: $atlp-land;
+  background-color: #373069;
+  overflow: hidden;
+
+  @media (max-width: 576px) {
+    padding: 4.8rem 0 0;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 576px) {
+      justify-content: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      justify-content: space-between;
+    }
+  }
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 15.7rem;
+    height: 19.5rem;
+    top: 0;
+    right: -3rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../../shared-assets/images/icons/footer-img.svg");
+
+    @media (min-width: 1440px) {
+      right: 0;
+    }
+  }
+
+  .container {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.partnersInfo {
+  white-space: nowrap;
+}
+
+.Partner3 {
+  > div {
+    max-width: 55% !important;
+  }
+}
+
+.footer-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 -1rem;
+  order: 1;
+
+  @media (min-width: 768px) {
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 0 0 2rem;
+    justify-content: space-between;
+  }
+
+  nav {
+    margin-right: 15px;
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  .main-link {
+    color: #c8b6dd;
+    margin-bottom: 15px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  li {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: map-get($color, "atlp-white");
+    font-size: 1.2rem;
+  }
+}
+
+.footer-menu {
+  padding: 0;
+  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    width: 33%;
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    padding: 0;
+    max-width: 29rem;
+    margin-bottom: 4.8rem;
+  }
+
+  &:nth-child(2),
+  &:nth-child(3) {
+    @media (min-width: 1200px) {
+      margin-right: 12.5rem;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  li {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    word-break: break-all;
+    text-decoration: underline;
+
+    &:hover {
+      color: map-get($color, "atlp-purple");
+    }
+
+    p {
+      color: #ffffff;
+    }
+  }
+
+  .address {
+    margin-bottom: 20px;
+  }
+
+  .social {
+    margin-bottom: 25px;
+
+    .main-link {
+      margin-bottom: 10px;
+    }
+  }
+
+  .social-wrap {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-right: 25px;
+    }
+
+    img {
+      max-width: 20px;
+      object-fit: contain;
+    }
+  }
+
+  ::ng-deep {
+    .form-group {
+      input {
+        color: map-get($color, "atlp-white");
+        font-size: 1.2rem;
+        background: transparent;
+        border: none;
+        width: 100%;
+        min-width: 25rem;
+        padding: initial;
+
+        &::placeholder {
+          color: hsla(0, 0%, 100%, 0.5);
+          font-size: 1.2rem;
+        }
+
+        &:active {
+          border: none;
+          // border-bottom: 1px solid $white-half;
+        }
+
+        &:focus {
+          outline: none;
+          border: none;
+          // border-bottom: 1px solid $white-half;
+        }
+      }
+    }
+
+    .subscribe-field {
+      // width: 12rem;
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      gap: 8px;
+      // justify-content: space-between;
+      padding-bottom: 12px;
+      .btn-row {
+        padding-left: 0 !important;
+      }
+      button {
+        line-height: normal !important;
+        padding-bottom: 6px;
+      }
+    }
+
+    .newsletter-form {
+      border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .emailForm {
+      position: relative;
+      // &::before {
+      //   position: absolute;
+      //   right: 0px;
+      //   content: url($imageBase + "/data/media/img/footerArrow.svg");
+      // }
+    }
+  }
+}
+
+.d-none {
+  display: none;
+}
+
+.footer-text {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: map-get($color, "atlp-white");
+  line-height: 1.6;
+  margin: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.rules {
+    order: 3;
+
+    @media (min-width: 768px) {
+      margin: 0 0 2rem 0;
+    }
+
+    @media (min-width: 1024px) {
+      width: 29rem !important;
+      margin: 0 0 2.7rem auto !important;
+    }
+  }
+}
+
+.link-icon {
+  width: 24px;
+  height: auto;
+  flex: none;
+  margin-right: 1rem;
+}
+
+.footer-bottom {
+  background-color: #1b1546;
+  padding: 2rem 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  nav {
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      margin-right: 40px;
+    }
+
+    a {
+      color: #a187bf;
+    }
+  }
+
+  .copyright {
+    color: map-get($color, "atlp-white");
+    font-size: 1.2rem;
+    padding-right: 30px;
+  }
+}
+
+.footer-partners {
+  background-color: #6f4c98;
+  padding: 1rem 2rem;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    flex-direction: column;
+    gap: 16px;
+
+    @media (min-width: 1024px) {
+      padding: 0 5%;
+      flex-direction: row;
+      gap: 0;
+    }
+  }
+
+  .partners {
+    display: flex;
+    align-items: start;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (min-width: 1024px) {
+      // max-width: 33%;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    span {
+      color: #c8b6dd;
+      font-size: 1.2rem;
+      display: inline-block;
+      margin-right: 2.4rem;
+
+      @media (min-width: 1024px) {
+        color: map-get($color, "atlp-white");
+      }
+    }
+
+    img {
+      max-width: 15rem;
+    }
+
+    .partner-logo {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+
+      &.maqta {
+        width: 160px;
+      }
+
+      &.adpg {
+        width: 160px;
+      }
+
+      &.ded {
+        width: 250px;
+      }
+    }
+  }
+}
+
+.breadcrumbs {
+  background-color: map-get($color, "atlp-purple");
+  padding: 2rem 0;
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    margin-right: 2rem;
+    padding-right: 2rem;
+    position: relative;
+
+    &:last-child {
+      a {
+        color: #1b1546;
+      }
+
+      &:after {
+        content: none;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-bottom: 2px solid map-get($color, "atlp-white");
+      border-right: 2px solid map-get($color, "atlp-white");
+      transform: rotate(-45deg) translateY(-50%);
+      right: 0;
+      top: 40%;
+    }
+  }
+
+  a {
+    color: map-get($color, "atlp-white");
+    font-size: 1.4rem;
+  }
+}
+
+::ng-deep {
+  :lang(ar) {
+    footer {
+      &:before {
+        right: auto;
+        left: -30px;
+
+        @media (min-width: 1440px) {
+          left: 0;
+        }
+      }
+
+      .link-icon {
+        margin: 0 0 0 1.5rem;
+      }
+
+      .logo {
+        @media (min-width: 1200px) {
+          margin-left: 11.4rem;
+          margin-right: 0;
+        }
+      }
+
+      .main-link,
+      .footer-text,
+      nav {
+        text-align: right !important;
+      }
+
+      .social-wrap {
+        a {
+          margin-left: 2.5rem !important;
+          margin-right: unset !important;
+        }
+      }
+
+      .footer-partners {
+        .partners {
+          span {
+            margin-right: unset !important;
+            margin-left: 2.4rem;
+          }
+        }
+      }
+    }
+
+    .emailForm {
+      &::before {
+        right: unset !important;
+        left: 0px;
+        transform: rotate(-180deg);
+      }
+    }
+  }
+}
+
+form .result {
+  display: none;
+  color: #c8b6dd;
+}
+
+.submit-icon {
+  background: transparent;
+
+  ::ng-deep {
+    .a {
+      fill: transparent;
+      stroke: #9e99c3;
+    }
+  }
+}
+
+.img-icon {
+  height: 18px !important;
+  width: 18px !important;
+}
+
+.img-submit {
+  height: 16px !important;
+  width: 16px !important;
+}
+
+.contact-no {
+  direction: ltr;
+}
+
+.error-wrap {
+  padding-top: 5px;
+
+  .mat-icon {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
+  }
+
+  .error-text {
+    display: flex;
+    -moz-column-gap: 6px;
+    column-gap: 6px;
+    color: red;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.required-text {
+  color: #fc7682 !important;
+}
+
+.captcha {
+  color: #c8b6dd !important;
+  margin-top: 10px;
+}
+
+.captchaDiv {
+  margin-top: 16px;
+}
+
+.refershCaptcha {
+  padding-left: 15px !important;
+}
+
+.result {
+  color: #79d17c;
+  margin-top: 10px;
+}
+
+.btn-row {
+  padding-left: 15px !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+  font-size: 12px !important;
+}
+
+.email-field-wrapper {
+  display: flex;
+  align-items: center;
+  button {
+    line-height: normal !important;
+  }
+}

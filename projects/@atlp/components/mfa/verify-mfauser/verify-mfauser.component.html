@@ -1,0 +1,79 @@
+<div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign="none">
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "MFA.Scan_QR" | translate }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="Message-box">
+        <h1 class="messagetitle">{{ "MFA.Scan_QR" | translate }}</h1>
+
+        <div [formGroup]="form" class="w-100-p">
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between start"
+          >
+            <div
+              class="field-wrap bg"
+              [ngClass]="form?.controls['qrCode'].disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="100%"
+              fxLayout="column"
+            >
+              <label for="qrCode" class="field-label fieldrequired"
+                >{{ "MFA.OR_Code" | translate }}
+              </label>
+              <div class="field-input-wrap">
+                <img
+                  *ngIf="!!form.get('qrCode').value"
+                  [src]="form.get('qrCode').value"
+                  width="200"
+                  height="200"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="messagesubtitle">
+          {{ "MFA.QR_Info" | translate }}
+        </p>
+        <div>
+          <small class="opt-error">{{ VerifyEmailMessage }}</small>
+        </div>
+
+        <div class="messages-btn-row">
+          <button mat-raised-button color="mat-basic" (click)="onVerifyOTP()">
+            {{ "MFA.QR_OTP" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            class="mat-basic danger second-btn"
+            (click)="closeVerifyMFAUser(SidebarName.verifyMFAUser)"
+          >
+            {{ "Cancel" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-close-btn"
+    (click)="closeVerifyMFAUser(SidebarName.verifyMFAUser)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>

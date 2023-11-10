@@ -1,0 +1,51 @@
+[
+  {
+    "label": " 30%\n3.8M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": 45.377716,
+    "longitude": -100.300568
+  },
+  {
+    "label": " 30%\n0.6M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": -15.377716,
+    "longitude": -60.300568
+  },
+  {
+    "label": " 30%\n4.2M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": 55.377716,
+    "longitude": 20.300568
+  },
+  {
+    "label": " 30%\n1.9M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": 0.377716,
+    "longitude": 18.300568
+  },
+  {
+    "label": " 30%\n6.8M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": 36.377716,
+    "longitude": 40.300568
+  },
+  {
+    "label": " 30%\n2.3M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": 65.377716,
+    "longitude": 100.300568
+  },
+  {
+    "label": " 30%\n1.3M",
+    "name": "Alabama",
+    "description": "Montgomery",
+    "latitude": -24.377716,
+    "longitude": 130.300568
+  }
+]

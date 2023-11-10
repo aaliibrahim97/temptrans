@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="70" viewBox="0 0 70 70">
+  <defs>
+    <clipPath id="happiness-index-5-active">
+      <rect id="Rectangle_141774" data-name="Rectangle 141774" width="67" height="67"/>
+    </clipPath>
+  </defs>
+  <g id="emoji-happiness-5" transform="translate(-390 -435)">
+    <g id="Web_1920_6" data-name="Web 1920 – 6" transform="translate(392 437)" clip-path="url(#happiness-index-5-active)">
+      <path id="Path_47" data-name="Path 47" d="M315.651,22.706s-.683,11.522-13.41,11.522-13.856-11.522-13.856-11.522Z" transform="translate(-268.275 12.012)" fill="#fff" stroke="#5f5986" stroke-linecap="round" stroke-width="3"/>
+      <path id="Path_48" data-name="Path 48" d="M-.029,4.007S.415-.041,5.426-.041,10.7,4.007,10.7,4.007" transform="matrix(0.985, -0.174, 0.174, 0.985, 41.199, 23.755)" fill="#dbe3f2" stroke="#5f5986" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_46" data-name="Path 46" d="M315.8,22.706s-.687,11.581-13.482,11.581-13.931-11.581-13.931-11.581Z" transform="translate(-268.363 11.841)" fill="#fff" stroke="#4e3f9c" stroke-linecap="round" stroke-width="3"/>
+      <circle id="Ellipse_69" data-name="Ellipse 69" cx="33.5" cy="33.5" r="33.5" fill="#ffb713"/>
+      <path id="Path_36" data-name="Path 36" d="M316.156,22.706s-.7,11.736-13.659,11.736-14.113-11.736-14.113-11.736Z" transform="translate(-268.546 12.387)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+      <path id="Path_37" data-name="Path 37" d="M0,.084S.453,4.208,5.552,4.208,10.928.084,10.928.084" transform="matrix(-0.985, -0.174, 0.174, -0.985, 25.894, 28.034)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_38" data-name="Path 38" d="M-.03,4.082S.423-.042,5.521-.042,10.9,4.082,10.9,4.082" transform="matrix(0.985, -0.174, 0.174, 0.985, 41.32, 23.926)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+    <g id="Ellipse_69-2" data-name="Ellipse 69" transform="translate(390 435)">
+      <path id="Path_26542" data-name="Path 26542" d="M35,0A35,35,0,1,1,0,35,35,35,0,0,1,35,0Z" fill="none"/>
+      <path id="Path_26543" data-name="Path 26543" d="M35,4A31.009,31.009,0,0,0,22.935,63.565,31.009,31.009,0,0,0,47.065,6.434,30.8,30.8,0,0,0,35,4m0-4A35,35,0,1,1,0,35,35,35,0,0,1,35,0Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

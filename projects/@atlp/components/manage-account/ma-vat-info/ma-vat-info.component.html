@@ -1,0 +1,225 @@
+<div
+  class="drawer-wrap josoor-drawer"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{
+          "Manage_Company.Vat_Info" | translate
+        }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="drawer-body">
+        <div [formGroup]="form">
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <span class="ucid-title"
+              >{{ "Manage_Company.UCID" | translate }} :
+              {{ form.get("ucid").value }}</span
+            >
+          </div>
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+          >
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="55%"
+              fxLayout="column"
+            >
+              <label
+                for="establishmentAddress"
+                class="field-label fieldrequired"
+                >{{ "Manage_Company.VAT_Category" | translate }}</label
+              >
+              <mat-select
+                disableOptionCentering
+                #valueAddedTaxCategory
+                (openedChange)="adjustMatSelectOverlay(valueAddedTaxCategory)"
+                placeholder="Select VAT Category"
+                i18n-placeholder="@@reg-SelectVATCategory"
+                formControlName="vatCategory"
+                (selectionChange)="onVATCategoryChange($event.value)"
+                class="dropdown-select bg"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of vatCategories"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div
+              class="field-wrap mb-12 bg"
+              [ngClass]="form?.disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="40%"
+              fxLayout="column"
+              *ngIf="form.get('vatCategory').value == '1'"
+            >
+              <label for="vatNumber" class="field-label fieldrequired">{{
+                "Manage_Company.VAT_No" | translate
+              }}</label>
+              <div class="field-input-wrap input-group" fxLayout="row nowrap">
+                <div
+                  fxFlex="100%"
+                  fxFlex.xs="100%"
+                  fxFlex.gt-xs="100%"
+                  fxFlex.gt-sm="100%"
+                  fxFlex.gt-md="100%"
+                  fxFlex.gt-lg="100%"
+                >
+                  <input
+                    formControlName="vatNumber"
+                    id="vatNumber"
+                    placeholder="{{
+                      'Manage_Company.ENTER_VAT_TAX_NO' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+              <atlp-validation-message
+                [theForm]="form"
+                field="vatNumber"
+              ></atlp-validation-message>
+            </div>
+          </div>
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between"
+            *ngIf="form.get('vatCategory').value == '1'"
+          >
+            <div
+              class="upload-file-col"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-md="32%"
+            >
+              <atlp-file-upload
+                [label]="'Manage_Company.VAT_File'"
+                [isRequired]="true"
+                [configData]="singleConfigData"
+                [uploadedFiles]="documentData"
+                (fileUpdated)="onFileUpdated($event, 'company-logo')"
+              ></atlp-file-upload>
+            </div>
+          </div>
+
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between start"
+          >
+            <div
+              class="field-wrap bg"
+              fxFlex="100%"
+              [ngClass]="
+                form.controls['isVATAccepted'].disabled ? 'disabled' : ''
+              "
+              *ngIf="
+                form.get('vatCategory').value &&
+                form.get('vatCategory').value != '1'
+              "
+              fxFlex="100%"
+              fxFlex.gt-xs="100%"
+              fxFlex.gt-sm="100%"
+              fxFlex.gt-md="100%"
+              fxLayout="column"
+            >
+              <div class="field-input-wrap">
+                <mat-checkbox
+                  class="bg mat-check-Non"
+                  formControlName="isVATAccepted"
+                >
+                  <span class="fieldrequired" i18n="@@reg-isVATAccepted">
+                    {{ "Manage_Company.Accept_Declaration" | translate }}
+                  </span>
+                </mat-checkbox>
+                <div
+                  class="error-wrap"
+                  fxLayout="row"
+                  fxLayoutAlign="start center"
+                  *ngIf="
+                    !form.get('isVATAccepted').disabled &&
+                    form.get('isVATAccepted').touched &&
+                    !form.get('isVATAccepted').valid
+                  "
+                >
+                  <span class="error-text" i18n="@@reg-Youmustselecttocontinue"
+                    >You must select to continue</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="drawer-percent">{{
+            "Manage_Company.Info" | translate
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    type="button"
+    class="round-close-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="toggleV2SidebarOpen(SidebarName.mcVatInfo)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+  <button
+    type="button"
+    class="round-btn round-action-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onEdit()"
+    *ngIf="id && form?.disabled"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="edit"></mat-icon>
+      <span class="round-btn-text">{{ "Edit" | translate }}</span>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="round-btn round-submit-btn"
+    matTooltipClass="plotTooltip"
+    matTooltipPosition="left"
+    (click)="onSubmit()"
+    *ngIf="!form?.disabled"
+  >
+    <div class="round-icon-text">
+      <mat-icon svgIcon="soc-icon"></mat-icon>
+      <span class="round-btn-text">{{ "Submit" | translate }}</span>
+    </div>
+  </button>
+</div>

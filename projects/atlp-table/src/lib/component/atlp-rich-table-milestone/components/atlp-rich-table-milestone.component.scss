@@ -1,0 +1,403 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+atlp-rich-table-milestone {
+  > div {
+    height: 100%;
+  }
+}
+
+.movement-descr-content {
+  width: 100%;
+  display: flex !important;
+  flex-direction: column;
+  background: map-get($color, "atlp-white");
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+  border: 1px solid map-get($color, "atlp-wrap-border");
+  border-radius: 10px;
+  overflow: hidden;
+
+  &.active-more {
+    height: 170px;
+    .movement-descr {
+      .remove-btn {
+        font-size: 10px !important;
+        @include padding(0, 28px, 0px, 10px);
+      }
+    }
+  }
+
+  .movement-descr-nav {
+    display: none !important;
+    width: 100%;
+    @include padding(7px, 20px, 10px, 20px);
+    background-color: map-get($color, "atlp-info-nav");
+    @media (min-width: 1024px) {
+      display: flex !important;
+    }
+    button {
+      @include margin(0, 0, 0, 11px);
+      &:nth-child(1) {
+        @include margin(0, 5, 0, 5);
+        flex: none;
+      }
+    }
+  }
+
+  .movement-descr-head {
+    padding: 12px 16px 0;
+    min-height: 37px;
+    .close-descr-btn {
+      height: 25px;
+      @include margin-left(auto);
+      @media (min-width: 1024px) {
+        @include margin-left(0);
+      }
+    }
+    .movement-descr-title {
+      font-size: 14px;
+      font-weight: 300;
+      color: map-get($color, "atlp-descr-title");
+    }
+  }
+
+  .movement-descr-body {
+    padding: 0 20px 7px;
+    background-color: map-get($color, "atlp-white");
+  }
+
+  .movement-descr {
+    position: relative;
+    border-bottom: 10px solid map-get($color, "atlp-voyage-border-bottom");
+    .movement-icon-one {
+      width: 57px;
+      min-height: 32px;
+      margin-right: 39px;
+    }
+    .movement-icon-two {
+      position: absolute;
+      bottom: -3px;
+      min-width: 40px;
+      min-height: 18px;
+    }
+    &.movement-descr-two {
+      @include padding-left(34px);
+      border-bottom: 10px solid transparent;
+      .movement-item {
+        width: calc(50% - 13px) !important;
+        &:after {
+          position: absolute;
+          content: "";
+          bottom: 0;
+          @include right(0);
+          height: 65px;
+          @include border-right(
+            2px dashed map-get($color, "atlp-voyage-border-left")
+          );
+        }
+      }
+    }
+    &.movement-descr-three {
+      @include padding-left(34px);
+      padding-top: 10px;
+      border-bottom: 10px solid transparent;
+      .remove-btn {
+        @include margin-right(8px);
+      }
+    }
+    .movement-icon {
+      position: absolute;
+      @include left(10px);
+      bottom: 0px;
+      min-width: 24px;
+      min-height: 24px;
+    }
+    .movement-item {
+      position: relative;
+      flex: none;
+      height: 54px;
+      bottom: -10px;
+      z-index: 1;
+      border-bottom: 10px solid transparent;
+      &:before {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        @include left(0);
+        height: 40px;
+        @include border-left(
+          2px dashed map-get($color, "atlp-voyage-border-left")
+        );
+      }
+      &:last-child {
+        &:after {
+          position: absolute;
+          content: "";
+          bottom: 0;
+          @include right(0);
+          height: 40px;
+          @include border-left(
+            2px dashed map-get($color, "atlp-voyage-border-left")
+          );
+        }
+      }
+      &.closed {
+        .movement-descr-name {
+          top: -30px;
+          font-size: 10px !important;
+          @media (min-width: 1024px) {
+            top: 2px;
+          }
+        }
+        &:before {
+          @include border-left(
+            2px dashed map-get($color, "atlp-voyage-border-left") !important
+          );
+        }
+      }
+      &.active {
+        // border-bottom: 10px solid map-get($color, "atlp-voyage-border-bottom-active");
+        .movement-descr-name {
+          font-size: 14px;
+          color: map-get($color, "atlp-voyage-border-left-active");
+          @include left(11px);
+        }
+        &:before {
+          @include border-left(
+            2px dashed map-get($color, "atlp-voyage-border-left-active")
+          );
+        }
+        .monement-info {
+          opacity: 1;
+        }
+      }
+      &.pre-departure {
+        width: 35%;
+        .movement-item-bar {
+          width: 0px;
+        }
+      }
+      &.post-departure {
+        width: 20%;
+      }
+      &.pre-arrival {
+        width: 20%;
+        display: none;
+        @media (min-width: 1024px) {
+          display: block;
+        }
+      }
+    }
+    .movement-descr-departed {
+      white-space: nowrap;
+      position: absolute;
+      font-weight: 700;
+      @include left(11px);
+      top: -16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      color: map-get($color, "atlp-voyage-border-left-active");
+      @media (min-width: 1024px) {
+        @include right(9px);
+        top: 2px;
+        @include left(auto);
+      }
+    }
+    .movement-descr-name {
+      white-space: nowrap;
+      position: absolute;
+      font-weight: 700;
+      top: -32px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      color: map-get($color, "atlp-voyage-name");
+      @media (min-width: 1024px) {
+        top: 0;
+      }
+
+      &.first {
+        @include left(9px);
+      }
+      &.last {
+        @include right(9px);
+      }
+    }
+    .movement-item-bar {
+      position: absolute;
+      @include left(0);
+      bottom: -10px;
+      height: 10px;
+      z-index: 1;
+      background-color: map-get($color, "atlp-voyage-border-left-active");
+      span {
+        position: absolute;
+        @include right(0);
+        top: -19px;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 0px;
+        color: map-get($color, "atlp-voyage-border-left-active");
+      }
+    }
+    .movement-descr-call {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      padding: 4px 8px;
+      color: map-get($color, "atlp-voyage-border-bottom-active");
+      @include border-left(
+        2px solid map-get($color, "atlp-voyage-border-bottom-active")
+      );
+      &.active {
+        @include border-left(
+          2px solid map-get($color, "atlp-voyage-border-left-active")
+        );
+      }
+      .movement-item-bar {
+        @include left(-2px !important);
+      }
+      span {
+        color: map-get($color, "atlp-voyage-border-left-active");
+      }
+
+      &.border-one {
+        width: 33.33%;
+        @include right(33.33%);
+        @media (min-width: 1024px) {
+          width: 27%;
+          @include right(27%);
+        }
+      }
+      &.border-two {
+        width: 33.33%;
+        @include right(0);
+        @media (min-width: 1024px) {
+          width: 27%;
+        }
+      }
+    }
+
+    .monement-info {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      opacity: 0.5;
+      @media (min-width: 1024px) {
+        bottom: 4px;
+      }
+      &.first {
+        top: 0px;
+        @include left(9px);
+        @media (min-width: 1024px) {
+          @include right(15px);
+          @include left(auto);
+          top: auto;
+        }
+      }
+      &.two {
+        @include left(10px);
+      }
+      &.three {
+        top: 14px;
+        @include left(10px);
+        @media (min-width: 1024px) {
+          @include left(70px);
+          top: auto;
+        }
+      }
+      .mat-icon {
+        width: 12px;
+        height: 12px;
+        min-width: 12px;
+        min-height: 12px;
+        @include margin-right(4px);
+      }
+      .movement-text-info {
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0px;
+        color: #6772c6;
+        text-transform: uppercase;
+        @media (min-width: 768px) {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .remove-btn {
+      @include padding(0, 35px, 0, 15px);
+      .mat-icon {
+        @include right(-20px);
+        @include left(auto);
+        width: 12px;
+        height: 12px;
+        min-width: 12px;
+        min-height: 12px;
+      }
+    }
+
+    .remove-btn-abs {
+      position: absolute;
+      top: -25px;
+      @include right(2px);
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes bar-anim {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+[hidden] {
+  visibility: hidden;
+}
+.custm-icon {
+  color: #6772c6;
+  font-size: 24px;
+}
+.download-icon {
+  color: #000;
+}
+
+.mat-row {
+  position: relative;
+  margin: 0 -4px;
+  border-bottom: none !important;
+  [graph-selection] {
+    display: none !important;
+    height: calc(100% - 4px);
+  }
+  &.selected {
+    .voyage-info {
+      .voyage-info-wrap {
+        border: 1px solid map-get($color, "atlp-voyage-active-border");
+        background-color: map-get($color, "atlp-violet-base");
+      }
+      .voyage-info-name {
+        font-size: 16px;
+        color: map-get($color, "atlp-voyage-name-active");
+        @media (min-width: 1024px) {
+          font-size: 20px;
+        }
+      }
+      .voyage-info-info-title {
+        color: map-get($color, "atlp-white");
+      }
+    }
+    .mat-radio-button {
+      opacity: 1;
+    }
+  }
+}

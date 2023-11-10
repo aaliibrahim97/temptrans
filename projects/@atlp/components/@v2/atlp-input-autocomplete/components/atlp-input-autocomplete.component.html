@@ -1,0 +1,154 @@
+<div class="dropdown-col bg">
+  <div class="autocomplete-field">
+    <mat-form-field class="input-container" [floatLabel]="floatLabel">
+      <div class="atlp-search-bar">
+        <div class="atlp-search-bar-content">
+          <label for="atlp-search-bar-input" class="atlp-search-bar-label">
+            <button
+              mat-icon-button
+              class="atlp-search-bar-expander atlp-auto-identifier"
+              type="button"
+              (click)="search($event)"
+              [disabled]="isDisabled"
+              *ngIf="hasSearchButton"
+              tabindex="-1"
+            >
+              <mat-icon class="search-icon" svgIcon="icon-search"></mat-icon>
+            </button>
+          </label>
+          <input
+            [ngClass]="{
+              'disabled-control': disabled,
+              'padding-left-input-removed': !hasSearchButton
+            }"
+            class="atlp-search-bar-input"
+            matInput
+            *ngIf="formControl"
+            [formControl]="formControl"
+            [name]="name"
+            [matAutocomplete]="autocomplete"
+            aria-label="{{ placeholder | translate }}"
+            (keyup)="onKey($event)"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            (paste)="onPaste($event)"
+            tabindex="{{ tabindex }}"
+            #autocompleteInput
+            matAutocompletePosition="{{ position }}"
+            [readonly]="isDisabled"
+            autocomplete="off"
+            maxlength="{{ maxLength }}"
+          />
+          <input
+            [ngClass]="{
+              'disabled-control': disabled,
+              'padding-left-input-removed': !hasSearchButton
+            }"
+            class="atlp-search-bar-input"
+            matInput
+            *ngIf="!formControl"
+            [name]="name"
+            [matAutocomplete]="autocomplete"
+            aria-label="{{ placeholder | translate }}"
+            (keyup)="onKey($event)"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            (paste)="onPaste($event)"
+            tabindex="{{ tabindex }}"
+            #autocompleteInput
+            matAutocompletePosition="{{ position }}"
+            [readonly]="isDisabled"
+            autocomplete="off"
+            maxlength="{{ maxLength }}"
+          />
+          <button
+            *ngIf="selectedOption || query"
+            mat-button
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="clearValue(true)"
+            #clearButton
+            type="button"
+            [disabled]="isDisabled"
+            class="clear-btn"
+            tabindex="-1"
+            title="{{ 'clear' | translate | uppercase }}"
+          >
+            <mat-icon class="clear-icon">clear</mat-icon>
+          </button>
+          <mat-progress-bar
+            class="on-progress"
+            mode="indeterminate"
+            *ngIf="hasProgressBar && requestsInQueue > 0"
+          >
+          </mat-progress-bar>
+          <mat-autocomplete
+            #autocomplete="matAutocomplete"
+            [displayWith]="autocompleteDisplayFn()"
+            (optionSelected)="autocompleteSelected($event)"
+            class="autocomplete-wrap"
+          >
+            <mat-option *ngFor="let item of autocompleteList" [value]="item">
+              <ng-template [ngIf]="displayTemplate">
+                <ng-container
+                  *ngTemplateOutlet="
+                    displayTemplate;
+                    context: { $implicit: item }
+                  "
+                ></ng-container>
+              </ng-template>
+              <span *ngIf="!displayTemplate">
+                {{ viewItem(item) }}
+              </span>
+            </mat-option>
+            <mat-option *ngIf="query && noSuggestions" disabled>
+              <span>{{ "no_suggestions" | translate }}</span>
+            </mat-option>
+            <mat-option
+              *ngIf="query && noSuggestions && showAddNew"
+              [value]="query"
+              (click)="onCreateNew()"
+            >
+              <mat-icon class="add-icon">add</mat-icon>
+              <span class="create-new"> {{ addNewText }} </span>
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error>
+            {{
+              validationErrors && validationErrors.length > 0
+                ? validationErrors[0]
+                : ""
+            }}
+          </mat-error>
+        </div>
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large disableBlur"
+  [name]="keyToCloseSlider"
+  position="right"
+  *ngIf="hasSearchButton"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <atlp-lookup-component
+    [lookUpObject]="lookUpObject"
+    (lookUpValue)="lookUpValueFromSlider($event)"
+    (lookUpClose)="lookUpClose($event)"
+    (setStoredItems)="setStoredItemsFromLookUp($event)"
+    [source]="service"
+    [serviceParams]="serviceParams"
+    [multiplesearch]="multiplesearch"
+    [multiplesearch2]="multiplesearch2"
+  >
+  </atlp-lookup-component>
+</atlp-sidebar-v2>
+
+<ng-template #itemTemplate let-item>
+  <span>{{ defaultDisplayItemFn(item) }}</span>
+</ng-template>

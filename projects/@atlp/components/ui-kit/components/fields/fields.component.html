@@ -1,0 +1,141 @@
+<div class="field-row">
+    <span class="field-text">Text Field - top label</span>
+    <form>
+        <div class="field-wrap" fxFlex fxLayout="column">
+            <label for="#" class="field-label">Label</label>
+            <div class="field-input-wrap">
+                <input type="text" placeholder="Placeholder" required />
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="field-wrap disabled" fxFlex fxLayout="column">
+            <label for="#" class="field-label">Label</label>
+            <div class="field-input-wrap">
+                <input type="text" placeholder="Placeholder" required />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="field-row">
+    <span class="field-text">Text Field - basic</span>
+    <form>
+        <div class="field-wrap not-bg" fxFlex fxLayout="column">
+            <label for="#" class="field-label">Label</label>
+            <div class="field-input-wrap">
+                <input type="text" placeholder="Placeholder" required />
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="field-wrap not-bg disabled" fxFlex fxLayout="column">
+            <label for="#" class="field-label">Label</label>
+            <div class="field-input-wrap">
+                <input type="text" placeholder="Placeholder" required />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="field-row">
+    <span class="field-text">Text Field - basic</span>
+    <form>
+        <div class="field-wrap invalid" fxFlex fxLayout="column">
+            <label for="#" class="field-label">Label</label>
+            <div class="field-input-wrap">
+                <input type="text" placeholder="Error" required />
+                <mat-icon svgIcon="error-icon" aria-hidden="false"></mat-icon>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="field-row">
+    <span class="field-text">Text Field - basic</span>
+    <form>
+        <div class="field-wrap" fxFlex fxLayout="column">
+            <label for="#" class="field-label">Label</label>
+            <div class="field-input-wrap">
+                <input [matDatepicker]="picker" (focus)="picker.open()" readonly type="text" placeholder="Select"
+                    required />
+                <mat-icon svgIcon="data-icon" aria-hidden="false"></mat-icon>
+            </div>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+    </form>
+</div>
+
+<div class="field-bg">
+    <div class="field-row">
+        <span class="field-text">Text Field - top label</span>
+        <form>
+            <div class="field-wrap bg" fxFlex fxLayout="column">
+                <label for="#" class="field-label">Labels</label>
+                <div class="field-input-wrap">
+                    <input type="text" placeholder="Placeholder" required />
+                </div>
+            </div>
+        </form>
+        <form>
+            <div class="field-wrap bg disabled" fxFlex fxLayout="column">
+                <label for="#" class="field-label">Label</label>
+                <div class="field-input-wrap">
+                    <input type="text" placeholder="Placeholder" required />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="field-row">
+        <span class="field-text">Text Field - basic</span>
+        <form [formGroup]="inputNumberForm">
+            <div class="field-wrap bg" fxFlex fxLayout="column">
+                <label for="#" class="field-label">Label</label>
+                <div class="field-input-wrap">
+                    <input type="number" formControlName="numberInput" required />
+                    <div class="button-wrap" fxFlex fxLayout="column">
+                        <button type="button" class="number-btn btn-minus"
+                            (click)="changesInputNumber('numberInput', 'increment')"></button>
+                        <button type="button" class="number-btn btn-plus"
+                            (click)="changesInputNumber('numberInput', 'decrement')"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form>
+            <div class="field-wrap bg disabled" fxFlex fxLayout="column">
+                <label for="#" class="field-label">Label</label>
+                <div class="field-input-wrap">
+                    <input type="number" placeholder="Placeholder" required />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="field-row">
+        <span class="field-text">Date Picker</span>
+        <form>
+            <div class="field-wrap bg" fxFlex fxLayout="column">
+                <label for="#" class="field-label">Label</label>
+                <div class="field-input-wrap">
+                    <input type="text" required />
+                    <mat-icon svgIcon="piker-icon" aria-hidden="false"></mat-icon>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="field-row">
+        <span class="field-text">Time Picker</span>
+        <form>
+            <div class="field-wrap bg" fxFlex fxLayout="column">
+                <label for="#" class="field-label">Label</label>
+                <div class="field-input-wrap">
+                    <input type="text" required />
+                    <mat-icon svgIcon="time-icon" aria-hidden="false"></mat-icon>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

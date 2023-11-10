@@ -1,0 +1,71 @@
+<div class="drawer-wrap charges" fxFlex fxLayout="column" fxLayoutAlign=" none">
+    <div class="drawer-wrap-container">
+      <div
+        class="drawer-header"
+        fxFlex
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <div class="drawer-info">
+          <span class="drawer-title">{{ dialogData?.title }}</span>
+        </div>
+      </div>
+      <div class="drawer-body">
+        <div class="table-wrap-bg">
+          <div
+            class="payment"
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+          >
+            <div
+              class="payment-box"
+              fxFlex="100"
+              fxLayout="column"
+              fxLayoutAlign="start"
+              style="width: 55%"
+            >
+              <mat-icon
+                svgIcon="messages-exclamation"
+                aria-hidden="false"
+                style="width: 3vw; height: auto"
+              ></mat-icon>
+              <!-- <h1 class="title">{{dialogData?.operation}} {{dialogData?.title}}</h1> -->
+              <h1 class="title" style="margin-top: 20px">
+                {{ dialogData?.message }}
+              </h1>
+              <!-- <p class="subtitle">{{dialogData?.message}}</p> -->
+              <div
+                class="message-detail"
+                fxLayout="row"
+                fxLayoutAlign="end center"
+                *ngIf="dialogData?.messageDetails"
+              >
+                <span class="panel-title"></span>
+                <span class="appointment-text"></span>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="left left" fxLayoutGap="10px">
+                 <button
+                  mat-button
+                  class="transparent"
+                  class="mat-focus-indicator mat-raised-button mat-button-base"
+                  (click)="toggleSidebarOpen(dialogData.drawerName)"
+                >
+                {{ "NO" | translate }}
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="onClickDialogOK()"
+                >
+                {{ "YES" | translate }}
+                </button>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

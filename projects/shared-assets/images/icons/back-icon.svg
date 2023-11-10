@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path-back">
+      <rect id="Rectangle_140331" data-name="Rectangle 140331" width="16" height="16" transform="translate(282 610)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Icon" transform="translate(-282 -610)" clip-path="url(#clip-path-back)">
+    <g id="add" transform="translate(274 602)">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="16" height="16" transform="translate(8 8)" fill="none"/>
+      <g id="add-2" data-name="add" transform="translate(8 8)">
+        <rect id="Canvas" width="16" height="16" fill="#fff" opacity="0"/>
+        <path id="Path_3686" data-name="Path 3686" d="M38.132,59.286a.573.573,0,0,0,0-.81L33.955,54.3H45.172a.573.573,0,1,0,0-1.145H33.955l4.177-4.177a.573.573,0,0,0-.81-.81l-5.154,5.154-.005.006c-.011.012-.022.024-.033.036l-.016.022-.017.023-.016.026-.013.023-.013.026-.011.025c0,.008-.006.017-.009.026s-.007.018-.01.027,0,.017-.007.026-.005.019-.007.028,0,.02,0,.03,0,.017,0,.025,0,.038,0,.057,0,.038,0,.057,0,.017,0,.025,0,.02,0,.03,0,.019.007.028,0,.017.007.026.006.018.01.027.006.017.009.026l.011.025.013.026.013.023.016.026.017.023.016.022c.01.013.022.025.033.037l0,.005,5.154,5.154A.573.573,0,0,0,38.132,59.286Z" transform="translate(-30.873 -45.727)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

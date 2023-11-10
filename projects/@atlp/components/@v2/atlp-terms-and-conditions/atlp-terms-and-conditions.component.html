@@ -1,0 +1,38 @@
+<div
+  class="drawer-wrap add-driver"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">
+          {{ "TERMSTITLE" | translate }}
+        </span>
+      </div>
+    </div>
+    <div class="drawer-body">
+      <section class="mb-40 display-block">
+        <div fxLayout="row" fxFlex="100%">
+          <div class="field-wrap bg" fxFlex="100%" fxLayout="column">
+            <div class="field-input-wrap" style="margin: auto">
+              <span [innerHTML]="description" class="description"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mb-20 display-block">
+        <div class="button center">
+          <button mat-raised-button color="primary" (click)="onAccept()">
+            {{ "ACCEPT" | translate }}
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

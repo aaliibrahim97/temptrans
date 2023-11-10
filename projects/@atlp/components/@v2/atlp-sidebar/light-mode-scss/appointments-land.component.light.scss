@@ -1,0 +1,12 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.time-items-wrapper .time-item .content {
+  color: map-get($color, "light-mode-purple-content") !important;
+}
+.time-items-wrapper .time-item.mat-radio-checked .content {
+  color: map-get($color, "atlp-white") !important;
+}
+.am-pm-time {
+  color: map-get($color, "light-mode-purple-content") !important;
+}

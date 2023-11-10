@@ -1,0 +1,42 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+body.light {
+  .light-btn-selected {
+    svg {
+      path {
+        fill: map-get($color, "atlp-section-title");
+      }
+    }
+
+    :hover {
+      svg {
+        path {
+          fill: map-get($color, "atlp-bth-outline-color");
+        }
+      }
+
+      @media (max-width: 768px) {
+        svg {
+          path {
+            fill: map-get($color, "atlp-grey-dark");
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-usermanual {
+  display: flex;
+  /* margin: 0 8px; */
+  padding: 0px;
+  min-width: 0px !important;
+
+  &:lang(ar) {
+    margin-left: 8px;
+  }
+  &:lang(en) {
+    margin-right: 8px;
+  }
+}

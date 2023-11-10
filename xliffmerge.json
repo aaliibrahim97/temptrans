@@ -1,0 +1,18 @@
+{
+  "xliffmergeOptions": {
+    "srcDir": "projects/shared-assets/i18n",
+    "genDir": "projects/shared-assets/i18n",
+    "i18nFile": "messages.xlf",
+    "i18nBaseFile": "messages",
+    "i18nFormat": "xlf",
+    "encoding": "UTF-8",
+    "defaultLanguage": "en-US",
+    "removeUnusedIds": true,
+    "ngxTranslateExtractionPattern": "@@|ngx-translate",
+    "beautifyOutput": true,
+    "languages": [
+      "en",
+      "ar"
+    ]
+  }
+}

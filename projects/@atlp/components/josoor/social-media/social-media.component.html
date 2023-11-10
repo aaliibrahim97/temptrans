@@ -1,0 +1,122 @@
+<div
+  class="vessel-row mb-24"
+  fxLayout="row wrap"
+  fxLayoutAlign="space-between"
+  [formGroup]="form"
+>
+  <div
+    class="field-wrap mb-12 bg"
+    [ngClass]="form?.disabled ? 'disabled' : ''"
+    fxFlex="100%"
+    fxFlex.gt-xs="48%"
+    fxFlex.gt-sm="48%"
+    fxFlex.gt-md="32%"
+    fxLayout="column"
+  >
+    <label for="linkedIn" class="field-label">{{
+      "JOSOOR.LinkedIn" | translate
+    }}</label>
+    <div class="field-input-wrap">
+      <input
+        type="text"
+        formControlName="linkedIn"
+        id="linkedIn"
+        aria-describedby="linkedIn"
+      />
+    </div>
+  </div>
+  <div
+    class="field-wrap mb-12 bg"
+    [ngClass]="form?.disabled ? 'disabled' : ''"
+    fxFlex="100%"
+    fxFlex.gt-xs="48%"
+    fxFlex.gt-sm="48%"
+    fxFlex.gt-md="32%"
+    fxLayout="column"
+  >
+    <label for="twitter" class="field-label">{{
+      "JOSOOR.Twitter" | translate
+    }}</label>
+    <div class="field-input-wrap">
+      <input
+        type="text"
+        formControlName="twitter"
+        id="twitter"
+        aria-describedby="twitter"
+      />
+    </div>
+  </div>
+  <div
+    class="field-wrap mb-12 bg"
+    [ngClass]="form?.disabled ? 'disabled' : ''"
+    fxFlex="100%"
+    fxFlex.gt-xs="48%"
+    fxFlex.gt-sm="48%"
+    fxFlex.gt-md="32%"
+    fxLayout="column"
+  >
+    <label for="instagram" class="field-label">{{
+      "JOSOOR.Instagram" | translate
+    }}</label>
+    <div class="field-input-wrap">
+      <input
+        type="text"
+        formControlName="instagram"
+        id="instagram"
+        aria-describedby="instagram"
+      />
+    </div>
+  </div>
+
+  <div
+    class="field-wrap mb-12 bg"
+    [ngClass]="form?.disabled ? 'disabled' : ''"
+    fxFlex="100%"
+    fxFlex.gt-xs="48%"
+    fxFlex.gt-sm="48%"
+    fxFlex.gt-md="32%"
+    fxLayout="column"
+  >
+    <label for="facebook" class="field-label">{{
+      "JOSOOR.Facebook" | translate
+    }}</label>
+    <div class="field-input-wrap">
+      <input
+        type="text"
+        formControlName="facebook"
+        id="facebook"
+        aria-describedby="facebook"
+      />
+    </div>
+  </div>
+  <div
+    class="field-wrap mb-12 bg"
+    [ngClass]="form?.disabled ? 'disabled' : ''"
+    fxFlex="100%"
+    fxFlex.gt-xs="48%"
+    fxFlex.gt-sm="48%"
+    fxFlex.gt-md="32%"
+    fxLayout="column"
+  >
+    <label for="youtube" class="field-label">{{
+      "JOSOOR.YouTube" | translate
+    }}</label>
+    <div class="field-input-wrap">
+      <input
+        type="text"
+        formControlName="youtube"
+        id="youtube"
+        aria-describedby="youtube"
+      />
+    </div>
+  </div>
+  <div
+    class="field-wrap mb-12 bg"
+    [ngClass]="form?.disabled ? 'disabled' : ''"
+    fxFlex="100%"
+    fxFlex.gt-xs="48%"
+    fxFlex.gt-sm="48%"
+    fxFlex.gt-md="32%"
+    fxLayout="column"
+  ></div>
+</div>

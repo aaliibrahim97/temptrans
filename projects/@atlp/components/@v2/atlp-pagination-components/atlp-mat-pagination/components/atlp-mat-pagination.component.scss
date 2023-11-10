@@ -1,0 +1,31 @@
+::ng-deep .custom-pagination-appointments .mat-paginator {
+  background: transparent !important;
+  border-bottom: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  color: #ffffff !important;
+
+  .mat-button-wrapper {
+    color: #ffffff !important;
+  }
+
+  .mat-select-arrow {
+    color: #ffffff !important;
+  }
+
+  .mat-select-value-text {
+    color: #ffffff !important;
+  }
+
+  .mat-form-field-underline {
+    background: #ffffff !important;
+  }
+  button:disabled,
+  button[disabled='true'] {
+    cursor: not-allowed !important;
+    opacity: 0.55  !important;
+    -webkit-box-shadow: none  !important;
+    box-shadow: none  !important;
+    pointer-events: none  !important;
+  }
+}

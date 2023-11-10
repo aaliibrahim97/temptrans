@@ -1,0 +1,181 @@
+<div fxLayout="column wrap">
+  <div class="field-wrap">
+    <label for="#" class="field-label">
+      {{ "ATTACHMENT" | translate }}
+    </label>
+    <div>
+      <div class="upload-wrap" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon svgIcon="folder-purple" aria-hidden="false"></mat-icon>
+        <span id="dragText" class="upload-text">
+          {{ "DROP_YOUR_FILE_HERE" | translate }}
+        </span>
+        <span class="upload-text">{{ "OR" | translate }}</span>
+        <button
+          (click)="myFile.click()"
+          color="primary"
+          class="ml-8"
+          type="button"
+          mat-raised-button
+        >
+          {{ "BROWSE_FILE" | translate }}
+        </button>
+        <input
+          [accept]="fileTypes"
+          multiple
+          (change)="selectFile($event.target.files)"
+          #myFile
+          style="display: none"
+          type="file"
+        />
+        <span class="upload-text">{{ "MAXIMUM_SIZE" | translate }}</span>
+        <span class="upload-text">{{ "MAXIMUM_SIZE_ALL" | translate }}</span>
+        <span
+          [ngStyle]="{
+            direction:
+              selectedLanguage === 'ae' || selectedLanguage === 'ar'
+                ? 'rtl'
+                : 'ltr'
+          }"
+          class="upload-text"
+        >
+          {{ "ALLOWED_ATTACHMENT_TYPES" | translate }}:
+          <span *ngFor="let filetype of fileTypes; let i = index">
+            {{ filetype }}<span *ngIf="i < fileTypes.length - 1">,</span>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      class="error-wrap"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      *ngIf="
+        showFileSizeMsg ||
+        showFileTypeMsg ||
+        showFileExistMsg ||
+        showFileMaximumMsg ||
+        showFileSizeMaximumMsg
+      "
+    >
+      <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"> </mat-icon>
+
+      <span *ngIf="showFileSizeMsg" class="error-text">
+        {{ "FILE_SIZE_ERROR_MESSAGE" | translate }}</span
+      >
+      <span *ngIf="showFileSizeMaximumMsg" class="error-text">
+        {{ "FILE_SIZE_MAXIMUM_ERROR_MESSAGE" | translate }}</span
+      >
+      <span *ngIf="showFileTypeMsg" class="error-text">
+        {{ "FILE_TYPE_ERROR_MESSAGE" | translate }}</span
+      >
+      <span *ngIf="showFileExistMsg" class="error-text">
+        {{ "FILE_EXIST_ERROR_MESSAGE" | translate }}</span
+      ><span *ngIf="showFileMaximumMsg" class="error-text">
+        {{ "FILE_MAXIMUM_ERROR_MESSAGE" | translate }}</span
+      >
+    </div>
+  </div>
+  <div class="field-margin" fxLayout="column" *ngIf="documentsList.length > 0">
+    <div class="field-wrap">
+      <label for="#" class="field-label"> {{ "FILES" | translate }}</label>
+      <ng-container *ngFor="let fileItem of documentsList">
+        <div
+          [ngStyle]="{
+            direction:
+              selectedLanguage === 'ae' || selectedLanguage === 'ar'
+                ? 'rtl'
+                : 'ltr'
+          }"
+          style="margin-bottom: 5px"
+          class="file"
+        >
+          <div
+            class="file__wrap"
+            fxFlex
+            fxLayout="row"
+            fxLayoutAlign="start center"
+          >
+            <div class="file__icon">
+              <mat-icon
+                *ngIf="fileItem.mimeType == 'application/pdf'"
+                svgIcon="pdf-file-icon"
+                aria-hidden="false"
+              >
+              </mat-icon>
+              <mat-icon
+                *ngIf="fileItem.mimeType == 'image/jpeg'"
+                svgIcon="jpg-icon"
+                aria-hidden="false"
+              >
+              </mat-icon>
+              <mat-icon
+                *ngIf="fileItem.mimeType == 'image/png'"
+                svgIcon="png-icon"
+                aria-hidden="false"
+              >
+              </mat-icon>
+              <mat-icon
+                *ngIf="fileItem.mimeType == 'application/msword'"
+                svgIcon="file"
+                aria-hidden="false"
+              >
+              </mat-icon>
+              <mat-icon
+                *ngIf="
+                  fileItem.mimeType ==
+                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                "
+                svgIcon="file"
+                aria-hidden="false"
+              >
+              </mat-icon>
+            </div>
+            <a
+              href="javascript:void(0);"
+              class="file__info"
+              fxFlex
+              fxLayout="column"
+              (click)="downloadFile(fileItem)"
+            >
+              <span
+                matTooltip="{{ fileItem.name }}"
+                style="white-space: nowrap"
+                class="field-label"
+                >{{ "FILE_NAME" | translate }}
+                {{ getFileName(fileItem.name) }}</span
+              >
+              <span class="field-label"
+                >{{ "FILE_SIZE" | translate }}
+                {{ fileItem.size / 1024 / 1024 | number : "1.6-6" }}
+                MB</span
+              >
+            </a>
+            <button
+              type="button"
+              class="file__btn"
+              *ngIf="!isViewMode"
+              (click)="deleteFileInput(fileItem)"
+            >
+              <mat-icon svgIcon="delete-grey" aria-hidden="false"></mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="documentsList.length == 0">
+        <div class="file">
+          <div
+            class="file__wrap"
+            fxFlex
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            style="color: white"
+          >
+            <span class="field-label">
+              {{ "NO_FILES_TO_SHOW" | translate }}
+            </span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

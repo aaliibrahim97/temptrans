@@ -1,0 +1,32 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+::ng-deep .mat-menu-panel.notification-mat-menu {
+  background: transparent !important;
+  box-shadow: none !important;
+  max-width: 400px;
+  min-width: 280px;
+  overflow-x: hidden;
+}
+
+::ng-deep .mat-menu-panel.notification-mat-menu .activity-sidebar {
+  max-width: 400px;
+}
+
+.m-l-4 {
+  @include margin-left(5px, !important);
+}
+
+::ng-deep {
+  .theme-atlp .mat-badge-medium .mat-badge-content {
+    width: 20px !important;
+    height: 18px !important;
+    line-height: 24px;
+    padding: 2px;
+    font-size: 9px;
+    box-sizing: content-box;
+    top: -16px !important;
+    @media (max-width: 980px) {
+      padding: 0px;
+    }
+  }
+}

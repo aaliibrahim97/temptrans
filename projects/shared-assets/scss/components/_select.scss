@@ -1,0 +1,205 @@
+.select-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+// Mat checkbox
+.mat-checkbox {
+  font-family: ADPortsGroup !important;
+  font-weight: 500 !important;
+  // &.mat-checkbox-checked {
+  //     .mat-checkbox-inner-container {
+  //         background-color: transparent;
+  //     }
+  // }
+  // .mat-checkbox-inner-container {
+  //     background-color: map-get($color, "atlp-white");
+  // }
+  &.bg {
+    .mat-checkbox-label {
+      color: map-get($color, "atlp-white");
+      font-size: 14px;
+    }
+    .mat-checkbox-frame {
+      border: 1px solid map-get($color, "atlp-field-input-border") !important;
+    }
+    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-image: none !important;
+    }
+    &.mat-checkbox-checked {
+      .mat-checkbox-background {
+        // background-image: none !important;
+        .mat-checkbox-checkmark-path {
+          stroke: white !important;
+        }
+      }
+    }
+  }
+}
+
+.mat-checkbox-layout {
+  white-space: pre-wrap !important;
+  &:hover {
+    .mat-checkbox-frame {
+      border: 1px solid map-get($color, "atlp-purple-dark") !important;
+    }
+  }
+}
+
+.mat-checkbox .mat-checkbox-ripple {
+  display: none;
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: transparent !important;
+  background-image: linear-gradient(#a187bf 0%, #744aa5 100%) !important;
+}
+
+.mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: transparent !important;
+  background-image: linear-gradient(#a187bf 0%, #744aa5 100%) !important;
+}
+
+.mat-checkbox-disabled {
+  .mat-checkbox-background {
+    background-color: transparent !important;
+    background-image: map-get($color, "atlp-btn-plain-bg");
+  }
+  .mat-checkbox-frame {
+    border: 1px solid map-get($color, "atlp-grey-dark") !important;
+    &:hover {
+      background-color: transparent !important;
+      background-image: map-get($color, "atlp-btn-plain-bg");
+      border: 1px solid map-get($color, "atlp-purple-dark") !important;
+    }
+  }
+}
+
+.mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background,
+.mat-pseudo-checkbox {
+  background-color: transparent !important;
+  background-image: linear-gradient(#e4e4e4 0%, #d8d5d5 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.mat-pseudo-checkbox::after {
+  @include left(2px !important);
+}
+
+.mat-checkbox-frame {
+  border-radius: 3px !important;
+  border: 1px solid map-get($color, "atlp-grey-dark") !important;
+  &:hover {
+    border: 1px solid map-get($color, "atlp-purple-dark") !important;
+  }
+}
+
+.mat-checkbox-checked.mat-checkbox-disabled {
+  .mat-checkbox-background {
+    background-color: transparent !important;
+    background-image: linear-gradient(#eaeef4 0%, #fbfbfb 100%) !important;
+  }
+  .mat-checkbox-frame {
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+  .mat-checkbox-checkmark-path {
+    stroke: map-get($color, "atlp-btn-outline-border") !important;
+  }
+}
+
+.mat-pseudo-checkbox-checked {
+  background-color: transparent !important;
+  background-image: linear-gradient(#a187bf 0%, #744aa5 100%) !important;
+}
+
+// Mat radio
+.mat-radio-outer-circle {
+  border: 1px solid map-get($color, "atlp-grey-dark");
+}
+
+.mat-radio-inner-circle {
+  background-color: map-get($color, "atlp-purple-darker");
+}
+
+.mat-radio-checked .mat-radio-outer-circle {
+  border: 1px solid map-get($color, "atlp-purple-darker");
+}
+
+.mat-radio-ripple {
+  display: none;
+}
+
+.mat-radio-container {
+  &:hover {
+    .mat-radio-outer-circle {
+      border: 1px solid map-get($color, "atlp-purple-darker") !important;
+    }
+  }
+}
+.mat-radio-disabled {
+  .mat-radio-container {
+    &:hover {
+      .mat-radio-outer-circle {
+        border: 1px solid map-get($color, "atlp-grey-dark") !important;
+      }
+    }
+  }
+  &.mat-radio-checked {
+    &:hover {
+      .mat-radio-outer-circle {
+        border: 1px solid map-get($color, "atlp-purple-darker") !important;
+      }
+    }
+  }
+}
+
+.mat-radio-button {
+  font-family: ADPortsGroup;
+  margin-bottom: 16px;
+}
+
+.mat-radio-label-content {
+  font-weight: 300;
+  font-size: 14px;
+  font-weight: 500;
+  color: map-get($color, "atlp-black");
+}
+
+.light-purple-select {
+  .mat-radio-outer-circle {
+    border: 1px solid map-get($color, "atlp-purple-base") !important;
+  }
+  .mat-radio-inner-circle {
+    background-color: map-get($color, "atlp-purple-base") !important;
+  }
+  .mat-radio-label-content {
+    color: map-get($color, "atlp-white") !important;
+  }
+  .mat-checkbox-inner-container {
+    background-color: transparent !important;
+  }
+  .mat-checkbox-label {
+    color: map-get($color, "atlp-white") !important;
+  }
+  .mat-checkbox-frame {
+    border-color: map-get($color, "atlp-purple-base") !important;
+  }
+}
+
+.radio-wrap.bg {
+  .mat-radio-button {
+    .mat-radio-outer-circle {
+      border: 1px solid map-get($color, "atlp-purple-base") !important;
+    }
+    .mat-radio-inner-circle {
+      background-color: map-get($color, "atlp-purple-base") !important;
+    }
+    .mat-radio-label-content {
+      color: map-get($color, "atlp-white");
+    }
+  }
+}

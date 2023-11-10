@@ -1,0 +1,126 @@
+.dashboard-wrap {
+    padding: 25px 15px;
+    max-width: 1330px;
+    width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+        padding: 30px;
+    }
+
+    .dashboard-header {
+        margin-bottom: 40px;
+    }
+
+    .dashboard-content {
+        width: 100%;
+        @media (min-width: 1280px) {
+            width: calc(100% - 340px);
+        }
+    }
+
+    .dashboard-sidebar {
+        @include margin-left(30px);
+    }
+
+    .dashboard-header {
+        margin: 0 0 35px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        @media (min-width: 1024px) {
+            flex-direction: row;
+        }
+    }
+
+    .dashboard-nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex: none;
+        @media (min-width: 1024px) {
+            width: auto;
+        }
+    }
+
+    .dashboard-options {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+        @media (min-width: 1024px) {
+            justify-content: flex-end;
+            margin: 0 0 0 10px;
+        }
+
+        button {
+            display: none;
+            @media (min-width: 1024px) {
+                display: block;
+            }
+        }
+    }
+
+    .dropdown-select {
+        // max-width: 150px;
+        @include margin-right(10px);
+
+        &.small {
+            max-width: 100px;
+        }
+    }
+
+    .nav-btn {
+        background: linear-gradient(180deg, #ffffff 0%, #eaeef4 100%);
+        box-shadow: 0px 0.5px 2px #8c69b540;
+        border: 1px solid #0000001a;
+        border-radius: 17px;
+        padding: 0 16px;
+        font-size: 14px;
+        color: map-get($color, "atlp-nav-btn");
+        @include text-align(center);
+        display: block;
+        @include margin-right(10px);
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        &:last-child {
+            @include margin-right(0);
+        }
+
+        &:hover,
+        &.active {
+            color: map-get($color, "atlp-white");
+            background: #353165;
+        }
+    }
+
+    .dashboard-sidebar {
+        @include margin-left(30px);
+    }
+
+    .dashboard-col {
+        width: 100%;
+        padding: 8px 0;
+
+        @media (min-width: 1024px) {
+            width: 49%;
+            padding: 16px 0;
+        }
+    }
+
+
+    &.ngx-dash-viewer-wrap{
+        display: flex !important;
+        flex-direction: column !important;
+
+        .dashboard-header{
+flex:0 0 auto !important;
+        }
+
+        .dashboard-body{
+            flex:1 0 0% !important;
+        }
+
+    }
+}

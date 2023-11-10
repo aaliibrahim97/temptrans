@@ -1,0 +1,6 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.add-field-btn {
+  color: map-get($color, "atlp-ink-base") !important;
+}

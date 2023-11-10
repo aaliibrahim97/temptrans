@@ -1,0 +1,12 @@
+{
+  "atlp-sidebar": {
+    "prefix": ["atlp-side"],
+    "body": [
+      "<atlp-sidebar class='sidebar-with-content' name='$1' position='right' [folded]='false'",
+      "[invisibleOverlay]='true' [superimposed]='true' [isTemplate]='true'>",
+      "<ng-template #AtlpSidebarComponentContent>$2</ng-template>",
+      "</atlp-sidebar>"
+    ],
+    "description": "this is for icon variable"
+  }
+}

@@ -1,0 +1,12 @@
+// @media (min-width: 1024px) {
+//   #lineChart {
+//     min-height: 262px;
+//   }
+// }
+
+::ng-deep {
+  app-line-chart {
+    height: 100%;
+    display: block;
+  }
+}

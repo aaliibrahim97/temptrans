@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2018",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@atlp": ["projects/@atlp/"],
+      "atlp-table": ["dist/atlp-table/atlp-table", "dist/atlp-table"],
+      "@common/dashboard-shared-store": [
+        "projects/@atlp/lib/dashboard-shared-store/index.js",
+        "projects/@atlp/lib/dashboard-shared-store/index.d.ts",
+        "projects/@atlp/lib/dashboard-shared-store/package.json"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+    // "resolveJsonModule": true,
+  },
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": false,
+    "strictInjectionParameters": false,
+    "resolveJsonModule": true
+  }
+}

@@ -1,0 +1,75 @@
+@import "projects/@atlp/scss/variables";
+
+.Messages {
+  position: absolute;
+  // background: transparent linear-gradient(180deg, #373069 0%, #1c1835d1 100%) 0% 0% no-repeat padding-box;
+  width: 100%;
+  z-index: 3;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .mat-icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .Message-box {
+    width: 80%;
+    margin-left: 30%;
+    margin-top: 15%;
+    display: flex;
+    // max-width: 600px;
+    flex-direction: column;
+    align-items: flex-start;
+    // margin: auto;
+    word-break: break-word;
+    @media screen and (max-height: 450px) {
+      margin-top: 70px;
+    }
+    &:lang(ar) {
+      margin-left: 0%;
+      margin-top: 20%;
+      margin-right: 20%;
+    }
+  }
+
+  .messagetitle {
+    font-size: 36px;
+    line-height: 50px;
+    font-weight: 500;
+    color: map-get($color, "atlp-white");
+    width: 80%;
+    // width: 80%;
+    // width: 100%;
+    @media screen and (max-height: 450px) {
+      margin: 10px 0;
+    }
+  }
+
+  .messages-btn-row {
+    margin-top: 32px;
+    width: 100%;
+    @media screen and (max-height: 450px) {
+      margin-top: 20px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .Message-box {
+      padding-left: 12px;
+      .messagetitle {
+        font-size: 26px;
+      }
+      .messagesubtitle {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.drawer-header {
+  background-color: map-get($color, "atlp-violet-base");
+}

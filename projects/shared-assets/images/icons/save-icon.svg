@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="15" viewBox="0 0 16 15">
+  <defs>
+    <clipPath id="clip-path6">
+      <rect width="16" height="15" transform="translate(384 1760)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g transform="translate(-384 -1760)" clip-path="url(#clip-path6)">
+    <g id="Layer_2" data-name="Layer 2" transform="translate(384.5 1760)">
+      <g id="save">
+        <rect width="15" height="15" opacity="0"/>
+        <path d="M12.575,5.444,9.556,2.425a1.875,1.875,0,0,0-1.325-.55H3.75A1.875,1.875,0,0,0,1.875,3.75v7.5A1.875,1.875,0,0,0,3.75,13.125h7.5a1.875,1.875,0,0,0,1.875-1.875V6.769a1.875,1.875,0,0,0-.55-1.325ZM6.25,11.875v-1.25h2.5v1.25Zm5.625-.625a.625.625,0,0,1-.625.625H10V10a.625.625,0,0,0-.625-.625H5.625A.625.625,0,0,0,5,10v1.875H3.75a.625.625,0,0,1-.625-.625V3.75a.625.625,0,0,1,.625-.625H5V6.25a.625.625,0,0,0,.625.625h2.5a.625.625,0,0,0,0-1.25H6.25v-2.5H8.231a.656.656,0,0,1,.444.181l3.019,3.019a.625.625,0,0,1,.181.444Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

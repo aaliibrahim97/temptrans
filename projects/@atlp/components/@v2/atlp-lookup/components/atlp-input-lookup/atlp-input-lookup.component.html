@@ -1,0 +1,177 @@
+<fieldset [disabled]="isDisabled" class="padding-0">
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap.xs="{{ flexParentGap || defaultFlexParentGap }}"
+    fxLayoutGap.sm="{{ flexParentGap || defaultFlexParentGap }}"
+    [ngClass]="{ 'flex-gap-container': isFlexEnabled }"
+  >
+    <div
+      class="field-wrap bg atlp-input-lookup"
+      fxFlex="{{ fxFlexValue || fxFlexDefaultValue }}"
+      fxFlex.xs="100"
+      fxFlex.sm="100"
+      fxLayout="column"
+    >
+      <div class="atlp-search-bar">
+        <div class="atlp-search-bar-content">
+          <label for="atlp-search-bar-input" class="atlp-search-bar-label">
+            <button
+              mat-icon-button
+              *ngIf="hasSearchButton"
+              class="atlp-search-bar-expander"
+              type="button"
+              (click)="toggleSidebarOpen(keyToCloseSlider)"
+              [disabled]="false"
+            >
+              <mat-icon class="search-color-icon">search</mat-icon>
+            </button>
+          </label>
+
+          <input
+            [ngClass]="{
+              'disabled-control': disabled,
+              'padding-left-input-removed': !hasSearchButton,
+              disabledColorChange: isDisabled
+            }"
+            type="{{ inputTextType }}"
+            fxFlex
+            matInput
+            class="atlp-search-bar-input atlp-search-bar-input-text-color"
+            *ngIf="!formControl"
+            [name]="name"
+            [placeholder]="placeholder"
+            (blur)="onBlur($event)"
+            (keyup)="onKey($event)"
+            [readonly]="lookUpObject.codeReadOnly"
+            tabindex="{{ tabindex }}"
+            #lookupInputCode
+            autocomplete="off"
+          />
+          <input
+            atlpOnlyNumber
+            minlength="{{ minlength }}"
+            maxlength="{{ maxlength }}"
+            pattern="^[0-9]*$"
+            [ngClass]="{
+              'disabled-control': disabled,
+              'padding-left-input-removed': !hasSearchButton,
+              disabledColorChange: isDisabled
+            }"
+            type="{{ inputTextType }}"
+            fxFlex
+            matInput
+            class="atlp-search-bar-input"
+            *ngIf="formControl && inputTextType == 'number'"
+            [name]="name"
+            [ngClass]="{ disabledColorChange: isDisabled }"
+            [placeholder]="placeholder"
+            (blur)="onBlur($event)"
+            (keyup)="onKey($event)"
+            tabindex="{{ tabindex }}"
+            [readonly]="lookUpObject.codeReadOnly"
+            #lookupInputCode
+            autocomplete="off"
+          />
+          <input
+            [ngClass]="{
+              'disabled-control': disabled,
+              'padding-left-input-removed': !hasSearchButton,
+              disabledColorChange: isDisabled
+            }"
+            type="{{ inputTextType }}"
+            fxFlex
+            matInput
+            class="atlp-search-bar-input"
+            *ngIf="formControl && inputTextType != 'number'"
+            [name]="name"
+            [ngClass]="{ disabledColorChange: isDisabled }"
+            [placeholder]="placeholder"
+            (blur)="onBlur($event)"
+            (keyup)="onKey($event)"
+            tabindex="{{ tabindex }}"
+            [readonly]="lookUpObject.codeReadOnly"
+            #lookupInputCode
+            autocomplete="off"
+          />
+          <button
+            tabindex="-1"
+            class="input-lookup-close"
+            *ngIf="(selectedOption || query) && !lookUpObject.clearButtonHide"
+            mat-button
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (mousedown)="clearButtonMouseDownClick()"
+            (click)="clearValue()"
+            #clearButton
+            type="button"
+          >
+            <mat-icon class="clear-icon">clear</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="field-wrap bg atlp-input-lookup"
+      fxFlex="{{ fxFlexValue || fxFlexDefaultValue }}"
+      fxFlex.xs="100"
+      fxFlex.sm="100"
+      fxLayout="column"
+      [ngStyle]="getMarginProperty()"
+      [ngClass]="{ 'display-none': !englishFieldVisible }"
+    >
+      <div class="field-input-wrap">
+        <input
+          [disabled]="isDetailsDisabled"
+          (keyup)="setCustomData(lookupInputEnglish.value)"
+          type="text"
+          placeholder="{{ englishPlaceHolder | translate }}"
+          class="changeText-to-uppercase caret-color-mat-input-element english-field"
+          #lookupInputEnglish
+          [ngClass]="{ disabledColorChange: isDisabled }"
+        />
+      </div>
+    </div>
+    <div
+      class="field-wrap bg atlp-input-lookup"
+      fxFlex="{{ fxFlexValue || fxFlexDefaultValue }}"
+      fxFlex.xs="100"
+      fxFlex.sm="100"
+      fxLayout="column"
+      [ngClass]="{ 'display-none': !arabicFieldVisible }"
+    >
+      <div class="field-input-wrap">
+        <input
+          [disabled]="isDetailsDisabled"
+          (keyup)="setCustomData(lookupInputEnglish.value)"
+          type="text"
+          placeholder="{{ arabicPlaceHolder | translate }}"
+          class="changeText-to-uppercase caret-color-mat-input-element arabic-field"
+          #lookupInputArabic
+          [ngClass]="{ disabledColorChange: isDisabled }"
+        />
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<!-- *ngIf="isLookUpRendered" -->
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large disableBlur"
+  [name]="keyToCloseSlider"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <atlp-lookup-component
+    [lookUpObject]="lookUpObject"
+    (lookUpValue)="lookUpValueFromSlider($event)"
+    (lookUpClose)="lookUpClose($event)"
+    (setStoredItems)="setStoredItemsFromLookUp($event)"
+    [source]="service"
+    [serviceParams]="serviceParams"
+  >
+  </atlp-lookup-component>
+</atlp-sidebar-v2>

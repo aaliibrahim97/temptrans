@@ -1,0 +1,89 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <!-- <label class="field-label" [ngClass]="{ required: field.isRequired }">
+    {{ field.label | translate }}</label
+  > -->
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <mat-checkbox
+      #elementRef
+      [ngStyle]="field.props?.componentStyle"
+      *ngIf="align === 'left'; else elseRightType"
+      class="bg child_{{ field.key }} {{ field.inputFiledClasses }}"
+      fxFlex="100%"
+      fxFlex.gt-xs="48%"
+      fxFlex.gt-sm="30%"
+      fxFlex.gt-md="50%"
+      [formControlName]="field.name"
+      align="left"
+      [color]="fieldMetaData?.color || 'primary'"
+      [disableControl]="field.isDisabled || false"
+      labelPosition="after"
+      [name]="field.name"
+    >
+      <div class="field-wrap bg" fxLayout="row">
+        <label
+          class="field-label mb-0"
+          [ngClass]="{ required: field.isRequired }"
+        >
+          {{ field.label | translate }}
+        </label>
+      </div>
+    </mat-checkbox>
+
+    <ng-template #elseRightType>
+      <mat-checkbox
+        #elementRef
+        [ngStyle]="field.props?.componentStyle"
+        [tabIndex]="field.tabindex || 0"
+        class="bg child_{{ field.key }} {{ field.inputFiledClasses }}"
+        fxFlex="100%"
+        fxFlex.gt-xs="48%"
+        fxFlex.gt-sm="30%"
+        fxFlex.gt-md="25%"
+        [formControlName]="field.name"
+        align="right"
+        [color]="fieldMetaData?.color || 'primary'"
+        [disableControl]="isDisable || false"
+        [labelPosition]="fieldMetaData.appearance || 'after'"
+        [name]="field.name"
+        >{{ field.label | translate }}</mat-checkbox
+      >
+    </ng-template>
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+</div>

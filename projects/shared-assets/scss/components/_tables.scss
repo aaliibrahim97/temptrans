@@ -1,0 +1,295 @@
+.container-bg {
+  margin-bottom: 30px;
+}
+
+.mat-table,
+mat-table {
+  font-weight: 500 !important;
+  font-family: ADPortsGroup !important;
+  :lang(en) & {
+    direction: ltr;
+  }
+  :lang(ar) & {
+    direction: rtl;
+  }
+
+  // > * {
+  //   :lang(en) &{
+  //     direction: ltr;
+  //   }
+  //   :lang(ar) &{
+  //     direction: rtl;
+  //   }
+  // }
+}
+
+.table {
+  position: relative;
+  @include border-radius(6px, 6px, 0px, 0px);
+  overflow: hidden;
+  border-top: 1px solid map-get($color, "atlp-input-border");
+  @include border-left(1px solid map-get($color, "atlp-input-border"));
+  @include border-right(1px solid map-get($color, "atlp-input-border"));
+
+  &.bg {
+    background: transparent !important;
+    border: none;
+    .mat-header-cell {
+      text-transform: uppercase;
+      font-weight: 700;
+      color: map-get($color, "atlp-purple-light") !important;
+    }
+    .mat-cell {
+      color: map-get($color, "atlp-white") !important;
+    }
+    .mat-row {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .mat-header-cell {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    @media (min-width: 1024px) {
+      font-size: 13px !important;
+    }
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    font-size: 12px !important;
+    color: map-get($color, "atlp-table-color");
+    @media (min-width: 1024px) {
+      font-size: 13px !important;
+    }
+    .btn-icon-status {
+      height: 18px;
+      position: relative;
+      bottom: -4px;
+      @include margin(-5px, 5px, 0, 0);
+      .mat-icon {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        min-height: 18px;
+      }
+      &.pending {
+        background-color: map-get($color, "atlp-grey-dark");
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        position: relative;
+        bottom: -7px;
+        .mat-icon {
+          position: relative;
+          top: -7px;
+          width: 10px;
+          height: 10px;
+          min-width: 10px;
+          min-height: 10px;
+        }
+      }
+    }
+  }
+
+  .mat-row {
+    position: relative;
+    transition: all 0.3s ease;
+    .loader {
+      position: absolute;
+      top: 50%;
+      @include left(20px);
+      transform: translateY(-50%);
+    }
+    &.selected {
+      background-color: map-get($color, "atlp-cell-bg");
+    }
+    &.show-controls {
+      .table-nav {
+        z-index: 1;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.table-nav {
+  background: transparent linear-gradient(270deg, #f3edfa 0%, #dce3f100 100%) 0%
+    0% no-repeat padding-box;
+  transition: all 0.3s ease;
+  position: absolute;
+  @include right(20px);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  @media (min-width: 768px) {
+    @include right(auto);
+    @include left(calc(100vw - 640px));
+  }
+  button {
+    display: block;
+    @include margin-left(8px);
+  }
+}
+
+.mat-paginator {
+  border-bottom: 1px solid map-get($color, "atlp-input-border");
+  @include border-left(1px solid map-get($color, "atlp-input-border"));
+  @include border-right(1px solid map-get($color, "atlp-input-border"));
+}
+
+.table-container {
+  padding: 30px 12px;
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
+  .controls-buttons.column {
+    button {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.table-controls {
+  &.selected {
+    .table-nav {
+      background: transparent;
+      position: static;
+      z-index: 0;
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+      padding: 0;
+      display: none !important;
+      @media (min-width: 1024px) {
+        display: flex !important;
+      }
+    }
+    .table-controls-title {
+      color: map-get($color, "atlp-table-color");
+    }
+  }
+  .table-controls-title {
+    font-size: 16px;
+    color: map-get($color, "atlp-ink-lighter");
+    &.dark {
+      color: map-get($color, "atlp-table-color");
+    }
+  }
+  .table-nav {
+    margin-top: 15px;
+    @media (min-width: 960px) {
+      margin-top: 0;
+    }
+    button {
+      @include margin-right(8px);
+      margin-bottom: 8px;
+      @include margin-left(0);
+      &:first-child {
+        // @include margin-right( 48px);
+        position: relative;
+        &:after {
+          // content: "";
+          position: absolute;
+          top: 50%;
+          @include right(-25px);
+          height: 25px;
+          width: 1px;
+          transform: translateY(-50%);
+          background-color: map-get($color, "atlp-toolbar-border");
+        }
+      }
+      &:last-child {
+        @include margin-right(0);
+      }
+      @media (min-width: 960px) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.ps__thumb-x {
+  background-color: transparent !important;
+}
+
+// table nav
+[dir="rtl"] .table-clearance-nav ul .mat-icon {
+  transform: rotate(180deg);
+}
+
+.table-clearance-nav {
+  .table-clearance-text {
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: #c8b6dd;
+    display: none;
+    @media (min-width: 600px) {
+      display: block;
+    }
+  }
+  ul {
+    a {
+      padding: 8px;
+      font-size: 13px;
+      letter-spacing: 0px;
+      color: #c8b6dd;
+      &:hover,
+      &.active {
+        color: #fff;
+        // &:hover{
+        //   text-decoration: none !important;
+        // }
+      }
+    }
+    li {
+      height: 16px;
+      cursor: pointer;
+    }
+    .current-page {
+      display: block;
+      width: 33px;
+      height: 33px;
+      font-size: 13px;
+      letter-spacing: 0px;
+      color: #fff;
+      @include text-align(center);
+      border: 1px solid #a187bf;
+      border-radius: 6px;
+      padding: 7px;
+      @include margin-left(16px);
+      @include margin-right(16px);
+    }
+    .mat-icon {
+      min-width: 15px;
+      min-height: 15px;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      top: 2px;
+    }
+    .go-to-page-btn {
+      font-size: 14px;
+      letter-spacing: 0px;
+      color: #c8b6dd;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+  }
+}
+
+.voyage-table {
+  overflow-y: auto;
+  // max-height: 60vh;
+  max-height: 68vh;
+  @media (min-width: 768px) and (max-width: 820px) {
+    max-height: 70vh;
+  }
+}

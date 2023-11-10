@@ -1,0 +1,181 @@
+<div class="filters" atlpPerfectScrollbar>
+    <div class="filter-title-row" fxLayout="column">
+        <div class="filters-head" fxLayout="row" fxLayoutAlign="space-between center">
+            <h2 class="filters-title" flex="none">{{title}}</h2>
+            <button type="button" (click)="toggleSidebarOpen(SidebarName.filtersSidebar)">
+                <mat-icon svgIcon="x-fill-purple" aria-hidden="false"></mat-icon>
+            </button>
+        </div>
+        <h2 class="filters-preset" *ngIf="selectedSavedFilters?.length >0">
+            Preset:
+            <span *ngFor="let savedFilter of savedFilters; index as i">
+                <span *ngIf="selectedSavedFilters?.includes(savedFilter.id)">
+                    {{savedFilter.label}}
+                    <span *ngIf="selectedSavedFilters?.length > 1"> ,</span>
+                </span>
+            </span>
+        </h2>
+    </div>
+
+    <button (click)="clearFilters()" mat-button class="transparent clear-btn">
+        <span *ngIf="appliedfilters?.length; else nofilter">
+            Clear ALL
+            ({{appliedfilters.length}})
+        </span>
+        <ng-template #nofilter>Clear ALL</ng-template>
+    </button>
+    <button (click)="openLoadedFilters()" mat-raised-button color="basic" class="bg filters-btn">Load Saved
+        Filters</button>
+    <h2 class="filter-section-title">{{sectiontitle1}}</h2>
+
+    <div class="light-purple-select filters-radio">
+        <mat-radio-group fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+            <div class="radio-btn-row" fxLayout="row wrap" fxLayoutAlign="start start" fxFlex="100"
+                *ngFor="let Searchitem of SearchbyOptions1; index as i">
+                <mat-radio-button [checked]="appliedfilters?.includes(Searchitem.label)" [value]="Searchitem.label"
+                    (change)="radioChange($event, Searchitem.label )">
+                    {{Searchitem.label}}
+                </mat-radio-button>
+                <div class="radio-button-select" *ngIf="appliedfilters?.includes(Searchitem.label)" fxFlex="100">
+                    <mat-select class="dropdown-select bg" panelClass="panel-custom bg">
+                        <p class="selectSectionheader">Recent</p>
+                        <mat-option [value]="recentSelectOption"
+                            *ngFor="let recentSelectOption of Searchitem.recentSelectOptions; index as i">
+                            {{recentSelectOption}}
+                        </mat-option>
+                        <hr>
+                        <mat-option [value]="selectOption"
+                            *ngFor="let selectOption of Searchitem.selectOptions; index as i">
+                            {{selectOption}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+        </mat-radio-group>
+    </div>
+
+    <mat-accordion class="filters-accordion" multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <span class="panel-title">Vessel Tracker</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="panel-body" fxLayout="column">
+
+                <div class="dropdown-col bg" fxFlex fxLayout="column">
+                    <label for="#" class="dropdown-label">Date Range</label>
+                    <mat-select value="Last 90 Days" class="dropdown-select bg" panelClass="panel-custom bg">
+                        <mat-option [value]="'Last 90 Days'">
+                            Last 90 Days
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="field-wrap bg date-picker" fxFlex="21" fxFlex.xs="100" fxLayout="column">
+                    <label for="#" class="field-label">From</label>
+                    <div class="field-input-wrap">
+                        <input placeholder="Choose a date" [matDatepicker]="from2" (focus)="from2.open()" readonly
+                            required />
+                        <mat-icon svgIcon="data-icon-white" aria-hidden="false"></mat-icon>
+                    </div>
+                    <mat-datepicker #from2></mat-datepicker>
+                </div>
+                <div class="field-wrap bg date-picker" fxFlex="21" fxFlex.xs="100" fxLayout="column">
+                    <label for="#" class="field-label">TO</label>
+                    <div class="field-input-wrap">
+                        <input placeholder="Choose a date" [matDatepicker]="to" (focus)="to.open()" readonly required />
+                        <mat-icon svgIcon="data-icon-white" aria-hidden="false"></mat-icon>
+                    </div>
+                    <mat-datepicker #to></mat-datepicker>
+                </div>
+
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <span class="panel-title" *ngIf="appliedfilters?.length; else elseBlock">
+
+                        Call Request
+                        ({{appliedfilters?.length}})
+                    </span>
+                    <ng-template #elseBlock> <span class="panel-title">Call Request</span></ng-template>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="panel-body">
+                <div class="light-purple-select" fxLayout="column" fxLayoutAlign="start start" fxFlex="100">
+                    <mat-checkbox (change)="selectChange($event,'Accepted')" class='filters-checkbox'
+                        [checked]="appliedfilters?.includes('Accepted')">
+                        Accepted
+                    </mat-checkbox>
+                    <mat-checkbox (change)="selectChange($event,'Pending')"
+                        [checked]="appliedfilters?.includes('Pending')" class='filters-checkbox'>Pending
+                    </mat-checkbox>
+                    <mat-checkbox (change)="selectChange($event,'Rejected')" class='filters-checkbox'
+                        [checked]="appliedfilters?.includes('Rejected')">Rejected
+                    </mat-checkbox>
+                </div>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <span class="panel-title">Manifest</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <span class="panel-title">Discharge List</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <span class="panel-title">Loading List</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <span class="panel-title">ETD Change Requst</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <button mat-raised-button color="primary" class="savefilters-btn">Save Filter</button>
+</div>
+
+<div class="loaded-filters" *ngIf="showLoadedFilters">
+    <h2 class="loaded-filters-title">Recent Filters</h2>
+    <div class="recent-filters" *ngFor="let recentFilter of recentFilters; index as i">
+        <button mat-raised-button color="basic" class="bg filters-btn">{{recentFilter}}</button>
+    </div>
+    <h2 class="loaded-filters-title">Saved Filters</h2>
+    <div class="recent-filters" *ngFor="let savedFilter of savedFilters; index as i">
+        <button (click)="handleSavedFiltersSelect(savedFilter)" mat-raised-button color="basic" class="bg filters-btn"
+            [class.selectedbtn]="selectedSavedFilters?.includes(savedFilter.id)">
+            <div class="saved-btn">
+                <span> {{savedFilter.label}}</span>
+                <mat-icon svgIcon="delete-grey" aria-hidden="false"></mat-icon>
+            </div>
+        </button>
+        <div class="tooltip-filters">
+            <div class="saved-filters">Vessel Name</div>
+            <div class="saved-filters">Vessel Name</div>
+            <div class="saved-filters">Vessel Name</div>
+            <div class="saved-filters">Vessel Name</div>
+            <div class="saved-filters">Vessel Name</div>
+            <div class="saved-filters">Vessel Name</div>
+        </div>
+    </div>
+</div>

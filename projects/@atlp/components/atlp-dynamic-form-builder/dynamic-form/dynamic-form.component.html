@@ -1,0 +1,37 @@
+<div id="{{ uniqueDynamicFormComponentId }}" class="dynamic-form-parent">
+  <ng-container *ngIf="sanitizedInlineStyles">
+    <span [innerHtml]="sanitizedInlineStyles"></span>
+  </ng-container>
+  <form *ngIf="makeFormVisible" class="dynamic-form flexRes" [formGroup]="form">
+    <ng-container *ngFor="let layout of dynamicLayout">
+      <div
+        class="row"
+        [ngClass]="layout.row?.props?.classList || '' | dynamicClassSelector"
+      >
+        <ng-container *ngFor="let col of layout.row.columns">
+          <div class="{{ col.props.classList }}">
+            <ng-container *ngFor="let cmp of col.components">
+              <!-- <ng-container
+                dynamicFormField
+                [field]="cmp"
+                [group]="form"
+                [isSubmited]="isSubmited"
+                [isDisable]="isDisable"
+                [formName]="uniqueDynamicFormComponentId"
+              ></ng-container> -->
+              <dynamic-com-creator
+                [field]="cmp"
+                [group]="form"
+                [isSubmited]="isSubmited"
+                [isDisable]="isDisable"
+                [uniqueDynamicFormComponentId]="uniqueDynamicFormComponentId"
+                [parentcomponentRef]="parentcomponentRef"
+              >
+              </dynamic-com-creator>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </form>
+</div>

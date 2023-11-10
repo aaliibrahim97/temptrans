@@ -1,0 +1,11 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.expression-of-interest-details {
+  .plot-item {
+    background-color: map-get($color, "atlp-white") !important;
+    .area-text {
+      color: map-get($color, "light-mode-title") !important;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<div class="mat-paginator-outer-container">
+  <button
+    [disabled]="pageNumber === 0"
+    type="button"
+    (click)="onPageChange('previous')"
+    class="arrow mat-icon-button"
+    aria-label="Previous page"
+    [ngClass]="{ 'button-disabled': pageNumber === 0 }"
+  >
+    <span class="mat-button-wrapper"   [ngStyle]="{
+      color: pageNumber === 0 ? '#666666' : 'white'
+    }"
+      ><svg
+        [ngStyle]="{
+          color: pageNumber === 0 ? '#666666' : 'white'
+        }"
+        viewBox="0 0 24 24"
+        focusable="false"
+        class="mat-paginator-icon"
+        [ngClass]="{ rotate: selectedLanguage =='ae' }"
+      >
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+      </svg>
+      {{ "Prev" | translate }}</span
+    >
+  </button>
+
+  <div class="pagination-number-color arrow-space"></div>
+
+  <button
+    type="button"
+    (click)="onPageChange('next')"
+    class="arrow mat-icon-button"
+    [disabled]="nextArrowColor != 'white'"
+    [ngClass]="{ 'button-disabled': nextArrowColor != 'white'}"
+  >
+    <span class="mat-button-wrapper"
+    [ngStyle]="{ color: nextArrowColor === 'white' ? 'white' : '#666666' }"
+      >{{ "Next" | translate
+      }}<svg
+        [ngStyle]="{ color: nextArrowColor === 'white' ? 'white' : '#666666' }"
+        viewBox="0 0 24 24"
+        focusable="false"
+        class="mat-paginator-icon"
+        [ngClass]="{ rotate: selectedLanguage =='ae' }"
+      >
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+      </svg>
+    </span>
+  </button>
+</div>

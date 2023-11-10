@@ -1,0 +1,49 @@
+<div
+  class="wrapper overlay-blur"
+  [class.blur]="atplSidebarService.allOpenedSuperimposedSidebar.length > 0"
+  fxFlex="none"
+  fxLayout="column"
+  fxLayoutAlign="start none"
+>
+  <div class="sidebar-container" fxLayout="row" fxLayoutAlign="start start">
+    <div class="table-controls-view">
+      <br />
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="toggleSidebarOpen(SidebarNameAtlp.filtersSidebar)"
+        >
+          Filter
+        </button>
+      </div>
+    </div>
+    <atlp-sidebar
+      class="filters-sidebar filter-content-width"
+      [name]="SidebarNameAtlp.filtersSidebar"
+      position="left"
+      [folded]="false"
+      [invisibleOverlay]="true"
+      [isTemplate]="true"
+    >
+      <ng-template #AtlpSidebarComponentContent>
+        <atlp-filters
+          [toggleFilters]="toggleFilters"
+          [dataType]="'service'"
+          title="FILTER IAC"
+          sectiontitle1="SEARCH BY"
+          (onSearch)="search()"
+          (setFiltersData)="clearfilters()"
+          [filterServices]="mockFilterService"
+          [service]="mockFilterService"
+          [getFilterDataFn]="getFilterDataFn"
+          [key]="'iacAppointmentFilter'"
+          (onSelectFilter)="onSelectFilter($event)"
+        >
+          <filter-content class="filter-body"></filter-content>
+        </atlp-filters>
+      </ng-template>
+    </atlp-sidebar>
+  </div>
+</div>

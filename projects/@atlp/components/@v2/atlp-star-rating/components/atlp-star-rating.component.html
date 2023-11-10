@@ -1,0 +1,16 @@
+<fieldset [ngClass]="{ disabled: disabled }">
+  <ng-template ngFor let-star [ngForOf]="stars" let-i="index">
+    <input
+      #atlpStarRatingCheckbox
+      class="star star-{{ star }}"
+      [ngClass]="{ checked: value == star }"
+      id="star-{{ star }}-{{ id }}"
+      type="radio"
+      name="star"
+      (click)="rate(star)"
+      [checked]="value == star"
+      [disabled]="disabled"
+    />
+    <label class="star star-{{ star }}" for="star-{{ star }}-{{ id }}"></label>
+  </ng-template>
+</fieldset>

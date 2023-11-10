@@ -1,0 +1,49 @@
+<h2 mat-dialog-title class="user-announcement-title-container">
+  <div class="user-announcement-title">
+    <!-- <mat-icon [svgIcon]="data?.icon" style="margin:0px 5px;" aria-hidden="false"></mat-icon> -->
+    {{ data?.title | translate }}
+  </div>
+  <div class="user-announcement-close-icon" *ngIf="!data?.hideShowIcon">
+    <mat-icon
+      svgIcon="close-white-icon"
+      (click)="onAction('reject')"
+      aria-hidden="false"
+    ></mat-icon>
+  </div>
+</h2>
+<mat-dialog-content class="mat-typography">
+  <ng-container *ngComponentOutlet="data?.template"></ng-container>
+  <div *ngIf="!data?.isDocViewer" [innerHTML]="content" class="test"></div>
+  <div *ngIf="data?.isDocViewer" class="doc-viewer-container">
+    <ng-container>
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </ng-container>
+  </div>
+  <div *ngIf="data?.showTimer">
+    <span class="announcement-timer">
+      {{ displayTimer(seconds) }}
+    </span>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    class=""
+    (click)="onAction('accept')"
+    cdkFocusInitial
+    *ngIf="data?.showConfirmButton"
+  >
+    {{ data?.confirmButtonText | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    class=""
+    (click)="onAction('reject')"
+    cdkFocusInitial
+    *ngIf="data?.showRejectButton"
+  >
+    {{ data?.rejectButtonText | translate }}
+  </button>
+</mat-dialog-actions>

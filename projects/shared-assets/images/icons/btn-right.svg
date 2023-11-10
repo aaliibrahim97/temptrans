@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="23" viewBox="0 0 22 23">
+	<defs>
+		<style>
+			.aBack{stroke:rgba(0,0,0,0.1);fill:url(#aBack);}.bBack{fill:#2d3955;}.cBack{stroke:none;}.dBack{fill:none;}.eBack{filter:url(#bBack);}
+		</style>
+		<linearGradient id="aBack" x1="0.5" x2="0.5" y2="1.661" gradientUnits="objectBoundingBox">
+			<stop offset="0" stop-color="#fff" />
+			<stop offset="1" stop-color="#eaeef4" />
+		</linearGradient>
+		<filter id="bBack" x="0" y="0" width="22" height="23" filterUnits="userSpaceOnUse">
+			<feOffset dy="1" input="SourceAlpha" />
+			<feGaussianBlur result="c" />
+			<feFlood flood-opacity="0.102" />
+			<feComposite operator="in" in2="c" />
+			<feComposite in="SourceGraphic" />
+		</filter>
+	</defs>
+	<g transform="translate(-0.3)">
+		<g class="eBack" transform="matrix(1, 0, 0, 1, 0.3, 0)">
+			<g class="aBack">
+				<circle class="cBack" cx="11" cy="11" r="11" />
+				<circle class="dBack" cx="11" cy="11" r="10.5" />
+			</g>
+		</g>
+		<path class="bBack" d="M8.1.815A.8.8,0,0,0,7.853.243a.9.9,0,0,0-1.21,0L4.051,2.681,1.46.235a.9.9,0,0,0-1.21,0,.779.779,0,0,0,0,1.143L3.446,4.4a.87.87,0,0,0,.605.233A.91.91,0,0,0,4.656,4.4l3.2-3.01A.815.815,0,0,0,8.1.815Z" transform="translate(9.054 14.795) rotate(-90)" />
+	</g>
+</svg>

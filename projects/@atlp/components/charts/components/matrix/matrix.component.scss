@@ -1,0 +1,41 @@
+.matrix-wrap {
+  width: 3800px !important;
+  height: 190px !important;
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.scroll {
+  width: 100%;
+  unicode-bidi: bidi-override;
+  overflow-x: scroll;
+  overflow-y: hidden !important;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.arrows {
+  margin-top: -38px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+
+  .arrow-left,
+  .arrow-right {
+    cursor: pointer;
+  }
+}
+
+::ng-deep {
+  app-matrix {
+    height: 100%;
+    display: block;
+  }
+}

@@ -1,0 +1,97 @@
+<!-- close btn -->
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between">
+  <button
+    class="round-close-btn"
+    (click)="toggleSidebarOpen(dialogData.drawerName)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>
+
+<div class="drawer-wrap charges" fxFlex fxLayout="column" fxLayoutAlign=" none">
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ dialogData?.title }}</span>
+      </div>
+    </div>
+    <div class="drawer-body">
+      <div class="table-wrap-bg">
+        <div
+          class="payment"
+          fxFlex="100"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <div
+            class="payment-box"
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutAlign="start"
+          >
+            <!-- <mat-icon svgIcon="messages-exclamation" aria-hidden="false"></mat-icon> -->
+
+            <div
+              class="message-detail"
+              fxLayout="row"
+              fxLayoutAlign="end center"
+              *ngIf="dialogData?.messageDetails"
+            >
+              <span class="panel-title"></span>
+              <span class="appointment-text"></span>
+            </div>
+            <div>
+              <form [formGroup]="form">
+                <div class="field-wrap bg payment-token-otp-page">
+                  <h1 class="title">{{ dialogData?.title }}</h1>
+                  <p class="subtitle">{{ dialogData?.message }}</p>
+
+                  <div
+                    class="field-input-wrap mpay-payment-otp-input"
+                    *ngFor="let input of formInput; index as i"
+                    id="mpay-payment-otp-input-{{i}}"
+                    >
+                    <input
+                      #formRow
+                      type="text"
+                      formControlName="{{ input }}"
+                      class="form-control"
+                      maxlength="1"
+                      minlength="1"
+                      required
+                      (keyup)="keyUpEvent($event, i)"
+                    />
+                  </div>
+                  <p class="subtitle OTPResendText">
+                    <span id="OTPResendText"></span>
+                    <a id="OTPResendCount"></a>
+                    <a
+                      id="OTPResendLink"
+                      class="OTPResendLink"
+                      (click)="ResendOTPProcess()"
+                    ></a>
+                  </p>
+                  <div
+                    fxLayout="row"
+                    fxLayoutAlign="left left"
+                    fxLayoutGap="10px"
+                  ></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

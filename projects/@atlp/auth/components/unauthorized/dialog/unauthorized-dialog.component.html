@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{ "Unauthorized" | translate }}</h1>
+<div mat-dialog-content>
+  <p style="padding: 10px">
+    {{ "Profile_Unauthorized" | translate }}
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button
+    cdkFocusInitial
+    mat-raised-button
+    color="primary"
+    (click)="toSsoPage('LOGOUT')"
+  >
+    {{ "Switch_User" | translate }}
+  </button>
+  <button class="transparent purple" mat-button (click)="toSsoPage('OK')">
+    {{ "Ok" | translate }}
+  </button>
+</div>

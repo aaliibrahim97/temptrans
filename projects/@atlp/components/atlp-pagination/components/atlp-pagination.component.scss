@@ -1,0 +1,196 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.table-pagination-nav {
+  ul a:hover,
+  ul a.active {
+    color: #c8b6dd;
+  }
+
+  li {
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  .dottedPag {
+    cursor: default;
+    a:hover {
+      text-decoration: none !important;
+      color: #000;
+    }
+  }
+  a.activePageNumber {
+    color: hsl(0deg 0% 0%);
+    cursor: default;
+    &:hover {
+      text-decoration: none !important;
+      color: hsl(0deg 0% 0%) !important;
+    }
+  }
+}
+
+.mat-select-custom {
+  color: black;
+  height: 27px;
+  width: 57px;
+  margin-top: -6px;
+  margin-left: 8px;
+  box-shadow: none;
+}
+
+.next-prev {
+  svg {
+    path {
+      fill: black !important;
+      opacity: 1;
+    }
+  }
+}
+
+.button-disabled {
+  cursor: not-allowed !important;
+  // color: #c8b6dd !important;
+}
+
+mat-icon {
+  min-height: 17px !important;
+  height: 17px !important;
+  &:lang(en) {
+    top: 0 !important;
+  }
+  &:lang(ar) {
+    top: -4px !important;
+  }
+}
+
+ul li {
+  padding: 1.3px;
+}
+
+:host ::ng-deep svg {
+  top: -2px;
+  position: relative;
+}
+
+.table-clearance-pagination.ml-auto {
+  @include margin-left(20px !important);
+}
+
+.go-to-nav-button {
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: map-get($color, "atlp-black");
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (min-width: 380px) and (max-width: 869px) {
+  .table-clearance-nav ul a {
+    padding: 8px 4px;
+  }
+
+  .mat-select-custom {
+    margin-left: 0px;
+  }
+}
+
+.pt-10 {
+  padding: 10px;
+}
+
+::ng-deep {
+  .mat-select-trigger {
+    height: 100%;
+  }
+}
+
+::ng-deep {
+  .rich-table-mode {
+    atlp-pagination {
+      padding: 10px 5px 0px;
+      display: block;
+      #atlp-common-pagination {
+        border: none !important;
+        border-radius: 8px;
+        box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.12) !important;
+      }
+    }
+  }
+
+  @media screen and (max-width: 780px) {
+    .atlp-common-pagination {
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+  }
+  .atlp-common-pagination {
+    display: flex;
+    place-content: center flex-end;
+    align-items: center;
+    flex-direction: row;
+    min-height: 60px;
+    font-size: 12px;
+    gap: 20px;
+    border: 1px solid map-get($color, "atlp-input-border");
+    background-color: #fff;
+    border-top: 0px;
+    color: rgba(0, 0, 0, 0.54);
+    box-shadow: 0 1px 4px #0000001f;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    section {
+      display: flex;
+      align-items: center;
+    }
+
+    #page-nav {
+      gap: 10px;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.button-disabled {
+          cursor: not-allowed !important;
+          svg {
+            path {
+              fill: #00000042;
+            }
+            fill: #0000001a;
+          }
+          // color: #c8b6dd !important;
+        }
+        svg {
+          path {
+            fill: #0000008a;
+          }
+          fill: #0000008a;
+        }
+      }
+      mat-icon {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        &:lang(ar) {
+          transform: scale(-1);
+        }
+        > svg {
+          height: 100% !important;
+          width: 100% !important;
+        }
+      }
+    }
+
+    #item-per-page {
+      gap: 20px;
+      mat-select.dropdown-select {
+        border: none !important;
+        border-bottom: 1px solid map-get($color, "atlp-field-input-border") !important;
+        background: none;
+        border-radius: 0 !important;
+      }
+    }
+  }
+}

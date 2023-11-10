@@ -1,0 +1,16 @@
+export enum InlineGridEditFieldTypes {
+  date = 'date',
+  lookup = 'lookup',
+  autoComplete = 'autoComplete',
+  number = 'number',
+  text = 'text',
+  checkbox = 'checkbox',
+  password = 'password',
+  textarea = 'textarea',
+  multiValidationText = 'multiValidationText',
+  select = 'select',
+  customActions = 'customActions',
+  checkboxSelection = 'checkboxSelection',
+  actions = 'actions',
+  fileUpload = 'fileUpload',
+}

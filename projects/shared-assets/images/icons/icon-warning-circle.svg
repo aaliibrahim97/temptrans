@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="icon-warning-circle" transform="translate(-0.447 0)">
+    <rect id="Rectangle_140506" data-name="Rectangle 140506" width="24" height="24" transform="translate(0.447 0)" fill="none"/>
+    <path id="Path_4379" data-name="Path 4379" d="M36,24A12,12,0,1,0,48,36,12,12,0,0,0,36,24Zm-.923,6.462a.923.923,0,1,1,1.846,0v6.462a.923.923,0,0,1-1.846,0Zm.923,12a1.385,1.385,0,1,1,1.385-1.385A1.385,1.385,0,0,1,36,42.462Z" transform="translate(-23.553 -24)" fill="#d98e28"/>
+  </g>
+</svg>

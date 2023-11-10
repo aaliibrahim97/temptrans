@@ -1,0 +1,86 @@
+.rating-button {
+  background: #f6f6f6;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+  // margin:10px;
+  height: 50px;
+  width: 50px;
+  background-color: #eae2ff !important;
+  border-radius: 50%;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  border: 5px solid #774ea6;
+}
+
+.rating-button:hover {
+  transform: scale(1.1);
+}
+
+.rating-button-fixed {
+  position: fixed;
+
+  &:lang(en) {
+    right: 25px;
+    bottom: 15px;
+  }
+
+  &:lang(ar) {
+    left: 25px;
+    bottom: 15px;
+  }
+
+}
+
+.rating-button-icon {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.rating-button-icon:hover {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+$color_scooter: #774ea6;
+$color_batman: #101010;
+
+@function multipleBoxShadowSonar($layers, $firstLayerWidth, $color) {
+  $value: "0 0 0 #{$firstLayerWidth} #{$color}";
+  @for $i from 2 through $layers {
+    $value: "#{$value} , 0 0 0 #{$i * 5}px "+rgba($color, calc(1 / $i));
+  }
+
+  @return unquote($value);
+}
+
+.button-pulse {
+  height: 50px;
+  width: 50px;
+  background-color: $color_scooter;
+  //   content: " ";
+  animation: pulse 3s infinite;
+  //   display: block;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color_scooter, 10%);
+    transition: 0.5s ease;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: multipleBoxShadowSonar(3, 2px, $color_scooter);
+  }
+}
+
+.hide-on-mobile {
+  display: none;
+
+  @media (min-width:768px) {
+    display: block;
+  }
+}

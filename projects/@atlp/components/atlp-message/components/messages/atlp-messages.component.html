@@ -1,0 +1,86 @@
+<div class="Messages">
+  <div class="Message-box">
+    <mat-icon *ngIf="dialogType === atlpCommonDialogEnum.ok" svgIcon="success-icon" aria-hidden="false"></mat-icon>
+    <mat-icon *ngIf="dialogType === atlpCommonDialogEnum.success" svgIcon="success-icon" aria-hidden="false"></mat-icon>
+    <mat-icon *ngIf="dialogType === atlpCommonDialogEnum.error" svgIcon="error-icon" aria-hidden="false"></mat-icon>
+    <!-- <mat-icon *ngIf="status ==='error'"   svgIcon="error-circle" aria-hidden="false"></mat-icon> -->
+    <mat-icon *ngIf="dialogType === atlpCommonDialogEnum.confirm" svgIcon="messages-exclamation" aria-hidden="false">
+    </mat-icon>
+    <mat-icon *ngIf="
+        dialogType === atlpCommonDialogEnum.info ||
+        dialogType === atlpCommonDialogEnum.dataWithId ||
+        dialogType === atlpCommonDialogEnum.rejectWithReason
+      " svgIcon="messages-exclamation" aria-hidden="false"></mat-icon>
+    <h1 *ngIf="title" class="messagetitle">{{ title }}</h1>
+    <h4 *ngIf="subtitle" class="messagesubtitle">{{ subtitle }}</h4>
+    <div class="messages-btn-row" *ngIf="isNotRejectReason() && !dataWithId()">
+      <button type="button" (click)="okButtonClick()" class="
+          mat-focus-indicator mat-raised-button
+          mr-16
+          mat-button-base mat-primary
+        " mat-raised-button color="primary">
+        {{ okButtonText }}
+      </button>
+      <button type="button" mat-button *ngIf="dialogType === atlpCommonDialogEnum.confirm" (click)="cancelButtonClick()"
+        mat-raised-button class="
+          mat-focus-indicator
+          transparent mr-16
+          view-charges-btn
+          mat-button mat-button-base
+        ">
+        {{ cancelButtonText }}
+      </button>
+    </div>
+    <div class="messages-btn-row" *ngIf="!isNotRejectReason()">
+      <form name="form" (ngSubmit)="confirmWithReasonClick(f)" #f="ngForm" novalidate>
+
+        <div class="field-wrap bg" fxFlex="100%" fxLayout="column">
+          <label for="#" class="field-label">{{ inputReason }}</label>
+          <div class="field-input-wrap">
+            <textarea class="textarea" name="reason" [(ngModel)]="model.reason" #reason="ngModel" required></textarea>
+          </div>
+          <div class="error-wrap" fxLayout="row" fxLayoutAlign="start center"
+            *ngIf="reason.errors?.required && submitted">
+            <!-- <mat-icon svgIcon="warning-circle-fill" style="margin-top: 0;" aria-hidden="false"
+              *ngIf="submitted && reason.errors?.required ">
+            </mat-icon> -->
+            <span class="error-text" *ngIf="reason.errors.required">
+              {{ reasonError }}</span>
+          </div>
+        </div>
+        <button type="button" (click)="confirmWithReasonClick(f)" class="
+            mat-focus-indicator mat-raised-button
+            mr-16
+            mat-button-base mat-primary
+          " mat-raised-button color="primary">
+          {{ okButtonText }}
+        </button>
+        <button type="button" (click)="cancelButtonClick()" mat-raised-button class="
+            mat-focus-indicator mr-16
+            transparent
+            view-charges-btn
+            mat-button mat-button-base
+          ">
+          {{ rejectAbortButtonText }}
+        </button>
+      </form>
+    </div>
+    <div class="messages-btn-row" *ngIf="dataWithId()">
+      <button type="button" (click)="confirmWithdataClick()" mat-raised-button class="
+          mat-focus-indicator mat-raised-button
+          mr-16
+          mat-button-base mat-primary
+        " color="primary">
+        {{ okButtonText }}
+      </button>
+      <button type="button" class="
+          mat-focus-indicator mr-16
+          transparent
+          view-charges-btn
+          mat-button mat-button-base
+        " (click)="cancelButtonClick()" mat-raised-button>
+        {{ rejectAbortButtonText }}
+      </button>
+    </div>
+  </div>
+</div>

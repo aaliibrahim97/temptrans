@@ -1,0 +1,72 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+@import "projects/shared-assets/scss/components/_snack-bar";
+
+.mat-snack-bar-container {
+  background-color: red;
+  @include padding(20px, 20px, 20px, 20px !important);
+}
+
+.atlp-snackbar {
+  color: map-get($color, "atlp-black");
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  padding-left: 0;
+  padding-right: 10px;
+  &:lang(ar) {
+    padding-left: 10px;
+    padding-right: 0;
+    div.atlp-snackbar-container {
+      flex-direction: row !important;
+    }
+  }
+}
+
+.atlp-snackbar-message {
+  line-height: 1.5;
+  display: inline-block;
+  flex-grow: 1;
+  width: 170px;
+  word-wrap: break-word;
+  white-space: pre-line;
+  padding: 0 10px;
+}
+
+.atlp-snackbar-icon {
+  @include margin-right(10px);
+  display: inline-block;
+  align-items: center;
+  display: flex;
+}
+
+.atlp-snackbar-dismiss {
+  position: absolute;
+  right: -35px;
+  // top: 13px;
+  // :lang(ar) {
+  //   right: -60px !important;
+  // }
+}
+
+.atlp-snackbar-dismiss:lang(ar) {
+  display: inline-block;
+  // left: 2px;
+  // top: 25px;
+
+  left: -30px;
+  top: 5px;
+  right: auto;
+}
+
+.atlp-snackbar-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+::ng-deep {
+  .mat-snack-bar-container button:lang(ar) {
+    top: -4px;
+  }
+}

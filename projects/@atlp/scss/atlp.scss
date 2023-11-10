@@ -1,0 +1,472 @@
+// Material theming tools
+@import "~@angular/material/theming";
+
+// Breakpoint mixins
+@import "partials/breakpoints";
+@import "projects/@atlp/scss/variables";
+// @import "projects/@atlp/scss/mixins";
+
+.cdk-overlay-pane {
+  &.mat-tooltip-panel {
+    .mat-tooltip.plotTooltip {
+      background-color: map-get($color, "atlp-tooltip-bg") !important;
+      color: map-get($color, "white");
+      font-weight: 500 !important;
+      font-size: 12px !important;
+    }
+  }
+}
+
+.mat-dialog-container {
+  // background: #373068 !important;
+  // color: white !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.mat-dialog-title {
+  background: #5a5298;
+  padding: 24px;
+  color: white !important;
+}
+
+.mat-dialog-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-height: none !important;
+}
+
+.mat-dialog-actions {
+  padding: 15px !important;
+  margin-bottom: 0 !important;
+  background: #f3f3f3;
+}
+
+.mat-table {
+  .mat-row {
+    margin: 0;
+  }
+}
+
+::ng-deep {
+  app-progress-bar {
+    z-index: 100 !important;
+    position: fixed !important;
+    width: 100% !important;
+  }
+}
+
+.mat-select {
+  display: flex;
+  align-items: center;
+}
+
+.mat-select-trigger {
+  width: 100%;
+}
+
+* {
+  font-family: ADPortsGroup;
+}
+
+.inherit-height {
+  height: 100% !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+.flex-column {
+  flex-direction: column !important;
+}
+.flex-row {
+  flex-direction: row !important;
+}
+.col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.col-auto {
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.atlp-sidebar-overlay {
+  &.atlp-sidebar-overlay-invisible {
+    background-color: transparent;
+    display: none;
+  }
+}
+
+html {
+  body {
+    .sealogo {
+      height: 52px !important;
+      width: auto !important;
+    }
+
+    .sea-container {
+      .table-head {
+        @extend .col;
+      }
+    }
+
+    .toolbar-body {
+      @extend .col-auto;
+      gap: 5px;
+      &:has(:nth-child(1)) {
+        @extend .col;
+      }
+
+      .filter-btn {
+        @extend .col-auto;
+        margin: 0px !important;
+      }
+    }
+
+    atlp-search-bar {
+      @extend .col;
+    }
+
+    .navigation-menu {
+      .mat-expansion-panel-spacing {
+        margin: 0 !important;
+      }
+      .mat-expansion-panel-body {
+        padding: 10px 0 !important;
+      }
+      .working-wrap {
+        margin: 0 !important;
+        gap: 16px !important;
+        .working-field {
+          margin: 0 !important;
+          padding: 0 !important;
+
+          @extend .col;
+          max-width: 47% !important;
+          min-width: 47% !important;
+          .working-field-wrap {
+            width: 100% !important;
+            margin: 0 !important;
+          }
+        }
+      }
+    }
+
+    atlp-rich-table-milestone {
+      > div {
+        height: 100%;
+      }
+    }
+
+    .tel-input {
+      border: 1px solid map-get($color, "atlp-field-input-border") !important;
+    }
+
+    .fieldSetWrap,
+    fieldset,
+    .upload-wrap {
+      border-color: map-get($color, "atlp-field-input-border") !important;
+    }
+
+    .mat-select-panel-wrap {
+      .mat-select-panel {
+        border: 1px solid map-get($color, "atlp-field-input-border") !important;
+        background-color: map-get($color, "atlp-purple-dark") !important;
+        .mat-option {
+          color: map-get($color, "atlp-white");
+        }
+      }
+    }
+  }
+}
+
+.card-active {
+  position: relative;
+
+  .active-indicator {
+    position: absolute;
+    top: -10px;
+    width: 42px;
+    height: 42px;
+    min-width: 35px;
+    min-height: 35px;
+    right: -8px;
+    border-radius: 50%;
+    // background-color: map-get($color,"atlp-panel-btn" );
+  }
+}
+
+.inheritSize {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+
+  .page-btn-wrapper {
+    width: 100%;
+    display: flex;
+    padding: 30px 30px 0;
+    overflow: auto;
+    justify-content: flex-end;
+
+    > .table-head {
+      width: 100% !important;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px !important;
+      height: 5px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(107, 27, 27, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      outline: 0px solid slategrey;
+      border: 0px solid transparent;
+    }
+  }
+  .page-content-wrapper {
+    width: 100%;
+    height: 100%;
+    padding-top: 20px !important;
+
+    &.table-container {
+      .table-container {
+        padding: 0 !important;
+      }
+
+      > * {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.btn-shadow {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 0.5px 1.5px rgba(0, 0, 0, 0.25));
+  box-shadow: 0 0.5px 2px rgba(140, 105, 181, 0.25098039215686274) !important;
+  border-radius: 6px !important;
+}
+
+.atlp-action-button:not(.atlp-search-bar-expander) {
+  padding: 0 1rem 0 1rem;
+  background: linear-gradient(180deg, #fff, #eaeef4) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 32px !important;
+
+  @extend .btn-shadow;
+
+  &:hover {
+    border-color: map-get($color, "atlp-field-border") !important;
+  }
+
+  .mat-button-wrapper {
+    display: flex;
+    line-height: 32px;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    padding: 0;
+    position: static !important;
+    text-transform: capitalize;
+    height: 100%;
+    > span {
+      margin: 0;
+    }
+
+    * {
+      height: 100%;
+      align-items: center;
+      display: flex;
+      text-transform: capitalize;
+    }
+
+    .mat-icon {
+      width: 18px;
+      height: 100% !important;
+      min-width: 18px;
+      min-height: 100% !important;
+      line-height: 32px;
+      text-transform: none !important;
+      &.actionIcon {
+        border-left: 1px solid #d2d6db;
+        margin-right: -4px;
+        padding-left: 6px;
+        box-sizing: content-box;
+
+        &:lang(ar) {
+          border-right: 1px solid #d2d6db;
+          border-left: 0;
+          margin-left: -4px;
+          padding-right: 6px;
+        }
+      }
+    }
+  }
+}
+
+.atlp-common-action-btn-wrap {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: flex-end;
+  @include media-breakpoint("lt-md") {
+    justify-content: space-between;
+  }
+  .atlp-search-bar-input {
+    background-color: #fff !important;
+    min-width: 200px;
+  }
+  .mat-button-toggle {
+    width: auto !important;
+    .mat-button-toggle-label-content {
+      padding: 0;
+    }
+  }
+  .mat-button-toggle-group {
+    overflow: hidden !important;
+    border-radius: 6px !important;
+
+    button {
+      border-radius: 0 !important;
+    }
+  }
+
+  button {
+    @extend .atlp-action-button;
+  }
+}
+
+.upper-case {
+  text-transform: uppercase !important;
+}
+
+app-user-details-filter {
+  display: block;
+  height: 100%;
+  padding-left: 20px;
+  &:lang(ar) {
+    padding-right: 20px;
+  }
+
+  .filterHoler {
+    height: 100%;
+    overflow: visible;
+    border-left: 1px solid #fff;
+    box-shadow: -1px 0px 15px #c8b6dd;
+  }
+}
+
+::ng-deep {
+  .mat-select-panel-wrap {
+    > .mat-select-panel {
+      border: 1px solid #a187bf !important;
+      background-color: map-get($color, "atlp-purple-dark") !important;
+      .mat-option-text {
+        color: #fff;
+      }
+
+      .mat-option {
+        font-size: 14px !important;
+        line-height: 33px !important;
+        height: 33px !important;
+        &:hover {
+          background-color: map-get($color, "atlp-border-color") !important;
+        }
+      }
+    }
+  }
+}
+
+.ps__rail-y {
+  width: 15px !important;
+  min-width: auto !important;
+}
+
+.default-btn-gap,
+.default-gap {
+  gap: 12px !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.table-pagination-holder {
+  // max-width: calc(100% - 8px) !important;
+  #page-nav {
+    &:lang(en) {
+      margin-right: 24px;
+      margin-left: 0px;
+    }
+
+    &:lang(ar) {
+      margin-left: 24px;
+      margin-right: 0px;
+    }
+  }
+}
+
+.d-block {
+  display: block !important;
+}
+
+.relative {
+  position: relative !important;
+}
+
+.zIndex-Up {
+  z-index: 9 !important;
+}
+
+.zIndex-Normal {
+  z-index: 0 !important;
+}
+
+// input[type="number"]::-webkit-inner-spin-button,
+// input[type="number"]::-webkit-outer-spin-button {
+//   opacity: 1 !important;
+// }
+
+.text-ellipsis {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.altp-paginagtion .mat-paginator {
+  background: transparent !important;
+  border-bottom: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  color: #ffffff !important;
+}
+
+.fit-width {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}

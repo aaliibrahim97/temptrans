@@ -1,0 +1,51 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+  background-color: map-get($color, "atlp-grey-base");
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  @include left(0px);
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 3px solid transparent;
+  border-top-color: map-get($color, "atlp-purple-dark");
+  @include border-left-color(map-get($color, "atlp-purple-dark"));
+  border-bottom-color: map-get($color, "atlp-purple-dark");
+}
+
+.loader:before {
+  z-index: 100;
+  animation: spin 1s infinite;
+}
+
+.loader:after {
+  border: 3px solid map-get($color, "atlp-grey-base");
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

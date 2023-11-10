@@ -1,0 +1,7 @@
+<svg id="check-square-offset-fill" xmlns="http://www.w3.org/2000/svg" width="67" height="67" viewBox="0 0 67 67">
+  <rect id="Rectangle_138" data-name="Rectangle 138" width="67" height="67" fill="none"/>
+  <g id="Group_28" data-name="Group 28" transform="translate(6.281 9.422)">
+    <path id="Path_153" data-name="Path 153" d="M79.968,36H40.187A4.192,4.192,0,0,0,36,40.188V64.075a2.094,2.094,0,0,0,4.188,0V40.188H79.968V79.969H62.076a2.094,2.094,0,0,0,0,4.188H79.968a4.192,4.192,0,0,0,4.188-4.187V40.188A4.192,4.192,0,0,0,79.968,36Z" transform="translate(-32.859 -36)" fill="#db8f38"/>
+    <path id="Path_154" data-name="Path 154" d="M52.7,144.614a2.094,2.094,0,0,0-2.961,0l-15.269,15.27-6.894-6.895a2.094,2.094,0,0,0-2.961,2.961l8.375,8.375a2.094,2.094,0,0,0,2.961,0l16.75-16.75A2.094,2.094,0,0,0,52.7,144.614Z" transform="translate(-23.999 -115.735)" fill="#db8f38"/>
+  </g>
+</svg>

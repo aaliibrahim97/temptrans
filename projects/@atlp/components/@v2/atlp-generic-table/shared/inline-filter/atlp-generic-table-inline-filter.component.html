@@ -1,0 +1,111 @@
+<div
+  class="inline-filter-wrap"
+  (click)="$event.stopPropagation()"
+  *ngIf="column"
+>
+  <ng-container>
+    <!-- Sort buttons-->
+    <div class="sort-section">
+      <button
+        (click)="sortDataSource(column?.columnDef, 1, column)"
+        [ngClass]="{
+          '': column?.sort !== 'asc',
+          active: column?.sort == 'asc'
+        }"
+      >
+        <mat-icon svgIcon="sort" aria-hidden="false" class="h-5 w-5"></mat-icon>
+        <label class="text-sm">{{ "SORT_A_TO_Z" | translate }}</label>
+      </button>
+      <button
+        (click)="sortDataSource(column?.columnDef, -1, column)"
+        class="rounded p-2 text-sm"
+        [ngClass]="{
+          '': column?.sort !== 'desc',
+          active: column?.sort == 'desc'
+        }"
+      >
+        <mat-icon svgIcon="sort" aria-hidden="false"></mat-icon>
+        <label class="text-sm">{{ "SORT_Z_TO_A" | translate }} </label>
+      </button>
+    </div>
+
+    <!-- Search Box-->
+    <div class="flex justify-between search-section">
+      <div class="search-block">
+        <input
+          matInput
+          (keyup)="onFilterSearch()"
+          placeholder="Search for specific value"
+          [(ngModel)]="column.filterSearchValue"
+        />
+        <svg
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="search-icon"
+        >
+          <path
+            class="text-gray-600"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!--Data List -->
+    <div
+      class="data-list-section"
+      style="height: 200px; overflow: auto"
+      *ngIf="
+        columnFilter?.filterDataList && columnFilter?.filterDataList.length > 0
+      "
+    >
+      <ng-container *ngFor="let item of columnFilter?.filterDataList">
+        <mat-option class="border border-white border-b-zinc-200">
+          <mat-checkbox
+            [(ngModel)]="item.selected"
+            (click)="$event.stopPropagation()"
+            type="checkbox"
+            (change)="onCheckboxChange($event, column, item)"
+          >
+            <span>
+              {{ extractFilterValue(item) }}
+            </span>
+          </mat-checkbox>
+        </mat-option>
+      </ng-container>
+    </div>
+
+    <div
+      style="height: auto; padding: 1rem; overflow: auto; text-align: center"
+      *ngIf="
+        columnFilter?.filterDataList && columnFilter?.filterDataList.length == 0
+      "
+    >
+      <span class="no-data-found-text">{{ "NO_DATA_FOUND" | translate }}</span>
+    </div>
+
+    <!--Apply Button -->
+    <div class="flex footer-section">
+      <button
+        (click)="applyColumnFilter(column)"
+        mat-raised-button
+        color="basic"
+        class="bg"
+      >
+        {{ "APPLY" | translate }}
+      </button>
+      <button
+        (click)="clearColumnFilter(column)"
+        mat-raised-button
+        color="basic"
+        class="bg"
+      >
+        {{ "CLEAR" | translate }}
+      </button>
+    </div>
+  </ng-container>
+</div>

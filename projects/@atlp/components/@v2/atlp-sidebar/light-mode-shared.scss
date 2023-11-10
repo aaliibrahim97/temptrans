@@ -1,0 +1,388 @@
+.light {
+  .drawer-title {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .progress-bar-title {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .drawer-body {
+    background-color: map-get($color, "light-mode-body-bg") !important;
+    .block-title {
+      margin-top: 10px !important;
+    }
+  }
+
+  .block-title {
+    color: map-get($color, "light-mode-title") !important;
+    border-color: #c5d2e7 !important;
+  }
+
+  .block-sub-title {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .drawer-wrap {
+    background: transparent !important;
+    > .drawer-body,
+    > .drawer-header {
+      box-shadow: 0px 0px map-get($color, "atlp-drawer-bg") !important;
+    }
+  }
+
+  .detail-body {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .detail-title {
+    color: map-get($color, "light-mode-field-border") !important;
+  }
+
+  .panel-nav .round-btn,
+  .done-icon {
+    color: map-get($color, "atlp-panel-btn");
+    background: white;
+
+    svg {
+      path {
+        fill: map-get($color, "atlp-panel-btn") !important;
+      }
+    }
+
+    :ng-deep {
+      svg {
+        path {
+          fill: map-get($color, "atlp-panel-btn") !important;
+        }
+      }
+    }
+  }
+
+  .drawer-percent {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  // New class logic
+  .white-text {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .faded-white-text {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .download-btn {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  //Start Manal Changes
+  .field-label,
+  .dropdown-label,
+  .toggle-label {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .field-wrap {
+    &.bg {
+      .field-label {
+        color: map-get($color, "light-mode-subtitle") !important;
+      }
+    }
+  }
+
+  .field-wrap.bg input,
+  textarea {
+    background: map-get($color, "atlp-white") 0% 0% no-repeat padding-box !important;
+    border: 1px solid map-get($color, "light-mode-field-border") !important;
+    color: map-get($color, "light-mode-title") !important;
+
+    &::placeholder,
+    &::-moz-placeholder {
+      color: map-get($color, "light-mode-placeholder") !important;
+    }
+  }
+
+  .mat-slide-toggle .mat-slide-toggle-content {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .mat-table.bg {
+    .mat-header-row {
+      border-bottom: 2px solid map-get($color, "light-mode-field-border") !important;
+    }
+
+    .mat-header-cell {
+      color: map-get($color, "light-mode-title") !important;
+
+      .header-cell-arrow {
+        border-top: 4px solid map-get($color, "light-mode-title") !important;
+      }
+    }
+
+    .mat-row {
+      // border: 1px solid map-get($color, 'light-mode-field-border' ) !important;
+      border-top-color: map-get($color, "light-mode-field-border") !important;
+      border-bottom-color: map-get(
+        $color,
+        "light-mode-field-border"
+      ) !important;
+
+      &:hover {
+        background-color: transparent !important;
+      }
+
+      .mat-cell {
+        color: map-get($color, "light-mode-title") !important;
+      }
+    }
+
+    .mat-input-element {
+      border: 1px solid map-get($color, "light-mode-field-border") !important;
+      color: map-get($color, "light-mode-subtitle") !important;
+    }
+  }
+
+  .table-clearance-nav {
+    .table-clearance-text {
+      color: map-get($color, "light-mode-subtitle") !important;
+    }
+
+    ul a,
+    ul li,
+    ul .go-to-page-btn {
+      color: map-get($color, "light-mode-subtitle") !important;
+    }
+
+    .current-page {
+      border: 1px solid map-get($color, "light-mode-field-border");
+    }
+
+    .e {
+      fill: map-get($color, "light-mode-subtitle") !important;
+    }
+  }
+
+  .empty-table-header {
+    border-bottom: 2px solid map-get($color, "light-mode-field-border");
+
+    div {
+      color: map-get($color, "light-mode-subtitle") !important;
+
+      &:first-child {
+        border: 1px solid map-get($color, "light-mode-field-border") !important;
+      }
+    }
+  }
+
+  .empty-table.bg {
+    border-bottom: 1px solid map-get($color, "light-mode-field-border");
+  }
+
+  .mat-select-value-text {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .cancel-hc-btn,
+  .view-charges-btn,
+  .cancel-btn {
+    color: map-get($color, "light-mode-subtitle") !important;
+    border: 1px solid map-get($color, "light-mode-field-border") !important;
+  }
+
+  .panel-title {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .panel-info {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .mat-expansion-indicator::after {
+    color: map-get($color, "light-mode-info-icon") !important;
+  }
+
+  .titleAuthorized {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .mat-progress-bar-buffer {
+    background-color: map-get($color, "light-mode-field-border") !important;
+  }
+
+  .mat-progress-bar-fill::after {
+    background-color: map-get($color, "light-mode-title") !important;
+  }
+
+  input,
+  textarea,
+  mat-select {
+    border-color: map-get($color, "light-mode-field-border") !important;
+    // This was removed in order not to mess up the alignment
+    // @include margin-left(3px);
+
+    &::placeholder {
+      color: map-get($color, "light-mode-placeholder") !important;
+    }
+
+    &:hover {
+      border: 1px solid map-get($color, "light-mode-field-border") !important;
+
+      &::placeholder {
+        color: map-get($color, "light-mode-placeholder") !important;
+      }
+    }
+
+    &:focus {
+      border: 1px solid map-get($color, "light-mode-field-border") !important;
+      box-shadow: 0px 0px 0px 3px map-get($color, "light-mode-field-border") !important;
+    }
+  }
+
+  .appointment-title {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .appointment-text {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .mat-checkbox-checkmark-path {
+    stroke: map-get($color, "light-mode-info-icon") !important;
+  }
+
+  .blue-text {
+    color: map-get($color, "light-mode-blue") !important;
+  }
+
+  .drop-down-label {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .table-header {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  .information {
+    mat-icon.double-qst {
+      text {
+        fill: map-get($color, "light-mode-info-icon");
+      }
+    }
+  }
+  .upload-file-info {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .new-file-btn {
+    border: 1px solid map-get($color, "atlp-violet-base") !important;
+  }
+  //End Manal Changes
+
+  // Dany's changes
+  .file-nav-upload {
+    background-color: transparent !important;
+
+    .upload-text {
+      color: map-get($color, "light-mode-title") !important;
+    }
+  }
+
+  .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    border-color: map-get($color, "atlp-purple-base") !important;
+  }
+
+  .mat-radio-label-content,
+  .mat-checkbox.bg .mat-checkbox-label {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+
+  // End Dany's changes
+
+  // Slaiby's Changes
+  .block-section-title {
+    @extend .block-title;
+  }
+
+  .drawer-subtitle {
+    @extend .block-sub-title;
+  }
+
+  .header-value {
+    @extend .white-text;
+  }
+
+  .header-info {
+    @extend .faded-white-text;
+  }
+
+  .panel-nav .round-btn.danger-btn {
+    svg {
+      path {
+        fill: map-get($color, "atlp-white") !important;
+      }
+    }
+  }
+
+  .description {
+    @extend .white-text;
+  }
+
+  .white-buttons {
+    .mat-button-wrapper {
+      color: map-get($color, "atlp-ink-base") !important;
+    }
+  }
+
+  .sub-title {
+    // @extend .drawer-title;
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  // End Slaiby's Changes
+
+  .appointment-info {
+    border-color: #c5d2e7 !important;
+  }
+
+  .drawer-header {
+    background: map-get($color, "atlp-panel-btn") !important;
+    .drawer-info {
+      > .drawer-title {
+        color: map-get($color, "atlp-white") !important;
+      }
+      > .drawer-percent {
+        color: #eee !important;
+      }
+    }
+  }
+
+  .mat-expansion-panel-header-description {
+    &:after {
+      border-bottom: 1px solid map-get($color, "atlp-purple-light") !important;
+    }
+  }
+
+  #atlp-sidebar-content-mobile {
+    .panel-nav .round-btn,
+    .done-icon {
+      color: map-get($color, "atlp-white");
+      background: none !important;
+
+      svg {
+        path {
+          fill: map-get($color, "atlp-white") !important;
+        }
+      }
+    }
+  }
+
+  ::ng-deep {
+    .panel-body {
+      padding: 0 5px !important;
+    }
+  }
+
+  .panel-body {
+    padding: 0 5px !important;
+  }
+}

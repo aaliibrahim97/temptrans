@@ -1,0 +1,23 @@
+<ng-container *ngIf="showTitleTop">
+  <div
+    [style.margin-left]="title_width"
+    [ngClass]="{ 'percentage-100': title_width == '95%' }"
+    class="progress-bar-title-text"
+  >
+    {{ title }}
+  </div>
+</ng-container>
+<mat-progress-bar
+  [bufferValue]="bufferValue"
+  [mode]="mode"
+  [value]="progressValue"
+></mat-progress-bar>
+<ng-container *ngIf="showTitleBottom">
+  <div
+    [style.margin-left]="title_width"
+    [ngClass]="{ 'percentage-100': title_width == '95%' }"
+    class="progress-bar-title-text"
+  >
+    {{ title }}
+  </div>
+</ng-container>

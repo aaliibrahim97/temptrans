@@ -1,0 +1,156 @@
+<div class="button-row">
+    <span class="button-label">Primary</span>
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="primary" class="icon">
+        <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>
+        Primary
+    </button>
+    <button mat-raised-button color="primary" disabled>Primary</button>
+    <button mat-raised-button color="primary" class="icon" disabled>
+        <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>
+        Primary
+    </button>
+</div>
+<div class="button-row">
+    <span class="button-label">light Purple</span>
+    <button mat-raised-button class="icon light-purple">
+        <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>Primary light
+    </button>
+</div>
+<div class="button-row">
+    <span class="button-label">Basic</span>
+    <button mat-raised-button color="basic">Basic</button>
+    <button mat-raised-button color="basic" class="icon">
+        <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+        Basic icon
+    </button>
+    <button mat-raised-button color="basic" disabled>Basic</button>
+    <button mat-raised-button color="basic" class="icon" disabled>
+        <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+        Basic icon
+    </button>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Outline</span>
+    <button mat-raised-button color="outline">Outline</button>
+    <button mat-raised-button color="outline" disabled>Outline</button>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Negative</span>
+    <button mat-raised-button color="warn">Warn</button>
+    <button mat-raised-button color="warn" class="icon">
+        <mat-icon svgIcon="remove" aria-hidden="false"></mat-icon>
+        Warn
+    </button>
+    <button mat-raised-button color="warn" disabled>Warn</button>
+    <button mat-raised-button color="warn" class="icon" disabled>
+        <mat-icon svgIcon="remove" aria-hidden="false"></mat-icon>
+        Warn
+    </button>
+</div>
+
+<div class="button-row bg">
+    <span class="button-label">Over Background</span>
+    <button mat-raised-button color="basic" class="bg">Basic</button>
+    <button mat-raised-button color="basic" class="icon bg">
+        <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+        Basic icon
+    </button>
+    <button mat-raised-button color="basic" disabled>Basic</button>
+    <button mat-raised-button color="basic" class="icon" disabled>
+        <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+        Basic icon
+    </button>
+    <button mat-button class="transparent">Basic</button>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Plain Button</span>
+    <button mat-button color="plain" class="icon">
+        <mat-icon svgIcon="plus-dark" aria-hidden="false"></mat-icon>
+        Plain Button
+    </button>
+    <button mat-button color="plain">Plain Button</button>
+    <button mat-button class="icon" disabled>
+        <mat-icon svgIcon="plus-disabled" aria-hidden="false"></mat-icon>
+        Plain Button
+    </button>
+    <button mat-button disabled>Plain Button</button>
+</div>
+
+<div class="button-row bg">
+    <span class="button-label">Plain button with icon</span>
+    <button mat-button color="plain" class="icon bg">
+        <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>
+        Plain Button
+    </button>
+    <button mat-button color="plain" class="bg">Plain Button</button>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Icon button</span>
+    <button class="icon-btn border-left">
+        <mat-icon svgIcon="save-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="icon-btn">
+        <mat-icon svgIcon="open-icon" aria-hidden="false"></mat-icon>
+    </button>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Other button</span>
+    <button class="round-btn">
+        <mat-icon svgIcon="soc-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn">
+        <mat-icon svgIcon="download-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn">
+        <mat-icon svgIcon="tel-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn">
+        <mat-icon svgIcon="email-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn">
+        <mat-icon svgIcon="icon-plus" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn">
+        <mat-icon svgIcon="copy-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn">
+        <mat-icon svgIcon="print-icon" aria-hidden="false"></mat-icon>
+    </button>
+    <button class="round-btn danger-btn">
+        <mat-icon svgIcon="delete-button" aria-hidden="false"></mat-icon>
+    </button>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Table filters button</span>
+    <mat-button-toggle-group name="" aria-label="">
+        <mat-button-toggle value="all">All</mat-button-toggle>
+        <mat-button-toggle value="export">Export</mat-button-toggle>
+        <mat-button-toggle value="import">Import</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Table filters button</span>
+    <mat-button-toggle-group name="" aria-label="">
+        <mat-button-toggle value="">
+            <mat-icon svgIcon="minimize-arrows" aria-hidden="false"></mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="">
+            <mat-icon svgIcon="minimize-arrows" aria-hidden="false"></mat-icon>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+
+<div class="button-row">
+    <span class="button-label">Table filters button</span>
+    <button mat-stroked-button (click)="openSnackBar()" aria-label="Show an example snack-bar">
+        Show snack bar
+    </button>
+</div>

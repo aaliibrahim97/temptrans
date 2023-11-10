@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+  <g id="icon-doc-no" transform="translate(-45 -503)">
+    <g id="icon-document-number" transform="translate(-714.598 73.513)">
+      <g id="result-pass-icon_1_" data-name="result-pass-icon (1)" transform="translate(765 432)">
+        <path id="Path_26867" data-name="Path 26867" d="M12.241,21.523l4.191-4.406H12.241v4.406ZM12.126,7.734ZM3.693,18.488H7.445v1.079H3.693V18.488Zm0-2.741H9.018v1.079H3.693V15.747Zm0-2.739H15.068v1.079H3.693V13.007Zm15.07,3.548a.7.7,0,0,1-.507.673L12.083,23.72a.7.7,0,0,1-.539.258H1.255A1.252,1.252,0,0,1,0,22.721V1.255A1.252,1.252,0,0,1,1.255,0H17.509a1.252,1.252,0,0,1,1.255,1.255v15.3Zm-1.4-.839V1.4H1.4V22.58H10.84v-6.16a.7.7,0,0,1,.7-.7Z" fill="#919ab1"/>
+      </g>
+      <path id="Path_26876" data-name="Path 26876" d="M1.459,3.25l-.3,1.473H0V5.878H.938L.549,7.752H1.735l.384-1.874H3.6L3.227,7.752h1.2L4.8,5.878H6.523V4.723H5.032l.334-1.662H6.524V1.907H5.6L5.974,0H4.781L4.4,1.907H2.911L3.3,0H2.1L1.727,1.907H0V3.061H1.5l-.039.189ZM3.706,4.723H2.345L2.7,3.061h1.48L3.834,4.723Z" transform="translate(771.308 435.557)" fill="#919ab1"/>
+    </g>
+    <g id="icon" transform="translate(-37 49)">
+      <rect id="Rectangle_141879" data-name="Rectangle 141879" width="29" height="29" transform="translate(82 454)" fill="none"/>
+    </g>
+  </g>
+</svg>

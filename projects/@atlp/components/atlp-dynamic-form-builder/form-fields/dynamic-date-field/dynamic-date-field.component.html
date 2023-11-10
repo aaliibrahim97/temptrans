@@ -1,0 +1,83 @@
+<div
+  [formGroup]="group"
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <div class="field-wrap bg" fxLayout="row">
+    <label class="field-label" [ngClass]="{ required: field.isRequired }">{{
+      field.label
+    }}</label>
+    <span
+      *ngIf="field.tooltip"
+      matTooltipClass="example-tooltip-white"
+      [matTooltip]="field.tooltip"
+      matTooltipPosition="right"
+      matTooltipClass="plotTooltip"
+    >
+      <mat-icon
+        svgIcon="info-icon"
+        class="icon-position info-icon"
+        aria-hidden="false"
+      ></mat-icon>
+    </span>
+  </div>
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <input
+      #elementRef
+      [ngStyle]="field.props?.componentStyle"
+      [tabIndex]="field.tabindex || 0"
+      class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+      readonly
+      [matDatepicker]="picker"
+      [formControlName]="field.name"
+      [placeholder]="field.placeholder || ''"
+      [attr.aria-describedby]="fieldMetaData?.ariaDescribedby"
+      [max]="fieldMetaData?.maximum"
+      [min]="fieldMetaData?.minimum"
+      [required]="fieldMetaData?.required"
+      (click)="picker.open()"
+      [name]="field.name"
+      [disableControl]="field.isDisabled ? true : null"
+    />
+    <mat-icon
+      (click)="picker.open()"
+      svgIcon="data-icon-white"
+      aria-hidden="false"
+    ></mat-icon>
+  </div>
+  <span class="field-label"
+    ><small>{{ field.description }}</small></span
+  >
+  <div
+    *ngFor="let validation of field.validations"
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+      >{{ validation.message | translate }}</span
+    >
+  </div>
+  <mat-datepicker #picker></mat-datepicker>
+</div>

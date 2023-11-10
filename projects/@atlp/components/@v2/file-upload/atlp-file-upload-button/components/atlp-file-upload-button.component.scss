@@ -1,0 +1,62 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.fileControl-wrapper {
+  position: relative;
+
+  .mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+
+    button {
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+#fileControlInput {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.fileModel {
+  height: 0;
+  width: 0;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 0px !important;
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+input[type=file], /* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button {
+  /* chromes and blink button */
+  cursor: pointer;
+}
+
+.file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: map-get($color, "atlp-white");
+  max-width: 150px;
+  &:hover {
+    text-decoration: underline;
+    color: map-get($color, "atlp-purple-base");
+    cursor: pointer;
+  }
+}

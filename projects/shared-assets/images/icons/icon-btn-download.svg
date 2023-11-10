@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="13.002" viewBox="0 0 14 13.002">
+  <g id="icon-btn-download" transform="translate(0 0)">
+    <path id="Path_5122" data-name="Path 5122" d="M80.771,39.826a.5.5,0,0,0,.707,0L84.1,37.2a.5.5,0,1,0-.707-.707l-1.771,1.771V32.471a.5.5,0,0,0-1,0v5.795l-1.771-1.771a.5.5,0,1,0-.707.707Z" transform="translate(-74.125 -31.971)" fill="#fff"/>
+    <path id="Path_5123" data-name="Path 5123" d="M37.462,128a.52.52,0,0,0-.538.5V133H25.077v-4.5a.54.54,0,0,0-1.077,0V133a1.041,1.041,0,0,0,1.077,1H36.923A1.041,1.041,0,0,0,38,133v-4.5A.52.52,0,0,0,37.462,128Z" transform="translate(-24 -120.998)" fill="#fff"/>
+  </g>
+</svg>

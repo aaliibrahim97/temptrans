@@ -1,0 +1,720 @@
+<!-- class="table-container" -->
+<div
+  click-stop-propagation
+  class="{{ atlpTableConfig.className }} inheritSize"
+  fxLayout="column"
+  [ngClass]="{
+    'rich-table-mode': table.modeIsRich,
+    'classic-table-mode': !table.modeIsRich
+  }"
+>
+  <!-- Start table controls selected -->
+  <!-- Don't remove its diffrent way of rendering action buttions -->
+  <!-- <ng-container *ngIf="table.selection.selected.length > 0">
+    <div
+      class="table-controls selected mb-24"
+      fxFlex="none"
+      fxLayout="column"
+      fxLayout.gt-sm="row"
+      fxLayoutAlign="start start"
+      fxLayoutAlign.gt-sm="space-between center"
+    >
+      <ng-container
+        *ngIf="
+          (isWeb$ | async) &&
+          table.selection.selected.length > 0 &&
+          !table.modeIsRich
+        "
+      >
+        <div
+          class="atlp-button-padding"
+          fxFlex
+          fxLayout="row wrap"
+          fxLayoutAlign="start start"
+          fxLayoutAlign.gt-sm="end center"
+        >
+          <ng-template
+            [cdkPortalOutlet]="atlpRichTableMilestonePortal$ | async"
+          ></ng-template>
+        </div>
+      </ng-container>
+       </div>
+  </ng-container> -->
+  <!-- End table controls selected -->
+
+  <!-- drop header-->
+  <div class="drop-header-wrapper" [class.show]="table.modeCustomize$ | async">
+    <p class="drop-title">{{ "HIDDEN_COLUMNS" | translate }}:</p>
+    <div
+      class="drop-item-zone"
+      [class.drop-zone]="table.modeCustomize$ | async"
+      cdkDropList
+      #hideColumns="cdkDropList"
+      [cdkDropListConnectedTo]="[tableColumns]"
+      [cdkDropListData]="table.hideColumnsInMode"
+      [cdkDropListDisabled]="!(table.modeCustomize$ | async)"
+      (cdkDropListDropped)="drop($event, actionDropColumn.hide)"
+    >
+      <!-- cdkDropListOrientation="horizontal" -->
+      <ng-container *ngIf="table.modeCustomize$ | async">
+        <div
+          *ngFor="let item of table.hideColumnsInMode; trackBy: trackByFn"
+          cdkDrag
+          [class.disabled]="item.dragDisabled"
+        >
+          <div class="drag-btn-wrapper" cdkDragHandle>
+            <button class="drag-btn"></button>
+            <span class="text-ellipsis">{{ getColumnHeader(item) }}</span>
+          </div>
+          <!-- prev cdk drop -->
+          <div *cdkDragPreview>
+            <ng-container
+              *ngTemplateOutlet="previewDropItem; context: { name: item }"
+            ></ng-container>
+          </div>
+          <!-- prev cdk drop -->
+        </div>
+        <div class="drop-here">{{ "DROP_HERE" | translate }}</div>
+      </ng-container>
+    </div>
+    <p class="drop-description">{{ "DRAG_ITEM_TABLE" | translate }}</p>
+    <!-- <p class="drop-voyages-value">
+        {{ totalPages }} {{ "PAGES" | translate }}
+      </p> -->
+  </div>
+  <!-- /drop header-->
+
+  <!-- template preview -->
+  <ng-template #previewDropItem let-name="name">
+    <div class="drag-btn-wrapper">
+      <button class="drag-btn" cdkDragHandle></button>
+      <span class="text-ellipsis">{{ name | translate }}</span>
+    </div>
+  </ng-template>
+  <!-- /template preview -->
+
+  <div class="table-mode-container inheritSize" fxflex="column">
+    <!-- Depending on the TableMode, the appropriate class will be installed for the table. -->
+    <!-- matSort
+      (matSortChange)="changeSort($event)" -->
+    <div class="col table-holder">
+      <mat-table
+        [dataSource]="table.dataSource$ | async"
+        class="voyage-table"
+        [class]="table.tableMode$ | async"
+        [class.customize]="table.modeCustomize$ | async"
+        cdkDropList
+        #tableColumns="cdkDropList"
+        [cdkDropListDisabled]="!(table.modeCustomize$ | async)"
+        [cdkDropListOrientation]="'horizontal'"
+        [cdkDropListConnectedTo]="[hideColumns]"
+        [cdkDropListData]="table.columnsShowDisplay"
+        (cdkDropListDropped)="table.drop($event, actionDropColumn.show)"
+      >
+        <!-- *Building columns table* -->
+        <!-- trackBy: trackByFn -->
+        <ng-container *ngIf="table.modeIsRich && richColumnDefs.length > 0">
+          <ng-container
+            *ngFor="
+              let column of richColumnDefs;
+              trackBy: trackByFn;
+              let y = index
+            "
+          >
+            <ng-container [ngSwitch]="column.columnTemplate">
+              <!-- column info -->
+              <ng-container *ngSwitchCase="columnTemplate.info">
+                <ng-container
+                  *ngTemplateOutlet="
+                    info;
+                    context: { col: column, milestoneIndex: y }
+                  "
+                ></ng-container>
+              </ng-container>
+              <!-- /end column info -->
+
+              <!-- /column rich card -->
+              <ng-container
+                *ngSwitchCase="
+                  columnTemplate.richCard == column.columnTemplate ||
+                  columnTemplate.text == column.columnTemplate
+                    ? column.columnTemplate
+                    : ''
+                "
+              >
+                <ng-container
+                  *ngTemplateOutlet="richCard; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /end column rich card -->
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!table.modeIsRich">
+          <ng-container
+            *ngFor="
+              let column of table.columnDefs;
+              trackBy: trackByFn;
+              let y = index
+            "
+          >
+            <ng-container [ngSwitch]="column.columnTemplate">
+              <!-- column select -->
+              <ng-container *ngSwitchCase="columnTemplate.select">
+                <ng-container
+                  *ngTemplateOutlet="select; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /column select -->
+
+              <!-- column text -->
+              <ng-container *ngSwitchCase="columnTemplate.text">
+                <ng-container
+                  *ngTemplateOutlet="text; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /column text -->
+
+              <!-- column link -->
+              <ng-container *ngSwitchCase="columnTemplate.link">
+                <ng-container
+                  *ngTemplateOutlet="link; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /column link -->
+
+              <!-- column inner HTML -->
+              <ng-container *ngSwitchCase="columnTemplate.innerHtml">
+                <ng-container
+                  *ngTemplateOutlet="innerHtml; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /column inner HTML -->
+
+              <!-- column dynamic Component -->
+              <ng-container *ngSwitchCase="columnTemplate.dynamicComponent">
+                <ng-container
+                  *ngTemplateOutlet="dynamicComponent; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /column dynamic Component -->
+
+              <!-- column action -->
+              <ng-container *ngSwitchCase="columnTemplate.makeAction">
+                <ng-container
+                  *ngTemplateOutlet="makeAction; context: { col: column }"
+                ></ng-container>
+              </ng-container>
+              <!-- /column action -->
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <!-- */Building columns table* -->
+
+        <!-- column info -->
+        <ng-template #info let-col="col" let-milestoneIndex="milestoneIndex">
+          <ng-container [matColumnDef]="col.columnDef">
+            <ng-container *ngIf="milestoneIndex === 0; else voyageCardHead">
+              <mat-header-cell *matHeaderCellDef>
+                <span class="text-ellipsis"> {{ col.header | translate }}</span>
+                <mat-checkbox
+                  *ngIf="isMultiSelect"
+                  class="info-checkbox"
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </mat-header-cell>
+            </ng-container>
+            <ng-template #voyageCardHead>
+              <!-- column header -->
+              <mat-header-cell
+                *matHeaderCellDef
+                cdkDrag
+                [cdkDragDisabled]="col.dragDisabled"
+                [cdkDragPreviewClass]="col.previewClass"
+              >
+                <span class="text-ellipsis"> {{ col.header | translate }}</span>
+              </mat-header-cell>
+              <!-- column header -->
+            </ng-template>
+
+            <!-- column cell -->
+            <mat-cell
+              (click)="onInfoClicked(col, element, $event, i, false)"
+              *matCellDef="let element; let i = index"
+              [ngClass]="
+                i === selectedRowindex && isMilestoneEnabled
+                  ? 'milestone-wrapper'
+                  : ''
+              "
+            >
+              <mat-checkbox
+                *ngIf="isSelectEnabled"
+                class="info-checkbox"
+                (click)="$event.stopPropagation()"
+                (change)="
+                  isMultiSelect
+                    ? multipleSelection(col, element, $event, i)
+                    : singleSelection(col, element, $event, i)
+                "
+                [checked]="
+                  isMultiSelect
+                    ? selection.isSelected(element)
+                    : i === selectedRowindex
+                "
+                [aria-label]="table.checkboxLabel(element)"
+                [disabled]="element?.isDisabled"
+              ></mat-checkbox>
+
+              <ng-container [ngSwitch]="col.cellTemplate">
+                <!-- info -->
+                <ng-container *ngSwitchCase="cellTemplate.infoRichClassic">
+                  <ng-template
+                    [cdkPortalOutlet]="atlpRichTableInfoPortalsCollection[i]"
+                  ></ng-template>
+                </ng-container>
+                <ng-container
+                  *ngIf="
+                    (isWeb$ | async) &&
+                    i === selectedRowindex &&
+                    isMilestoneEnabled
+                  "
+                >
+                  <atlp-rich-table-milestone
+                    #atlpRichTableMilestone
+                    [transactionsCardData]="col.cellRich(element)"
+                    (statusClose)="closeSelection($event)"
+                    [source]="atlpRichTableMileStoneService"
+                  >
+                  </atlp-rich-table-milestone>
+                </ng-container>
+                <!-- /info  -->
+              </ng-container>
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column info -->
+
+        <!-- column rich Card -->
+        <ng-template #richCard let-col="col">
+          <ng-container [matColumnDef]="col.columnDef">
+            <!-- column header -->
+            <mat-header-cell
+              *matHeaderCellDef
+              cdkDrag
+              [cdkDragDisabled]="col.dragDisabled"
+              [cdkDragPreviewClass]="col.previewClass"
+            >
+              <ng-container
+                *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+              ></ng-container>
+
+              <!-- prev cdk drop -->
+              <div *cdkDragPreview>
+                <ng-container
+                  *ngTemplateOutlet="
+                    previewDropItem;
+                    context: { name: col.header }
+                  "
+                ></ng-container>
+              </div>
+              <!-- prev cdk drop -->
+            </mat-header-cell>
+            <!-- /column header -->
+
+            <!-- column cell -->
+            <mat-cell
+              *matCellDef="let element; let i = index"
+              (click)="onCellClicked(col, element, $event)"
+            >
+              <ng-container [ngSwitch]="col.cellTemplate">
+                <!-- start card template based on richCard -->
+                <ng-container *ngSwitchCase="cellTemplate.statusRichClassic">
+                  <!-- *Display for Rich.* -->
+                  <ng-container *ngIf="table.modeIsRich">
+                    <ng-template
+                      [cdkPortalOutlet]="atlpRichTableCardPortalCollection[i]"
+                      (attached)="
+                        setCardTemplateData($event, i, col.cellRich(element))
+                      "
+                    ></ng-template>
+                  </ng-container>
+
+                  <!-- */Display for Rich.* -->
+                </ng-container>
+                <!-- /end card template based on richCard -->
+              </ng-container>
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column richCard -->
+
+        <!-- column select -->
+        <ng-template #select let-col="col">
+          <ng-container [matColumnDef]="col.columnDef">
+            <!-- column header -->
+            <mat-header-cell
+              *matHeaderCellDef
+              class="small-cell"
+              cdkDrag
+              [cdkDragDisabled]="col.dragDisabled"
+              [cdkDragPreviewClass]="col.previewClass"
+            >
+              <mat-checkbox
+                *ngIf="isMultiSelect"
+                class="info-checkbox"
+                (click)="$event.stopPropagation()"
+                (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                [aria-label]="checkboxLabel()"
+              >
+              </mat-checkbox>
+            </mat-header-cell>
+            <!-- /column header -->
+
+            <!-- column cell -->
+            <mat-cell
+              *matCellDef="let element; let i = index"
+              class="small-cell"
+            >
+              <mat-checkbox
+                *ngIf="isSelectEnabled"
+                class="voyage-info-checkbox"
+                (click)="$event.stopPropagation()"
+                (change)="
+                  isMultiSelect
+                    ? multipleSelection(col, element, $event, i)
+                    : singleSelection(col, element, $event, i)
+                "
+                [checked]="
+                  isMultiSelect
+                    ? selection.isSelected(element)
+                    : i === selectedRowindex
+                "
+                [aria-label]="table.checkboxLabel(element)"
+                [disabled]="element?.isDisabled"
+              >
+              </mat-checkbox>
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column select -->
+
+        <!-- column text -->
+        <ng-template #text let-col="col">
+          <ng-container [matColumnDef]="col.columnDef">
+            <!-- column header -->
+            <mat-header-cell
+              *matHeaderCellDef
+              cdkDrag
+              [cdkDragDisabled]="col.dragDisabled"
+              [cdkDragPreviewClass]="col.previewClass"
+            >
+              <ng-container
+                *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+              ></ng-container>
+
+              <!-- prev  cdk drop -->
+              <div *cdkDragPreview>
+                <ng-container
+                  *ngTemplateOutlet="
+                    previewDropItem;
+                    context: { name: col.header }
+                  "
+                ></ng-container>
+              </div>
+              <!-- prev cdk drop -->
+            </mat-header-cell>
+            <!-- /column header -->
+
+            <!-- column cell -->
+            <mat-cell
+              *matCellDef="let element"
+              (click)="onCellClicked(col, element, $event)"
+              [ngClass]="col?.extraClass"
+              [ngClass]="
+                col?.conditionalClasses && col?.conditionalClasses(element)
+              "
+            >
+              <ng-container *ngIf="!col.classicViewCellTemplateRef">
+                <ng-container *ngIf="col.matIcon">
+                  <div
+                    class="voyage-card-icon"
+                    [ngClass]="{ 'tooltip-hover': col.toolTip }"
+                    matTooltip="{{
+                      col.toolTip ? col.toolTip(element) : ('' | translate)
+                    }}"
+                    matTooltipPosition="above"
+                  >
+                    <mat-icon
+                      class="status-icon"
+                      svgIcon="{{ col.matIcon(element) }}"
+                      aria-hidden="false"
+                    ></mat-icon>
+                    <span
+                      class="text-ellipsis status-txt voyage-card-status approved"
+                      >{{ (col.cell(element) | translate) || " " }}</span
+                    >
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="!col.matIcon">
+                  <span
+                    [ngClass]="{ 'tooltip-hover': col.toolTip }"
+                    matTooltip="{{
+                      (col.toolTip ? col.toolTip(element) : '') | translate
+                    }}"
+                    matTooltipPosition="above"
+                    class="text-ellipsis"
+                    >{{ (col.cell(element) | translate) || "_" }}</span
+                  >
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="col?.classicViewCellTemplateRef">
+                <span
+                  [ngClass]="{ 'tooltip-hover': col.toolTip }"
+                  matTooltip="{{
+                    (col.toolTip ? col.toolTip(element) : '') | translate
+                  }}"
+                >
+                  <ng-template
+                    [ngTemplateOutlet]="col?.classicViewCellTemplateRef"
+                    [ngTemplateOutletContext]="{
+                      context: {
+                        col: col,
+                        element: element
+                      }
+                    }"
+                  ></ng-template>
+                </span>
+              </ng-container>
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column text -->
+
+        <!-- column link -->
+        <ng-template #link let-col="col">
+          <ng-container [matColumnDef]="col.columnDef">
+            <!-- column header -->
+            <!-- mat-sort-header -->
+            <mat-header-cell
+              [disabled]="isMatSortAvailable(col.matSortHeader)"
+              *matHeaderCellDef
+              cdkDrag
+              [cdkDragDisabled]="col.dragDisabled"
+              [cdkDragPreviewClass]="col.previewClass"
+            >
+              <ng-container
+                *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+              ></ng-container>
+
+              <!-- prev cdk drop -->
+              <div *cdkDragPreview>
+                <ng-container
+                  *ngTemplateOutlet="
+                    previewDropItem;
+                    context: { name: col.header }
+                  "
+                ></ng-container>
+              </div>
+
+              <!-- /prev cdk drop -->
+            </mat-header-cell>
+            <!-- /column header -->
+
+            <!-- column cell -->
+            <mat-cell
+              *matCellDef="let element"
+              (click)="onCellClicked(col, element, $event)"
+            >
+              <a href="javascript:void(0);">
+                {{ col.cell(element) | translate }}</a
+              >
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column link -->
+
+        <!-- column innerHtml -->
+        <ng-template #innerHtml let-col="col">
+          <ng-container [matColumnDef]="col.columnDef">
+            <!-- column header -->
+            <!-- mat-sort-header -->
+            <mat-header-cell
+              [disabled]="isMatSortAvailable(col.matSortHeader)"
+              *matHeaderCellDef
+              cdkDrag
+              [cdkDragDisabled]="col.dragDisabled"
+              [cdkDragPreviewClass]="col.previewClass"
+            >
+              <ng-container
+                *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+              ></ng-container>
+
+              <!-- prev cdk drop -->
+              <div *cdkDragPreview>
+                <ng-container
+                  *ngTemplateOutlet="
+                    previewDropItem;
+                    context: { name: col.header }
+                  "
+                ></ng-container>
+              </div>
+
+              <!-- /prev cdk drop -->
+            </mat-header-cell>
+            <!-- /column header -->
+
+            <!-- column cell -->
+            <mat-cell
+              *matCellDef="let element"
+              (click)="onCellClicked(col, element, $event)"
+            >
+              <div
+                [innerHTML]="renderHtmlTemplate(col, element) | safeHtml"
+              ></div>
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column innerHtml -->
+
+        <!-- column dynamicComponent -->
+        <ng-template #dynamicComponent let-col="col">
+          <ng-container [matColumnDef]="col.columnDef">
+            <!-- column header -->
+            <!-- mat-sort-header -->
+            <mat-header-cell
+              [disabled]="isMatSortAvailable(col.matSortHeader)"
+              *matHeaderCellDef
+              cdkDrag
+              [cdkDragDisabled]="col.dragDisabled"
+              [cdkDragPreviewClass]="col.previewClass"
+            >
+              <ng-container
+                *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+              ></ng-container>
+
+              <!-- prev cdk drop -->
+              <div *cdkDragPreview>
+                <ng-container
+                  *ngTemplateOutlet="
+                    previewDropItem;
+                    context: { name: col.header }
+                  "
+                ></ng-container>
+              </div>
+
+              <!-- /prev cdk drop -->
+            </mat-header-cell>
+            <!-- /column header -->
+
+            <!-- column cell -->
+            <mat-cell
+              *matCellDef="let element; let i = index"
+              (click)="onCellClicked(col, element, $event)"
+            >
+              <!-- <a href="#"> {{ col.cell(element) }}</a> -->
+              <ng-template
+                [cdkPortalOutlet]="getDynamicTemplate(col, element, i)"
+              ></ng-template>
+            </mat-cell>
+            <!-- /column cell -->
+          </ng-container>
+        </ng-template>
+        <!-- /column dynamicComponent -->
+
+        <!-- header filter or drag   -->
+        <ng-template #headerFilterColumn let-col="col">
+          <!-- filter -->
+          <ng-container
+            *ngIf="!(table.modeCustomize$ | async); else dragHeader"
+          >
+            <!-- <button class="header-cell-close">
+            <mat-icon svgIcon="x-fill-purple-dark" aria-hidden="false"></mat-icon>
+          </button> -->
+            <div [matMenuTriggerFor]="tableMenu" class="table-menu">
+              <span class="text-ellipsis">{{ col.header | translate }}</span>
+              <!-- {{
+              col.header
+                | atlpTableFirstLetter
+                  : firstLetterNameColStatus(col.columnTemplate)
+            }} -->
+              <span class="header-cell-arrow"></span>
+              <mat-menu
+                #tableMenu
+                [overlapTrigger]="false"
+                class="table-card-select"
+              >
+                <ng-container
+                  *ngFor="let colDefs of table.allColumns; trackBy: trackByFn"
+                >
+                  <button
+                    [disabled]="!table.isColumnShowed(colDefs)"
+                    (click)="table.overwriteColumns(col.columnDef, colDefs)"
+                    type="button"
+                  >
+                    {{ colDefs }}
+                  </button>
+                </ng-container>
+              </mat-menu>
+            </div>
+          </ng-container>
+          <!-- /filter -->
+
+          <!-- drag -->
+          <ng-template #dragHeader>
+            <div class="drag-btn-wrapper">
+              <button class="drag-btn"></button>
+              <span class="text-ellipsis">
+                {{ col.header | translate }}
+                <!-- {{
+                col.header
+                  | atlpTableFirstLetter
+                    : firstLetterNameColStatus(col.columnTemplate)
+              }} -->
+              </span>
+              <!-- <mat-icon svgIcon="sort-ascending-fill" aria-hidden="false"></mat-icon> -->
+            </div>
+          </ng-template>
+          <!-- /drag -->
+        </ng-template>
+        <!-- /header filter or drag -->
+
+        <!-- header-row -->
+        <mat-header-row
+          *matHeaderRowDef="table.columnsShowDisplay; sticky: true"
+        ></mat-header-row>
+        <!-- row -->
+        <!-- [class.NewRow]="row.info.new && !table?.modeIsRich" -->
+        <mat-row
+          *matRowDef="let row; columns: table.columnsShowDisplay"
+          [class.selected]="isRowSelected(table, row)"
+          [class.show-controls]="isShowControls(table, row)"
+          (click)="onRowClicked(row, $event)"
+        ></mat-row>
+        <tr class="empty-table-row" *matNoDataRow>
+          <td>{{ "NoItems" | translate }}</td>
+        </tr>
+      </mat-table>
+    </div>
+    <div class="col-auto table-pagination-holder">
+      <ng-container *ngIf="(table.dataSource$ | async)?.data?.length > 0">
+        <atlp-pagination
+          (changePage)="pageChange($event)"
+          [atlpInputPaginator]="tablePaginatorOptions"
+        ></atlp-pagination>
+      </ng-container>
+    </div>
+  </div>
+</div>

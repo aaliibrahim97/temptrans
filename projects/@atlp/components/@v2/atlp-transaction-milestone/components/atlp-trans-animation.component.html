@@ -1,0 +1,37 @@
+<div>
+  <ng-container *ngIf="hasProgressBarVisible">
+    <mat-progress-bar class="on-progress" mode="indeterminate">
+    </mat-progress-bar>
+  </ng-container>
+  <div
+    graph-selection
+    [graphData]="(graphData | async)?.graph"
+    [selection]="selection"
+    [data]="transactionsCardData"
+    [majorSteps]="majorSteps"
+    [percentageValue]="percentageValue"
+    [showTitleBottom]="true"
+    [@inOutAnimation]="{
+      value: '*',
+      params: { heightIn: '0px', heightOut: '170px', duration: '1s' }
+    }"
+  >
+    <div class="graph-actions-first">
+      <!-- <button mat-raised-button color="basic" class="icon">
+      <mat-icon svgIcon="copy-black" aria-hidden="false"></mat-icon>
+      Action Left
+    </button> -->
+    </div>
+    <div class="graph-actions-last">
+      <div
+        class="movement-descr-nav mt-auto"
+        fxLayout="row"
+        fxLayoutAlign="end end"
+      >
+        <ng-template
+          [cdkPortalOutlet]="AtlpTransAnimationPortalPortal$ | async"
+        ></ng-template>
+      </div>
+    </div>
+  </div>
+</div>

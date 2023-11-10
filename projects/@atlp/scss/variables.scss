@@ -1,0 +1,177 @@
+$path: "/projects/shared-assets/";
+$color: (
+  "atlp-white": var(--atlp-white),
+  "atlp-black": #000000,
+  "logistics-dark": #447f18,
+  "logistics-light": #a5e376,
+  "atlp-purple-light": var(--atlp-purple-light),
+  // #c8b6dd,
+  "atlp-hr-color": #9d9ac0,
+  "atlp-blue-base": #267ad2,
+  "atlp-another-blue-base": #2e83db,
+  "atlp-purple-base": #a187bf,
+  "atlp-purple-dark": #6f4c98,
+  "atlp-purple-darker": #482570,
+  "atlp-violet-base": var(--atlp-violet-base),
+  "atlp-violet-light": var(--atlp-violet-light),
+  // #605a92,
+  "atlp-violet-lighter": #9e99c3,
+  "atlp-violet-dark": #1b1546,
+  "atlp-violet-darker": #2f295f,
+  "atlp-grey-base": var(--atlp-grey-base),
+  // #dbe3f2,
+  "atlp-grey-light": var(--atlp-grey-light),
+  // #f7f9fd,
+  "atlp-grey-dark": #c5d2e7,
+  "atlp-ink-lighter": #8f9ab3,
+  "atlp-ink-light": #606a81,
+  "atlp-ink-base": #2d3955,
+  "atlp-ink-dark": #1c2842,
+  "atlp-avatar-initial": #eee4f9,
+  "atlp-avatar-fallback": #f6f6f6,
+  "atlp-avatar-ml": #e0fbfa,
+  "atlp-avatar-rh": #ffb8b4,
+  "atlp-btn-basic": #0d102c,
+  "atlp-btn-outline-border": #c5cfdb,
+  "atlp-bth-outline-color": #343a40,
+  "atlp-btn-plain-bg": #eaeef4,
+  "atlp-toolbar-border": #c7d2e5,
+  "atlp-table-color": #0f1930,
+  "atlp-table-row": #edeff2,
+  "atlp-field-border": #744aa5,
+  "atlp-input-border": #d7dee8,
+  "atlp-field-input-border": var(--atlp-field-input-border),
+  "atlp-invalid": #b33239,
+  "atlp-breadcrumb": #6e6e6e,
+  "atlp-drawer-bg": #373069,
+  "atlp-panel-btn": #5a5298,
+  "atlp-danger-btn": #d92836,
+  "atlp-panel-title": var(--atlp-panel-title),
+  //#f7bf06,
+  "atlp-section-title": var(--atlp-section-title),
+  // #dda63a,
+  "atlp-panel-border": #5f5b8e,
+  "atlp-bar-bg": #57a05a,
+  "atlp-bar-dark-bg": #2c502d,
+  "atlp-wrap-border": #ececf2,
+  "atlp-row-border": #919ab1,
+  "atlp-id-color": #1992ea,
+  "atlp-radio-checked": #453e75,
+  "atlp-progress-bar": #7e5ea3,
+  "atlp-cell-border": #cccccc,
+  "atlp-cell-color": #393941,
+  "atlp-border-color": #9d89bb,
+  "atlp-card-icon-bg": #f5f5f5,
+  "atlp-card-add": #267ad2,
+  "atlp-card-update": #c5c5d0,
+  "atlp-info-nav": #f8f8f8,
+  "atlp-search-color": #9aa0af,
+  "atlp-descr-title": #78777d,
+  "atlp-voyage-border-bottom": #eceef5,
+  "atlp-voyage-border-left": #c5dff2,
+  "atlp-voyage-border-left-active": #6772c6,
+  "atlp-voyage-border-bottom-active": #c0c5e8,
+  "atlp-voyage-name": #c0cbe8,
+  "atlp-voyage-name-active": #d98e28,
+  "atlp-voyage-active-border": #1a1743,
+  "atlp-voyage-info-title": #39413e,
+  "atlp-last-card-bg": #9e99c3,
+  "atlp-cell-bg": #f6f2fa,
+  "atlp-card-addition-bg": #e6e6e6,
+  "atlp-card-addition-color": #858591,
+  "atlp-header-cell-border": #dce3f1,
+  "atlp-employee-image": #dae3f2,
+  "atlp-waiting-status": #e8c281,
+  "atlp-blue-dark": #0d63bd,
+  "atlp-plot-item": #fcfcfd,
+  "atlp-plot-item-close-btn": #474a64,
+  "atlp-new-tenant-light-blue": #94c8ff,
+  "atlp-blue-light": #5ba2ec,
+  "atlp-base-button-hover": #353165,
+  "atlp-light-orange": #fbf4ec,
+  "atlp-badge-orange": #db9649,
+  "atlp-separator-grey": #5f5b8e,
+  "atlp-gradient-red"  :  #BC2F2C,
+  "atlp-progress-background": #f4f7fb,
+  "atlp-status-backgroun": #f5faf5,
+  "pending-container-back": #f8f5f0,
+  "atlp-orange": #db9649,
+  "atlp-another-orange": #d88e28,
+  "atlp-tooltip-bg": #362f67,
+  "atlp-employee-position": #626a7f,
+  "hover-color": #f9f9f9,
+  "atlp-ink": #8562af,
+  "card-linear1": #521d83,
+  "card-linear2": #ea5016,
+  "expired": #e0817f,
+  "expiring-soon": #cc9f53,
+  "folder-background": #c5d2e740,
+  "altp-report-button": #8c69b540,
+  "atlp-emoji-fill": #5f5986,
+  "atlp-happy-yellow": #f7bf0f,
+  "atlp-emoji-yellow": #ffb713,
+  "atlp-emoji-brown": #7d351a,
+  "atlp-dark-purple-border": #0000001a,
+  "atlp-dark-purple-gradient": #1c1835d1,
+  "light-mode-header-bg": #ffffff,
+  "light-mode-body-bg": var(--atlp-violet-base),
+  "light-mode-placeholder": #8f9ab3,
+  "light-mode-title": var(--atlp-white),
+  // #2d3955,
+  "light-mode-subtitle": #606a81,
+  "light-mode-info-icon": #919ab1,
+  "light-mode-field-border": #dbe3f2,
+  "light-mode-label": #606a81,
+  "light-mode-blue": #5ba2ec,
+  "light-mode-purple-content": #6f4d98,
+  "atlp-gray": #c7d1e2,
+  "atlp-opacity-purple": #c8b6dd,
+  "atlp-form-table-header-bg": var(--atlp-form-table-header-bg),
+);
+
+:root,
+.light atlp-sidebar.navigation-menu,
+.light atlp-sidebar-v2 .navigation-sidebar,
+.light atlp-sidebar .navigation-sidebar,
+.light atlp-sidebar-v2 .tooltip-filters,
+.light atlp-sidebar .tooltip-filters,
+.light atlp-sidebar.no-light-theme,
+.light atlp-sidebar-v2.no-light-theme,
+.dashboard-wrap,
+.dashboard-wrap.ngx-dash-viewer-wrap,
+.light atlp-sidebar-v2 button.mat-primary,
+.light .panel-small .mat-progress-bar-buffer {
+  --atlp-violet-base: #373068;
+  --atlp-white: white;
+  --atlp-grey-light: #f7f9fd;
+  --atlp-purple-light: #c8b6dd;
+  --atlp-panel-title: #f7bf06;
+  --atlp-section-title: #7c7974;
+  --atlp-grey-base: #dbe3f2;
+  --atlp-violet-light: #605a92;
+  --atlp-purple-base: #a187bf;
+  --atlp-field-input-border: #a187bf;
+  --atlp-form-table-header-bg: #373068;
+}
+
+.light atlp-sidebar:not(.navigation-menu),
+.light mat-cion:not(.no-light-theme),
+.light atlp-sidebar-v2:not(.navigation-menu),
+.light atlp-sidebar button:not(.mat-primary),
+.light atlp-sidebar-v2 button:not(.mat-primary) {
+  --atlp-violet-base: #fff;
+  --atlp-white: #606a81;
+  --atlp-grey-light: #606a81;
+  --atlp-purple-light: #373068;
+  --atlp-panel-title: #6f4c98;
+  --atlp-section-title: #5a5298;
+  --atlp-grey-base: #738098;
+  --atlp-violet-light: #eae9f4;
+  --atlp-purple-base: #dbe3f2;
+  --atlp-field-input-border: #dbe3f2;
+  --atlp-form-table-header-bg: #ffffff;
+  .drawer-header {
+    --atlp-white: #ffffff;
+    --atlp-grey-base: #dbe3f2;
+  }
+}

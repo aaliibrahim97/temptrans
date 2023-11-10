@@ -1,0 +1,102 @@
+@import "projects/@atlp/scss/variables";
+
+.Messages {
+  position: absolute;
+  // background: transparent linear-gradient(180deg, #373069 0%, #1c1835d1 100%) 0% 0% no-repeat padding-box;
+  width: 100%;
+  z-index: 3;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .mat-icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .Message-box {
+    display: flex;
+    max-width: 600px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: auto;
+    word-break: break-word;
+    @media screen and (max-height: 450px) {
+      margin-top: 70px;
+    }
+  }
+
+  .messagetitle {
+    font-size: 36px;
+    line-height: 50px;
+    font-weight: 500;
+    color: map-get($color, "atlp-white");
+    width: 80%;
+    // width: 80%;
+    // width: 100%;
+    @media screen and (max-height: 450px) {
+      margin: 10px 0;
+    }
+  }
+  .messagesubtitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 16px;
+    color: map-get($color, "atlp-white");
+  }
+  .messages-btn-row {
+    margin-top: 32px;
+    width: 73%;
+    @media screen and (max-height: 450px) {
+      margin-top: 20px;
+    }
+  }
+  .mat-basic {
+    transition: all 0.3s ease;
+    font-weight: 500 !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 6px;
+    background: linear-gradient(#fff 0%, #eaeef4 100%);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0px 0.5px 1.5px rgba(0, 0, 0, 0.25));
+    box-shadow: none !important;
+    color: map-get($color, "atlp-btn-basic") !important;
+    &:hover {
+      border: 1px solid #744aa5;
+    }
+    &:disabled {
+      opacity: 0.4;
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+    &.bg {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+      }
+    }
+    &.danger {
+      background: transparent linear-gradient(180deg, #d93d44 0%, #b33239 100%)
+        0% 0% no-repeat padding-box;
+      color: map-get($color, "atlp-white") !important;
+    }
+    &.second-btn {
+      margin-left: 12px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .Message-box {
+      padding-left: 12px;
+      .messagetitle {
+        font-size: 26px;
+      }
+      .messagesubtitle {
+        width: 80%;
+      }
+    }
+  }
+}

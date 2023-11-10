@@ -1,0 +1,489 @@
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <nav>
+        <div class="main-link">{{ "ABOUT_US" | translate }}</div>
+        <ul>
+          <li>
+            <a href="{{ constructURL('atlp', 'about-us') }}">{{
+              "Overview" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('atlp', 'partners') }}">{{
+              "Partners" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('atlp', 'benefits') }}">{{
+              "Benefits" | translate
+            }}</a>
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <div class="main-link">
+          {{ "KEEP_UP_TO_DATE" | translate }}
+        </div>
+        <ul>
+          <li>
+            <a href="{{ constructURL('atlp', 'news') }}">{{
+              "News" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('atlp', 'announcements') }}">
+              {{ "Announcements" | translate }}</a
+            >
+          </li>
+          <li>
+            <a href="{{ constructURL('atlp', 'training-workshops') }}">
+              {{ "Training" | translate }}</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <div class="main-link">{{ "Export_Gateway" | translate }}</div>
+        <ul>
+          <li>
+            <a
+              href="{{ constructURL('adeg', 'target_sectors_landing_page') }}"
+              >{{ "Target_Sector" | translate }}</a
+            >
+          </li>
+          <li>
+            <a href="{{ constructURL('adeg', 'target_market_landing') }}">
+              {{ "Target_Market" | translate }}</a
+            >
+          </li>
+          <li>
+            <a href="{{ constructURL('adeg', 'best-countries') }}">{{
+              "Best_Trade" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('adeg', 'import-guides') }}">{{
+              "Import_Guides" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('adeg', 'export-opportunities') }}">{{
+              "Opportunities" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('adeg', 'ournews') }}">{{
+              "Exporter_News" | translate
+            }}</a>
+          </li>
+          <li>
+            <a href="{{ constructURL('adeg', 'events-new') }}">{{
+              "Exporter_Trade" | translate
+            }}</a>
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <div class="main-link">{{ "TRADE_RESOURCES" | translate }}</div>
+        <ul>
+          <li>
+            <a href="{{ constructURL('atlp', 'harmonized-system-codes') }}">
+              {{ "Harmonised" | translate }}</a
+            >
+          </li>
+          <li>
+            <a href="{{ constructURL('atlp', 'policies-and-procedures') }}">{{
+              "Policies" | translate
+            }}</a>
+          </li>
+          <li *ngIf="isFooterJosoorProd && isJosoorAR">
+            <a href="{{ constructURL('atlp', 'Josoor') }}">
+              {{ "Josoor" | translate }}</a
+            >
+          </li>
+          <li *ngIf="isFooterCashDisProd">
+            <a href="{{ redirectURL('CashDisclosure') }}">{{
+              "CashDisclosure" | translate
+            }}</a>
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <div class="main-link">
+          {{ "SERVICE_CATALOGUE" | translate }}
+        </div>
+        <ul>
+          <li>
+            <a
+              href="{{ constructURL('atlp', 'services-landing/sea-services') }}"
+            >
+              {{ "Sea" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ constructURL('atlp', 'services-landing/air-services') }}"
+              >{{ "Air" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{
+                constructURL('atlp', 'services-landing/land-services')
+              }}"
+              >{{ "Land" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{
+                constructURL('atlp', 'services-landing/rail-services')
+              }}"
+              >{{ "Rail" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{
+                constructURL('atlp', 'services-landing/economic-zone-services')
+              }}"
+              >{{ "Economic" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{
+                constructURL(
+                  'atlp',
+                  'services-landing/inspection-clearance-services'
+                )
+              }}"
+              >{{ "Inspection_Clearance" | translate }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{
+                constructURL('atlp', 'services-landing/value-added-services')
+              }}"
+              >{{ "ServicesAdded" | translate }}</a
+            >
+          </li>
+          <li>
+            <a href="{{ constructURL('atlp', 'services-landing') }}">{{
+              "All_Services" | translate
+            }}</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="footer-menu">
+        <ul>
+          <span class="main-link footer-text">{{
+            "GENERAL_INQUIRIES" | translate
+          }}</span>
+          <li>
+            <mat-icon class="link-icon" svgIcon="mail-icon"></mat-icon
+            ><a
+              href="mailto:atlp@maqta.ae"
+              text="atlp@maqta.ae"
+              linktype="mailto"
+              url="mailto:atlp@maqta.ae"
+            >
+              <p><span>atlp@maqta.ae</span></p>
+            </a>
+          </li>
+          <li>
+            <mat-icon class="link-icon" svgIcon="tel-icon"></mat-icon
+            ><a
+              href="tel://800 10 2030"
+              linktype="external"
+              url="tel://800 10 2030"
+              anchor=""
+              class="phone"
+              target=""
+            >
+              <p class="contact-no"><span>800 10 2030</span></p>
+            </a>
+          </li>
+        </ul>
+        <div class="social">
+          <span class="main-link footer-text">{{
+            "FOLLOW_US" | translate
+          }}</span>
+          <div class="social-wrap">
+            <div>
+              <a
+                href="https://www.facebook.com/atlpuae"
+                linktype="external"
+                url="https://www.facebook.com/atlpuae"
+              >
+                <mat-icon class="s-18" svgIcon="Facebook"></mat-icon>
+              </a>
+            </div>
+
+            <div>
+              <a
+                href="https://www.instagram.com/atlpuae/"
+                linktype="external"
+                url="https://www.instagram.com/atlpuae/"
+                anchor=""
+              >
+                <mat-icon class="s-18" svgIcon="Instagram"></mat-icon>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.linkedin.com/company/atlpuae/"
+                linktype="external"
+                url="https://www.linkedin.com/company/atlpuae/"
+                anchor=""
+              >
+                <mat-icon class="s-18" svgIcon="LinkedIn"></mat-icon
+              ></a>
+            </div>
+            <div>
+              <a
+                href="https://twitter.com/atlpuae"
+                linktype="external"
+                url="https://twitter.com/atlpuae"
+                anchor=""
+                ><mat-icon class="s-18" svgIcon="Twitter"></mat-icon>
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.youtube.com/channel/UC6NMttMY337yAEJsPF7Dm1w"
+                linktype="external"
+                url="https://www.youtube.com/channel/UC6NMttMY337yAEJsPF7Dm1w"
+                anchor=""
+                ><mat-icon class="s-18" svgIcon="Youtube"></mat-icon
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="subscribe">
+          <span class="main-link footer-text">{{
+            "SUBSCRIBE" | translate
+          }}</span>
+          <div class="subscribe-field">
+            <div>
+              <form [formGroup]="emailForm">
+                <div class="newsletter-form">
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      #email
+                      class="validatorCheck"
+                      maxlength="255"
+                      required
+                      placeholder="{{ 'EnterMessage' | translate }}"
+                      formControlName="email"
+                    />
+                  </div>
+                  <div
+                    class="error-wrap"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    <span class="error-text">
+                      <div
+                        *ngIf="
+                          emailForm.controls['email']?.hasError('required') &&
+                          emailForm.controls['email'].touched
+                        "
+                        class="text-danger"
+                      >
+                        {{ "Required_Email" | translate }}
+                      </div>
+                    </span>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                    <span class="error-text">
+                      <div
+                        *ngIf="
+                          emailForm.controls['email']?.invalid &&
+                          emailForm.controls['email']?.touched &&
+                          emailForm.controls['email'].errors?.email
+                        "
+                        class="text-danger"
+                      >
+                        {{ "Valid_Email_Msg" | translate }}
+                      </div>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Captcha -->
+                <div
+                  class="captchaDiv"
+                  fxLayout="column"
+                  fxLayoutAlign="end end"
+                  *ngIf="submitted"
+                >
+                  <div class="field-wrap">
+                    <div>
+                      <ng-container *ngIf="generateCaptcha$ | async as captcha">
+                        <div class="field-wrap">
+                          <img [src]="captcha?.image" alt="Captcha Image" />
+                          <button
+                            type="button"
+                            mat-button
+                            class="refershCaptcha"
+                            aria-label="Regenerate Captcha"
+                            matTooltip="Reset"
+                            (click)="regenerateCaptcha()"
+                          >
+                            <mat-icon
+                              svgIcon="refresh"
+                              class="z-index-0"
+                            ></mat-icon>
+                          </button>
+                          <label for="#" class="field-label captcha">
+                            {{ "ENTER_CAPTCHA" | translate }}
+                            <span class="required-text">*</span></label
+                          >
+
+                          <div class="field-input-wrap">
+                            <input
+                              class="placeholder"
+                              type="text"
+                              placeholder="{{ 'ENTER_CAPTCHA' | translate }}"
+                              formControlName="recaptcha"
+                            />
+                          </div>
+                        </div>
+                        <!--  -->
+                      </ng-container>
+                      <ngx-recaptcha2
+                        *ngIf="false"
+                        #captchaElem
+                        [siteKey]="siteKey"
+                        (reset)="handleReset()"
+                        (expire)="handleExpire()"
+                        (load)="handleLoad()"
+                        (success)="handleSuccess($event)"
+                        [useGlobalDomain]="false"
+                        [size]="size"
+                        [hl]="selectedLanguage"
+                        [theme]="theme"
+                        [type]="type"
+                        formControlName="recaptcha"
+                      >
+                      </ngx-recaptcha2>
+                    </div>
+                    <div
+                      class="error-wrap"
+                      fxLayout="row"
+                      fxLayoutAlign="start center"
+                      *ngIf="
+                        emailForm.controls['recaptcha'].invalid &&
+                        (emailForm.controls['recaptcha'].dirty ||
+                          emailForm.controls['recaptcha'].touched)
+                      "
+                    >
+                      <span
+                        class="error-text"
+                        *ngIf="
+                          emailForm.controls['recaptcha']?.hasError.required &&
+                          emailForm.controls['recaptcha'].touched
+                        "
+                      >
+                        {{ "You_Missed_The_Captcha" | translate }}</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="btn-row">
+              <div class="demo-full-width margin-top">
+                <button
+                  *ngIf="enableCaptcha"
+                  class="purplebutton"
+                  type="submit"
+                  id=""
+                  name=""
+                  matTooltip="Submit"
+                  value="Submit"
+                  (click)="enableCaptchaCode()"
+                >
+                  <mat-icon
+                    class="submit-icon s-16"
+                    svgIcon="footerArrow"
+                  ></mat-icon>
+                </button>
+                <button
+                  *ngIf="submitted"
+                  class="purplebutton"
+                  type="submit"
+                  id=""
+                  name=""
+                  matTooltip="Submit"
+                  value="Submit"
+                  (click)="onSubmit()"
+                >
+                  <mat-icon
+                    class="submit-icon s-16"
+                    svgIcon="footerArrow"
+                  ></mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="result" id="successMsg" *ngIf="SuccessConfirmMsg">
+            {{ "SubmitSuccess" | translate }}
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-partners">
+    <div class="container">
+      <div class="partners">
+        <span class="partnersInfo">{{ "PoweredBy" | translate }}</span>
+        <mat-icon class="partner-logo maqta" svgIcon="maqta"></mat-icon>
+      </div>
+      <div class="partners">
+        <span class="partnersInfo">{{ "PartOf" | translate }}</span>
+        <mat-icon class="partner-logo adpg" svgIcon="ad-ports"></mat-icon>
+      </div>
+      <div class="partners">
+        <span class="partnersInfo">{{ "Under_supervision" | translate }}</span>
+        <mat-icon class="partner-logo ded" svgIcon="ded"></mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <nav>
+        <ul>
+          <li class="footer-text">
+            <a href="{{ constructURL('atlp', 'privacy') }}">{{
+              "Privacy_Policy" | translate
+            }}</a>
+          </li>
+          <li class="footer-text">
+            <a href="{{ constructURL('atlp', 'terms') }}">{{
+              "Terms_Conditions" | translate
+            }}</a>
+          </li>
+          <li class="footer-text">
+            <a href="{{ constructURL('atlp', 'FAQ') }}">{{
+              "FAQ" | translate
+            }}</a>
+          </li>
+          <li class="footer-text">
+            <a href="{{ constructURL('atlp', 'contact-us') }}">{{
+              "Contact_Us" | translate
+            }}</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright">
+        <span>{{ copyright }}</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,104 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <label class="field-label" [ngClass]="{ required: field.isRequired }">
+    {{ field.label | translate }}</label
+  >
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <div
+      class="auto-complete auto-complete-custom"
+      *ngIf="field?.autoCompleteInputProps"
+    >
+      <atlp-mat-autocomplete
+        #inputRef
+        [ngStyle]="field.props?.componentStyle"
+        [tabIndex]="field.tabindex || 0"
+        [isDisabled]="field.isDisabled ? true : null"
+        class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+        [formControl]="group.controls[field.name]"
+        [hasProgressBar]="field.autoCompleteInputProps.hasProgressBar"
+        [source]="field.autoCompleteInputProps.source"
+        [minChars]="field.autoCompleteInputProps.minChars"
+        [displayTemplate]="field.autoCompleteInputProps.itemTemplate"
+        [placeholder]="field.autoCompleteInputProps?.placeholder || ''"
+        [isInvalidObjectValidation]="true"
+        [isRequiredValidation]="field.isRequired || false"
+        [displayItemCode]="field.autoCompleteInputProps.displayItemCode"
+        [displayItemNameInEnglish]="
+          field.autoCompleteInputProps.displayItemNameInEnglish
+        "
+        [serviceParams]="field.autoCompleteInputProps?.serviceParams"
+        [displayItemNameInArabic]="
+          field.autoCompleteInputProps.displayItemNameInArabic
+        "
+        [displayItemFn]="field.autoCompleteInputProps.displayItemFunc"
+        [doPrefetch]="field.autoCompleteInputProps?.doPrefetch"
+        [showAddNew]="field.autoCompleteInputProps?.showAddNew"
+        [isFocused]="field.autoCompleteInputProps?.isFocused"
+        [lookUpObject]="field.autoCompleteInputProps?.lookupObj"
+        (createNew)="createNewAction($event)"
+        (optionSelected)="optionSelectedAction($event)"
+        (onClear)="onClearAction($event)"
+        (autoCompleteOnBlur)="autoCompleteOnBlurAction($event)"
+        (modelChange)="modelChangeAction($event)"
+      >
+      </atlp-mat-autocomplete>
+    </div>
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngIf="
+      formValidator.hasError('autoCompleteIsRequired') ||
+      formValidator.hasError('autoCompleteInvalidObject')
+    "
+  >
+    <mat-icon svgIcon="warning-circle-fill" aria-hidden="false"></mat-icon>
+    <span
+      *ngIf="formValidator.hasError('autoCompleteIsRequired')"
+      class="error-text"
+      >{{ "IS_REQUIRED" | translate }}</span
+    >
+    <span
+      *ngIf="formValidator.hasError('autoCompleteInvalidObject')"
+      class="error-text"
+      >{{ "INVALID_SELECTION" | translate }}</span
+    >
+  </div>
+</div>

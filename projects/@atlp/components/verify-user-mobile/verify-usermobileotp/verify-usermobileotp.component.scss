@@ -1,0 +1,188 @@
+@import "projects/@atlp/scss/variables";
+.title {
+  color: map-get($color, "atlp-white");
+}
+.subtitle {
+  color: map-get($color, "atlp-white");
+  margin-bottom: 30px;
+}
+.warning-icon {
+  padding-right: 5px;
+}
+
+.rtl .warning-icon {
+  padding-left: 5px;
+}
+.Messages {
+  position: absolute;
+  background: map-get($color, "atlp-violet-base");
+  width: 100%;
+  z-index: 3;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .mat-icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .Message-box {
+    display: flex;
+    max-width: 70%;
+    flex-direction: column;
+    align-items: start;
+    margin: auto;
+    word-break: break-word;
+    @media screen and (max-height: 450px) {
+      margin-top: 70px;
+    }
+  }
+
+  .messagetitle {
+    font-size: 25px;
+    line-height: 35px;
+    font-weight: 500;
+    color: map-get($color, "atlp-white");
+    width: 100%;
+    // width: 80%;
+    // width: 100%;
+    @media screen and (max-height: 450px) {
+      margin: 10px 0;
+    }
+  }
+  .messagesubtitle {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 16px;
+    color: map-get($color, "atlp-white");
+  }
+  .messages-btn-row {
+    margin-top: 32px;
+    width: 73%;
+    @media screen and (max-height: 450px) {
+      margin-top: 20px;
+    }
+  }
+  .mat-basic {
+    transition: all 0.3s ease;
+    font-weight: 500 !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 6px;
+    background: linear-gradient(#fff 0%, #eaeef4 100%);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0px 0.5px 1.5px rgba(0, 0, 0, 0.25));
+    box-shadow: none !important;
+    color: map-get($color, "atlp-btn-basic") !important;
+    &:hover {
+      border: 1px solid #744aa5;
+    }
+    &:disabled {
+      opacity: 0.4;
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+    &.bg {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      &:hover {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+      }
+    }
+    &.danger {
+      background: transparent linear-gradient(180deg, #d93d44 0%, #b33239 100%)
+        0% 0% no-repeat padding-box;
+      color: map-get($color, "atlp-white") !important;
+    }
+    &.second-btn {
+      margin-left: 12px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .Message-box {
+      padding-left: 3rem;
+      .messagetitle {
+        font-size: 26px;
+      }
+      .messagesubtitle {
+        width: 80%;
+      }
+    }
+  }
+}
+::ng-deep {
+  .rtl {
+    .Messages {
+      .mat-basic {
+        &.second-btn {
+          margin-right: 12px;
+          margin-left: 0px;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .Message-box {
+          padding-right: 3rem;
+          padding-left: 0rem;
+        }
+      }
+    }
+  }
+  .feedback-otp-class {
+    padding: 0;
+    font-size: 2rem !important;
+    font-weight: bold;
+    color: #2d2d2ddd;
+  }
+
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 1) {
+    .feedback-otp-class {
+      width: 50px !important;
+      height: 50px !important;
+    }
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 850px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    .feedback-otp-class {
+      width: 36px !important;
+      height: 36px !important;
+    }
+  }
+
+  @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    .feedback-otp-class {
+      width: 36px !important;
+      height: 36px !important;
+    }
+  }
+}
+.opt-error {
+  color: #ff8989;
+}
+
+.opt-message {
+  color: map-get($color, "atlp-white") !important;
+  // text-align: center;
+  padding-bottom: 5px;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.opt-resend-message {
+  color: map-get($color, "atlp-white") !important;
+  padding-top: 2px;
+}
+
+.resend-otp {
+  padding-top: 10px;
+  button {
+    margin-left: 0 !important;
+  }
+}
+
+.otp-resent {
+  display: block;
+  color: #d0e6d0;
+}

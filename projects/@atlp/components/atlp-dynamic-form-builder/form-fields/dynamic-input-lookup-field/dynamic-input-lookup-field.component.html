@@ -1,0 +1,143 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <div
+    class="field-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name)?.errors?.required
+    "
+  >
+    <div *ngIf="field?.lookupInputProps?.lookUpObject">
+      <label class="field-label" [ngClass]="{ required: field.isRequired }">
+        {{ field.label | translate }}</label
+      >
+      <atlp-input-lookup
+        #inputRef
+        [ngStyle]="field.props?.componentStyle"
+        [tabIndex]="field.tabindex || 0"
+        class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+        placeholder="{{ field.lookupInputProps.placeholder | translate }}"
+        [hasSearchButton]="field.lookupInputProps.hasSearchButton || true"
+        [formControl]="group.controls[field.name]"
+        [displayItemCode]="field.lookupInputProps.displayItemCode"
+        [displayItemNameInEnglish]="
+          field.lookupInputProps.displayItemNameInEnglish
+        "
+        [displayItemNameInArabic]="
+          field.lookupInputProps.displayItemNameInArabic
+        "
+        name="{{ field.lookupInputProps.name }}"
+        [lookUpObject]="field.lookupInputProps.lookUpObject"
+        [isFlexEnabled]="field.lookupInputProps.isFlexEnabled"
+        [fxFlexValue]="field.lookupInputProps.fxFlexValue"
+        [isDisabled]="field.lookupInputProps.isDisabled"
+        [source]="field.lookupInputProps.source"
+        [floatLabel]="field.lookupInputProps.floatLabel"
+        [doPrefetch]="field.lookupInputProps.doPrefetch"
+        [hasProgressBar]="field.lookupInputProps.hasProgressBar"
+        [minChars]="field.lookupInputProps.minChars"
+        [clearAfterSearch]="field.lookupInputProps.clearAfterSearch"
+        [showAddNew]="field.lookupInputProps.showAddNew"
+        [addNewText]="field.lookupInputProps.addNewText"
+        [isFocused]="field.lookupInputProps.isFocused"
+        [validationErrors]="field.lookupInputProps.validationErrors"
+        [displayItemFn]="field.lookupInputProps.displayItemFn"
+        [serviceParams]="field.lookupInputProps.serviceParams"
+        [mapCustomData]="field.lookupInputProps.mapCustomData"
+        [transformResult]="field.lookupInputProps.transformResult"
+        [flexParentGap]="field.lookupInputProps.flexParentGap"
+        [isDetailsDisabled]="field.lookupInputProps.isDetailsDisabled"
+        [marginRightBetweenControls]="
+          field.lookupInputProps.marginRightBetweenControls
+        "
+        [marginLeftBetweenControls]="
+          field.lookupInputProps.marginLeftBetweenControls
+        "
+        [isRequiredValidation]="field.lookupInputProps.isRequiredValidation"
+        [isInvalidObjectValidation]="
+          field.lookupInputProps.isInvalidObjectValidation
+        "
+        [isCustomValidatorFn]="field.lookupInputProps.isCustomValidatorFn"
+        [minlength]="field.lookupInputProps.minlength"
+        [maxlength]="field.lookupInputProps.maxlength"
+        [customData]="field.lookupInputProps.customData"
+        [skipValidation]="field.lookupInputProps.skipValidation"
+        [inputTextType]="field.lookupInputProps.inputTextType"
+        (optionSelected)="optionSelectedAction($event)"
+        (setSideBarProperties)="setSideBarPropertiesAction($event)"
+        (modelChange)="modelChangeAction($event)"
+        (createNew)="createNewAction($event)"
+      >
+      </atlp-input-lookup>
+    </div>
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name)?.hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name)?.hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+  <ng-container *ngIf="field?.lookupInputProps?.lookUpId === '75'">
+    <div class="error-wrap" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon
+        *ngIf="
+          !isValid && isDirty && group.get('statement_Amount')?.errors?.required
+        "
+        svgIcon="warning-circle-fill"
+        aria-hidden="false"
+      ></mat-icon>
+      <span
+        *ngIf="
+          !isValid && isDirty && group.get('statement_Amount')?.errors?.required
+        "
+        class="error-text"
+      >
+        {{ "Amount_is_required_msg" | translate }}</span
+      >
+    </div>
+    <div class="error-wrap" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon
+        *ngIf="
+          !isValid &&
+          isDirty &&
+          group.get('statement_Account')?.errors?.required
+        "
+        svgIcon="warning-circle-fill"
+        aria-hidden="false"
+      ></mat-icon>
+      <span
+        *ngIf="
+          (group.get('statement_Account')?.touched || isSubmited) &&
+          group.get('statement_Account')?.errors?.required
+        "
+        class="error-text"
+      >
+        {{ "Account_number_is_required_msg" | translate }}</span
+      >
+    </div>
+  </ng-container>
+</div>

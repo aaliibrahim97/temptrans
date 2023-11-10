@@ -1,0 +1,250 @@
+<div [formGroup]="filterForm">
+  <mat-accordion class="filters-accordion" multi>
+    <ng-content selector="[placeholder-1]"></ng-content>
+    <div class="field-wrap bg" fxLayout="column">
+      <label class="field-label">AWB#</label>
+      <div class="field-input-wrap">
+        <input autocomplete="off" formControlName="awbReferenceNumber" />
+      </div>
+    </div>
+    <ng-content selector="[placeholder-2]"></ng-content>
+    <ng-content selector="[placeholder-3]"></ng-content>
+    <ng-content selector="[placeholder-4]"></ng-content>
+    <ng-content selector="[placeholder-5]"></ng-content>
+    <div class="field-wrap bg" fxLayout="column">
+      <div
+        class="field-wrap bg"
+        fxFlex="100%"
+        fxFlex.gt-xs="48%"
+        fxFlex.gt-sm="22%"
+        fxLayout="column"
+      >
+        <label for="#" class="field-label">Departed From</label>
+        <div class="field-input-wrap">
+          <input
+            placeholder="{{'ChooseDate' | translate}}"
+            [matDatepicker]="arrivedFrom"
+            (focus)="arrivedFrom.open()"
+            readonly
+            formControlName="fromDate"
+            required
+          />
+          <mat-icon svgIcon="data-icon-white" aria-hidden="false"></mat-icon>
+        </div>
+        <mat-datepicker #arrivedFrom></mat-datepicker>
+      </div>
+      <div class="field-input-wrap">
+        <div class="ml-1" *ngIf="submitted && formValidator.fromDate.errors">
+          <div
+            *ngIf="formValidator.fromDate.errors.required"
+            class="validate-form"
+          >
+            Departed From date is required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-wrap bg" fxLayout="column">
+      <div
+        class="field-wrap bg"
+        fxFlex="100%"
+        fxFlex.gt-xs="48%"
+        fxFlex.gt-sm="22%"
+        fxLayout="column"
+      >
+        <label for="#" class="field-label">Departed To</label>
+        <div class="field-input-wrap">
+          <input
+            placeholder="{{'ChooseDate' | translate}}"
+            [matDatepicker]="arrivedTo"
+            (focus)="arrivedTo.open()"
+            readonly
+            formControlName="toDate"
+            required
+          />
+          <mat-icon svgIcon="data-icon-white" aria-hidden="false"></mat-icon>
+        </div>
+        <mat-datepicker #arrivedTo></mat-datepicker>
+      </div>
+      <div class="field-input-wrap">
+        <div class="ml-1" *ngIf="submitted && formValidator.toDate.errors">
+          <div
+            *ngIf="formValidator.toDate.errors.required"
+            class="validate-form"
+          >
+            Departed To date is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-content selector="[placeholder-6]"></ng-content>
+
+    <div class="field-wrap bg" fxLayout="column">
+      <label class="field-label">Pickup Terminal</label>
+      <div class="field-input-wrap">
+        <mat-select
+          fxFlex="none"
+          formControlName="terminalCode"
+          class="dropdown-select dropdown-table"
+          placeholder="Pickup Terminal"
+          panelClass="panel-custom"
+        >
+          <mat-option value="PTR">PTR</mat-option>
+          <mat-option value="GTR">GTR</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="field-wrap bg" fxLayout="column">
+      <label class="field-label">Status</label>
+      <div class="field-input-wrap">
+        <mat-select
+          fxFlex="none"
+          formControlName="status"
+          class="dropdown-select dropdown-table"
+          placeholder="Pickup Terminal"
+          panelClass="panel-custom"
+        >
+          <mat-option value="PTR">STATUS-1</mat-option>
+          <mat-option value="GTR">STATUS-2</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="field-wrap bg" fxLayout="column">
+      <label class="field-label">Status Type</label>
+      <div class="field-input-wrap">
+        <mat-select
+          fxFlex="none"
+          formControlName="statusType"
+          class="dropdown-select dropdown-table"
+          placeholder="Status Type"
+          panelClass="panel-custom"
+        >
+          <mat-option value="PTR">STATUS-Type-1</mat-option>
+          <mat-option value="GTR">STATUS-type-2</mat-option>
+        </mat-select>
+      </div>
+      <div class="field-input-wrap">
+        <div class="ml-1" *ngIf="submitted && formValidator.statusType.errors">
+          <div
+            *ngIf="formValidator.statusType.errors.required"
+            class="validate-form"
+          >
+            Status Type is Required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field-wrap bg" fxLayout="column">
+      <label class="field-label">Appointment No.</label>
+      <div class="field-input-wrap">
+        <input autocomplete="off" formControlName="appointmentno" />
+      </div>
+    </div>
+    <div class="field-wrap bg" fxLayout="column">
+      <div
+        class="field-wrap bg"
+        fxFlex="100%"
+        fxFlex.gt-xs="48%"
+        fxFlex.gt-sm="22%"
+        fxLayout="column"
+      >
+        <label for="#" class="field-label">Appointment From Date</label>
+        <div class="field-input-wrap">
+          <input
+            matInput
+            [ngxMatDatetimePicker]="appntFromPicker"
+            placeholder="{{'ChooseDate' | translate}}"
+            formControlName="appointmentFromDate"
+            (focus)="appntFromPicker.open()"
+          />
+          <mat-icon svgIcon="data-icon-white" aria-hidden="false"></mat-icon>
+
+          <ngx-mat-datetime-picker
+            #appntFromPicker
+            [showSpinners]="true"
+            [showSeconds]="false"
+            [stepHour]="1"
+            [stepMinute]="1"
+            [stepSecond]="1"
+            [touchUi]="false"
+            [enableMeridian]="false"
+            [disableMinute]="false"
+            [hideTime]="false"
+          >
+            <!-- Custom icon or text of Apply icon -->
+            <ng-template>
+              <span>OK</span>
+            </ng-template>
+          </ngx-mat-datetime-picker>
+        </div>
+        <div class="field-input-wrap">
+          <div
+            class="ml-1"
+            *ngIf="submitted && formValidator.appointmentFromDate.errors"
+          >
+            <div
+              *ngIf="formValidator.appointmentFromDate.errors.required"
+              class="validate-form"
+            >
+              Appointment start date is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field-wrap bg" fxLayout="column">
+      <div
+        class="field-wrap bg"
+        fxFlex="100%"
+        fxFlex.gt-xs="48%"
+        fxFlex.gt-sm="22%"
+        fxLayout="column"
+      >
+        <label for="#" class="field-label">Appointment From Date</label>
+        <div class="field-input-wrap">
+          <input
+            matInput
+            [ngxMatDatetimePicker]="appntToPicker"
+            placeholder="{{'ChooseDate' | translate}}"
+            formControlName="appointmentToDate"
+            (focus)="appntToPicker.open()"
+          />
+          <mat-icon svgIcon="data-icon-white" aria-hidden="false"></mat-icon>
+
+          <ngx-mat-datetime-picker
+            #appntToPicker
+            [showSpinners]="true"
+            [showSeconds]="false"
+            [stepHour]="1"
+            [stepMinute]="1"
+            [stepSecond]="1"
+            [touchUi]="false"
+            [enableMeridian]="false"
+            [disableMinute]="false"
+            [hideTime]="false"
+          >
+            <!-- Custom icon or text of Apply icon -->
+            <ng-template>
+              <span>OK</span>
+            </ng-template>
+          </ngx-mat-datetime-picker>
+        </div>
+        <div class="field-input-wrap">
+          <div
+            class="ml-1"
+            *ngIf="submitted && formValidator.appointmentToDate.errors"
+          >
+            <div
+              *ngIf="formValidator.appointmentToDate.errors.required"
+              class="validate-form"
+            >
+              Appointment end date is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-accordion>
+  <ng-content selector="[placeholder-end]"></ng-content>
+</div>

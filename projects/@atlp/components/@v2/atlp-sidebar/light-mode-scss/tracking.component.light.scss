@@ -1,0 +1,17 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.vertical-stepper,
+.vertical-stepper2 {
+  .mat-step-icon {
+    background-color: map-get($color, "atlp-white") !important;
+  }
+
+  .name {
+    color: map-get($color, "atlp-ink-base") !important;
+  }
+
+  .date {
+    color: map-get($color, "atlp-ink-light") !important;
+  }
+}

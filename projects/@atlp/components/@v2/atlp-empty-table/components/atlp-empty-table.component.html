@@ -1,0 +1,13 @@
+<div class="empty-table-header table bg">
+  <div *ngFor="let col of colHeader; let y = index">
+    <span class="header-cell-text">
+      {{ col.header | translate | uppercase }}
+    </span>
+  </div>
+</div>
+
+<div class="empty-table" [class.bg]="invert">
+  <p class="empty-table-text">
+    <span>{{ "NoDataDisplay" | translate | uppercase }}</span>
+  </p>
+</div>

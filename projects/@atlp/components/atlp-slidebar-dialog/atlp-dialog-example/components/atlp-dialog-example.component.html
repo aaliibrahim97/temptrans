@@ -1,0 +1,34 @@
+<atlp-sidebar
+  class="sidebar-with-content"
+  [name]="config.keyToCloseSlider"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign=" none">
+    <div class="drawer-wrap-container drawer-wrap-container-transparent">
+      <div
+        class="drawer-header"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <div class="drawer-info">
+          <span class="drawer-title">
+            Title
+            <!-- {{ messageDetails?.sliderTitle | translate }} -->
+          </span>
+        </div>
+      </div>
+      <div class="drawer-body">
+        <div class="text-wrapper">
+          <p>{{ config.data.message }}</p>
+        </div>
+        <div class="actions">
+          <button class="button" (click)="onClose()">CANCEL</button>
+          <button class="button" (click)="onClose()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</atlp-sidebar>

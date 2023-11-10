@@ -1,0 +1,25 @@
+.pager-navy,.custom-pagination-driver {
+  .mat-paginator {
+    background: transparent;
+    border-bottom: 0px;
+    @include border-left(0px);
+    @include border-right(0px);
+    color: #ffffff;
+
+    .mat-button-wrapper {
+      color: #ffffff;
+    }
+
+    .mat-select-arrow {
+      color: #ffffff;
+    }
+
+    .mat-select-value-text {
+      color: #ffffff;
+    }
+
+    .mat-form-field-underline {
+      background: #ffffff;
+    }
+  }
+}

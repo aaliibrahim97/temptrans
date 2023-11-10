@@ -1,0 +1,25 @@
+@import "projects/@atlp/scss/variables";
+.mat-dialog-content {
+  display: grid;
+}
+.mat-dialog-actions {
+  width: 100%;
+  text-align: center;
+}
+
+.mat-dialog-title {
+  color: white;
+  background-color: #280452;
+  text-align: center;
+  width: 100%;
+  font-size: 17px;
+  padding: 13px 0px !important;
+}
+
+.purple {
+  background-color: map-get($color, "atlp-purple-dark") !important;
+}
+
+.transparent {
+  margin-right: 1vw;
+}

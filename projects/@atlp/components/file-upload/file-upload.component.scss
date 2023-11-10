@@ -1,0 +1,87 @@
+@import "projects/@atlp/scss/variables";
+.upload-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.file-preview-container {
+  background: transparent !important;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start;
+}
+
+.upload-field-label {
+  color: map-get($color, "atlp-white") !important;
+}
+
+.file-preview-item {
+  width: 100% !important;
+  border: none !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  margin-bottom: 30px;
+}
+
+.file__wrap {
+  background: map-get($color, "atlp-violet-light") !important;
+  border: 1px solid #c5d2e7;
+}
+
+.display-none {
+  display: none;
+}
+
+.file__btn {
+  cursor: pointer;
+}
+
+.file-upload-action-icons {
+  width: 20px;
+  max-width: 20px;
+  min-width: 20px;
+  margin: 5px;
+}
+
+.fieldrequired:after {
+  content: " *";
+  color: red;
+}
+
+.atlp-file-upload-label-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spread-sheet {
+  table,
+  th,
+  td {
+    border: 1px solid black !important;
+    border-style: dotted !important;
+    border-collapse: collapse !important;
+    padding: 5px !important;
+  }
+}
+
+.doc-viewer-image {
+  width: 100%;
+  height: 490px;
+  border: none;
+  object-fit: contain;
+}
+
+.doc-viewer-iframe {
+  width: 100%;
+  height: 490px;
+  border: none;
+}

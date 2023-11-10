@@ -1,0 +1,432 @@
+<!-- drop header-->
+<div class="drop-header-wrapper" [class.show]="table.modeCustomize$ | async">
+  <p class="drop-title">Hidden Columns:</p>
+  <div
+    class="drop-item-zone"
+    [class.drop-zone]="table.modeCustomize$ | async"
+    cdkDropList
+    #hideColumns="cdkDropList"
+    [cdkDropListConnectedTo]="[tableColumns]"
+    [cdkDropListData]="table.hideColumnsInMode"
+    [cdkDropListDisabled]="!(table.modeCustomize$ | async)"
+    (cdkDropListDropped)="table.drop($event, actionDropColumn.hide)"
+  >
+    <!-- cdkDropListOrientation="horizontal" -->
+    <ng-container *ngIf="table.modeCustomize$ | async">
+      <div
+        *ngFor="let item of table.hideColumnsInMode; trackBy: trackByFn"
+        cdkDrag
+        [class.disabled]="item.dragDisabled"
+      >
+        <div class="drag-btn-wrapper" cdkDragHandle>
+          <button class="drag-btn"></button>
+          <span class="text-ellipsis">{{ item }}</span>
+        </div>
+        <!-- prev cdk drop -->
+        <div *cdkDragPreview>
+          <ng-container
+            *ngTemplateOutlet="previewDropItem; context: { name: item }"
+          ></ng-container>
+        </div>
+        <!-- prev cdk drop -->
+      </div>
+      <div class="drop-here">Drop Here</div>
+    </ng-container>
+  </div>
+  <p class="drop-description">Drag item anywhere on the table</p>
+  <p class="drop-voyages-value">{{ getVoyagesQuantity() }} Voyages</p>
+</div>
+<!-- /drop header-->
+
+<!-- template preview -->
+<ng-template #previewDropItem let-name="name">
+  <div class="drag-btn-wrapper">
+    <button class="drag-btn" cdkDragHandle></button>
+    <span class="text-ellipsis">{{ name }}</span>
+  </div>
+</ng-template>
+<!-- /template preview -->
+
+<div class="table-mode-container" atlpPerfectScrollbar>
+  <!-- Depending on the TableMode, the appropriate class will be installed for the table. -->
+  <mat-table
+    [dataSource]="table.dataSource$ | async"
+    matSort
+    (matSortChange)="changeSort($event)"
+    class="voyage-table"
+    [class]="table.tableMode$ | async"
+    [class.customize]="table.modeCustomize$ | async"
+    cdkDropList
+    #tableColumns="cdkDropList"
+    [cdkDropListDisabled]="!(table.modeCustomize$ | async)"
+    [cdkDropListOrientation]="'horizontal'"
+    [cdkDropListConnectedTo]="[hideColumns]"
+    [cdkDropListData]="table.columnsShowDisplay"
+    (cdkDropListDropped)="table.drop($event, actionDropColumn.show)"
+  >
+    <!-- *Building columns table* -->
+    <ng-container *ngFor="let column of table.columnDefs; trackBy: trackByFn">
+      <ng-container [ngSwitch]="column.columnTemplate">
+        <!-- column info -->
+        <ng-container *ngSwitchCase="columnTemplate.info">
+          <ng-container
+            *ngTemplateOutlet="info; context: { col: column }"
+          ></ng-container>
+        </ng-container>
+        <!-- /column info -->
+
+        <!-- column status -->
+        <ng-container *ngSwitchCase="columnTemplate.status">
+          <ng-container
+            *ngTemplateOutlet="status; context: { col: column }"
+          ></ng-container>
+        </ng-container>
+        <!-- /column status -->
+
+        <!-- column select -->
+        <ng-container *ngSwitchCase="columnTemplate.select">
+          <ng-container
+            *ngTemplateOutlet="select; context: { col: column }"
+          ></ng-container>
+        </ng-container>
+        <!-- /column select -->
+
+        <!-- column text -->
+        <ng-container *ngSwitchCase="columnTemplate.text">
+          <ng-container
+            *ngTemplateOutlet="text; context: { col: column }"
+          ></ng-container>
+        </ng-container>
+        <!-- /column text -->
+
+        <!-- column link -->
+        <ng-container *ngSwitchCase="columnTemplate.link">
+          <ng-container
+            *ngTemplateOutlet="link; context: { col: column }"
+          ></ng-container>
+        </ng-container>
+        <!-- /column link -->
+      </ng-container>
+    </ng-container>
+    <!-- */Building columns table* -->
+
+    <!-- *Team Templates* -->
+    <!-- column info -->
+    <ng-template #info let-col="col">
+      <ng-container matColumnDef="{{ col.columnDef }}">
+        <!-- column header -->
+        <mat-header-cell
+          *matHeaderCellDef
+          cdkDrag
+          [cdkDragDisabled]="col.dragDisabled"
+          [cdkDragPreviewClass]="col.previewClass"
+        >
+          <span class="text-ellipsis"> {{ col.header }}</span>
+          <mat-checkbox
+            (change)="table.masterToggle()"
+            [checked]="table.selection.hasValue() && table.isAllSelected()"
+            [indeterminate]="
+              table.selection.hasValue() && !table.isAllSelected()
+            "
+            [aria-label]="table.checkboxLabel()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <!-- column header -->
+
+        <!-- column cell -->
+        <mat-cell *matCellDef="let element">
+          <mat-checkbox
+            class="info-checkbox"
+            (click)="$event.stopPropagation()"
+            (change)="table.selection.toggle(element)"
+            [checked]="table.selection.isSelected(element)"
+            [aria-label]="table.checkboxLabel(element)"
+          ></mat-checkbox>
+
+          <ng-container [ngSwitch]="col.cellTemplate">
+            <!-- info voyage -->
+            <ng-container *ngSwitchCase="cellTemplate.infoVoyage">
+              <voyage-info [voyageInfoData]="col.cell(element)"></voyage-info>
+            </ng-container>
+            <!-- /info voyage -->
+          </ng-container>
+        </mat-cell>
+        <!-- /column cell -->
+      </ng-container>
+    </ng-template>
+    <!-- /column info -->
+
+    <!-- column status -->
+    <ng-template #status let-col="col">
+      <ng-container matColumnDef="{{ col.columnDef }}">
+        <!-- column header -->
+        <mat-header-cell
+          *matHeaderCellDef
+          cdkDrag
+          [cdkDragDisabled]="col.dragDisabled"
+          [cdkDragPreviewClass]="col.previewClass"
+        >
+          <ng-container
+            *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+          ></ng-container>
+
+          <!-- prev cdk drop -->
+          <div *cdkDragPreview>
+            <ng-container
+              *ngTemplateOutlet="previewDropItem; context: { name: col.header }"
+            ></ng-container>
+          </div>
+          <!-- prev cdk drop -->
+        </mat-header-cell>
+        <!-- /column header -->
+
+        <!-- column cell -->
+        <mat-cell
+          *matCellDef="let element"
+          (click)="isCellClicked(col, col.cell(element), $event)"
+        >
+          <ng-container [ngSwitch]="col.cellTemplate">
+            <!-- status voyage -->
+            <ng-container *ngSwitchCase="cellTemplate.statusVoyage">
+              <!-- *Display for Rich.* -->
+              <ng-container *ngIf="table.modeIsRich">
+                <voyage-card [voyageCardData]="col.cell(element)"></voyage-card>
+              </ng-container>
+              <!-- */Display for Rich.* -->
+
+              <!-- *Display for ROLLED COLLAPSE* -->
+              <ng-container *ngIf="!table.modeIsRich">
+                <app-voyage-status
+                  [voyageCardData]="col.cell(element)"
+                  [tableType]="table.tableMode"
+                >
+                </app-voyage-status>
+
+                <!-- Navigation for string, add only if rowNavigation = true  -->
+                <ng-container *ngIf="col.rowNavigation">
+                  <ng-container
+                    *ngTemplateOutlet="rowNavigation"
+                  ></ng-container>
+                </ng-container>
+                <!-- /Navigation for string -->
+              </ng-container>
+              <!-- */Display for Rolled Collapse* -->
+            </ng-container>
+            <!-- /status voyage -->
+          </ng-container>
+        </mat-cell>
+        <!-- /column cell -->
+      </ng-container>
+    </ng-template>
+    <!-- /column status -->
+
+    <!-- column select -->
+    <ng-template #select let-col="col">
+      <ng-container matColumnDef="{{ col.columnDef }}">
+        <!-- column header -->
+        <mat-header-cell
+          *matHeaderCellDef
+          class="small-cell"
+          cdkDrag
+          [cdkDragDisabled]="col.dragDisabled"
+          [cdkDragPreviewClass]="col.previewClass"
+        >
+          <mat-checkbox
+            (change)="table.masterToggle()"
+            [checked]="table.selection.hasValue() && table.isAllSelected()"
+            [indeterminate]="
+              table.selection.hasValue() && !table.isAllSelected()
+            "
+            [aria-label]="table.checkboxLabel()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <!-- /column header -->
+
+        <!-- column cell -->
+        <mat-cell *matCellDef="let element" class="small-cell">
+          <mat-checkbox
+            class="voyage-info-checkbox"
+            (change)="table.selection.toggle(element)"
+            [checked]="table.selection.isSelected(element)"
+            [aria-label]="table.checkboxLabel(element)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+        <!-- /column cell -->
+      </ng-container>
+    </ng-template>
+    <!-- /column select -->
+
+    <!-- column text -->
+    <ng-template #text let-col="col">
+      <ng-container matColumnDef="{{ col.columnDef }}">
+        <!-- column header -->
+        <mat-header-cell
+          *matHeaderCellDef
+          cdkDrag
+          [cdkDragDisabled]="col.dragDisabled"
+          [cdkDragPreviewClass]="col.previewClass"
+        >
+          <ng-container
+            *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+          ></ng-container>
+
+          <!-- prev  cdk drop -->
+          <div *cdkDragPreview>
+            <ng-container
+              *ngTemplateOutlet="previewDropItem; context: { name: col.header }"
+            ></ng-container>
+          </div>
+          <!-- prev cdk drop -->
+        </mat-header-cell>
+        <!-- /column header -->
+
+        <!-- column cell -->
+        <mat-cell
+          *matCellDef="let element"
+          (click)="isCellClicked(col, col.cell(element), $event)"
+        >
+          <span class="text-ellipsis"> {{ col.cell(element) }} </span>
+        </mat-cell>
+        <!-- /column cell -->
+      </ng-container>
+    </ng-template>
+    <!-- /column text -->
+
+    <!-- column link -->
+    <ng-template #link let-col="col">
+      <ng-container [matColumnDef]="col.columnDef">
+        <!-- column header -->
+        <mat-header-cell
+          mat-sort-header
+          [disabled]="isMatSortAvailable(col.matSortHeader)"
+          *matHeaderCellDef
+          cdkDrag
+          [cdkDragDisabled]="col.dragDisabled"
+          [cdkDragPreviewClass]="col.previewClass"
+        >
+          <ng-container
+            *ngTemplateOutlet="headerFilterColumn; context: { col: col }"
+          ></ng-container>
+
+          <!-- prev cdk drop -->
+          <div *cdkDragPreview>
+            <ng-container
+              *ngTemplateOutlet="previewDropItem; context: { name: col.header }"
+            ></ng-container>
+          </div>
+
+          <!-- /prev cdk drop -->
+        </mat-header-cell>
+        <!-- /column header -->
+
+        <!-- column cell -->
+        <mat-cell
+          *matCellDef="let element"
+          class="agent-number"
+          (click)="isCellClicked(col, col.cell(element), $event)"
+        >
+          <a href="#"> {{ col.cell(element) }} </a>
+        </mat-cell>
+        <!-- /column cell -->
+      </ng-container>
+    </ng-template>
+    <!-- /column link -->
+
+    <!-- */Team Templates* -->
+
+    <!-- *Used templates -->
+    <!-- header filter or drag   -->
+    <ng-template #headerFilterColumn let-col="col">
+      <!-- filter -->
+      <ng-container *ngIf="!(table.modeCustomize$ | async); else dragHeader">
+        <button class="header-cell-close">
+          <mat-icon svgIcon="x-fill-purple-dark" aria-hidden="false"></mat-icon>
+        </button>
+        <div [matMenuTriggerFor]="tableMenu" class="table-menu">
+          {{
+            col.header
+              | firstLetter: firstLetterNameColStatus(col.columnTemplate)
+          }}
+          <span class="header-cell-arrow"></span>
+          <mat-menu
+            #tableMenu
+            [overlapTrigger]="false"
+            class="table-card-select"
+          >
+            <ng-container
+              *ngFor="let colDefs of table.allColumns; trackBy: trackByFn"
+            >
+              <button
+                [disabled]="!table.isColumnShowed(colDefs)"
+                (click)="table.overwriteColumns(col.columnDef, colDefs)"
+                type="button"
+              >
+                {{ colDefs }}
+              </button>
+            </ng-container>
+          </mat-menu>
+        </div>
+      </ng-container>
+      <!-- /filter -->
+
+      <!-- drag -->
+      <ng-template #dragHeader>
+        <div class="drag-btn-wrapper">
+          <button class="drag-btn"></button>
+          <span class="text-ellipsis">
+            {{
+              col.header
+                | firstLetter: firstLetterNameColStatus(col.columnTemplate)
+            }}
+          </span>
+          <!-- <mat-icon svgIcon="sort-ascending-fill" aria-hidden="false"></mat-icon> -->
+        </div>
+      </ng-template>
+      <!-- /drag -->
+    </ng-template>
+    <!-- /header filter or drag -->
+
+    <!-- row navigation -->
+    <ng-template #rowNavigation>
+      <div class="table-nav" fxFlex fxLayout="row" fxLayoutAlign="end center">
+        <button mat-raised-button color="basic" class="icon">
+          <mat-icon svgIcon="smock-icon" aria-hidden="false"></mat-icon>
+          Pin to Top
+        </button>
+        <button mat-raised-button color="basic" class="icon">
+          <mat-icon svgIcon="print-black" aria-hidden="false"></mat-icon>
+          Print Token
+        </button>
+        <button mat-raised-button color="basic" class="icon">
+          <mat-icon svgIcon="print-black" aria-hidden="false"></mat-icon>
+          EIR
+        </button>
+        <button mat-raised-button color="basic" class="icon">
+          <mat-icon svgIcon="copy-black" aria-hidden="false"></mat-icon>
+          Duplicate
+        </button>
+        <button mat-raised-button color="warn">Delete</button>
+      </div>
+    </ng-template>
+    <!-- /row navigation -->
+    <!-- */Used templates -->
+
+    <!-- header-row -->
+    <mat-header-row
+      *matHeaderRowDef="table.columnsShowDisplay; sticky: true"
+      class="qweq"
+    ></mat-header-row>
+    <!-- row -->
+
+    <mat-row
+      *matRowDef="let row; columns: table.columnsShowDisplay"
+      [class.selected]="isRowSelected(table, row)"
+      [class.NewRow]="row.info.new && !table?.modeIsRich"
+      [class.show-controls]="isShowControls(table, row)"
+      (click)="isRowClicked(row, $event)"
+    ></mat-row>
+  </mat-table>
+</div>

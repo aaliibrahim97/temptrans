@@ -1,0 +1,109 @@
+
+.appointment-info {
+    padding: 20px 0 0;
+    margin-bottom: 30px;
+    @media (min-width: 768px) {
+        margin-bottom: 64px;
+    }
+}
+
+.appointment-title-row {
+    margin-bottom: 24px;
+    .appointment-text {
+        @include margin-right( 20px);
+        @include padding-right( 20px);
+        @include border-right( 2px solid map-get($color,  'atlp-grey-light'));
+        &:last-child {
+            @include border-right( none);
+        }
+    }
+}
+
+.appointment-driver {
+    .appointment-info-row {
+        margin-bottom: 16px;
+        border-bottom: 1px solid map-get($color, "atlp-panel-border");
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &.shipping {
+        .appointment-title {
+            margin-bottom: 0;
+            text-transform: none;
+        }
+        .appointment-info-col {
+            margin-bottom: 16px;
+        }
+        .mat-checkbox {
+            position: relative;
+            top: -2px;
+        }
+    }
+}
+
+.appointment-title {
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.84px;
+    color: map-get($color, "atlp-purple-light");
+}
+
+.appointment-text2 {
+    line-height: 1;
+    font-size: 14px;
+    color: map-get($color,  'atlp-grey-light');
+    @media (min-width: 768px) {
+        font-size: 16px;
+    }
+    &.bold {
+        font-weight: 700;
+    }
+}
+
+.appointment-text {
+    line-height: 1;
+    font-size: 14px;
+    color: map-get($color,  'atlp-grey-light');
+    @media (min-width: 768px) {
+        font-size: 16px;
+    }
+    &.bold {
+        font-weight: 700;
+    }
+}
+
+.appointment-results {
+    margin-bottom: 20px;
+}
+
+.info-btn {
+    color: map-get($color, "atlp-purple-light");
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 5px;
+    line-height: 0.9;
+    .mat-icon {
+        @include margin-left( 9px);
+        position: relative;
+        top: -1px;
+    }
+}
+
+.appointment-info-col {
+    margin-bottom: 20px;
+    &.margin-xs {
+        @media (max-width: 599px) {
+            @include margin-left( 40px);
+        }
+    }
+    @media (min-width: 600px) {
+        @include padding-right( 16px);
+    }
+    @media (max-width: 600px){
+        max-width: 50% !important;
+    }
+}

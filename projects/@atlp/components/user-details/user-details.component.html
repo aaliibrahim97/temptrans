@@ -1,0 +1,194 @@
+<div
+  class="dashboard-row"
+  fxLayout="row wrap"
+  fxLayoutAlign="space-between stretch"
+>
+  <div class="" fxFlex.gt-sm="100%" fxFlex.gt-md="100%">
+    <div class="card">
+      <div class="card-body" style="position: relative">
+        <div
+          fxLayout="row wrap"
+          fxLayoutAlign="space-between stretch"
+          class="post-reg-avatar-wrap"
+        >
+          <div class="user-avatar-block">
+            <div
+              *ngIf="filePath == ''; else elseShow"
+              [matMenuTriggerFor]="menu"
+              class="avatars fallback show-status"
+              [class]="settingsAvatar?.size"
+              [ngClass]="currentVerificationStatus"
+              [class.round]="settingsAvatar?.round"
+            >
+              <span
+                [ngClass]="
+                  userInfoDetails?.accountVerificationStatus?.email == 3
+                    ? 'cursor-pointer'
+                    : ''
+                "
+                *ngIf="userInfoDetails?.accountVerificationStatus?.email"
+              >
+                <mat-icon
+                  matTooltip="{{ currentVerificationStatus | translate }}"
+                  class="show-status-icon"
+                  svgIcon="Email-{{ currentVerificationStatus }}"
+                  aria-hidden="false"
+                ></mat-icon
+              ></span>
+            </div>
+            <ng-template #elseShow>
+              <div
+                *ngIf="filePath"
+                [matMenuTriggerFor]="menu"
+                class="avatars photo property-image-container"
+                [class]="settingsAvatar?.size"
+                [class.round]="settingsAvatar?.round"
+                [ngClass]="currentVerificationStatus + ' show-status'"
+              >
+                <img [src]="filePath" alt="" />
+                <span
+                  [ngClass]="
+                    userInfoDetails?.accountVerificationStatus?.email == 3
+                      ? 'cursor-pointer'
+                      : ''
+                  "
+                  *ngIf="userInfoDetails?.accountVerificationStatus?.email"
+                >
+                  <mat-icon
+                    matTooltip="{{ currentVerificationStatus | translate }}"
+                    class="show-status-icon"
+                    svgIcon="Email-{{ currentVerificationStatus }}"
+                    aria-hidden="false"
+                  ></mat-icon
+                ></span>
+              </div>
+            </ng-template>
+            <div class="user-hdr-info">
+              <h3 class="user-name">
+                {{ userName | uppercase }}
+              </h3>
+            </div>
+          </div>
+
+          <div class="user-details" style="float: right">
+            <ul class="user-info pre-reg-page">
+              <li>
+                <mat-icon
+                  *ngIf="userInfoDetails?.accountVerificationStatus"
+                  svgIcon="envelop"
+                  aria-hidden="false"
+                ></mat-icon>
+                <div class="truncate-parent">
+                  <span
+                    class="truncate"
+                    dir="ltr"
+                    matTooltip="{{ userInfoDetails?.emailAddress }}"
+                    matTooltipPosition="above"
+                    >{{ userInfoDetails?.emailAddress }}</span
+                  >
+                </div>
+              </li>
+              <li>
+                <mat-icon svgIcon="phone-fill" aria-hidden="false"></mat-icon>
+                <span dir="ltr">{{ userInfoDetails?.mobileNumber }}</span>
+              </li>
+              <li *ngIf="getCompanyName()">
+                <mat-icon
+                  svgIcon="icon-company-new"
+                  class="company-icon"
+                  aria-hidden="false"
+                ></mat-icon>
+                <div class="truncate-parent">
+                  <span
+                    dir="ltr"
+                    class="truncate company-name"
+                    matTooltip="{{ getCompanyName() }}"
+                    matTooltipPosition="above"
+                    >{{ getCompanyName() }}</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+            (click)="
+              openVerifyAccontSlider(
+                userInfoDetails?.accountVerificationStatus?.email
+              )
+            "
+            *ngIf="userInfoDetails?.accountVerificationStatus?.email == 3"
+          >
+            <mat-icon
+              svgIcon="Email-{{ currentVerificationStatus }}"
+              aria-hidden="false"
+            ></mat-icon>
+            {{ "verify_email" | translate }}
+          </button>
+          <button
+            mat-menu-item
+            (click)="
+              openVerifyMobileAccontSlider(
+                userInfoDetails?.accountVerificationStatus?.mobile
+              )
+            "
+            *ngIf="
+              userInfoDetails?.accountVerificationStatus?.mobile == 3 &&
+              !envservice.isHideMobileVerification
+            "
+          >
+            <mat-icon
+              svgIcon="Email-{{ currentVerificationStatus }}"
+              aria-hidden="false"
+            ></mat-icon>
+            {{ "verify_mobile" | translate }}
+          </button>
+          <button mat-menu-item type="file" (click)="file.click()">
+            <mat-icon svgIcon="png-icon" aria-hidden="false"></mat-icon>
+            {{ "Upload" | translate }}
+          </button>
+          <input
+            type="file"
+            id="file-upload"
+            name="files"
+            style="display: none"
+            class="hide"
+            (change)="changePicture($event)"
+            [accept]="['.png', '.jpg']"
+            #file
+          />
+          <button mat-menu-item (click)="DeletePicture()">
+            <mat-icon svgIcon="delete-grey" aria-hidden="false"></mat-icon>
+            {{ "Delete" | translate }}
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="Sidebar.verifyUser"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <atlp-verify-user
+    (updateUserDetailsEmitter)="updateUserDetails($event)"
+  ></atlp-verify-user>
+</atlp-sidebar-v2>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="Sidebar.verifyUserMobile"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <atlp-verify-user-mobile
+    (updateUserDetailsEmitter)="updateUserDetails($event)"
+  ></atlp-verify-user-mobile>
+</atlp-sidebar-v2>

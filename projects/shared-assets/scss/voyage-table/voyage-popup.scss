@@ -1,0 +1,36 @@
+.table-card-select {
+    padding: 5px 18px;
+    width: 255px;
+    border-radius: 6px !important;
+    border: 1px solid map-get($color, "atlp-grey-dark");
+    box-shadow: 0px 1px 2px rgb(0, 0, 0, 0.12) !important;
+    @media (min-width: 1024px) {
+        display: none;
+    }
+    &.bg {
+        background: #605a92 !important;
+        border: none;
+        button {
+            color: #ffffff;
+        }
+        button:disabled {
+            color: #ffffff;
+            background-image: url("../../images/check-disabled-white.svg");
+        }
+    }
+    .mat-menu-content {
+        display: flex;
+        flex-direction: column;
+    }
+    button {
+        @include text-align( left);
+        line-height: 40px !important;
+    }
+    button:disabled {
+        background-image: url("../../images/check-disabled.svg");
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: 7%;
+        color: #605a92;
+    }
+}

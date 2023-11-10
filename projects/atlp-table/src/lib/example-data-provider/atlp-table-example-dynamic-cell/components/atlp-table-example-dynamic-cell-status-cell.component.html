@@ -1,0 +1,73 @@
+<div class="voyage-card-wrap" fxLayout="column" fxLayoutAlign="center center">
+  <ng-container *ngIf="status.toUpperCase() === 'DRAFT'">
+    <button
+      (click)="getRefreshStatus()"
+      class="voyage-card-icon"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <mat-icon
+        class="status-icon add"
+        svgIcon="draft-fill"
+        aria-hidden="false"
+      ></mat-icon>
+      <span class="status-txt voyage-card-status add">{{
+        "Draft" | translate
+      }}</span>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="status.toUpperCase() === 'APPROVAL_PENDING'">
+    <button
+      (click)="getRefreshStatus()"
+      class="voyage-card-icon position-relative"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <mat-icon
+        class="pending-icon table-icon"
+        svgIcon="pending"
+        aria-hidden="false"
+      ></mat-icon>
+      <span class="status-txt status-approval voyage-card-status"
+        >{{ "Approval Pending" | translate }}
+      </span>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="status.toUpperCase() === 'APPROVED'">
+    <button
+      (click)="getRefreshStatus()"
+      class="voyage-card-icon"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <mat-icon
+        class="table-icon status-icon"
+        svgIcon="approved-icon"
+        aria-hidden="false"
+      ></mat-icon>
+      <span class="status-txt voyage-card-status approved">{{
+        "Approved" | translate
+      }}</span>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="status.toUpperCase() === 'COMPLETED'">
+    <button
+      (click)="getRefreshStatus()"
+      class="voyage-card-icon"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <mat-icon
+        class="table-icon status-icon"
+        svgIcon="completed"
+        aria-hidden="false"
+      ></mat-icon>
+      <span class="status-txt voyage-card-status approved">{{
+        "Completed" | translate
+      }}</span>
+    </button>
+  </ng-container>
+</div>

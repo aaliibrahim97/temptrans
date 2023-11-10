@@ -1,0 +1,73 @@
+<div class="Messages">
+  <div class="Message-box">
+    <mat-icon svgIcon="messages-exclamation" aria-hidden="false"></mat-icon>
+    <h1 class="messagetitle">
+      {{ config.atlpRejectReasonSliderDialogData.confirmationMsg | translate }}
+    </h1>
+    <div class="messages-btn-row">
+      <form
+        name="form"
+        (ngSubmit)="confirmWithReasonClick(f)"
+        #f="ngForm"
+        novalidate
+      >
+        <div class="field-wrap bg" fxFlex="100%" fxLayout="column">
+          <label for="#" class="field-label">{{
+            config.atlpRejectReasonSliderDialogData.rejectReason | translate
+          }}</label>
+          <div class="field-input-wrap">
+            <textarea
+              class="textarea"
+              name="reason"
+              [(ngModel)]="model.reason"
+              #reason="ngModel"
+              required
+            ></textarea>
+          </div>
+          <div
+            class="error-wrap"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            *ngIf="reason.errors?.required && submitted"
+          >
+            <span class="error-text" *ngIf="reason.errors.required">
+              {{
+                config.atlpRejectReasonSliderDialogData
+                  .rejectReasonValidationMsg | translate
+              }}</span
+            >
+          </div>
+        </div>
+        <button
+          type="button"
+          (click)="confirmWithReasonClick(f)"
+          class="
+            mat-focus-indicator mat-raised-button
+            mr-16
+            mat-button-base mat-primary
+          "
+          mat-raised-button
+          color="primary"
+        >
+          {{ config.atlpRejectReasonSliderDialogData.okButtonText | translate }}
+        </button>
+        <button
+          type="button"
+          (click)="cancelButtonClick()"
+          mat-raised-button
+          class="
+            mat-focus-indicator
+            mr-16
+            transparent
+            view-charges-btn
+            mat-button mat-button-base
+          "
+        >
+          {{
+            config.atlpRejectReasonSliderDialogData.cancelButtonText | translate
+          }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<mat-dialog-content class="dialog-popup">
+  <div
+    class="dialog-content-wrap"
+    fxLayout="column"
+    fxLayoutAlign="start start"
+    style="width: 260px"
+  >
+    <ng-template
+      [cdkPortalOutlet]="
+        atlpRichTableMilestoneActionPortalTemplateType$ | async
+      "
+    ></ng-template>
+  </div>
+  <button
+    mat-raised-button
+    color="basic"
+    class="close-dialog"
+    (click)="closeDialog()"
+  >
+    <span>{{ "Close" | translate }}</span>
+  </button>
+</mat-dialog-content>

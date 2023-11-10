@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="22" viewBox="0 0 25 22">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_141405" data-name="Rectangle 141405" width="25" height="22" transform="translate(266 1453)" fill="#d3d3d3"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_12" data-name="Mask Group 12" transform="translate(-266 -1453)" clip-path="url(#clip-path)">
+    <g id="Group_157682" data-name="Group 157682" transform="translate(-0.982 -0.223)">
+      <g id="Group_157680" data-name="Group 157680" transform="translate(273.858 1460.439)">
+        <path id="Path_13319" data-name="Path 13319" d="M110.772,17.452h5.683l1.49,2.569h-8.62Z" transform="translate(-109.324 -17.45)" fill="none" stroke="#919ab1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+        <path id="Path_13320" data-name="Path 13320" d="M109.308,39.674v5.482h8.624V39.674Z" transform="translate(-109.308 -37.102)" fill="none" stroke="#919ab1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+        <line id="Line_102" data-name="Line 102" y2="2.58" transform="translate(4.218)" fill="#fff" stroke="#919ab1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+      </g>
+      <g id="Group_157681" data-name="Group 157681" transform="translate(278.005 1449.223) rotate(45)">
+        <path id="Path_159" data-name="Path 159" d="M53.37,34.223a.886.886,0,0,0-.886.886V37.4l-2.246-2.246a10.623,10.623,0,1,0,0,15.03.886.886,0,1,0-1.252-1.252,8.857,8.857,0,1,1,0-12.525l2.246,2.246h-2.29a.886.886,0,1,0,0,1.771H53.37c.029,0,.059,0,.088,0l.037-.005.048-.007.043-.011.041-.011.042-.015.04-.015.038-.018.04-.019.036-.021.038-.023.039-.029.03-.023a.892.892,0,0,0,.124-.124l.022-.03c.01-.013.02-.026.029-.04s.015-.025.023-.037.015-.024.022-.037.013-.026.019-.039.013-.026.018-.039.01-.026.014-.039.011-.028.015-.043.007-.026.01-.039.008-.029.011-.044,0-.031.007-.046,0-.026.006-.04c0-.029,0-.058,0-.087V35.108a.886.886,0,0,0-.886-.886Z" transform="translate(-32.108 -32.045)" fill="#919ab1"/>
+      </g>
+      <g id="Ellipse_605" data-name="Ellipse 605" transform="translate(281.535 1472.485) rotate(45)" fill="#919ab1" stroke="#919ab1" stroke-width="1">
+        <circle cx="1" cy="1" r="1" stroke="none"/>
+        <circle cx="1" cy="1" r="0.5" fill="none"/>
+      </g>
+      <g id="Ellipse_606" data-name="Ellipse 606" transform="translate(285.07 1471.071) rotate(45)" fill="#919ab1" stroke="#919ab1" stroke-width="1">
+        <circle cx="1" cy="1" r="1" stroke="none"/>
+        <circle cx="1" cy="1" r="0.5" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

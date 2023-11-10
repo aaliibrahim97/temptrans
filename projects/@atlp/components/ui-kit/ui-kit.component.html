@@ -1,0 +1,75 @@
+<div class="wrapper" fxFlex="none" fxLayout="column" fxLayoutAlign="start none">
+    <div class="page-layout fullwidth inner-scroll" atlpPerfectScrollbar>
+        <!-- CENTER -->
+        <div class="center">
+            <!-- CONTENT CARD -->
+            <div class="content-card">
+                <!-- CONTENT -->
+                <div class="content">
+                    <mat-tab-group>
+                        <mat-tab label="Buttons">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <buttons></buttons>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Voyage table">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <!-- <voyage-table></voyage-table> -->
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Filters">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <filters></filters>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Stepper">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <app-stepper></app-stepper>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="File">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar
+                                style="background: #373069; padding: 0 30px">
+                                <app-file [typeFiles]="typeFiles" (loadedFiles)="loadedFiles($event)"></app-file>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Tables">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <app-tables></app-tables>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Fields">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <app-fields></app-fields>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Expansion-panel">
+                            <div class="tab-content pt-24 pb-24" atlpPerfectScrollbar
+                                style="background: #373069; padding: 0 30px">
+                                <expansion-panel></expansion-panel>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Select">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <app-select></app-select>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Dropdown">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <app-dropdown></app-dropdown>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Panels">
+                            <div class="tab-content pt-24" atlpPerfectScrollbar>
+                                <app-sidenav></app-sidenav>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+                <!-- / CONTENT -->
+            </div>
+            <!-- / CONTENT CARD -->
+        </div>
+        <!-- / CENTER -->
+    </div>
+</div>

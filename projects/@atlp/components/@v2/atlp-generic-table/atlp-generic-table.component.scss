@@ -1,0 +1,90 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.atlp-generic-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  position: relative;
+
+  tr.mat-header-row {
+    height: 45px;
+  }
+
+  th {
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  td,
+  th {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .col-nowrap * {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  table {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    table-layout: auto;
+    > thead {
+      position: sticky;
+      // background:map-get($color, 'atlp-form-table-header-bg');
+      top: 0;
+      z-index: 2;
+    }
+  }
+  tr {
+    &.mat-row {
+      &:hover {
+        background: #605a92 !important;
+        .mat-cell {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+::ng-deep {
+  atlp-generic-table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // .altp-paginagtion .mat-paginator {
+  //   background: transparent !important;
+  //   border-bottom: 0px !important;
+  //   border-left: 0px !important;
+  //   border-right: 0px !important;
+  //   color: #ffffff !important;
+  // }
+}
+
+.filter-btn {
+  width: 16px;
+  height: 16px;
+}
+
+.flex-content-action {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 11px;
+}
+
+.table-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

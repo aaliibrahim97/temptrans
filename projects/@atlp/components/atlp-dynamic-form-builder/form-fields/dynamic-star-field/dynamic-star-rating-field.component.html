@@ -1,0 +1,12 @@
+<div class="rating-block" [hidden]="isHidden" *ngIf="isVisible">
+  <span> {{ field.label | translate }} : {{ rating }} </span>
+  <!-- <span *ngIf="selectedLanguage == 'ae'">
+      {{ dataItem.rating }} : {{ "Rating" | translate }}
+    </span> -->
+  <span>
+    <atlp-star-rating
+      [formControlName]="field.name"
+      [disabled]="field.isDisabled ? true : false"
+    ></atlp-star-rating
+  ></span>
+</div>

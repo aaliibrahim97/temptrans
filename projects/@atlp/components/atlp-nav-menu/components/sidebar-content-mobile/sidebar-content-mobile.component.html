@@ -1,0 +1,108 @@
+<div
+  class="drawer-wrap navigation-sidebar mobile"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign=" none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <!-- <ng-container *ngIf="data.length > 1">
+        <atlp-search-bar></atlp-search-bar>
+      </ng-container> -->
+    </div>
+    <div class="drawer-body" fxFlex fxLayout="column">
+      <ng-container *ngFor="let item of data">
+        <ng-container *ngIf="data.length > 1">
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-description>
+                  <h2 class="block-title link-text">
+                    {{ item.translate || item.contentName | translate }}
+                  </h2>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div>
+                <ul>
+                  <li
+                    class="link-text"
+                    *ngFor="let itemList of item.menuContentList"
+                  >
+                    <a
+                      (click)="navigateTo(itemList)"
+                      *ngIf="
+                        itemList.url &&
+                        !itemList.redirectUrl &&
+                        !itemList.hideMenu
+                      "
+                      >{{
+                        itemList?.translate || itemList?.description | translate
+                      }}</a
+                    >
+                    <a
+                      [href]="itemList.redirectUrl"
+                      target="_self"
+                      *ngIf="!itemList.url && itemList.redirectUrl"
+                      >{{
+                        itemList?.translate || itemList?.description | translate
+                      }}</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ng-container>
+        <ng-container *ngIf="data.length === 1">
+          <h2 class="block-title one link-text">
+            {{ item.translate || item.contentName | translate }}
+          </h2>
+          <div class="list-menu-content">
+            <ul>
+              <li
+                *ngFor="let itemList of item.menuContentList"
+                class="link-text"
+              >
+                <a
+                  (click)="navigateTo(itemList)"
+                  *ngIf="
+                    itemList.url && !itemList.redirectUrl && !itemList.hideMenu
+                  "
+                  >{{
+                    itemList?.translate || itemList?.description | translate
+                  }}</a
+                >
+                <a
+                  [href]="itemList.redirectUrl"
+                  target="_self"
+                  *ngIf="!itemList.url && itemList.redirectUrl"
+                  >{{
+                    itemList?.translate || itemList?.description | translate
+                  }}</a
+                >
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-btn panel-btn"
+    (click)="toggleSidebarOpen(SidebarName.navigationSidebarContent)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="back-arrow-left"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>

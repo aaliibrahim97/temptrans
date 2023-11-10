@@ -1,0 +1,13 @@
+<div class="Messages">
+    <div class="Message-box">
+        <mat-icon svgIcon="messages-exclamation" aria-hidden="false"></mat-icon>
+        <h1 class="messagetitle">{{title}}</h1>
+        <p class="messagesubtitle">{{subtitle}}</p>
+        <div class="messages-btn-row">
+            <button (click)="function()" mat-raised-button class="mat-basic">{{button1Text}}</button>
+            <button (click)="dangerFunction()" mat-raised-button
+                class="mat-basic danger second-btn">{{button2Text}}</button>
+        </div>
+    </div>
+
+</div>

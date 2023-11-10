@@ -1,0 +1,9 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+// corrective-action-response-plan-checklist component
+.plan-checklist-parent {
+  .pagination-text {
+    color: map-get($color, "light-mode-label") !important;
+  }
+}

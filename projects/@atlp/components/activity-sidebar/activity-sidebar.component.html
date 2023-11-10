@@ -1,0 +1,123 @@
+<div
+  class="activity-sidebar"
+  [ngClass]="isColumnLayout ? 'notifications-multicolumn' : ''"
+>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    *ngIf="!isColumnLayout"
+  >
+    <h5>{{ title }}</h5>
+    <a (click)="onClickViewAll($event)" i18n="@@activity-viewAll">View All</a>
+  </div>
+  <div *ngIf="!events?.length" class="ad-feed">
+    <div class="title"></div>
+    <div class="item-message">
+      <div class="event" style="margin-bottom: 0px">
+        {{ noNewMsg | translate }}
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="eventsImportant?.length"
+    class="ad-feed"
+    [ngClass]="isColumnLayout ? 'notifications-important' : ''"
+  >
+    <div class="title" i18n="@@activity-Important">Important</div>
+    <div
+      class="item-message"
+      *ngFor="let event of eventsImportant"
+      [class]="event.status"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          notificationTemplate;
+          context: { event: event, eventIndex: eventIndex }
+        "
+      ></ng-container>
+    </div>
+  </div>
+  <div class="ad-feed" *ngIf="eventsToday?.length">
+    <div class="title" i18n="@@activity-Today">Today</div>
+    <div
+      class="item-message"
+      *ngFor="let event of eventsToday; let eventIndex = index"
+      [class]="event.status"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          notificationTemplate;
+          context: { event: event, eventIndex: eventIndex }
+        "
+      ></ng-container>
+    </div>
+  </div>
+  <div class="ad-feed" *ngIf="eventsYesterday?.length">
+    <div class="title" i18n="@@activity-Yesterday">Yesterday</div>
+    <div
+      class="item-message"
+      *ngFor="let event of eventsYesterday"
+      [class]="event.status"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          notificationTemplate;
+          context: { event: event, eventIndex: eventIndex }
+        "
+      ></ng-container>
+    </div>
+  </div>
+  <div class="ad-feed" *ngIf="eventsWeek?.length">
+    <div class="title" i18n="@@activity-Thisweek">This week</div>
+    <div
+      class="item-message"
+      *ngFor="let event of eventsWeek"
+      [class]="event.status"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          notificationTemplate;
+          context: { event: event, eventIndex: eventIndex }
+        "
+      ></ng-container>
+    </div>
+  </div>
+  <div class="ad-feed" *ngIf="eventsPreviousWeek?.length">
+    <div class="title" i18n="@@activity-Previous">Previous</div>
+    <div
+      class="item-message"
+      *ngFor="let event of eventsPreviousWeek"
+      [class]="event.status"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          notificationTemplate;
+          context: { event: event, eventIndex: eventIndex }
+        "
+      ></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template
+  #notificationTemplate
+  let-event="event"
+  let-eventIndex="eventIndex"
+>
+  <ng-container *ngIf="event.url?.length > 0">
+    <a (click)="readNotification(event.id)" [href]="event.url" target="_blank">
+      <div class="event">{{ event.title }}</div>
+      <div class="name">{{ event.name }}</div>
+      <div class="message">{{ event.message }}</div>
+    </a>
+  </ng-container>
+  <ng-container
+    *ngIf="event.url?.length == 0 || event.url == '' || event.url == null"
+  >
+    <a (click)="readNotification(event.id)" href="javascript:void(0);">
+      <div class="event">{{ event.title }}</div>
+      <div class="name">{{ event.name }}</div>
+      <div class="message">{{ event.message }}</div>
+    </a>
+  </ng-container>
+</ng-template>

@@ -1,0 +1,8 @@
+<div [hidden]="isHidden" *ngIf="isVisible">
+  <ng-container
+    *ngTemplateOutlet="
+      templateRef;
+      context: { data: dynamicFieldComponentData }
+    "
+  ></ng-container>
+</div>

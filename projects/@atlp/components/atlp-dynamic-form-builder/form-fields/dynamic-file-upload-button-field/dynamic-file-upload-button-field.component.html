@@ -1,0 +1,63 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  fxFlex="30"
+  fxFlex.xs="30"
+  fxFlex.sm="30"
+  fxLayout="column"
+  [ngStyle]="field.props?.componentParentStyle"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <label class="field-label" [ngClass]="{ required: field.isRequired }">
+    {{ field.label | translate }}</label
+  >
+  <div
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <atlp-file-upload-button
+      [formControl]="group.controls[field.name]"
+      [isRequired]="field.isRequired"
+      [extendedParams]="atlpFileUploadButton.extendedParams"
+      [label]="atlpFileUploadButton.label"
+      [disabled]="atlpFileUploadButton.disabled"
+      [allowedFileTypes]="atlpFileUploadButton.allowedFileTypes"
+      [maxFileSize]="atlpFileUploadButton.maxFileSize"
+      [source]="atlpFileUploadButton.source"
+      [customUploadTemplate]="
+        atlpFileUploadButton?.templateRef
+          ? atlpFileUploadButton.templateRef
+          : null
+      "
+      (onDocumentUpload)="onDocumentUpload($event)"
+    >
+    </atlp-file-upload-button>
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+</div>

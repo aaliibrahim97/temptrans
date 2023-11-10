@@ -1,0 +1,397 @@
+{
+    "atlp-lba-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-lba-ui"
+        },
+        {
+            "path": "",
+            "command": "--remote projects/atlp-iac-ui"
+        }
+
+    ],
+    "atlp-umg-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-umg-ui"
+        }
+    ],
+    "atlp-sea-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-sea-ui"
+        }
+    ],
+    "atlp-reg-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-reg-ui"
+        },
+        {
+            "path": "",
+            "command": "--remote projects/atlp-landing-ui"
+        }
+    ],
+    "atlp-air-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-air-ui"
+        }
+    ],
+    "air-ff-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-air-ui"
+        },
+        {
+            "path": "projects/atlp-air-ui",
+            "command": "--remote air-ff-ui"
+        },
+        {
+            "path": "projects/atlp-air-ui",
+            "command": "--remote air-sp-ui"
+        }
+    ],
+    "air-sp-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-air-ui"
+        },
+        {
+            "path": "projects/atlp-air-ui",
+            "command": "--remote air-sp-ui"
+        },
+        {
+            "path": "projects/atlp-air-ui",
+            "command": "--remote air-ff-ui"
+        }
+    ],
+    "atlp-landing-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-landing-ui"
+        },
+        {
+            "path": "",
+            "command": "--remote projects/atlp-reg-ui"
+        },
+        {
+            "path": "",
+            "command": "--remote projects/atlp-umg-ui"
+        }
+    ],
+    "atlp-ecz-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        }
+    ],
+    "ecz-dls-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-dls-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-wrc-ui"
+        }
+    ],
+    "ecz-wrc-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-wrc-ui"
+        }
+    ],
+    "ecz-lls-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-lls-ui"
+        }
+    ],
+    "ecz-ciz-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+      {
+        "path": "projects/atlp-ecz-ui",
+        "command": "--remote projects/ecz-ciz-ui"
+      },
+      {
+        "path": "projects/atlp-ecz-ui",
+        "command": "--remote projects/ecz-dls-ui"
+      }
+    ],
+    "ecz-landing-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-landing-ui"
+        }
+    ],
+    "ecz-sef-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+      {
+        "path": "projects/atlp-ecz-ui",
+        "command": "--remote projects/ecz-sef-ui"
+      },
+      {
+        "path": "projects/atlp-ecz-ui",
+        "command": "--remote projects/ecz-lls-ui"
+      }
+    ],
+    "ecz-kls-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-kls-ui"
+        }
+    ],
+    "ecz-dashboard-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-dashboard-ui"
+        }
+    ],
+    "ecz-lsa-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-lsa-ui"
+        }
+    ],
+    "vas-dls-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/vas-dls-ui"
+        }
+    ],
+    "ecz-kta-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-kta-ui"
+        }
+    ],
+    "ecz-leasing-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ecz-ui"
+        },
+        {
+            "path": "projects/atlp-ecz-ui",
+            "command": "--remote projects/ecz-leasing-ui"
+        }
+    ],
+  "atlp-iac-ui": [
+    {
+      "path": "",
+      "command": "--remote projects/atlp-iac-ui"
+    },
+    {
+      "path": "projects/atlp-iac-ui",
+      "command": "--remote projects/iac-adafsa-ui"
+    },
+    {
+      "path": "projects/atlp-iac-ui",
+      "command": "--remote projects/iac-dec-ui"
+    },
+    {
+      "path": "projects/atlp-iac-ui",
+      "command": "--remote projects/iac-ded-ui"
+    }
+  ],
+    "iac-ded-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-iac-ui"
+        },
+        {
+            "path": "projects/atlp-iac-ui",
+            "command": "--remote projects/iac-ded-ui"
+        }
+    ],
+    "iac-dec-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-iac-ui"
+        },
+        {
+            "path": "projects/atlp-iac-ui",
+            "command": "--remote projects/iac-dec-ui"
+        }
+    ],
+    "iac-com-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-iac-ui"
+        },
+        {
+            "path": "projects/atlp-iac-ui",
+            "command": "--remote projects/iac-com-ui"
+        }
+    ],
+    "iac-adafsa-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-iac-ui"
+        },
+        {
+            "path": "projects/atlp-iac-ui",
+            "command": "--remote projects/iac-adafsa-ui"
+        },
+        {
+            "path": "projects/atlp-iac-ui",
+            "command": "--remote projects/iac-dec-ui"
+        }
+    ],
+    "atlp-support-ui": [
+      {
+        "path": "",
+        "command": "--remote projects/atlp-support-ui"
+      },
+      {
+        "path": "",
+        "command": "--remote projects/atlp-reg-ui"
+      }
+    ],
+    "atlp-business-portal": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-business-portal"
+        }
+    ],
+    "atlp-vas-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-vas-ui"
+        }
+    ],
+    "vas-tfin-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-vas-ui"
+        },
+        {
+            "path": "projects/atlp-vas-ui",
+            "command": "--remote projects/vas-tfin-ui"
+        }
+    ],
+    "vas-insm-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-vas-ui"
+        },
+        {
+            "path": "projects/atlp-vas-ui",
+            "command": "--remote projects/vas-insm-ui"
+        }
+    ],
+    "atlp-dashboard-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-dashboard-ui"
+        }
+    ],
+    "pbi-dashboard-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-dashboard-ui"
+        },
+        {
+            "path": "projects/atlp-dashboard-ui",
+            "command": "--remote projects/pbi-dashboard-ui"
+        }
+    ],
+    "dashboard-widgets": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-dashboard-ui"
+        },
+        {
+            "path": "projects/atlp-dashboard-ui",
+            "command": "--remote projects/dashboard-widgets"
+        }
+    ],
+    "dashboard-shell": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-dashboard-ui"
+        },
+        {
+            "path": "projects/atlp-dashboard-ui",
+            "command": "--remote projects/dashboard-shell"
+        }
+    ],
+    "atlp-doc-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-doc-ui"
+        }
+    ],
+    "atlp-angular-elements-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-angular-elements-ui"
+        }
+    ],
+    "atlp-epass-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-epass-ui"
+        }
+    ],
+    "atlp-demo-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-demo-ui"
+        }
+    ],
+    "atlp-ops-ui": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-ops-ui"
+        }
+    ],
+    "atlp-portal-doc": [
+        {
+            "path": "",
+            "command": "--remote projects/atlp-portal-doc"
+        }
+    ]
+}

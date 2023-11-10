@@ -1,0 +1,56 @@
+<div class="fileControl-wrapper {{ fileWrapperClass }}">
+  <ng-container *ngIf="!value?.name && !inProgress">
+    <mat-toolbar style="display: flex; flex-direction: column">
+      <ng-container *ngIf="customUploadTemplate; else atlpButtonUpload">
+        <ng-template
+          [ngTemplateOutlet]="customUploadTemplate"
+          [ngTemplateOutletContext]="{
+            context: {
+              uploadButtonInstance: this
+            }
+          }"
+        >
+        </ng-template>
+      </ng-container>
+      <ng-template #atlpButtonUpload>
+        <button
+          type="submit"
+          class="primary-btn"
+          mat-raised-button
+          color="primary"
+          [disabled]="disabled"
+        >
+          <mat-icon svgIcon="upload" aria-hidden="false"></mat-icon>
+          {{ inProgress ? uploadString : uploadFilePlaceHolderName }}
+        </button>
+      </ng-template>
+
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="inProgress"
+      ></mat-progress-bar>
+    </mat-toolbar>
+
+    <input
+      type="file"
+      [disabled]="disabled"
+      #uploadControl
+      id="fileControlInput"
+      [ngClass]="{ disabled: disabled }"
+      (change)="uploadFileEvt($event)"
+      name="fileControlInput"
+      [attr.attribute]="isMultipleUploadEnabled ? 'multiple' : null"
+      accept="{{ allowedFileTypes }}"
+    />
+  </ng-container>
+  <ng-container *ngIf="value?.name && !inProgress">
+    <a href="javascript:void(0);" (click)="downloadFile()" class="file-name">{{
+      value?.name
+    }}</a>
+  </ng-container>
+
+  <ng-container *ngIf="inProgress">
+    <mat-progress-bar class="on-progress" mode="indeterminate">
+    </mat-progress-bar
+  ></ng-container>
+</div>

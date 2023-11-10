@@ -1,0 +1,107 @@
+<div
+  class="drawer-wrap appointment-land"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign=" none"
+>
+  <div
+    class="drawer-header"
+    fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div class="drawer-info">
+      <span class="drawer-title">
+        {{ "Input Lookup Example" | translate }}</span
+      >
+    </div>
+  </div>
+
+  <div class="drawer-body" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center" class="">
+      <h2 class="block-section-title">
+        {{ "Lookup Example Form" | translate }}
+      </h2>
+    </div>
+    <br />
+    <div class="panel-body">
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0px"
+        fxLayoutGap.sm="0px"
+      >
+        <div
+          class="field-wrap bg"
+          fxFlex="100"
+          fxFlex.xs="100"
+          fxFlex.sm="100"
+          fxLayout="column"
+        >
+          <label for="#" class="field-label">
+            {{ "Server side lookup" | translate }}
+            <span style="color: red">*</span></label
+          >
+          <div class="">
+            <atlp-input-lookup
+              [placeholder]="'search' | translate "
+              [hasSearchButton]="true"
+              [displayItemCode]="'item.code'"
+              [displayItemNameInEnglish]="'item.nameEn'"
+              [displayItemNameInArabic]="'item.nameAr'"
+              name="lookUpServerSideValue"
+              [(ngModel)]="modelServerSide"
+              [source]="inputLookupMockService"
+              [lookUpObject]="genericColorLookupServerSide"
+            >
+            </atlp-input-lookup>
+            <br />
+          </div>
+        </div>
+        <br />
+        <div
+        class="field-wrap bg"
+        fxFlex="100"
+        fxFlex.xs="100"
+        fxFlex.sm="100"
+        fxLayout="column"
+      >
+        <label for="#" class="field-label">
+          {{ "client side lookup" | translate }}
+          <span style="color: red">*</span></label
+        >
+        <div class="">
+          <!-- <atlp-input-lookup
+            [placeholder]="'Search'"
+            [hasSearchButton]="true"
+            [displayItemCode]="'item.Code'"
+            [displayItemNameInEnglish]="'item.NameEnglish'"
+            [displayItemNameInArabic]="'item.NameArabic'"
+            name="lookUpClinetValue"
+            [(ngModel)]="modelClientSide"
+            [lookUpObject]="genericColorLookupClientSide"
+          >
+          </atlp-input-lookup> -->
+          <br />
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <!-- close btn -->
+  <button
+    style="z-index: 500"
+    class="round-btn panel-btn"
+    (click)="toggleSidebarOpen(SidebarNameAtlp.inputLookupTest)"
+    type="button"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="close-white-icon"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>

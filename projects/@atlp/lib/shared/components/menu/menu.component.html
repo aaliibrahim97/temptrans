@@ -1,0 +1,19 @@
+<div class="buttons-wrap" id="hamburger-menu-container">
+  <button
+    *ngIf="showMenu"
+    class="toggle-sidebar-opened"
+    (click)="toggleSidebarOpen(SidebarName.navigationSidebarMenu)"
+    id="burger-menu-nav"
+  >
+    <mat-icon
+      class="toolbar-btn-open"
+      svgIcon="burger-menu"
+      aria-hidden="false"
+      id="burger-menu-nav"
+    ></mat-icon>
+  </button>
+  <img
+    [ngClass]="showMenu ? 'logo-icon' : ''"
+    src="assets/images/logos/logo.svg"
+  />
+</div>

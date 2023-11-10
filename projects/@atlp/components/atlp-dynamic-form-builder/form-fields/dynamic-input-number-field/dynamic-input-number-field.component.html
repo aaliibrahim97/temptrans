@@ -1,0 +1,62 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <label class="field-label" [ngClass]="{ required: field.isRequired }">
+    {{ field.label | translate }}</label
+  >
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <input
+      #elementRef
+      [ngStyle]="field.props?.componentStyle"
+      [tabIndex]="field.tabindex || 0"
+      class="child_{{ field.key }} {{ field.inputFiledClasses }}"
+      [formControlName]="field.name"
+      [placeholder]="field.placeholder || ''"
+      [disableControl]="field.isDisabled ? true : null"
+      (keypress)="keyPressNumbers($event)"
+      [attr.aria-describedby]="fieldMetaData?.ariaDescribedby"
+      [attr.max]="fieldMetaData?.maximum"
+      [attr.min]="fieldMetaData?.minimum"
+      [attr.step]="fieldMetaData?.multipleOf || fieldMetaData?.step || 'any'"
+      [name]="field.name"
+      [readonly]="fieldMetaData?.readonly ? 'readonly' : null"
+      [required]="fieldMetaData?.required"
+      [type]="inputNumberType"
+    />
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+</div>

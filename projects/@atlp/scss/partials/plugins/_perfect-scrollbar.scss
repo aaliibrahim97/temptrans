@@ -1,0 +1,22 @@
+.ps {
+  position: relative;
+
+  > .ps__rail-x {
+    z-index: 999;
+    &:lang(ar) {
+      left: 16px !important;
+    }
+  }
+
+  > .ps__rail-y {
+    z-index: 999;
+    opacity: 0.6 !important;
+    &:lang(ar) {
+      left: -4px !important;
+      right: auto !important;
+    }
+    &:lang(en) {
+      right: 0 !important;
+    }
+  }
+}

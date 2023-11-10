@@ -1,0 +1,119 @@
+[graph-selection] {
+  height: calc(100% - 4px);
+}
+.graph-selection {
+  width: 100%;
+  display: flex !important;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 1px 10px rgb(0 0 0 / 6%);
+  border: 1px solid #ececf2;
+  border-radius: 10px;
+  overflow: hidden;
+  height: calc(100% - 4px);
+
+  .graph-content {
+    justify-content: space-evenly;
+    display: flex;
+    position: relative;
+    padding: 0 15px;
+    min-height: 57px;
+  }
+
+  .graph-footer {
+    background-color: #f8f8f8;
+    padding: 5px;
+    flex-grow: 1;
+    margin-top: 0;
+    max-height: 53px;
+    bottom: 0;
+
+    .graph-actions {
+      display: flex;
+      flex-direction: row;
+      align-content: stretch;
+      justify-content: space-between;
+    }
+
+    button {
+      @include margin-right(15px);
+
+      &:last-child {
+        @include margin-right(0);
+      }
+    }
+  }
+
+  .graph-header {
+    padding: 10px 15px;
+
+    .graph-title {
+      text-transform: uppercase;
+      color: #6772c6;
+      line-height: 25px;
+      @include padding-left(5px);
+    }
+  }
+
+  .graph-progress-bar {
+    background-color: #6772c6;
+    position: absolute;
+    height: 10px;
+    left: 0;
+    bottom: 0;
+    margin: 0 15px;
+  }
+
+  .graph-step {
+    display: inline-block;
+    flex-grow: 1;
+    // border-bottom: 10px solid #ECEEF5;
+    padding: 0;
+
+    &.active {
+      .graph-step-title {
+        font-size: 15px;
+        color: #6772c6;
+        font-weight: bold;
+      }
+
+      .graph-description {
+        color: #6772c6;
+      }
+    }
+
+    .graph-step-title {
+      font-size: 10px;
+      color: #c0cbe8;
+      padding: 0 15px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .graph-description {
+      padding: 0 15px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: #c0cbe8;
+      text-transform: uppercase;
+    }
+
+    > i {
+      @include margin-left(15px);
+    }
+
+    .graph-step-label {
+      position: relative;
+      display: inline-block;
+      bottom: 5px;
+      @include left(5px);
+    }
+
+    &.major {
+      .graph-description {
+        @include border-right(2px solid #c0c5e8);
+      }
+    }
+  }
+}

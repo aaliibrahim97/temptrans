@@ -1,0 +1,76 @@
+[submodule "projects/atlp-lba-ui"]
+    path = projects/atlp-lba-ui
+    url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-lba-ui
+    branch = uat
+[submodule "projects/atlp-umg-ui"]
+    path = projects/atlp-umg-ui
+    url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-umg-ui
+    branch = uat
+[submodule "projects/atlp-sea-ui"]
+    path = projects/atlp-sea-ui
+    url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-sea-ui
+    branch = uat
+[submodule "projects/atlp-reg-ui"]
+    path = projects/atlp-reg-ui
+    url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-reg-ui
+    branch = uat
+[submodule "projects/atlp-air-ui"]
+    path = projects/atlp-air-ui
+    url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp_air_ui/atlp-air-ui/
+    branch = UAT_R2
+[submodule "projects/atlp-landing-ui"]
+	path = projects/atlp-landing-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-landing-ui
+	branch = uat
+[submodule "projects/atlp-ecz-ui"]
+	path = projects/atlp-ecz-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp_ecz_ui/atlp-ecz-ui
+    branch = uat
+[submodule "projects/atlp-iac-ui"]
+	path = projects/atlp-iac-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp_iac_ui/atlp-iac-ui
+    branch = uat
+[submodule "projects/atlp-support-ui"]
+	path = projects/atlp-support-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-support-ui
+    branch = uat
+[submodule "projects/atlp-business-portal"]
+	path = projects/atlp-business-portal
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-business-portal
+    branch = uat
+[submodule "projects/atlp-vas-ui"]
+	path = projects/atlp-vas-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-vas-ui/atlp-vas-ui.git
+    branch = master
+[submodule "projects/atlp-dashboard-ui"]
+	path = projects/atlp-dashboard-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-dashboard/atlp-dashboard-ui
+  branch = uat
+[submodule "projects/atlp-doc-ui"]
+	path = projects/atlp-doc-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-doc-ui.git
+   branch = uat
+[submodule "projects/atlp-angular-elements-ui"]
+	path = projects/atlp-angular-elements-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-custom-elements-ui/atlp-angular-elements-ui
+   branch = uat
+[submodule "projects/atlp-epass-ui"]
+	path = projects/atlp-epass-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-epass-ui
+   branch = uat
+[submodule "projects/atlp-demo-ui"]
+	path = projects/atlp-demo-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-demo-ui
+    branch = uat
+[submodule "projects/atlp-ops-ui"]
+	path = projects/atlp-ops-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-ops-ui/atlp-ops-ui
+	branch = uat
+[submodule "projects/atlp-portal-doc"]
+	path = projects/atlp-portal-doc
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-documentation-ui/atlp-portal-doc
+	branch = qa
+[submodule "projects/atlp-senyar-ui"]
+	path = projects/atlp-senyar-ui
+	url = http://10.0.131.131/atlp/atlp_ui/atlp_ui_submodules/atlp-senyar-ui
+	branch = qa

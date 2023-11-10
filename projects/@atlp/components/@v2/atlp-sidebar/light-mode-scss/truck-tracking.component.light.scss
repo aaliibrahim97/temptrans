@@ -1,0 +1,25 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.truck-tracking {
+  .image-styles {
+    background-color: map-get($color, "atlp-white") !important;
+  }
+
+  .name {
+    color: map-get($color, "atlp-ink-base") !important;
+  }
+
+  .date,
+  .desc-data {
+    color: map-get($color, "atlp-ink-light") !important;
+  }
+
+  .card-container {
+    background-color: map-get($color, "atlp-white") !important;
+    border: 0.25px solid map-get($color, "light-mode-field-border") !important;
+  }
+  .mat-step-label {
+    border-color: #c5d2e7 !important ;
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">
+	<defs>
+		<style>
+			.a,.b{fill:none;}.b{stroke:#c5d2e7;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}
+		</style>
+	</defs>
+	<g transform="translate(0)">
+		<rect fill="none" width="60" height="60" transform="translate(0)" />
+		<path fill="none" stroke="#c5d2e7" stroke-width="4px" d="M83.619,77H49.867a1.875,1.875,0,0,1-1.875-1.875V33.875A1.875,1.875,0,0,1,49.867,32h22.5L85.494,45.125v30A1.875,1.875,0,0,1,83.619,77Z" transform="translate(-36.744 -24.5)" />
+		<path fill="none" stroke="#c5d2e7" stroke-width="4px" d="M152,32V45.125h13.127" transform="translate(-116.375 -24.5)" />
+		<line fill="none" stroke="#c5d2e7" stroke-width="4px" x2="15" transform="translate(22 32)" />
+		<line fill="none" stroke="#c5d2e7" stroke-width="4px" x2="15" transform="translate(22 39)" />
+	</g>
+</svg>

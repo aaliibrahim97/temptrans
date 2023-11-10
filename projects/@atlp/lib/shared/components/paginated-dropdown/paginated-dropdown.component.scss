@@ -1,0 +1,34 @@
+cdk-virtual-scroll-viewport {
+  min-height: 200px !important;
+}
+
+.dashboard-wrap .dropdown-select {
+  max-width: auto !important;
+}
+
+mg-paginated-dropdown,
+mat-select {
+  width: 100%;
+}
+
+.panel-pag-custom:lang(ar) {
+  margin: 45px 0px 0px 38px !important;
+}
+.panel-pag-custom:lang(en) {
+  margin: 45px 0px 0px 38px !important;
+}
+
+.mg-search {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+::ng-deep {
+  mat-select#paginated-multi-select .mat-select-trigger {
+    display: inline-table;
+    .mat-select-value {
+      display: table-cell;
+      max-width: 0;
+    }
+  }
+}

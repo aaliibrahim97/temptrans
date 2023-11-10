@@ -1,0 +1,215 @@
+<div
+  class="drawer-wrap questionnaire-drawer"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "Export_Gateway" | translate }} </span>
+      </div>
+    </div>
+
+    <div class="questionnaire" *ngIf="!SuccessConfirmMsg">
+      <div style="width: 100%; padding: 25px">
+        <div
+          [formGroup]="form"
+          fxLayout="column"
+          fxLayoutAlign="center"
+          fxFlex="100%"
+        >
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="center"
+          >
+            <div
+              class="dropdown-col bg field-wrap"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="48%"
+              fxLayout="column"
+            >
+              <label for="sectors" class="dropdown-label fieldrequired">{{
+                "Sectors" | translate
+              }}</label>
+              <mat-select
+                disableOptionCentering
+                #sectors
+                placeholder="{{ 'Select_Sectors' | translate }}"
+                formControlName="SelectedSector"
+                class="dropdown-select bg"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of sectorsData"
+                  [value]="item.description"
+                  (onSelectionChange)="onSectorChange(item)"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+              <div
+                class="error-wrap"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <span class="error-text">
+                  <div
+                    *ngIf="
+                      form.controls['sectors']?.hasError('required') &&
+                      form.controls['sectors'].touched
+                    "
+                    class="text-danger font-14"
+                  >
+                    {{ "Select_Atleast_One" | translate }}
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="center"
+          >
+            <div
+              class="dropdown-col bg field-wrap"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="48%"
+              fxLayout="column"
+            >
+              <label for="subSectors" class="dropdown-label fieldrequired">{{
+                "Sub_Sectors" | translate
+              }}</label>
+              <mat-select
+                disableOptionCentering
+                #subSectors
+                placeholder="{{ 'Select_Sub_Sectors' | translate }}"
+                formControlName="SelectedSubSector"
+                class="dropdown-select bg"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of subSectorsData"
+                  [value]="item.description"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+              <div
+                class="error-wrap"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <span class="error-text">
+                  <div
+                    *ngIf="
+                      form.controls['subSectors']?.hasError('required') &&
+                      form.controls['subSectors'].touched
+                    "
+                    class="text-danger font-14"
+                  >
+                    {{ "Select_Atleast_One" | translate }}
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="vessel-row mb-24"
+            fxLayout="row wrap"
+            fxLayoutAlign="center"
+          >
+            <div
+              class="dropdown-col bg field-wrap"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="48%"
+              fxLayout="column"
+            >
+              <label for="products" class="dropdown-label">{{
+                "Products" | translate
+              }}</label>
+              <mat-select
+                disableOptionCentering
+                #products
+                placeholder="{{ 'Select_Products' | translate }}"
+                formControlName="SelectedProduct"
+                class="dropdown-select bg"
+                panelClass="panel-custom bg"
+              >
+                <mat-option
+                  *ngFor="let item of productsData"
+                  [value]="item.name"
+                >
+                  {{ item.description }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Messages" *ngIf="SuccessConfirmMsg">
+      <div class="col-md-3 col- questionnaire Message-box">
+        <mat-icon
+          class="icon success-icon"
+          svgIcon="success-icon"
+          aria-hidden="false"
+        >
+        </mat-icon>
+        <br />
+        <p class="messagetitle">{{ "Success" | translate }}</p>
+        <p id="pConfirmMsg" class="messagesubtitle">
+          {{ "Submit_message" | translate }}<br />
+        </p>
+        <button
+          type="button"
+          (click)="goBack(SidebarName.questionnaire)"
+          class="messages-btn-row mat-focus-indicator transparent purple mat-button mat-button-base ng-star-inserted"
+          color="primary"
+        >
+          {{ "Go_Back" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+    <button
+      class="round-close-btn"
+      (click)="toggleV2SidebarOpen(SidebarName.questionnaire)"
+    >
+      <mat-icon
+        class="small-close-btn"
+        svgIcon="icon-close-black"
+        aria-hidden="false"
+      ></mat-icon>
+    </button>
+    <button
+      *ngIf="!SuccessConfirmMsg"
+      [disabled]="!form.valid"
+      type="button"
+      class="round-btn round-submit-btn"
+      matTooltipClass="plotTooltip"
+      matTooltipPosition="left"
+      (click)="onSubmit()"
+    >
+      <div class="round-icon-text">
+        <mat-icon svgIcon="soc-icon"></mat-icon>
+        <span class="round-btn-text">{{ "Submit" | translate }}</span>
+      </div>
+    </button>
+  </div>
+</div>

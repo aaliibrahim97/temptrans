@@ -1,0 +1,118 @@
+<div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign="none">
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "verify_your_email" | translate }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="Message-box">
+        <h1 class="messagetitle">{{ "verify_your_email" | translate }}</h1>
+
+        <div [formGroup]="form" class="w-100-p">
+          <div
+            class="vessel-row"
+            fxLayout="row wrap"
+            fxLayoutAlign="space-between start"
+          >
+            <div
+              class="field-wrap bg"
+              [ngClass]="form?.controls['email'].disabled ? 'disabled' : ''"
+              fxFlex="100%"
+              fxFlex.gt-xs="48%"
+              fxFlex.gt-sm="48%"
+              fxFlex.gt-md="100%"
+              fxLayout="column"
+            >
+              <label for="email" class="field-label fieldrequired">{{
+                "Email" | translate
+              }}</label>
+              <div class="field-input-wrap">
+                <input
+                  type="text"
+                  required
+                  formControlName="email"
+                  id="email"
+                  aria-describedby="email"
+                  email
+                  (keyup)="onemailchangekeyevent($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="error-wrap" fxLayout="row" fxLayoutAlign="start center">
+          <span class="error-text">
+            <div *ngIf="EmailValidMessage" class="text-danger">
+              {{ EmailValidMessage }}
+            </div>
+          </span>
+        </div>
+        <div class="" fxLayout="row" fxLayoutAlign="start center">
+          <span class="">
+            <div *ngIf="EmailChangeMessage" class="email-change-msg">
+              {{ EmailChangeMessage }}
+            </div>
+          </span>
+        </div>
+
+        <p class="messagesubtitle">
+          {{ "Email_Verification_Info" | translate }}
+        </p>
+        <div>
+          <small class="opt-error">{{ VerifyEmailMessage }}</small>
+        </div>
+
+        <div class="messages-btn-row">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onVerifyEmail()"
+            [disabled]="!form.valid"
+          >
+            {{ "Verify" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            class="mat-basic second-btn"
+            (click)="toggleV2SidebarOpen(SidebarName.verifyUser)"
+          >
+            {{ "CANCEL" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-close-btn"
+    (click)="toggleV2SidebarOpen(SidebarName.verifyUser)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.verifyUserOTP"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+>
+  <atlp-verify-userotp
+    [userInfoDetails]="userInfoDetails"
+    [enteredEmail]="form?.get('email')?.valid && form?.get('email')?.value"
+    (OnOTPsuccessfulVerificationEvent)="OnOTPsuccessfulVerification($event)"
+  >
+  </atlp-verify-userotp>
+</atlp-sidebar-v2>

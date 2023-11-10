@@ -1,0 +1,91 @@
+/* cdk-drag position when button is drag */
+.cdk-drag-preview {
+  z-index: 100;
+  .drag-btn-wrapper {
+    max-width: 150px;
+    height: 100%;
+    max-height: 100%;
+    background-color: map-get($color, "atlp-white");
+    display: flex;
+    align-items: center;
+    padding: 7.5px 8px 7.5px 8px;
+    border: 1px solid map-get($color, "atlp-purple-dark");
+    box-shadow: 0px 0.5px 0px map-get($color, "atlp-header-cell-border");
+    border-radius: 6px;
+    cursor: grabbing !important;
+    animation-duration: 0.5s;
+    animation-name: slowRotate;
+    animation-fill-mode: forwards;
+    .drag-btn {
+      width: 8px;
+      height: 14px;
+      position: relative;
+      margin-right: 8px;
+      &:before {
+        content: "";
+        cursor: move;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: -1px;
+        width: 8px;
+        height: 14px;
+        border-right: 3px dotted map-get($color, "atlp-purple-dark");
+        border-left: 3px dotted map-get($color, "atlp-purple-dark");
+      }
+    }
+  }
+  .drag-btn-wrapper:active {
+    // cursor: grabbing;
+  }
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+/* /cdk-drag position when button is drag */
+
+@keyframes slowRotate {
+  from {
+    transform: rotate(0deg) translateY(0%);
+  }
+
+  to {
+    transform: rotate(-20deg) translateY(-80%);
+  }
+}
+
+/* /cdk-drag position when button is drag */
+
+/* Animate items as they're being sorted. */
+.cdk-drop-list-dragging .cdk-drag,
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+/* /Animate items as they're being sorted. */
+
+/* Styles for filling Border in mat-header */
+.cdk-drop-list-dragging,
+.cdk-drop-list-receiving {
+  .mat-header-row {
+    .mat-header-cell {
+      border-left: 1px solid map-get($color, "atlp-purple-dark");
+      border-right: 1px solid map-get($color, "atlp-purple-dark");
+      border-radius: 0px !important;
+      box-shadow: 0px 0px 0px 2px map-get($color, "atlp-purple-light") inset;
+    }
+    /* Cells that do not drag */
+    .cdk-drag-disabled {
+      box-shadow: none;
+      border: none;
+    }
+    /* /Cells that do not drag */
+  }
+}
+.drop-header-wrapper {
+  .cdk-drop-list-receiving {
+    .drop-item-zone {
+      background: map-get($color, "atlp-cell-bg") 0% 0% no-repeat padding-box;
+    }
+  }
+}
+/* /Styles for filling Border in Mat-Header */

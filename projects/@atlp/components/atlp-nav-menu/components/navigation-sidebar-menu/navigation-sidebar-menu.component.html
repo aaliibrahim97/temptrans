@@ -1,0 +1,448 @@
+<div
+  class="drawer-wrap navigation-sidebar menu"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="none"
+>
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <!-- <atlp-search-bar></atlp-search-bar> -->
+    </div>
+    <div class="drawer-body" fxFlex fxLayout="column">
+      <mat-accordion class="example-headers-align">
+        <ng-container *ngFor="let item of dataField">
+          <a
+            *ngIf="
+              item?.openSideBar &&
+              !item?.redirectUrl &&
+              !item?.url &&
+              !item?.hideMenu
+            "
+            (click)="openSideBar(item?.openSideBar)"
+            class="dashboard-icon-wrap btn-dashboard"
+          >
+            <mat-icon
+              [svgIcon]="item?.iconName"
+              aria-hidden="false"
+              class="menu-icon"
+            ></mat-icon>
+            <span class="panel-title w-80-p">{{
+              item?.translate || item?.workingName | translate
+            }}</span>
+          </a>
+          <a
+            *ngIf="
+              !item?.list &&
+              item?.redirectUrl &&
+              item?.active &&
+              !item?.hideMenu
+            "
+            target="_self"
+            (click)="onMenuItemClick()"
+            [href]="item?.redirectUrl"
+            class="dashboard-icon-wrap btn-dashboard"
+          >
+            <mat-icon
+              [svgIcon]="item?.iconName"
+              aria-hidden="false"
+              class="menu-icon"
+            ></mat-icon>
+            <span class="panel-title w-80-p">{{
+              item?.translate || item?.workingName | translate
+            }}</span>
+          </a>
+
+          <a
+            *ngIf="
+              !item?.list &&
+              !item?.redirectUrl &&
+              item?.url &&
+              !item.openSideBar &&
+              !item?.hideMenu
+            "
+            (click)="navigateTo(item)"
+            class="dashboard-icon-wrap btn-dashboard"
+          >
+            <mat-icon
+              [svgIcon]="item?.iconName"
+              aria-hidden="false"
+              class="menu-icon"
+            ></mat-icon>
+            <span class="panel-title w-80-p">{{
+              item?.translate || item?.workingName | translate
+            }}</span>
+          </a>
+          <mat-expansion-panel
+            *ngIf="
+              item?.list?.length > 0 && !item?.redirectUrl && !item?.hideMenu
+            "
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-description
+                [class.activeHead]="
+                  this._atplSidebarService.getSidebar(
+                    SidebarName.navigationSidebarContent
+                  ).opened
+                "
+              >
+                <mat-icon
+                  [svgIcon]="item?.iconName"
+                  aria-hidden="false"
+                  class="menu-icon"
+                ></mat-icon>
+                <span class="panel-title w-80-p">{{
+                  item?.translate || item?.workingName | translate
+                }}</span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div
+              class="working-wrap"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between start"
+            >
+              <ng-container *ngIf="item?.list?.length <= 16">
+                <ng-container *ngFor="let itemSub of item?.list">
+                  <div
+                    class="working-field"
+                    (click)="switchWorkingSubfield(itemSub?.id, item?.list)"
+                    [class.active]="itemSub?.active"
+                    *ngIf="
+                      !itemSub?.url &&
+                      !itemSub?.redirectUrl &&
+                      !itemSub?.redirectUrlSamePage &&
+                      !itemSub.openSideBar &&
+                      !itemSub?.hideMenu
+                    "
+                  >
+                    <div
+                      class="working-field-wrap"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                      (click)="
+                        openSidebarWithData(
+                          SidebarName.navigationSidebarContent,
+                          itemSub?.content
+                        )
+                      "
+                    >
+                      <div class="working-icon">
+                        <mat-icon
+                          *ngIf="!itemSub?.useImgPng"
+                          [svgIcon]="itemSub?.iconName"
+                          aria-hidden="false"
+                        >
+                        </mat-icon>
+                        <ng-container *ngIf="itemSub?.useImgPng">
+                          <img [src]="itemSub?.iconName" alt="" />
+                        </ng-container>
+                      </div>
+                      <span class="working-name">{{
+                        itemSub?.translate || itemSub?.workingName | translate
+                      }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="working-field"
+                    (click)="navigateTo(itemSub)"
+                    [class.active]="itemSub?.active"
+                    *ngIf="
+                      itemSub?.url &&
+                      !itemSub?.redirectUrl &&
+                      !itemSub?.hideMenu
+                    "
+                  >
+                    <div
+                      class="working-field-wrap"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                    >
+                      <div class="working-icon">
+                        <mat-icon
+                          *ngIf="!itemSub?.useImgPng"
+                          [svgIcon]="itemSub?.iconName"
+                          aria-hidden="false"
+                        >
+                        </mat-icon>
+                        <ng-container *ngIf="itemSub?.useImgPng">
+                          <img [src]="itemSub?.iconName" alt="" />
+                        </ng-container>
+                      </div>
+                      <span class="working-name">{{
+                        itemSub?.translate || itemSub?.workingName | translate
+                      }}</span>
+                    </div>
+                  </div>
+                  <a
+                    class="working-field"
+                    [class.active]="itemSub?.active"
+                    [href]="
+                      itemSub?.redirectUrl
+                        ? itemSub?.redirectUrl
+                        : itemSub?.redirectUrlSamePage
+                        ? itemSub?.redirectUrlSamePage
+                        : ''
+                    "
+                    target="{{
+                      itemSub?.redirectUrlSamePage ? '_self' : '_self'
+                    }}"
+                    *ngIf="
+                      !itemSub?.url &&
+                      !itemSub?.hideMenu &&
+                      (itemSub?.redirectUrl || itemSub?.redirectUrlSamePage)
+                    "
+                  >
+                    <div
+                      class="working-field-wrap"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                    >
+                      <div class="working-icon">
+                        <mat-icon
+                          *ngIf="!itemSub?.useImgPng"
+                          [svgIcon]="itemSub?.iconName"
+                          aria-hidden="false"
+                        >
+                        </mat-icon>
+                        <ng-container *ngIf="itemSub?.useImgPng">
+                          <img [src]="itemSub?.iconName" alt="" />
+                        </ng-container>
+                      </div>
+                      <span class="working-name">{{
+                        itemSub?.translate || itemSub?.workingName | translate
+                      }}</span>
+                    </div>
+                  </a>
+                  <div
+                    class="working-field"
+                    [class.active]="itemSub?.active"
+                    *ngIf="
+                      !itemSub?.url &&
+                      !itemSub?.redirectUrl &&
+                      !itemSub?.redirectUrlSamePage &&
+                      itemSub.openSideBar &&
+                      !itemSub?.hideMenu
+                    "
+                  >
+                    <div
+                      class="working-field-wrap"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                      (click)="openSideBar(itemSub?.openSideBar)"
+                    >
+                      <div class="working-icon">
+                        <mat-icon
+                          *ngIf="!itemSub?.useImgPng"
+                          [svgIcon]="itemSub?.iconName"
+                          aria-hidden="false"
+                        >
+                        </mat-icon>
+                        <ng-container *ngIf="itemSub?.useImgPng">
+                          <img [src]="itemSub?.iconName" alt="" />
+                        </ng-container>
+                      </div>
+                      <span class="working-name">{{
+                        itemSub?.translate || itemSub?.workingName | translate
+                      }}</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="item?.list?.length > 16 && !item?.hideMenu">
+                <div
+                  class="working-field"
+                  (click)="switchWorkingSubfield(itemSub?.id, item?.list)"
+                  [class.active]="itemSub?.active"
+                  *ngFor="
+                    let itemSub of item?.list | slice : 0 : 10;
+                    let i = index
+                  "
+                >
+                  <div
+                    class="working-field-wrap"
+                    fxLayout="column"
+                    fxLayoutAlign="center center"
+                    (click)="
+                      openSidebarWithData(
+                        SidebarName.navigationSidebarContent,
+                        itemSub?.content
+                      )
+                    "
+                  >
+                    <div class="working-icon">
+                      <mat-icon
+                        *ngIf="!itemSub?.useImgPng"
+                        [svgIcon]="itemSub?.iconName"
+                        aria-hidden="false"
+                      >
+                      </mat-icon>
+                      <ng-container *ngIf="itemSub?.useImgPng">
+                        <img [src]="itemSub?.iconName" alt="" />
+                      </ng-container>
+                    </div>
+                    <span class="working-name">{{
+                      itemSub?.translate || itemSub?.workingName | translate
+                    }}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel
+            *ngIf="
+              item?.list?.length > 0 &&
+              item?.redirectUrl &&
+              item?.active &&
+              !item?.hideMenu
+            "
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-description
+                [class.activeHead]="
+                  this._atplSidebarService.getSidebar(
+                    SidebarName.navigationSidebarContent
+                  ).opened
+                "
+              >
+                <mat-icon
+                  [svgIcon]="item?.iconName"
+                  aria-hidden="false"
+                  class="menu-icon"
+                ></mat-icon>
+                <span class="panel-title w-80-p">{{
+                  item?.translate || item?.workingName | translate
+                }}</span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div
+              class="working-wrap"
+              fxLayout="row wrap"
+              fxLayoutAlign="space-between start"
+            >
+              <ng-container *ngIf="item?.list?.length <= 16">
+                <ng-container *ngFor="let itemSub of item?.list">
+                  <div
+                    class="working-field"
+                    (click)="switchWorkingSubfield(itemSub?.id, item?.list)"
+                    [class.active]="itemSub?.active"
+                    *ngIf="!itemSub?.url && !itemSub?.hideMenu"
+                  >
+                    <div
+                      class="working-field-wrap"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                      (click)="
+                        openSidebarWithData(
+                          SidebarName.navigationSidebarContent,
+                          itemSub?.content
+                        )
+                      "
+                    >
+                      <div class="working-icon">
+                        <mat-icon
+                          *ngIf="!itemSub?.useImgPng"
+                          [svgIcon]="itemSub?.iconName"
+                          aria-hidden="false"
+                        >
+                        </mat-icon>
+                        <ng-container *ngIf="itemSub?.useImgPng">
+                          <img [src]="itemSub?.iconName" alt="" />
+                        </ng-container>
+                      </div>
+                      <span class="working-name">{{
+                        itemSub?.translate || itemSub?.workingName | translate
+                      }}</span>
+                    </div>
+                  </div>
+                  <div
+                    class="working-field"
+                    (click)="navigateTo(itemSub)"
+                    [class.active]="itemSub?.active"
+                    *ngIf="itemSub?.url && !itemSub?.hideMenu"
+                  >
+                    <div
+                      class="working-field-wrap"
+                      fxLayout="column"
+                      fxLayoutAlign="center center"
+                    >
+                      <div class="working-icon">
+                        <mat-icon
+                          *ngIf="!itemSub?.useImgPng"
+                          [svgIcon]="itemSub?.iconName"
+                          aria-hidden="false"
+                        >
+                        </mat-icon>
+                        <ng-container *ngIf="itemSub?.useImgPng">
+                          <img [src]="itemSub?.iconName" alt="" />
+                        </ng-container>
+                      </div>
+                      <span class="working-name">{{
+                        itemSub?.translate || itemSub?.workingName | translate
+                      }}</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="item?.list?.length > 16 && !item?.hideMenu">
+                <div
+                  class="working-field"
+                  (click)="switchWorkingSubfield(itemSub?.id, item?.list)"
+                  [class.active]="itemSub?.active"
+                  *ngFor="
+                    let itemSub of item?.list | slice : 0 : 10;
+                    let i = index
+                  "
+                >
+                  <div
+                    class="working-field-wrap"
+                    fxLayout="column"
+                    fxLayoutAlign="center center"
+                    (click)="
+                      openSidebarWithData(
+                        SidebarName.navigationSidebarContent,
+                        itemSub?.content
+                      )
+                    "
+                  >
+                    <div class="working-icon">
+                      <mat-icon
+                        *ngIf="!itemSub?.useImgPng"
+                        [svgIcon]="itemSub?.iconName"
+                        aria-hidden="false"
+                      >
+                      </mat-icon>
+                      <ng-container *ngIf="itemSub?.useImgPng">
+                        <img [src]="itemSub?.iconName" alt="" />
+                      </ng-container>
+                    </div>
+                    <span class="working-name">{{
+                      itemSub?.translate || itemSub?.workingName | translate
+                    }}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button
+    class="round-btn panel-btn"
+    (click)="toggleSidebarClose(SidebarName.navigationSidebarMenu)"
+  >
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="close-white-icon"
+      aria-hidden="false"
+    ></mat-icon>
+    <!-- <span>{{ "close" | translate }}</span> -->
+  </button>
+</div>

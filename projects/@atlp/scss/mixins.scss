@@ -1,0 +1,427 @@
+// padding
+// ------------------------------------------
+@mixin padding-left($distance,$important:'') {
+  &:lang(en) {
+    padding-left: $distance unquote($important);
+  }
+  &:lang(ar) {
+    padding-right: $distance unquote($important);
+  }
+}
+
+@mixin padding-right($distance,$important:'') {
+  &:lang(en) {
+    padding-right: $distance  unquote($important);
+  }
+  &:lang(ar) {
+    padding-left: $distance  unquote($important);
+  }
+}
+
+@mixin padding($top, $right, $bottom, $left,$important:'') {
+  &:lang(en) {
+    padding: $top $right $bottom $left unquote($important);
+  }
+  &:lang(ar) {
+    padding: $top $left $bottom $right unquote($important);
+  }
+}
+
+// margin
+// ------------------------------------------
+@mixin margin-left($distance,$important:'') {
+  &:lang(en) {
+    margin-left: $distance unquote($important);
+  }
+  &:lang(ar) {
+    margin-right: $distance unquote($important);;
+  }
+}
+
+@mixin margin-right($distance, $important:'') {
+  &:lang(en) {
+    margin-right: $distance unquote($important);
+  }
+  &:lang(ar) {
+    margin-left: $distance unquote($important);
+  }
+}
+
+@mixin margin($top, $right, $bottom, $left, $important:'') {
+  &:lang(en) {
+    margin: $top $right $bottom $left unquote($important);
+  }
+  &:lang(ar) {
+    margin: $top $left $bottom $right unquote($important);
+  }
+}
+
+// float
+// ------------------------------------------
+@mixin bi-app-float-left($important: "") {
+  &:lang(en) {
+    float: left unquote($important);
+  }
+  &:lang(ar) {
+    float: right unquote($important);
+  }
+}
+
+@mixin bi-app-float-right($important: "") {
+  &:lang(en) {
+    float: right unquote($important);
+  }
+  &:lang(ar) {
+    float: left unquote($important);
+  }
+}
+
+@mixin float($direction, $important: "") {
+  @if $direction == left {
+    @include bi-app-float-left($important);
+  } @else if $direction == right {
+    @include bi-app-float-right($important);
+  } @else {
+    float: $direction unquote($important);
+  }
+}
+
+// text align
+// ------------------------------------------
+@mixin bi-app-text-align-left($important) {
+  &:lang(en) {
+    text-align: left unquote($important);
+  }
+  &:lang(ar) {
+    text-align: right unquote($important);
+  }
+}
+
+@mixin apply-arabic-font($ar) {
+  &:lang(ar) {
+    font-family: $ar !important;
+  }
+}
+
+@mixin bi-app-text-align-right($important: "") {
+  &:lang(en) {
+    text-align: right unquote($important);
+  }
+  &:lang(ar) {
+    text-align: left unquote($important);
+  }
+}
+
+@mixin text-align($direction,$important: "") {
+  @if $direction == left {
+    @include bi-app-text-align-left($important);
+  } @else if $direction == right {
+    @include bi-app-text-align-right($important);
+  } @else {
+    text-align: $direction unquote($important);
+  }
+}
+
+// clear
+// ------------------------------------------
+@mixin bi-app-clear-left($important: "") {
+  &:lang(en) {
+    clear: left unquote($important);
+  }
+  &:lang(ar) {
+    clear: right unquote($important);
+  }
+}
+
+@mixin bi-app-clear-right($important: "") {
+  &:lang(en) {
+    clear: right unquote($important);
+  }
+  &:lang(ar) {
+    clear: left unquote($important);
+  }
+}
+
+@mixin clear($direction,$important: "") {
+  @if $direction == left {
+    @include bi-app-clear-left;
+  } @else if $direction == right {
+    @include bi-app-clear-right;
+  } @else {
+    clear: $direction unquote($important);
+  }
+}
+
+// left / right
+// ------------------------------------------
+@mixin left($distance, $important: "") {
+  &:lang(en) {
+    left: $distance ;
+  }
+  &:lang(ar) {
+    right: $distance;
+  }
+}
+
+@mixin right($distance, $important: "") {
+  &:lang(en) {
+    right: $distance unquote($important);
+  }
+  &:lang(ar) {
+    left: $distance unquote($important);
+  }
+}
+
+// border
+// ------------------------------------------
+
+// width
+@mixin border-left-width($width,$important: "") {
+  &:lang(en) {
+    border-left-width: $width unquote($important);
+  }
+  &:lang(ar) {
+    border-right-width: $width unquote($important);
+  }
+}
+
+@mixin border-right-width($width,$important: "") {
+  &:lang(en) {
+    border-right-width: $width unquote($important);
+  }
+  &:lang(ar) {
+    border-left-width: $width unquote($important);
+  }
+}
+
+@mixin border-width($top, $right, $bottom, $left,$important: "") {
+  &:lang(en) {
+    border-top-width: $top unquote($important);
+    border-right-width: $right unquote($important);
+    border-left-width: $left unquote($important);
+    border-bottom-width: $bottom unquote($important);
+  }
+  &:lang(ar) {
+    border-top-width: $top unquote($important);
+    border-left-width: $right unquote($important);
+    border-right-width: $left unquote($important);
+    border-bottom-width: $bottom unquote($important);
+  }
+}
+
+// style
+@mixin border-left-style($style) {
+  &:lang(en) {
+    border-left-width: $style;
+  }
+  &:lang(ar) {
+    border-right-width: $style;
+  }
+}
+
+@mixin border-right-style($style) {
+  &:lang(en) {
+    border-right-width: $style;
+  }
+  &:lang(ar) {
+    border-left-width: $style;
+  }
+}
+
+@mixin border-style($top, $right, $bottom, $left) {
+  &:lang(en) {
+    border-top-style: $top;
+    border-right-style: $right;
+    border-left-style: $left;
+    border-bottom-style: $bottom;
+  }
+  &:lang(ar) {
+    border-top-style: $top;
+    border-left-style: $right;
+    border-right-style: $left;
+    border-bottom-style: $bottom;
+  }
+}
+
+// color
+@mixin border-left-color($color) {
+  &:lang(en) {
+    border-left-color: $color;
+  }
+  &:lang(ar) {
+    border-right-color: $color;
+  }
+}
+
+@mixin border-right-color($color) {
+  &:lang(en) {
+    border-right-color: $color;
+  }
+  &:lang(ar) {
+    border-left-color: $color;
+  }
+}
+
+@mixin border-color($top, $right, $bottom, $left) {
+  &:lang(en) {
+    border-top-color: $top;
+    border-right-color: $right;
+    border-left-color: $left;
+    border-bottom-color: $bottom;
+  }
+  &:lang(ar) {
+    border-top-color: $top;
+    border-left-color: $right;
+    border-right-color: $left;
+    border-bottom-color: $bottom;
+  }
+}
+
+// generic
+@mixin border-left($border-style, $important:'') {
+  &:lang(en) {
+    border-left: $border-style;
+  }
+  &:lang(ar) {
+    border-right: $border-style;
+  }
+}
+
+@mixin border-right($border-style, $important:'') {
+  &:lang(en) {
+    border-right: $border-style;
+  }
+  &:lang(ar) {
+    border-left: $border-style;
+  }
+}
+
+// radius
+@mixin border-top-left-radius($radius) {
+  &:lang(en) {
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-topleft-radius: $radius;
+    border-top-left-radius: $radius;
+  }
+  &:lang(ar) {
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-topright-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+}
+
+@mixin border-top-right-radius($radius) {
+  &:lang(en) {
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-topright-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+  &:lang(ar) {
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-topleft-radius: $radius;
+    border-top-left-radius: $radius;
+  }
+}
+
+@mixin border-bottom-left-radius($radius) {
+  &:lang(en) {
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-bottomleft-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+  &:lang(ar) {
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-bottomright-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+
+@mixin border-bottom-right-radius($radius) {
+  &:lang(en) {
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-bottomright-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+  &:lang(ar) {
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-bottomleft-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+}
+
+@mixin border-right-radius($radius) {
+  @include border-top-right-radius($radius);
+  @include border-bottom-right-radius($radius);
+}
+
+@mixin border-left-radius($radius) {
+  @include border-top-left-radius($radius);
+  @include border-bottom-left-radius($radius);
+}
+
+@mixin border-top-radius($radius) {
+  @include border-top-left-radius($radius);
+  @include border-top-right-radius($radius);
+}
+
+@mixin border-bottom-radius($radius) {
+  @include border-bottom-left-radius($radius);
+  @include border-bottom-right-radius($radius);
+}
+
+@mixin border-radius($topLeft, $topRight: null, $bottomRight: null, $bottomLeft: null) {
+  @if $topRight != null {
+    @include border-top-left-radius($topLeft);
+    @include border-top-right-radius($topRight);
+    @include border-bottom-right-radius($bottomRight);
+    @include border-bottom-left-radius($bottomLeft);
+  } @else {
+    -webkit-border-radius: $topLeft;
+    -moz-border-radius: $topLeft;
+    -ms-border-radius: $topLeft;
+    -o-border-radius: $topLeft;
+    border-radius: $topLeft;
+  }
+}
+
+// Support for "direction" declaration (renders ltr/rtl).
+// Useful for form elements as they swap the text-indent property and align the text accordingly.
+@mixin direction {
+  &:lang(en) {
+    direction: rtl;
+  }
+  &:lang(ar) {
+    direction: ltr;
+  }
+}
+
+@mixin justifyContent() {
+  &:lang(en) {
+    justify-content: flex-end;
+  }
+  &:lang(ar) {
+    justify-content: flex-start;
+  }
+}
+
+@mixin translateY($value) {
+  &:lang(en) {
+    transform: translateY($value);
+  }
+  &:lang(ar) {
+    transform: translateY(-1 * $value);
+  }
+}
+// ltr / rtl contents
+// ------------------------------------------
+@mixin ltr {
+  &:lang(en) {
+    @content;
+  }
+}
+
+@mixin rtl {
+  &:lang(ar) {
+    @content;
+  }
+}

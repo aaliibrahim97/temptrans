@@ -1,0 +1,349 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+.payment-title{
+  color: var(--atlp-panel-title);
+}
+.payment-checkout {
+  @include apply-arabic-font("ADPortsGroup");
+  .field-wrap,
+  .dropdown-col {
+    margin-bottom: 24px;
+  }
+  .amount-subtitle {
+    font-size: 14px;
+    letter-spacing: 0;
+    @include text-align(right);
+    color: map-get($color, "atlp-purple-light");
+    .amount {
+      color: map-get($color, "atlp-white");
+    }
+  }
+  .cart-item {
+    padding-bottom: 15px;
+    border-bottom: 2px solid map-get($color, "atlp-panel-border");
+    margin-bottom: 15px;
+    .amount .appointment-title {
+      text-transform: none;
+    }
+  }
+  .amount-to-pay {
+    .amount {
+      padding-left: 10px;
+    }
+    p {
+      margin-bottom: 1vh;
+    }
+  }
+  .amount-service-charges {
+    padding-bottom: 2vh;
+    border-bottom: 2px solid map-get($color, "atlp-panel-border");
+    margin-bottom: 2vh;
+  }
+  .amount-sum {
+    margin-bottom: 2vh;
+  }
+  .title {
+    // font-size: 36px;
+    // font-weight: 700;
+    color: map-get($color, "atlp-white");
+  }
+ 
+  .subtitle {
+    // font-size: 16px;
+    // font-weight: 500;
+    color: map-get($color, "atlp-white");
+    margin-bottom: 30px;
+    line-height: 30px;
+  }
+  form,
+  .cheque-details,
+  .bank-details {
+    display: block !important;
+    flex-direction: unset !important;
+    box-sizing: unset !important;
+  }
+  .text-align-end {
+    @include text-align(end);
+  }
+  .payment-method,
+  .select-bank {
+    margin-bottom: -24px;
+    .mat-radio-button {
+      @include apply-arabic-font("ADPortsGroup");
+      width: 100%;
+      height: 142px;
+      padding: 24px;
+      border: 1px solid map-get($color, "atlp-purple-base");
+      border-radius: 6px;
+      position: relative;
+      &.mat-radio-checked {
+        background-color: map-get($color, "atlp-radio-checked");
+        .mat-icon {
+          opacity: 1;
+        }
+      }
+      .mat-radio-container {
+        opacity: 0 !important;
+        display: none;
+      }
+      .label {
+        font-size: 15px;
+        color: map-get($color, "atlp-grey-base");
+        text-transform: uppercase;
+        white-space: break-spaces;
+        @include text-align(center);
+      }
+      .mat-radio-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        @include left(0);
+        width: 100%;
+        height: 100%;
+      }
+      .mat-radio-label-content {
+        @include margin-left(0px !important);
+        flex: 1;
+        padding: 24px 15px;
+      }
+      .payment-content {
+        @include margin-left(-20px);
+        //height: 92px;
+        //padding-top: 10px;
+      }
+      .mat-icon {
+        position: absolute;
+        top: -10px;
+        @include right(-13px);
+        width: 42px;
+        height: 42px;
+        min-width: 35px;
+        min-height: 35px;
+        opacity: 0;
+      }
+    }
+  }
+  .select-bank {
+    .mat-radio-button {
+      .label {
+        text-transform: unset;
+        white-space: break-spaces;
+        @include text-align(center);
+      }
+    }
+  }
+  .payment-actions {
+    margin-top: 30px;
+    .payment-note {
+      margin-bottom: 50px;
+      .text {
+        color: map-get($color, "atlp-grey-base");
+        font: 14px;
+        letter-spacing: 0px;
+        margin-bottom: 10px;
+      }
+    }
+    .payable-amount {
+      @include text-align(right);
+      .label {
+        font-size: 16px;
+        font-weight: 700;
+        color: map-get($color, "atlp-white");
+        margin-bottom: 12px;
+      }
+      .amount {
+        font-size: 16px;
+        font-weight: 500;
+        color: map-get($color, "atlp-white");
+      }
+      .payable-amount-btn {
+        max-width: 87px;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      margin-top: 0px;
+    }
+  }
+  .cheque-details,
+  .bank-details {
+    margin-top: 40px;
+    margin-bottom: -24px;
+    @media screen and (max-width: 767px) {
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+    @media screen and (max-width: 599px) {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      .block-title {
+        display: none;
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .bank-details {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      .block-title {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .display-mobile {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .display-desktop {
+    display: none !important;
+  }
+  .payable-amount {
+    .label {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  .payable-amount {
+    .label {
+      font-size: 14px !important;
+    }
+    .amount {
+      font-size: 14px !important;
+    }
+  }
+  .Single-Tokenized-card img {
+    width: 4vw !important;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .fill-gap {
+    display: none;
+  }
+}
+
+.drawer-wrap {
+  width: 100% !important;
+}
+
+.bank-details {
+  img {
+    width: 9vw;
+    height: auto;
+  }
+}
+
+.payment-method-names {
+  img {
+    width: 3vw;
+    height: auto;
+    margin-bottom: 5px;
+  }
+}
+
+// @media (min-width: 1024px) {
+//   .sidebar-with-content {
+//     width: calc(100vw - 272px) !important;
+//   }
+// }
+
+.sidebar-with-content-iframe {
+  max-width: 100% !important;
+  width: 100% !important;
+  position: fixed;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+  .open {
+    @include right(0);
+    transform: none !important;
+    transition: all 0.3s ease;
+  }
+  .sidebar-index-1 {
+    .drawer-wrap {
+      @media (min-width: 1024px) {
+        @include padding(102px, 0, 0, 115px);
+      }
+    }
+  }
+  .active {
+    .panel-nav {
+      display: flex !important;
+    }
+  }
+  .panel-nav {
+    display: none !important;
+  }
+}
+
+.payment-methods {
+  margin: 15px 0;
+}
+.payment-methods-heading{
+  margin-left: 1%; 
+}
+.payment-cards-heading{
+  margin-left: 1%; 
+}
+.paymentProductId {
+  margin-top: 10vh;
+  .mat-radio-button {
+    margin-right: 3vw;
+  }
+}
+.MPAY-Display-None {
+  display: none;
+}
+.Single-Tokenized-card {
+  height: 90px !important;
+}
+.single-Tokenized-card-Label {
+  justify-content: start !important;
+  height: 55% !important;
+}
+.Single-Tokenized-card img {
+  width: 2vw;
+  height: auto !important;
+}
+.card-type-detail {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tokenized-Card-Suspended {
+  background-color: #7d56aa;
+}
+.mat-radio-disabled,
+.mat-radio-disabled .mat-radio-label {
+  cursor: not-allowed !important;
+}
+@media screen and (max-width: 600px) {
+  .Single-Tokenized-card img {
+    width: 12vw;
+  }
+  .payment-token-card-disply {
+    width: 100% !important;
+  }
+}
+
+// .card-type-detail img{
+//   float:right;
+// }
+// .payment-token-type-VISA {
+//   padding-right: 130px;
+// }
+// .payment-token-type-Master {
+//   padding-right: 85px;
+// }
+// .payment-token-type-New {
+//   padding-right: 80px;
+// }

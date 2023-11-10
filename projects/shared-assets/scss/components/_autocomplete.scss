@@ -1,0 +1,67 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.autocomplete-field {
+  mat-form-field {
+    width: 100% !important;
+  }
+
+  input {
+    padding: 0 6px;
+  }
+}
+
+.field-wrap .autocomplete-field .mat-form-field-label {
+  padding: 8px 15px !important;
+  font-style: italic;
+}
+
+.mat-autocomplete-panel {
+  position: absolute !important;
+  top: 0;
+  @include left(0);
+  //   width: 546px !important;
+  // background-color: map-get($color, "atlp-violet-light") !important;
+
+  background-color: map-get($color, "atlp-purple-dark") !important;
+  .mat-option-text {
+    color: #fff;
+  }
+
+  box-shadow: 0px 0px 20px #00000033 !important;
+  border: 1px solid #a187bf !important;
+  border-radius: 6px !important;
+
+  &.smaller-auto-complete {
+    // width: 300px !important;
+    .mat-option-text {
+      justify-content: flex-start;
+      span {
+        font-size: 14px !important;
+        &:first-of-type {
+          font-weight: bold;
+          @include margin-right(20px);
+        }
+      }
+    }
+  }
+
+  .mat-option.mat-selected {
+    background: transparent !important;
+  }
+
+  .mat-option {
+    &:hover {
+      background-color: map-get($color, "atlp-border-color") !important;
+    }
+  }
+
+  .mat-option-text {
+    display: flex;
+    justify-content: space-between;
+    span {
+      color: map-get($color, "atlp-white");
+      font-size: 14px;
+    }
+  }
+}

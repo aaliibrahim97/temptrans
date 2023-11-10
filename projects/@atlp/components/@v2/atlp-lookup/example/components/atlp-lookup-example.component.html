@@ -1,0 +1,39 @@
+<div
+  class="wrapper overlay-blur"
+  [class.blur]="atplSidebarService.allOpenedSuperimposedSidebar.length > 0"
+  fxFlex="none"
+  fxLayout="column"
+  fxLayoutAlign="start none"
+>
+  <div class="sidebar-container" fxLayout="row" fxLayoutAlign="start start">
+    <div class="sea-container" atlpPerfectScrollbar>
+      <br />
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="toggleSidebarOpen(SidebarNameAtlp.inputLookupTest)"
+        >
+          input Lookup example
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content sidebar-large"
+  [name]="SidebarNameAtlp.inputLookupTest"
+  position="right"
+  [folded]="false"
+  [invisibleOverlay]="true"
+  [superimposed]="true"
+  [isTemplate]="true"
+>
+  <ng-template #AtlpSidebarComponentContent>
+    <atlp-example-sidebar
+      (changeState)="toggleSidebarOpen($event)"
+    ></atlp-example-sidebar>
+  </ng-template>
+</atlp-sidebar-v2>

@@ -1,0 +1,74 @@
+<ng-container [ngSwitch]="voyageCardData?.status">
+  <!-- Start approved status -->
+  <ng-container *ngSwitchCase="CardStatus.approved">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-success-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End approved status -->
+  <!-- Start rejected status -->
+  <ng-container *ngSwitchCase="CardStatus.rejected">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-warn-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End rejected status -->
+  <!-- Start pending status -->
+  <ng-container *ngSwitchCase="CardStatus.pending">
+    <button class="btn-icon-status pending">
+      <mat-icon svgIcon="pending-icon-table" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End pending status -->
+  <!-- Start addDl status -->
+  <ng-container *ngSwitchCase="CardStatus.addDl">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-plus-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End addDl status -->
+  <!-- Start addLl status -->
+  <ng-container *ngSwitchCase="CardStatus.addLl">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-plus-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End addLl status -->
+  <!-- Start addCr status -->
+  <ng-container *ngSwitchCase="CardStatus.addCr">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-plus-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End addCr status -->
+  <!-- Start addMf status -->
+  <ng-container *ngSwitchCase="CardStatus.addMf">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-plus-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End addMf status -->
+  <!-- Start blocked status -->
+  <ng-container *ngSwitchCase="CardStatus.blocked">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-warn-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End blocked status -->
+  <!-- Start added status -->
+  <ng-container *ngSwitchCase="CardStatus.added">
+    <button class="btn-icon-status">
+      <mat-icon svgIcon="table-plus-icon" aria-hidden="false"></mat-icon>
+    </button>
+  </ng-container>
+  <!-- End added status -->
+  <!-- Start na status -->
+  <ng-container *ngSwitchCase="CardStatus.na"> </ng-container>
+  <!-- End na status -->
+  <!-- Start Default status -->
+  <ng-container *ngSwitchDefault> </ng-container>
+  <!-- Start Default status -->
+  <ng-container *ngIf="tableType === 'collapse'">
+    {{ voyageCardData?.statusText }}
+  </ng-container>
+</ng-container>

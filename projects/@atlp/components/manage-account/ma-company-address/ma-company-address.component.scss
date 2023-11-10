@@ -1,0 +1,99 @@
+@import "projects/@atlp/scss/variables";
+
+::ng-deep {
+  .country-selector-code {
+    color: map-get($color, "atlp-white") !important;
+  }
+  .country-selector {
+    color: map-get($color, "atlp-white") !important;
+    opacity: 1 !important;
+    direction: ltr;
+    margin-right: 19%;
+  }
+
+  .search-icon-white {
+    color: map-get($color, "atlp-white") !important;
+  }
+
+  .field-wrap.bg input {
+    caret-color: #fff;
+  }
+  .rtl .country-selector {
+    left: auto !important;
+    right: 0 !important;
+    background-position: 0% !important;
+  }
+  .country-list-button {
+    padding: 5px 10px !important;
+  }
+  .country-search,
+  .country-selector-code,
+  .label-wrapper {
+    white-space: pre-wrap !important;
+  }
+}
+
+.tel-input {
+  width: 100%;
+  border: 1px solid #a187bf;
+  border-radius: 6px;
+}
+
+.ucid-title {
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.84px;
+  color: #c8b6dd;
+}
+
+.Messages {
+  position: absolute;
+  background: #373068;
+  width: 100%;
+  z-index: 3;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.poc-title {
+  margin-bottom: 0px;
+}
+
+.poc-add-btn {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.mt-5 {
+  margin-top: 1rem;
+}
+
+.josoor-drawer {
+  flex: 1 1 0%;
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+  place-content: stretch flex-start;
+  align-items: stretch;
+}
+
+.field-label {
+  color: map-get($color, "atlp-grey-light") !important;
+}
+
+.josoor-terms-condition {
+  margin-left: 5px;
+  color: map-get($color, "atlp-grey-light") !important;
+}
+
+.fieldrequired:after {
+  content: " *";
+  color: red;
+}

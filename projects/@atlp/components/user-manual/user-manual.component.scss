@@ -1,0 +1,134 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.usermanual {
+  h1 {
+    color: map-get($color, "atlp-white");
+  }
+
+  p {
+    color: map-get($color, "atlp-white");
+  }
+
+  .usermanual-desc {
+    margin-bottom: 16px;
+  }
+}
+
+::ng-deep .mat-menu-panel.user-manual-mat-menu {
+  background: transparent !important;
+  box-shadow: none !important;
+  max-width: 500px;
+  min-width: 280px;
+  overflow-x: hidden;
+}
+
+::ng-deep .mat-menu-panel.user-manual-mat-menu .user-manual-container {
+  max-width: 500px;
+}
+
+.m-l-4 {
+  @include margin-left(5px, !important);
+}
+
+::ng-deep {
+  .theme-atlp .mat-badge-medium .mat-badge-content {
+    width: 20px !important;
+    height: 18px !important;
+    line-height: 24px;
+    padding: 2px;
+    font-size: 9px;
+    box-sizing: content-box;
+    top: -16px !important;
+    @media (max-width: 980px) {
+      padding: 0px;
+    }
+  }
+}
+
+a label {
+  cursor: pointer;
+}
+
+.user-manual-container {
+  padding: 20px;
+  background-color: map-get($color, "atlp-violet-base");
+  max-width: 300px;
+  width: 100%;
+  color: map-get($color, "atlp-white");
+  border-radius: 10px;
+
+  h5 {
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 400;
+    color: map-get($color, "atpl-yellow-dark");
+    color: #db9649;
+  }
+  a {
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 1.2;
+    color: map-get($color, "atlp-white");
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .user-manual-table-container {
+    margin-top: 24px;
+    .title {
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.2;
+      color: map-get($color, "atlp-grey-light");
+      font-weight: 500;
+    }
+  }
+
+  .user-manual-item-container {
+    display: flex;
+    background: #605a92;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0px;
+    justify-content: space-between;
+  }
+  .user-manual-item-icon-wrapper {
+    margin: 0px 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 50% 50%;
+  }
+
+  .user-manual-item-view-icon {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+  }
+  .user-manual-item-description {
+    width: 60%;
+  }
+  .user-manual-item-view-icon-button {
+    display: flex;
+  }
+  .user-manual-item-icon {
+    width: 20px;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+  }
+
+  .user-manual-item-img {
+    width: 20px;
+    height: 20px;
+  }
+}

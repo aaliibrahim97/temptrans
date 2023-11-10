@@ -1,0 +1,150 @@
+<!-- <div>
+  <div class="colors" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="item-message default"></div>
+    <span i18n="@@notif-Unread">Unread</span>
+    <div class="item-message success"></div>
+    <span i18n="@@notif-Read">Read</span>
+    <div class="item-message notice"></div>
+    <span i18n="@@activity-Important">Important</span>
+  </div>
+</div> -->
+<div fxLayout="column" fxFlex="100%">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="flex-end"
+    class="col-auto notifications-wrap pb-0"
+  >
+    <button
+      mat-button
+      (click)="goBack()"
+      color="basic"
+      class="filter-btn"
+      type="button"
+    >
+      {{ "Back" | translate }}
+    </button>
+  </div>
+
+  <div
+    class="notifications-wrap pt-0"
+    *ngIf="isNotificationAvailable"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-between"
+  >
+    <div
+      class="card notification-card"
+      fxFlex="100%"
+      fxFlex.gt-xs="100%"
+      fxFlex.gt-sm="100%"
+      fxFlex.gt-md="24%"
+      fxLayout="column"
+      id="notification_container"
+    >
+      <h4>{{ "App_Notifications" | translate }}</h4>
+      <div class="notification-container">
+        <activity-sidebar
+          [title]="Notifications"
+          [events]="inAppnotificationsData"
+          [isColumnLayout]="true"
+          pageType="Notifications"
+          (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"
+        ></activity-sidebar>
+      </div>
+    </div>
+    <div
+      class="card notification-card"
+      fxFlex="100%"
+      fxFlex.gt-xs="100%"
+      fxFlex.gt-sm="100%"
+      fxFlex.gt-md="24%"
+      fxLayout="column"
+      id="notification_container"
+    >
+      <h4>{{ "All_Activities" | translate }}</h4>
+      <div class="notification-container">
+        <activity-sidebar
+          [title]="Notifications"
+          [events]="allActivitiesData"
+          [isColumnLayout]="true"
+          pageType="Activities"
+          (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"
+        ></activity-sidebar>
+      </div>
+    </div>
+    <div
+      class="card notification-card"
+      fxFlex="100%"
+      fxFlex.gt-xs="100%"
+      fxFlex.gt-sm="100%"
+      fxFlex.gt-md="24%"
+      fxLayout="column"
+      id="notification_container"
+    >
+      <h4>{{ "Recent_Services" | translate }}</h4>
+      <div class="notification-container">
+        <activity-sidebar
+          [title]="Notifications"
+          [events]="recentServicesData"
+          [isColumnLayout]="true"
+          pageType="Recent_Services"
+          (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"
+        ></activity-sidebar>
+      </div>
+    </div>
+    <div
+      class="card notification-card"
+      fxFlex="100%"
+      fxFlex.gt-xs="100%"
+      fxFlex.gt-sm="100%"
+      fxFlex.gt-md="24%"
+      fxLayout="column"
+      id="notification_container"
+    >
+      <h4>{{ "Announcements" | translate }}</h4>
+      <div class="notification-container">
+        <activity-sidebar
+          [title]="Notifications"
+          [events]="announcementData"
+          [isColumnLayout]="true"
+          pageType="Announcements"
+          (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"
+        ></activity-sidebar>
+      </div>
+    </div>
+
+    <!-- <mat-tab-group (selectedTabChange)="onTabChange($event?.index)" [selectedIndex]="pageIndex">
+    <mat-tab label="App Notifications">
+      <div class="tab-content" atlpPerfectScrollbar>
+        <activity-sidebar [title]="Notifications" [events]="notificationsData" [isColumnLayout]="true"
+          pageType="Notifications" (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"></activity-sidebar>
+      </div>
+    </mat-tab>
+    <mat-tab label="All Activities">
+      <div class="tab-content" atlpPerfectScrollbar>
+        <activity-sidebar [title]="Notifications" [events]="notificationsData" [isColumnLayout]="true"
+          pageType="Activities" (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"></activity-sidebar>
+      </div>
+    </mat-tab>
+    <mat-tab label="Recent Services">
+      <div class="tab-content" atlpPerfectScrollbar>
+        <activity-sidebar [title]="Notifications" [events]="notificationsData" [isColumnLayout]="true"
+          pageType="Recent_Services" (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"></activity-sidebar>
+      </div>
+    </mat-tab>
+    <mat-tab label="Announcements">
+      <div class="tab-content" atlpPerfectScrollbar>
+        <activity-sidebar [title]="Notifications" [events]="notificationsData" [isColumnLayout]="true"
+          pageType="Announcements" (onReadNotification)="onReadNotification($event)"
+          (onviewallEvent)="onViewAllClick()"></activity-sidebar>
+      </div>
+    </mat-tab>
+  </mat-tab-group> -->
+  </div>
+</div>

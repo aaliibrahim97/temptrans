@@ -1,0 +1,68 @@
+<div
+  class="field-wrap mb-24 bg parent_{{ field.key }} {{
+    field.inputComParentFiledClasses
+  }}"
+  [ngStyle]="field.props?.componentParentStyle"
+  fxLayout="column"
+  [formGroup]="group"
+  [hidden]="isHidden"
+  *ngIf="isVisible"
+>
+  <label class="field-label" [ngClass]="{ required: field.isRequired }">
+    {{ field.label | translate }}</label
+  >
+  <div
+    class="field-input-wrap"
+    [class.invalid]="
+      !isValid && isDirty && group.get(field.name).errors?.required
+    "
+  >
+    <mat-select
+      #elementRef
+      [ngStyle]="field.props?.componentStyle"
+      [tabIndex]="field.tabindex || 0"
+      class="dropdown-select bg child_{{ field.key }} {{
+        field.inputFiledClasses
+      }}"
+      panelClass="{{
+        fieldMetaData?.multiple
+          ? 'panel-custom bg dynamicselectbox'
+          : 'panel-custom  bg'
+      }}"
+      [placeholder]="field.placeholder || ''"
+      [formControlName]="field.name"
+      [attr.aria-describedby]="fieldMetaData?.ariaDescribedby"
+      [attr.name]="field.name"
+      [multiple]="fieldMetaData?.multiple"
+      [required]="fieldMetaData?.required"
+      [disableControl]="field.isDisabled ? true : null"
+    >
+      <mat-option *ngFor="let item of field.options" [value]="item">{{
+        item
+      }}</mat-option>
+    </mat-select>
+  </div>
+  <div
+    class="error-wrap"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    *ngFor="let validation of field.validations"
+    ngProjectAs="mat-error"
+  >
+    <mat-icon
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      svgIcon="warning-circle-fill"
+      aria-hidden="false"
+    ></mat-icon>
+    <span
+      *ngIf="
+        !isValid && isDirty && group.get(field.name).hasError(validation.name)
+      "
+      class="error-text"
+    >
+      {{ validation.message | translate }}</span
+    >
+  </div>
+</div>

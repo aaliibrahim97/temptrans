@@ -1,0 +1,12 @@
+@mixin atlp-widget-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  atlp-widget {
+    > .atlp-widget-front,
+    > .atlp-widget-back {
+      background: map-get($background, card);
+      border-color: map-get($foreground, divider);
+    }
+  }
+}

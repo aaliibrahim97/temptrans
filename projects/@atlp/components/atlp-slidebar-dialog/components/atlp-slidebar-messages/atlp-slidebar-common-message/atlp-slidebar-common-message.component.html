@@ -1,0 +1,35 @@
+<div class="Messages">
+  <div class="Message-box">
+    <mat-icon
+      svgIcon="{{ config.atlpDialogRole | matIconSelector }}"
+      aria-hidden="false"
+    ></mat-icon>
+    <div class="message-content">
+      <h3
+        class="messagetitle"
+        *ngIf="!config.atlpCommonSliderDialogData.isHtml"
+      >
+        {{ config.atlpCommonSliderDialogData.msg | translate }}
+      </h3>
+      <div
+        class="messagetitle"
+        *ngIf="config.atlpCommonSliderDialogData.isHtml"
+      >
+        <div
+          [innerHTML]="config.atlpCommonSliderDialogData.msg | safeHtml"
+        ></div>
+      </div>
+    </div>
+    <div class="messages-btn-row">
+      <button
+        type="button"
+        (click)="okButtonClick()"
+        class="mat-focus-indicator mat-raised-button mr-16 mat-button-base mat-primary"
+        mat-raised-button
+        color="primary"
+      >
+        {{ config.atlpCommonSliderDialogData.okButtonText | translate }}
+      </button>
+    </div>
+  </div>
+</div>

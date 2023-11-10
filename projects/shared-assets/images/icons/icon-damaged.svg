@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.368" height="16.573" viewBox="0 0 24.368 16.573">
+  <g id="icon-damaged" transform="translate(-234.437 -2192.305)">
+    <g id="Group_157717" data-name="Group 157717" transform="translate(-759.345 478.696)">
+      <path id="Path_13370" data-name="Path 13370" d="M15395.338,37.267" transform="translate(-14385.001 1683.081)" fill="none" stroke="#fff" stroke-width="1"/>
+      <path id="Path_13372" data-name="Path 13372" d="M219.205,214.624h-8.133a1.373,1.373,0,0,1-.857-.285.883.883,0,0,1-.356-.686V200.416a.883.883,0,0,1,.356-.686,1.373,1.373,0,0,1,.857-.285h8.133l1.984,2.867-2.617,2.1-.367.294.367.294,2.617,2.1-2.617,2.081-.367.294.367.294,2.6,2.01-1.963,2.864Zm14.022-14.208v13.237a.889.889,0,0,1-.356.686,1.377,1.377,0,0,1-.857.285H222.9l1.708-2.446.255-.4-.291-.233-2.672-2.071,2.617-2.089.367-.294-.367-.294-2.617-2.1,1.017-.859,1.338-1.13.466-.389-.2-.305L224,201.2l-1.106-1.759h9.117a1.377,1.377,0,0,1,.857.285.889.889,0,0,1,.356.686Z" transform="translate(784.423 1514.862)" fill="none" stroke="#919ab1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_13374" data-name="Path 13374" d="M221.9,199.442l1.822,2.878L220.9,204.7l2.984,2.394-2.984,2.383,2.963,2.3-1.963,2.845" transform="translate(785.423 1514.862)" fill="none" stroke="#d98e28" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_13375" data-name="Path 13375" d="M219.2,199.442l1.984,2.87L218.2,204.7l2.984,2.394-2.984,2.383,2.963,2.3-1.963,2.845" transform="translate(784.423 1514.862)" fill="none" stroke="#d98e28" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<div class="empty-table-header">
+    <div *ngFor="let col of colHeader; let y = index;">
+        <ng-container *ngIf="y === 0; else simple"></ng-container>
+        <ng-template #simple>
+            <mat-checkbox class="bg" disabled></mat-checkbox>
+            {{col.header}}
+        </ng-template>
+    </div>
+</div>
+
+<div class="empty-table" [class.bg]="invert">
+    <p class="empty-table-text">No data to display</p>
+</div>

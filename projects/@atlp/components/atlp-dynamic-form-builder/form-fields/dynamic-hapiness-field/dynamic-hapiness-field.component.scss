@@ -1,0 +1,524 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+//@import "src/@atlp/scss/variables";
+:root {
+  height: 100vh;
+}
+
+.item {
+  padding: 0;
+  width: 100vw;
+  height: 300px;
+  background-color: crimson;
+  color: #fff;
+  font-size: 50px;
+  line-height: 300px;
+  text-align: center;
+}
+
+carousel {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+}
+
+.no-data-title {
+  font-size: 30px;
+  font-weight: bold;
+  max-width: 45vw;
+  margin-top: 10px;
+  // color: map-get($color, "atlp-panel-title");
+
+  @media (max-width: 960px) {
+    max-width: 100%;
+  }
+}
+
+.no-data-subtitle {
+  font-size: 20px;
+  // font-weight: bold;
+  max-width: 45vw;
+  margin-top: 10px;
+  // color: map-get($color, "atlp-panel-title");
+
+  @media (max-width: 960px) {
+    max-width: 100%;
+  }
+}
+
+p {
+  color: map-get($color, "atlp-white");
+}
+
+.suggestion-button {
+  color: map-get($color, "atlp-panel-title");
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.suggestion-box {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  background: white;
+  box-shadow: 0px 2px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.suggestion-container {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}
+
+.suggestion {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.transaction_name {
+  color: map-get($color, "atlp-panel-title");
+}
+
+.suggestion:hover {
+  fill: map-get($color, "atlp-panel-title");
+}
+
+.error-wrap {
+  padding-top: 6px;
+  .mat-icon {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
+    margin-right: 5px;
+  }
+  .error-text {
+    font-size: 11px;
+    letter-spacing: 0px;
+    color: #fc7682;
+    line-height: 1.1;
+  }
+}
+
+.rating {
+  color: map-get($color, "atlp-white");
+  padding: 0px 0px 0 88px !important;
+
+  //   &:lang(ar) {
+  //     padding: 0px 88px 0 0 !important;
+  // }
+
+  @media (min-width: 768px) {
+    padding: 0px 0px 0 88px !important;
+    &:lang(ar) {
+      padding: 0px 88px 0 0 !important;
+    }
+  }
+
+  @media (max-width: 700px) {
+    padding: 0px 0 0 0px !important;
+  }
+
+  .drawer-body {
+    &:lang(en) {
+      // padding-left: 15vw !important;
+    }
+    &:lang(ar) {
+      // padding-right: 15vw !important;
+    }
+
+    height: 100%;
+
+    @media (max-width: 960px) {
+      padding: 5rem !important;
+      // padding-top: 18rem !important;
+    }
+    @media (max-width: 319px) {
+      padding: 2rem !important;
+      // padding-top: 18rem !important;
+    }
+    .rating_user_name {
+      color: map-get($color, "atlp-panel-title");
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: bold;
+      max-width: 45vw;
+      color: map-get($color, "atlp-panel-title");
+
+      @media (max-width: 960px) {
+        max-width: 100%;
+      }
+    }
+
+    .subtitle {
+      // font-weight: 300;
+      font: normal normal normal 12px/17px ADPortsGroup;
+      // font-size: 14px;
+      max-width: 35vw;
+
+      @media (max-width: 960px) {
+        max-width: 74vw;
+      }
+    }
+
+    .drawer-emojis {
+      display: flex;
+      flex-direction: row-reverse !important;
+      // gap: 5px;
+      margin-top: 10px;
+      width: 100%;
+      @media (min-width: 375px) {
+        width: 90%;
+      }
+      // &:lang(en) {
+      //   flex-direction: row-reverse !important;
+      //   }
+      // &:lang(ar) {
+      //   flex-direction: row !important;
+      //   }
+      .icon {
+        width: 5vw;
+        min-width: 3.5vw;
+        height: auto;
+        margin-right: 10px;
+
+        @media (min-width: 1024) {
+          gap: 16px;
+        }
+        @media (max-width: 960px) {
+          width: 9vw;
+          min-width: 9vw;
+          height: auto;
+        }
+
+        ::ng-deep {
+          .b {
+            fill: map-get($color, "atlp-violet-base");
+            stroke: none;
+          }
+
+          .c {
+            fill: map-get($color, "atlp-emoji-fill");
+            stroke: none;
+          }
+        }
+      }
+
+      .icon3 {
+        ::ng-deep {
+          .b {
+            fill: map-get($color, "atlp-emoji-fill");
+          }
+
+          .c {
+            stroke: map-get($color, "atlp-violet-base");
+          }
+        }
+      }
+
+      .icon5 {
+        ::ng-deep {
+          .c {
+            fill: map-get($color, "atlp-violet-base");
+          }
+        }
+      }
+
+      .icon6 {
+        display: none;
+      }
+
+      // .mat-radio-checked {
+      //   .icon {
+      //     ::ng-deep {
+      //       svg g {
+      //         g {
+      //           fill: map-get($color, "atlp-emoji-yellow");
+      //           stroke: map-get($color, "atlp-white");
+      //         }
+
+      //         path {
+      //           fill: map-get($color, "atlp-emoji-yellow");
+      //           stroke: map-get($color, "atlp-white");
+      //         }
+
+      //         ellipse {
+      //           fill: map-get($color, "atlp-white");
+      //         }
+
+      //         line {
+      //           stroke: map-get($color, "atlp-white");
+      //         }
+      //       }
+
+      //       .a {
+      //         fill: map-get($color, "atlp-emoji-yellow");
+      //       }
+
+      //       .b {
+      //         fill: map-get($color, "atlp-emoji-brown");
+      //       }
+
+      //       .c {
+      //         fill: map-get($color, "atlp-emoji-fill");
+      //         stroke: none;
+      //         fill: map-get($color, "atlp-white");
+      //       }
+      //     }
+      //   }
+
+      //   .icon3 {
+      //     ::ng-deep {
+      //       .b {
+      //         fill: map-get($color, "atlp-emoji-fill");
+      //         fill: map-get($color, "atlp-white");
+      //       }
+
+      //       .c {
+      //         stroke: map-get($color, "atlp-emoji-brown");
+      //       }
+      //     }
+      //   }
+
+      //   .icon5 {
+      //     ::ng-deep {
+      //       .c {
+      //         fill: url(#a);
+      //       }
+
+      //       .e {
+      //         fill: map-get($color, "atlp-white");
+      //       }
+      //     }
+      //   }
+      // }
+    }
+
+    .drawer-buttons {
+      button {
+        line-height: 31px !important;
+        transition: all 0.3s ease;
+        font-weight: 500 !important;
+
+        &:disabled {
+          user-select: none;
+          opacity: 0.4;
+        }
+
+        &.transparent {
+          background-color: transparent !important;
+          color: map-get($color, "atlp-grey-light") !important;
+          border: 1px solid map-get($color, "atlp-purple-base");
+        }
+
+        &.animate {
+          background: map-get($color, "atlp-purple-dark") 0% 0% no-repeat
+            padding-box;
+          box-shadow: 0px 1px 0px map-get($color, "atlp-border-color");
+          border: 1px solid map-get($color, "atlp-border-color");
+          border-radius: 6px;
+          color: map-get($color, "atlp-white");
+          opacity: 1;
+          margin-top: 10px;
+          margin-left: 5px;
+
+          &:enabled:hover {
+            background: transparent
+              linear-gradient(
+                180deg,
+                map-get($color, "atlp-field-border") 0%,
+                #43286c 100%
+              )
+              0% 0% no-repeat padding-box;
+            box-shadow: 0px 1px 0px map-get($color, "atlp-border-color");
+            border: 1px solid map-get($color, "atlp-purple-base");
+            border-radius: 6px;
+            opacity: 1;
+          }
+        }
+
+        &:disabled {
+          user-select: none;
+          opacity: 0.4;
+        }
+      }
+    }
+
+    .send-feedback {
+      min-width: 227px;
+    }
+
+    .text {
+      font: normal normal normal 16px/19px ADPortsGroup;
+      letter-spacing: 0.96px;
+      color: map-get($color, "atlp-white");
+      text-transform: capitalize;
+      opacity: 1;
+    }
+
+    .text-selected {
+      color: map-get($color, "atlp-happy-yellow");
+    }
+
+    .panel-title {
+      font: normal normal normal 14px/17px ADPortsGroup;
+      letter-spacing: 0px;
+      text-transform: none;
+      color: map-get($color, "atlp-btn-plain-bg");
+    }
+
+    .panel-number {
+      font: normal normal normal 12px/17px ADPortsGroup;
+      letter-spacing: 0px;
+      color: map-get($color, "atlp-btn-plain-bg");
+    }
+
+    .emojis-container {
+      border: 2px solid map-get($color, "atlp-panel-border");
+      border-radius: 8px;
+      opacity: 1;
+      padding: 1rem;
+      margin: 0 auto;
+      margin-bottom: 16px;
+      width: 68vw;
+
+      @media (min-width: 1024px) {
+        width: 35vw;
+        padding: 1.5rem;
+      }
+
+      .subcontainer {
+        width: 100%;
+
+        .container-title {
+          font: normal normal normal 22px/18px ADPortsGroup;
+          letter-spacing: 0px;
+          white-space: nowrap;
+          color: map-get($color, "atlp-panel-title");
+
+          @media (max-width: 400px) {
+            font-size: 1.5rem;
+          }
+        }
+
+        .container-number {
+          font: normal normal normal 16px/18px ADPortsGroup;
+          letter-spacing: 0px;
+
+          @media (max-width: 960px) {
+            // width: 100%;
+            text-align: right;
+          }
+        }
+
+        .container-subtitle {
+          font: normal normal normal 12px/14px ADPortsGroup;
+          letter-spacing: 0px;
+          padding: 5px;
+        }
+      }
+    }
+
+    .container {
+      width: 35vw;
+      margin-top: 20px;
+
+      @media (max-width: 960px) {
+        width: 100%;
+      }
+
+      .subcontainer {
+        width: 100%;
+      }
+
+      textarea {
+        background-color: transparent;
+        border: 2px solid map-get($color, "atlp-panel-border");
+        border-radius: 8px;
+        font: normal normal normal 14px/21px ADPortsGroup;
+        letter-spacing: 0px;
+        resize: vertical;
+        overflow: visible;
+        color: map-get($color, "atlp-white");
+        padding: 1rem;
+      }
+
+      textarea::placeholder {
+        color: map-get($color, "atlp-grey-base");
+      }
+    }
+
+    .invalid-feedback {
+      border: 2px solid red !important;
+    }
+  }
+
+  .no-transaction-data {
+    padding-top: 0 !important;
+  }
+
+  .feedback {
+    padding-top: 5rem;
+
+    .subtitle {
+      max-width: 71vw;
+    }
+  }
+}
+
+::ng-deep .rating .drawer-body .drawer-emojis {
+  .mat-radio-container {
+    display: none;
+  }
+}
+
+::ng-deep .rating .drawer-body .drawer-emojis .icon {
+  .b {
+    fill: map-get($color, "atlp-violet-base");
+    stroke: none;
+  }
+
+  .c {
+    fill: map-get($color, "atlp-emoji-fill");
+    stroke: none;
+  }
+}
+
+::ng-deep .rating .drawer-body .drawer-emojis .method-radio-button .icon {
+  .b {
+    fill: map-get($color, "atlp-emoji-brown");
+  }
+
+  .c {
+    fill: map-get($color, "atlp-emoji-fill");
+    stroke: none;
+    fill: map-get($color, "atlp-white");
+  }
+
+  .a {
+    fill: map-get($color, "atlp-emoji-white");
+  }
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.nodata-container {
+  margin-top: 50px;
+  max-width: 74vw;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  justify-content: center;
+  .success-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+.rating-container {
+  margin: 0 auto;
+  height: 100%;
+}

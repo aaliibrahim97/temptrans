@@ -1,0 +1,230 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+::ng-deep {
+  atlp-sub-header {
+    height: 100%;
+    width: 100%;
+    display: block;
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      .page-content-wrapper {
+        height: calc(100% - 70px);
+      }
+    }
+  }
+
+  transactions-sea {
+    background-color: map-get($color, "atlp-grey-light");
+  }
+  car {
+    width: 100%;
+  }
+  // .overlay-blur.blur {
+  //   filter: blur(0px) !important;
+  // }
+}
+
+.sea-container {
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+}
+
+::ng-deep {
+  .mat-button-toggle-standalone,
+  .mat-button-toggle-group {
+    overflow: visible !important;
+  }
+  .mat-raised-button {
+    min-width: auto !important;
+  }
+
+  .col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+  .col-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .toolbar-body {
+    @extend .col-auto;
+    &:has(:nth-child(1)) {
+      @extend .col;
+    }
+  }
+}
+
+atlp-search-bar {
+  @extend .col;
+}
+
+.panel-container {
+  padding: 0 15px;
+  background-color: map-get($color, "atlp-grey-light") !important;
+  @media (min-width: 600px) {
+    padding: 0 30px;
+  }
+}
+
+.controls-buttons {
+  margin-top: 20px;
+  @media (min-width: 768px) {
+    @include right(30px);
+    position: absolute;
+    top: 100px;
+    z-index: 1;
+    margin-top: 0;
+  }
+  button {
+    @include margin-left(15px);
+  }
+}
+
+.components-nav {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  button {
+    margin-bottom: 20px;
+  }
+}
+
+.table-controls-view {
+  display: none;
+  @media (min-width: 1024px) {
+    display: block;
+    position: absolute;
+    top: 30px;
+    @include left(30px);
+    @include padding(0, 0, 0, 0);
+    z-index: 1;
+  }
+}
+.file-drop-wrapper {
+  width: 70%;
+  background: #fafbfd;
+  align-self: flex-start;
+}
+
+.table-header {
+  overflow: auto;
+  overflow-x: auto;
+  padding: 30px 15px 10px;
+  @media (min-width: 768px) {
+    overflow: scroll;
+    padding: 30px 30px 10px;
+  }
+  @media (min-width: 1024px) {
+    overflow: auto;
+    padding: 30px 30px 0;
+  }
+}
+
+.table-header-multiselect-actions {
+  overflow: auto;
+  overflow-x: auto;
+  padding: 10px 15px 10px;
+  @media (min-width: 768px) {
+    overflow: scroll;
+    padding: 10px 30px 10px;
+  }
+  @media (min-width: 1024px) {
+    overflow: auto;
+    padding: 10px 30px 0;
+  }
+}
+
+.dashboard-nav {
+  .nav-btn {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    color: map-get($color, "atlp-btn-basic");
+    letter-spacing: 0px;
+    font-size: 14px;
+    height: 33px;
+    @include margin-right(10px);
+    padding: 5px 16px;
+    background-image: linear-gradient(180deg, #ffffff 0%, #eaeef4 100%) 0% 0%
+      no-repeat padding-box;
+    box-shadow: 0px 0.5px 2px #8c69b540;
+    border: 1px solid #0000001a;
+    border-radius: 17px;
+    &.active,
+    &:hover {
+      color: map-get($color, "atlp-white");
+      background-color: #353165;
+    }
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .table-responsive-head {
+    margin-bottom: 10px;
+    justify-content: flex-start !important;
+    gap: 12px;
+  }
+}
+.table-request-head {
+  display: none !important;
+  @media (min-width: 1024px) {
+    display: flex !important;
+  }
+  atlp-search-bar {
+    display: none;
+    @media (min-width: 1300px) {
+      display: block;
+    }
+  }
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.text-overflow-switch-user {
+  width: 48%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.switch-account-user {
+  display: flex;
+  flex-direction: column;
+  margin-top: -7px;
+}
+
+.switch-user-header {
+  margin-top: -13px;
+  font-style: italic;
+  font-size: 12px;
+  color: #8f6bb9;
+}
+
+.open-announcement {
+  display: flex;
+  flex-direction: row;
+}
+
+.switch-profile-div-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  .col {
+    flex: 1 0 0%;
+  }
+}

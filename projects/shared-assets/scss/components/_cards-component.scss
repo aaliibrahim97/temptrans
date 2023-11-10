@@ -1,0 +1,576 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.card {
+  box-shadow: 0px 1px 0px #dce3f1;
+  border: 1px solid #dce3f1;
+  border-radius: 10px;
+  background-color: map-get($color, "atlp-white");
+  padding: 30px;
+  height: 100%;
+  max-width: 100%;
+
+  &.spent {
+    .dropdown-select {
+      max-width: 115px;
+      @include margin(0, 0, 0, 10px);
+    }
+    .card-chart {
+      margin-bottom: 6rem;
+    }
+  }
+  .optionsActionBtn {
+    width: 28%;
+  }
+  .topborders {
+    background-color: transparent !important;
+    border: none !important;
+    margin-top: 0px;
+    @include margin-right(28%);
+    @media screen and (max-width: 560px) {
+      margin-top: 10px;
+    }
+  }
+  .Optionswithlegend {
+    @media screen and (max-width: 560px) {
+      flex-direction: column-reverse !important;
+    }
+  }
+
+  &.appoint,
+  &.announce {
+    .date {
+      color: map-get($color, "atlp-ink-light");
+      margin: 0;
+    }
+
+    .items {
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dropdown-select {
+      max-width: 70px;
+      @include margin(0, 0, 0, 10px);
+    }
+  }
+
+  &.appoint.rich {
+    .with-icon {
+      .icon-size {
+        width: 16px;
+        max-width: 16px;
+        min-width: 16px;
+      }
+      ::ng-deep {
+        .red {
+          .b1,
+          .b {
+            fill: #bc2f2c;
+            stroke: none;
+          }
+          .a {
+            fill: none;
+            stroke: none;
+          }
+        }
+        .green {
+          .b1,
+          .b {
+            fill: #57a05a;
+            stroke: none;
+          }
+          .a {
+            fill: none;
+            stroke: none;
+          }
+        }
+        .yellow {
+          .b1,
+          .b {
+            fill: #cc9f53;
+            stroke: none;
+          }
+          .a {
+            fill: none;
+            stroke: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.services {
+    .date {
+      margin-left: 0;
+    }
+
+    .status {
+      font-size: 14px;
+      line-height: 1.2;
+      color: #57a05a;
+      padding: 4px 12px;
+      border-radius: 13px;
+      overflow: hidden;
+      position: relative;
+      background-color: #f4faf4;
+    }
+
+    .link {
+      color: #1992ea;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .name {
+      color: #606a81;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .status-wrap {
+      .name {
+        padding-left: 12px;
+      }
+    }
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.2;
+    color: map-get($color, "atlp-ink-base");
+    // flex: none;
+    @include margin-right(20px);
+  }
+
+  a {
+    font-size: 13px;
+    line-height: 1.2;
+    color: map-get($color, "atlp-id-color");
+  }
+
+  .options {
+    width: 100%;
+  }
+
+  .year {
+    @include margin-right(30px);
+    color: map-get($color, "atlp-ink-light");
+    font-size: 15px;
+  }
+
+  .photo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &.small {
+      width: 16px;
+      height: 16px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .card-row {
+    margin-bottom: 6px;
+
+    .name {
+      margin-bottom: 0;
+    }
+  }
+
+  .name {
+    font-size: 16px;
+    font-weight: 700;
+    color: map-get($color, "atlp-id-color");
+    margin-bottom: 4px;
+    line-height: 1;
+
+    &.small {
+      font-size: 14px;
+    }
+  }
+
+  .event {
+    font-size: 14px;
+    color: map-get($color, "atlp-danger-btn");
+  }
+
+  .date {
+    // @include margin-left( 5px);
+    color: map-get($color, "atlp-row-border");
+    font-size: 12px;
+
+    @media (min-width: 350px) {
+      @include margin-left(5px);
+    }
+  }
+
+  .link {
+    color: map-get($color, "atlp-ink-light");
+    font-size: 13px;
+    text-decoration: underline;
+  }
+
+  .items {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid map-get($color, "atlp-grey-base");
+
+    &:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .number {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    color: map-get($color, "atlp-ink-light");
+  }
+
+  .properties-head {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid map-get($color, "atlp-grey-base");
+
+    .name {
+      color: map-get($color, "atlp-card-add");
+    }
+  }
+
+  .properties-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: map-get($color, "atlp-ink-base");
+  }
+
+  .properties-plan {
+    font-size: 16px;
+    font-weight: 700;
+    color: map-get($color, "atlp-voyage-name-active");
+  }
+
+  .properties-text {
+    font-size: 14px;
+    color: map-get($color, "atlp-table-color");
+  }
+
+  box-shadow: 0px 1px 0px #dce3f1;
+  border: 1px solid #dce3f1;
+  border-radius: 10px;
+  background-color: map-get($color, "atlp-white");
+  padding: 30px;
+  height: 100%;
+  max-width: 100%;
+
+  &.spent {
+    .dropdown-select {
+      max-width: 115px;
+      @include margin(0, 0, 0, 10px);
+    }
+
+    .chart-stats-wrap {
+      min-width: 200px;
+      @include margin-right(50px);
+      margin-bottom: 0;
+      flex: none;
+    }
+  }
+
+  &.appoint,
+  &.announce {
+    .date {
+      color: map-get($color, "atlp-ink-light");
+      margin: 0;
+    }
+
+    .items {
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dropdown-select {
+      max-width: 70px;
+      @include margin(0, 0, 0, 10px);
+    }
+  }
+
+  &.services {
+    .date {
+      margin-left: 0;
+    }
+
+    .status {
+      font-size: 14px;
+      line-height: 1.2;
+      color: #57a05a;
+      padding: 4px 12px;
+      border-radius: 13px;
+      overflow: hidden;
+      position: relative;
+      background-color: #f4faf4;
+    }
+
+    .link {
+      color: #1992ea;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .name {
+      color: #606a81;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .status-wrap {
+      .name {
+        padding-left: 12px;
+      }
+    }
+  }
+
+  .card-head {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.2;
+    color: map-get($color, "atlp-ink-base");
+    flex: none;
+    @include margin-right(20px);
+    margin-bottom: 10px;
+  }
+
+  a {
+    font-size: 13px;
+    line-height: 1.2;
+    color: map-get($color, "atlp-id-color");
+  }
+
+  .options {
+    width: 100%;
+    display: flex;
+
+    @media (min-width: 1024px) {
+      justify-content: flex-end;
+    }
+  }
+
+  .years {
+    @include margin-right(30px);
+  }
+
+  .photo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &.small {
+      width: 16px;
+      height: 16px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .card-row {
+    margin-bottom: 6px;
+
+    .name {
+      margin-bottom: 0;
+    }
+  }
+
+  .name {
+    font-size: 16px;
+    font-weight: 700;
+    color: map-get($color, "atlp-id-color");
+    margin-bottom: 4px;
+    line-height: 1;
+
+    &.small {
+      font-size: 14px;
+    }
+  }
+
+  .event {
+    font-size: 14px;
+    color: map-get($color, "atlp-danger-btn");
+  }
+
+  .date {
+    @include margin-left(5px);
+    color: map-get($color, "atlp-row-border");
+    font-size: 12px;
+  }
+
+  .link {
+    color: map-get($color, "atlp-ink-light");
+    font-size: 13px;
+    text-decoration: underline;
+  }
+
+  .items {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid map-get($color, "atlp-grey-base");
+
+    &:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .number {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    color: map-get($color, "atlp-ink-light");
+  }
+
+  .properties-head {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid map-get($color, "atlp-grey-base");
+
+    .name {
+      color: map-get($color, "atlp-card-add");
+    }
+  }
+
+  .properties-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: map-get($color, "atlp-ink-base");
+  }
+
+  .properties-plan {
+    font-size: 16px;
+    font-weight: 700;
+    color: map-get($color, "atlp-voyage-name-active");
+  }
+
+  .properties-text {
+    font-size: 14px;
+    color: map-get($color, "atlp-table-color");
+  }
+}
+
+.card-chart {
+  display: flex;
+  flex-direction: column !important;
+
+  @media (min-width: 1024px) {
+    flex-direction: row !important;
+  }
+}
+
+.card-chart {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+}
+
+.card-express {
+  min-width: 180px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid map-get($color, "atlp-header-cell-border");
+
+  @media (min-width: 600px) {
+    min-width: 220px;
+    padding: 18px 24px;
+  }
+
+  &__img {
+    max-width: 40px;
+
+    @media (min-width: 600px) {
+      margin-bottom: 18px;
+    }
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__content {
+    color: map-get($color, "atlp-ink-light");
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  &__title {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  min-width: 180px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid map-get($color, "atlp-header-cell-border");
+
+  @media (min-width: 600px) {
+    min-width: 220px;
+    padding: 18px 24px;
+  }
+
+  &__img {
+    max-width: 40px;
+
+    @media (min-width: 600px) {
+      margin-bottom: 18px;
+    }
+
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__content {
+    color: map-get($color, "atlp-ink-light");
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  &__title {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+}

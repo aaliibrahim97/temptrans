@@ -1,0 +1,236 @@
+<div class="table-scroll-wrap" atlpPerfectScrollbar>
+    <div class="table-container" fxFlex="none" fxLayout="column">
+        <!-- Start voyage table descr -->
+        <ng-container *ngIf="selection.selected.length > 0">
+            <div class="voyage-table-descr" fxFlex="none" fxLayout="row" fxLayoutAlign="start center">
+                <div class="voyage-descr-item" fxFlex="none" [class.active-more]="selection.selected.length > 1">
+                    <ng-container *ngFor="let item of selection.selected">
+                        <div class="voyage-info active">
+                            <div class="voyage-info-wrap">
+                                <div class="voyage-info-head" fxLayout="row" fxLayoutAlign="start center">
+                                    <div class="voyage-info-soc-icon">
+                                        <mat-icon *ngIf="item.info.countMessage > 0; else notActiveMessage"
+                                            svgIcon="message-active-icon" aria-hidden="false"></mat-icon>
+                                        <ng-template #notActiveMessage>
+                                            <mat-icon svgIcon="message-icon" aria-hidden="false"></mat-icon>
+                                        </ng-template>
+                                    </div>
+                                    <h2 class="voyage-info-name">{{ item.info.title }}</h2>
+                                    <div class="voyage-info-status">
+                                        <mat-icon *ngIf="item.info.status === 'warning'" svgIcon="triangle-icon"
+                                            aria-hidden="false"></mat-icon>
+                                    </div>
+                                </div>
+                                <div class="voyage-info-info-row" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <span class="voyage-info-id">{{ item.info.id }}</span>
+                                    <div class="voyage-info-info" fxLayout="row" fxLayoutAlign="end center">
+                                        <div class="voyage-info-info-img">
+                                            <img [src]="srcCompany(item.info.iconCompany)" [alt]="item.info.name">
+                                        </div>
+                                        <h3 class="voyage-info-info-title">{{ item.info.name }}</h3>
+                                    </div>
+                                </div>
+                                <div class="voyage-info-row" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div class="voyage-info-col" fxLayout="column" fxLayoutAlign="center center">
+                                        <span class="voyage-info-text">{{ item.info.port }}</span>
+                                        <span class="voyage-info-text">{{ item.info.terminal }}</span>
+                                    </div>
+                                    <div class="voyage-info-col" fxLayout="column" fxLayoutAlign="center end">
+                                        <span class="voyage-info-text">{{ item.info.time }}</span>
+                                        <span class="voyage-info-text">{{ item.info.date }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="voyage-descr-content" fxFlex="none" fxLayout="column" [class.active-more]="selection.selected.length > 1">
+                    <div class="voyage-descr-head" fxLayout="row" fxLayoutAlign="start center">
+                        <button type="button" class="close-descr-btn" (click)="selection.clear()">
+                            <mat-icon svgIcon="x-fill-purple-dark" aria-hidden="false"></mat-icon>
+                        </button>
+                        <span class="voyage-descr-title"
+                            *ngIf="selection.selected.length > 1">{{selection.selected.length}} Voyages Selected</span>
+                    </div>
+                    <div class="voyage-descr-body">
+                        <ng-container *ngIf="selection.selected.length === 1">
+                            <div class="voyage-descr voyage-descr-one" fxLayout="row" fxLayoutAlign="start end">
+                                <mat-icon class="voyage-icon-one" svgIcon="voyage-icon-one" aria-hidden="false">
+                                </mat-icon>
+                                <div class="voyage-item active pre-departure">
+                                    <div class="voyage-item-bar" style="width: 60%;">
+                                        <span>60%</span>
+                                    </div>
+                                    <mat-icon class="voyage-icon-two" svgIcon="voyage-icon-two" aria-hidden="false">
+                                    </mat-icon>
+                                    <span class="voyage-descr-name">Pre-departure</span>
+                                    <span class="voyage-descr-call">Call Request</span>
+                                </div>
+                                <div class="voyage-item post-departure">
+                                    <span class="voyage-descr-name">Post-departure</span>
+                                </div>
+                                <div class="voyage-item pre-arrival">
+                                    <span class="voyage-descr-name">PRe-Arrival</span>
+                                </div>
+                                <div class="voyage-item post-arrival">
+                                    <span class="voyage-descr-name">Post-Arrival</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="selection.selected.length === 2">
+                            <div class="voyage-descr voyage-descr-two" fxLayout="row" fxLayoutAlign="space-between end">
+                                <ng-container *ngFor="let item of selection.selected">
+                                    <div class="voyage-item active pre-departure">
+                                        <div class="voyage-item-bar" style="width: 60%;">
+                                            <span>60%</span>
+                                        </div>
+                                        <mat-icon class="voyage-icon-two" svgIcon="voyage-icon-two" aria-hidden="false">
+                                        </mat-icon>
+                                        <span class="voyage-descr-name">Pre-departure</span>
+                                        <div class="voyage-descr-call active" fxLayout="row"
+                                            fxLayoutAlign="space-between center">
+                                            <div class="voyage-item-bar" style="width: 30%;"></div>
+                                            <span>Call Request</span>
+                                            <span>30%</span>
+                                        </div>
+                                        <button mat-raised-button color="basic" class="icon remove-btn remove-btn-abs">
+                                            {{item.info.title}}
+                                            <mat-icon svgIcon="x-fill-purple-dark" aria-hidden="false"
+                                                (click)="deselect(item)"></mat-icon>
+                                        </button>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="selection.selected.length > 2 ">
+                            <div class="voyage-descr voyage-descr-three" fxLayout="row" fxLayoutAlign="start end">
+                                <ng-container *ngFor="let item of selection.selected">
+                                    <button mat-raised-button color="basic" class="icon remove-btn">
+                                        {{item.info.title}}
+                                        <mat-icon svgIcon="x-fill-purple-dark" aria-hidden="false"
+                                            (click)="deselect(item)"></mat-icon>
+                                    </button>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="voyage-descr-nav mt-auto" fxLayout="row">
+                        <button mat-raised-button color="primary" class="icon">
+                            <mat-icon svgIcon="plus-white" aria-hidden="false"></mat-icon>
+                            Action
+                        </button>
+                        <button mat-raised-button color="basic" class="icon">
+                            <mat-icon svgIcon="smock-icon" aria-hidden="false"></mat-icon>
+                            Pin to Top
+                        </button>
+                        <button mat-raised-button color="basic" class="icon">
+                            <mat-icon svgIcon="print-black" aria-hidden="false"></mat-icon>
+                            Print Token
+                        </button>
+                        <button mat-raised-button color="basic" class="icon">
+                            <mat-icon svgIcon="print-black" aria-hidden="false"></mat-icon>
+                            EIR
+                        </button>
+                        <button mat-raised-button color="basic" class="icon">
+                            <mat-icon svgIcon="copy-black" aria-hidden="false"></mat-icon>
+                            Duplicate
+                        </button>
+                        <button mat-raised-button color="warn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <!-- End voyage table descr -->
+
+        <!-- Start voyage table content -->
+        <div fxFlex="none">
+            <mat-table [dataSource]="dataSource" class="voyage-table">
+                <!-- Start flow Column -->
+                <ng-container matColumnDef="flow">
+                    <mat-header-cell *matHeaderCellDef>
+                        Voyage Info
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                        </mat-checkbox>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" style="width: 428px!important;flex: none;">
+                        <mat-checkbox class="voyage-info-checkbox" (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(element) : null"
+                            [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)">
+                        </mat-checkbox>
+                        <voyage-info [voyageInfoData]="element?.info"></voyage-info>
+                    </mat-cell>
+                </ng-container>
+                <!-- End flow Column -->
+
+                <!-- Start type Column -->
+                <ng-container matColumnDef="type">
+                    <mat-header-cell *matHeaderCellDef> Rotation </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.rotation"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End type Column -->
+
+                <!-- Start book Column -->
+                <ng-container matColumnDef="book">
+                    <mat-header-cell *matHeaderCellDef> Voyage Customs </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.customs"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End book Column -->
+
+                <!-- Start container Column -->
+                <ng-container matColumnDef="container">
+                    <mat-header-cell *matHeaderCellDef> Voyage Terminal </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.terminal"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End container Column -->
+
+                <!-- Start ISO Column -->
+                <ng-container matColumnDef="iso">
+                    <mat-header-cell *matHeaderCellDef> Call Request </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.callRequest"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End ISO Column -->
+
+                <!-- Start line Column -->
+                <ng-container matColumnDef="line">
+                    <mat-header-cell *matHeaderCellDef> Manifest </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.manifest"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End line Column -->
+
+                <!-- Start info Column -->
+                <ng-container matColumnDef="info">
+                    <mat-header-cell *matHeaderCellDef> Discharge List </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.discharge"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End info Column -->
+
+                <!-- Start expiry Column -->
+                <ng-container matColumnDef="expiry">
+                    <mat-header-cell *matHeaderCellDef> Loading List </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <voyage-card [voyageCardData]="element?.loading"></voyage-card>
+                    </mat-cell>
+                </ng-container>
+                <!-- End expiry Column -->
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+        <!-- End voyage table content -->
+    </div>
+</div>

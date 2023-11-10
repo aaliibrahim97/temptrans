@@ -1,0 +1,14 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+
+.expression-of-interest {
+  .blue-text {
+    color: map-get($color, "light-mode-title") !important;
+  }
+
+  .mat-icon {
+    .b {
+      fill: map-get($color, "light-mode-title") !important;
+    }
+  }
+}

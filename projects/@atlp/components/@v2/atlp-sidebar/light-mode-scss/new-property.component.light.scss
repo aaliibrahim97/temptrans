@@ -1,0 +1,83 @@
+@import "projects/@atlp/scss/variables";
+@import "projects/@atlp/scss/mixins";
+.add-invoice-group {
+  .property {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .value {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .image-desc {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .single-usage {
+    span {
+      color: map-get($color, "light-mode-subtitle") !important;
+    }
+  }
+  .location {
+    border: 1px solid map-get($color, "light-mode-field-border") !important;
+    color: map-get($color, "light-mode-title") !important;
+    opacity: 0.5 !important;
+    &.active {
+      opacity: 1 !important;
+    }
+  }
+  .availability {
+    span {
+      color: map-get($color, "light-mode-title") !important;
+    }
+  }
+}
+.filters {
+  background-color: map-get($color, "light-mode-body-bg") !important;
+  .filters-head {
+    .filters-title {
+      color: map-get($color, "light-mode-subtitle") !important;
+    }
+    button {
+      .mat-icon {
+        path {
+          fill: map-get($color, "atlp-violet-light");
+        }
+      }
+    }
+  }
+  .filters-preset {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .clear-btn {
+    color: map-get($color, "light-mode-label") !important;
+    border: 1px solid map-get($color, "light-mode-field-border") !important;
+  }
+  .filters-btn {
+    background: transparent linear-gradient(180deg, #a187bf 0%, #744aa5 100%) 0%
+      0% no-repeat padding-box;
+    box-shadow: 0px 1px 0px map-get($color, "atlp-field-border");
+    border: 1px solid map-get($color, "atlp-dark-purple-border");
+    color: map-get($color, "atlp-white") !important;
+  }
+  .filter-section-title {
+    color: map-get($color, "light-mode-subtitle") !important;
+  }
+  .mat-radio-label-content,
+  .mat-checkbox-label {
+    color: map-get($color, "light-mode-title") !important;
+  }
+}
+.loaded-filters {
+  background-color: map-get($color, "atlp-white") !important;
+  .loaded-filters-title {
+    color: map-get($color, "light-mode-title") !important;
+  }
+  .tooltip-filters {
+    background-color: map-get($color, "light-mode-body-bg") !important;
+    .saved-filters {
+      color: map-get($color, "atlp-white") !important;
+      background-color: map-get($color, "atlp-violet-base") !important;
+    }
+    &:before {
+      background-color: map-get($color, "atlp-white") !important;
+    }
+  }
+}

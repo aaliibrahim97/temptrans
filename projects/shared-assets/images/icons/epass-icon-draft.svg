@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_156687" data-name="Group 156687" transform="translate(-859 -4428)">
+    <g id="Group_156686" data-name="Group 156686" transform="translate(-91 89)">
+      <g id="_24x24_icon_placeholder" data-name="24x24 icon placeholder" transform="translate(950 4339)">
+        <ellipse id="Ellipse" cx="11" cy="11" rx="11" ry="11" transform="translate(1 1)" fill="#267ad2"/>
+        <rect id="Frame" width="24" height="24" fill="#267ad2" opacity="0"/>
+      </g>
+    </g>
+    <path id="Path_6287" data-name="Path 6287" d="M41.095,29.652l-2.117-2.117a.758.758,0,0,0-1.072,0l-1.248,1.248h0L32.222,33.22a.753.753,0,0,0-.222.536v2.117a.759.759,0,0,0,.758.758h2.117a.753.753,0,0,0,.536-.222L41.1,30.724A.759.759,0,0,0,41.095,29.652Zm-1.516,1.516-2.117-2.117.98-.98,2.117,2.117Z" transform="translate(835 4408.028)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+<div class="drawer-wrap" fxFlex fxLayout="column" fxLayoutAlign="none">
+  <div class="drawer-wrap-container">
+    <div
+      class="drawer-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="drawer-info">
+        <span class="drawer-title">{{ "Verify_Your_OTP" | translate }}</span>
+      </div>
+    </div>
+    <div class="Messages">
+      <div class="Message-box">
+        <ngx-otp-input
+          dir="ltr"
+          #ngxotp
+          [config]="otpInputConfig"
+          (otpChange)="onOTPChange($event)"
+        ></ngx-otp-input>
+        <h6 class="opt-message">{{ "MFA.OTP_Info" | translate }}</h6>
+        <div *ngIf="OTPError">
+          <small class="opt-error">{{ "INVALID_OTP" | translate }}</small>
+        </div>
+        <div *ngIf="!OTPError">
+          <small class="opt-error"> {{ errorlst }}</small>
+        </div>
+        <a
+          (click)="openQRCode()"
+          style="cursor: pointer"
+          *ngIf="
+            !atplSidebarV2Service?.getSidebar(SidebarName.verifyMFAUser)?.opened
+          "
+          >{{ "MFA.Show_QR" | translate }}</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel-nav" fxLayout="column" fxLayoutAlign="space-between center">
+  <button class="round-close-btn" (click)="closeMFAVerifyOTPSidebar()">
+    <mat-icon
+      class="small-close-btn"
+      svgIcon="icon-close-black"
+      aria-hidden="false"
+    ></mat-icon>
+  </button>
+</div>

@@ -1,0 +1,33 @@
+<div
+  class="rating-button-fixed"
+  style="display: none"
+  *ngIf="userInfo?.pcsTkn && !this.isAdminUser"
+  [ngClass]="[
+    isBlink ? 'button-pulse' : '',
+    isSideBarOpen ? 'hide-on-mobile' : ''
+  ]"
+  (click)="toggleSidebarOpen(SidebarName.rating)"
+  matTooltip="{{ 'RATING' | translate }}"
+  [matTooltipPosition]="'left'"
+>
+  <button
+    id="ratingBtnId"
+    style="display: none"
+    class="rating-button"
+    [matBadgeHidden]="ratingNotificationCount == 0"
+    [matBadge]="ratingNotificationCount"
+    matBadgeColor="warn"
+  >
+    <mat-icon class="rating-button-icon">sentiment_satisfied_alt</mat-icon>
+  </button>
+</div>
+
+<atlp-sidebar-v2
+  class="sidebar-with-content"
+  [name]="SidebarName.rating"
+  position="right"
+  [folded]="false"
+  [superimposed]="true"
+>
+  <rating-sidebar (ratingCount)="onRatingCountChange($event)"> </rating-sidebar>
+</atlp-sidebar-v2>

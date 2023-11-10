@@ -1,0 +1,17 @@
+@mixin atlp-countdown-theme($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    atlp-countdown {
+
+        .atlp-countdown {
+
+            .time {
+
+                .title {
+                    color: map-get($foreground, secondary-text);
+                }
+            }
+        }
+    }
+}
